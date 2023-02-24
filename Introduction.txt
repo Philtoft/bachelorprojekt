@@ -1,0 +1,75 @@
+Introduction
+1Introduction
+PLC: Chapter 1
+Basic Terminology
+Meta and Object Language
+Definition of Meta and Object Language  
+An object language is a language you study (e.g., C#, C) using a meta  
+language.  
+ 
+A meta language is the language in which we conduct our discussions, in this 
+course F#
+Interpreter
+Interpreter  
+An interpreter for a program written in some language is one that evaluates  
+the abstract syntax.
+Environment
+Basic T erminology
+Meta and Object Language
+Interpreter
+Environment
+Syntax and Semantics
+Simple Expr LanguageIntroduction
+2Environment  
+When we work with variables we need an environment which maps variable  
+names to values. T ypically done with a tuple list:
+let env = [("a", 3); ("c", 78); ("baf", 666); ("b", 111)];;
+Syntax and Semantics
+Syntax  
+Syntax deals with form: is this program text well-formed?
+We distinguish between two kinds of syntax:
+Concrete Syntax
+The representation of a program as a text, with whitespace, curly  
+braces etc.
+Abstract Syntax
+The representation of a program as a tree, e.g., F# datatype CstIetc.
+Semantics  
+Semantics deals with meaning: What does this well-formed program mean?
+We distinguish between two kinds of semantics:
+Dynamic Semantics
+The meaning or ef fect of a program at run-time; what happens when  
+it is executed. May be expressed by eval functions.
+For the rest of the course we take the following approach:
+Abstract Syntax:  F# datatypesIntroduction
+3Concrete Syntax:  Lexer and Parser specifications
+Semantics:  F# functions, both static semantics (checks) and dynamic semantics  
+(execution). Can be described by direct interpretation using functions, or by  
+compilation to another language.
+Simple Expr Language
+Found in Chapter 1: Inro2.fs
+A simple expression language with support for:
+Integer constants
+Variables
+Primitive operators +, -, *
+Variable mappings are stored in an environment list.
+module Intro2 
+ 
+type expr =  
+  | CstI of int 
+  | Var of string 
+  | Prim of string * expr * expr;; 
+ 
+let rec lookup env x = 
+    match env with  
+    | []        -> failwith (x + " not found") 
+    | (y, v)::r -> if x=y then v else lookup r x 
+ 
+let rec eval e (env : (string * int) list) : int = 
+    match e with 
+    | CstI i            -> i 
+    | Var x             -> lookup env x  
+    | Prim("+", e1, e2) -> eval e1 env + eval e2 env 
+    | Prim("*", e1, e2) -> eval e1 env * eval e2 env 
+    | Prim("-", e1, e2) -> eval e1 env - eval e2 env 
+    | Prim _            -> failwith "unknown primitive"Introduction
+4
