@@ -1,9 +1,3 @@
-import itertools
-import logging
-from typing import Optional, Dict, Union
-
-from nltk import sent_tokenize
-
 import torch
 from transformers import(
     AutoModelForSeq2SeqLM, 
@@ -18,8 +12,8 @@ class QGAR:
         model: PreTrainedModel,
         tokenizer: PreTrainedTokenizer
     ):
-        self.device = "cpu"
-        self.model = model
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.model = model.to(self.device)
         self.tokenizer = tokenizer
 
     def __call__(self, context: str):
@@ -61,11 +55,7 @@ class QGAR:
 
 MODEL = "valhalla/t5-base-e2e-qg"
 
-def pipeline(
-    # model: Optional = None,
-    # tokenizer: Optional[Union[str, PreTrainedTokenizer]] = None,
-):
-    
+def pipeline():
     tokenizer = AutoTokenizer.from_pretrained(MODEL)
     model = AutoModelForSeq2SeqLM.from_pretrained(MODEL)
 
