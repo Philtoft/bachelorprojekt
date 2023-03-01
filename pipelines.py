@@ -18,7 +18,7 @@ class QGAR:
         model: PreTrainedModel,
         tokenizer: PreTrainedTokenizer
     ):
-
+        self.device = "cpu"
         self.model = model
         self.tokenizer = tokenizer
 
@@ -59,23 +59,14 @@ class QGAR:
         )
         return inputs
 
-SUPPORTED_TASKS = {
-    "e2e-qg": {
-        "impl": QGAR,
-        "default": {
-            "model": "valhalla/t5-base-e2e-qg",
-        }
-    }
-}
-
 MODEL = "valhalla/t5-base-e2e-qg"
 
 def pipeline(
     # model: Optional = None,
-    tokenizer: Optional[Union[str, PreTrainedTokenizer]] = None,
+    # tokenizer: Optional[Union[str, PreTrainedTokenizer]] = None,
 ):
     
-    tokenizer = AutoTokenizer.from_pretrianed(tokenizer)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL)
     model = AutoModelForSeq2SeqLM.from_pretrained(MODEL)
 
     return QGAR(model=model, tokenizer=tokenizer)
