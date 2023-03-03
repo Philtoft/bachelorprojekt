@@ -46,7 +46,7 @@ class QGAR:
         padding=True,
         truncation=True,
         add_special_tokens=True,
-        max_length=512
+        max_length=1024
     ):
         inputs = self.tokenizer.batch_encode_plus(
             inputs,
