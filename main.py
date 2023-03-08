@@ -5,14 +5,10 @@ from transformers import (
     T5Tokenizer, 
     BartTokenizer, 
     set_seed, 
-    AutoModelForSeq2SeqLM, 
-    Trainer,
-    DefaultDataCollator
+    AutoModelForSeq2SeqLM,
+    AutoTokenizer
 )
 from trainer import QGARTrainer
-from typing import Tuple
-from datasets import load_dataset
-import torch
 import os
 
 MODEL_TYPE_TO_TOKENIZER = {
@@ -25,7 +21,7 @@ def main():
     with open("settings.json", "r") as file:
         print(file.read())
     parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TrainingArguments))
-    model_args, data_args, training_args: tuple[ModelArguments, DataTrainingArguments, TrainingArguments] = parser.parse_json_file(json_file="./settings.json")
+    model_args, data_args, training_args = parser.parse_json_file(json_file="./settings.json")
 
     model_args.model_type = model_args.model_type.lower()
 
@@ -50,13 +46,16 @@ def main():
         pretrained_model_name_or_path=model_args.model_name
     )
 
+    tokenizer = T5Tokenizer.from_pretrained(model_args.model_name)
+
     # Initialize data_collator
 
     # Initialize trainer
-    trainer = QGARTrainer(training_args)
-    
+    trainer = QGARTrainer(model, data_args, training_args, tokenizer)
+    trainer.setup()
+    trainer.train_and_save()
 
-    trainer.train()
+
 
 if __name__ == "__main__":
     main()

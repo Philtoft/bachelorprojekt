@@ -1,21 +1,41 @@
-from transformers import Trainer, TrainingArguments
+from typing import Any
+from transformers import Trainer, TrainingArguments, AutoTokenizer
 from datasets import load_dataset
+from arguments import DataTrainingArguments
 
 class QGARTrainer:
-    def __init__(self, training_arguments: TrainingArguments):
+    def __init__(self, model: Any, data_arguments: DataTrainingArguments, training_arguments: TrainingArguments, tokenizer: AutoTokenizer):
+        self._model = model
+        self._data_args = data_arguments
         self._training_arguments = training_arguments
+        self._tokenizer = tokenizer
 
-    def __call__(self):
-        trainining_dataset = load_dataset(data_args.training_file_path)
-        training_validation_set = load_dataset(data_args.validation_file_path)
+    def setup(self):
+        print("Loading datasets...")
+        squad = load_dataset("squad", split="train[:5000]")
+        squad = squad.train_test_split(test_size=0.2)
+        print("Done loading datasets.")
 
-        trainer = Trainer(
-            model=model,
-            args=training_args,
-            train_dataset=trainining_dataset,
-            training_validation_set=training_validation_set,
-            data_collator=DefaultDataCollator,
+        tokenized_datasets = squad.map(self.tokenizer_function, batched=True)
+
+        input_ids = self._tokenizer
+
+
+        self._trainer = Trainer(
+            model=self._model,
+            args=self._training_arguments,
+            train_dataset=tokenized_datasets["train"].shuffle(seed=42).select(range(1000)),
+            eval_dataset=tokenized_datasets["test"].shuffle(seed=42).select(range(1000))
         )
+
+    def tokenizer_function(self, example):
+        return self._tokenizer(example["source_ids"], padding="max_length", truncation=True)
+
+    def train_and_save(self):
+        self._trainer.train()
+        self._trainer.save_model("./model/")
+
+
         
 
 # from typing import Any, Dict, Union
