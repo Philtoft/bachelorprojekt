@@ -1,29 +1,24 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 from arguments import ModelArguments, DataTrainingArguments
 from transformers import (
     HfArgumentParser, 
     TrainingArguments, 
     T5Tokenizer, 
     BartTokenizer, 
-    set_seed, 
-    AutoModelForSeq2SeqLM,
-    AutoTokenizer
+    T5TokenizerFast,
+    T5ForConditionalGeneration
 )
-from trainer import QGARTrainer
-import os
+from training.trainer import QGARTrainer
 
 MODEL_TYPE_TO_TOKENIZER = {
     "t5": T5Tokenizer,
     "bart": BartTokenizer,
 }
 
-
 def main():
-    with open("settings.json", "r") as file:
-        print(file.read())
-    parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TrainingArguments))
-    model_args, data_args, training_args = parser.parse_json_file(json_file="./settings.json")
-
-    model_args.model_type = model_args.model_type.lower()
+    model_args, data_args, training_args = parse_args()
 
     if (
         os.path.exists(training_args.output_dir)
@@ -34,28 +29,24 @@ def main():
         raise ValueError(
             f"Output directory ({training_args.output_dir}) already exists and is not empty. Use --overwrite_output_dir to overcome."
         )
-    
 
-    # Set seed
-    set_seed(training_args.seed)
-
-    # Set project name -> RESEARCH
-    os.environ["QGAR"] = "question-generation"
-
-    model = AutoModelForSeq2SeqLM.from_pretrained(
+    model = T5ForConditionalGeneration.from_pretrained(
         pretrained_model_name_or_path=model_args.model_name
     )
 
-    tokenizer = T5Tokenizer.from_pretrained(model_args.model_name)
-
-    # Initialize data_collator
+    tokenizer = T5TokenizerFast.from_pretrained(model_args.model_name)
 
     # Initialize trainer
     trainer = QGARTrainer(model, data_args, training_args, tokenizer)
     trainer.setup()
     trainer.train_and_save()
 
+def parse_args() -> tuple[ModelArguments, DataTrainingArguments, TrainingArguments]:
+    with open("./settings.json", "r", encoding="utf-8") as file:
+        print(file.read())
 
+    parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TrainingArguments))
+    return parser.parse_json_file("./settings.json")
 
 if __name__ == "__main__":
     main()
