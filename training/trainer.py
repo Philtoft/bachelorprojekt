@@ -1,24 +1,41 @@
-from typing import Any
-from transformers import Trainer, TrainingArguments, T5TokenizerFast
-from arguments import DataTrainingArguments
+import torch
+from transformers import Trainer, TrainingArguments
 from preprocessing.data_collator import T2TDataCollator
 
-class QGARTrainer:
-    def __init__(self, model: Any, data_arguments: DataTrainingArguments, training_arguments: TrainingArguments, tokenizer: T5TokenizerFast):
-        self._model = model
-        self._data_args = data_arguments
-        self._training_arguments = training_arguments
-        self._tokenizer = tokenizer
+_MODEL_SAVE_PATH = "./models/"
 
-    def setup(self):
+class QGARTrainer:
+    def __init__(self, model, training_file: str, validation_file: str, training_arguments: TrainingArguments):
+        """
+        Initializes an instance of QGARTrainer for the given model. 
+        The provided model will be trained on the specified training and validation file for the given training arguments.
+        """
+        
+        # Load datasets from files
+        train = torch.load(training_file)
+        validation = torch.load(validation_file)
+
         self._trainer = Trainer(
-            model=self._model,
-            args=self._training_arguments,
-            train_dataset=self._data_args.training_file_path,
-            eval_dataset=self._data_args.validation_file_path,
+            model=model,
+            args=training_arguments,
+            train_dataset=train,
+            eval_dataset=validation,
             data_collator=T2TDataCollator()
         )
+    
+    def train(self):
+        """Start training the model."""
 
-    def train_and_save(self):
         self._trainer.train()
-        self._trainer.save_model("./models/")
+
+    def save(self, path: str = _MODEL_SAVE_PATH):
+        """Save the trained model to the specified directory path."""
+
+        self._trainer.save_model(path)
+
+    def train_and_save(self, path: str = _MODEL_SAVE_PATH):
+        """Start training the model. Once completed the trained model will be saved to the specified directory path."""
+
+        self.train()
+        self.save(path)
+        
