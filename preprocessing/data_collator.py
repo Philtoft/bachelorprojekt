@@ -14,7 +14,7 @@ class T2TDataCollator():
 
         input_ids = torch.stack([example['input_ids'] for example in batch])
         lm_labels = torch.stack([example['decoder_input_ids'] for example in batch])
-        
+
         # Padding of labels is done with token id -100. Token is automatically ignored by PyTorch loss functions
         lm_labels[lm_labels[:, :] == 0] = -100
         attention_mask = torch.stack([example['attention_mask'] for example in batch])
@@ -26,4 +26,3 @@ class T2TDataCollator():
             'labels': lm_labels,
             'decoder_attention_mask': decoder_attention_mask
         }
-

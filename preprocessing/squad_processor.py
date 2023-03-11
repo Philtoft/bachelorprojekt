@@ -59,10 +59,8 @@ class SquadProcessor(builder.GeneratorBasedBuilder):
         files = dl_manager.download_and_extract(_SET_URLS)
 
         return [
-            splits.SplitGenerator(name=splits.Split.TRAIN, gen_kwargs={
-                                  "filepath": files["train"]}),
-            splits.SplitGenerator(name=splits.Split.VALIDATION, gen_kwargs={
-                                  "filepath": files["dev"]})
+            splits.SplitGenerator(name=splits.Split.TRAIN, gen_kwargs={"filepath": files["train"]}),
+            splits.SplitGenerator(name=splits.Split.VALIDATION, gen_kwargs={"filepath": files["dev"]})
         ]
 
     def _generate_examples(self, filepath):
