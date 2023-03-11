@@ -1,7 +1,4 @@
-import torch
 from transformers import(
-    AutoModelForSeq2SeqLM, 
-    AutoTokenizer,
     PreTrainedModel,
     PreTrainedTokenizer,
     BatchEncoding
@@ -45,11 +42,3 @@ class QGAR:
         )
 
         return inputs
-
-
-def pipeline():
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    tokenizer = AutoTokenizer.from_pretrained(_MODEL)
-    model = AutoModelForSeq2SeqLM.from_pretrained(_MODEL).to(device)
-
-    return QGAR(model=model, tokenizer=tokenizer, device=device)
