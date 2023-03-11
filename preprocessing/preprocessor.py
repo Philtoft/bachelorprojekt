@@ -1,4 +1,5 @@
 from datasets import load_dataset
+from transformers import PreTrainedModel, PreTrainedTokenizer
 import torch
 import logging
 
@@ -10,7 +11,7 @@ _SEP_TOKEN = "<sep>"
 logger = logging.getLogger(__name__)
 
 class Preprocessor:
-    def __init__(self, model, tokenizer):
+    def __init__(self, model: PreTrainedModel, tokenizer: PreTrainedTokenizer):
         self._model = model
         self._tokenizer = tokenizer
         
