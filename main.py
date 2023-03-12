@@ -53,14 +53,15 @@ def run_model(model_name: str, device: str, input_text: str):
         "no_repeat_ngram_size": 3,
         "early_stopping": True,
     }
-
+    
     input_string = "generate questions: " + input_text + " </s>"
-    input_ids = tokenizer.encode(input_string, return_tensors="pt")
+    input_ids = tokenizer.encode(input_string, return_tensors="pt").to(device)
     res = model.generate(input_ids, **generator_args)
-    output = tokenizer.batch_decode(res, skip_special_tokens=True)
-    output = [item.split("<sep>") for item in output]
+    output = tokenizer.batch_decode(res, skip_special_tokens=True)[0]
+    output = output.split("<sep>")
+    output = [question.strip() for question in output[:-1]] # Remove leading and trailing white space, remove last empty element from results
 
-    print(output)
+    print(f"Output: \n{output}")
 
 def train_model(model_name: str, device: str, data_args: DataTrainingArguments, training_args: TrainingArguments):
     """
@@ -77,6 +78,7 @@ def train_model(model_name: str, device: str, data_args: DataTrainingArguments, 
     # Initialize trainer
     trainer = QGARTrainer(
         model, 
+        tokenizer,
         data_args.training_file_path, 
         data_args.training_file_path, 
         training_args
