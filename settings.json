@@ -1,6 +1,6 @@
 {
 	"model_arguments": {
-		"model_name": "the-coorporation/t5-qgar",
+		"model_name": "the-coorporation/t5-qgar"
 	},
 	"data_training_arguments": {
 		"training_file_path": "./data/training_data.pt",
