@@ -1,19 +1,25 @@
 {
-	"model_name": "t5-base",
-	"model_type": "t5",
-	"training_file_path": "./data/training_data.pt",
-	"validation_file_path": "./data/validation_data.pt",
-	"output_dir": "./model/",
-	"per_device_train_batch_size": 3,
-	"per_device_eval_batch_size": 3,
-	"gradient_accumulation_steps": 16,
-	"learning_rate": 1e-4,
-	"num_train_epochs": 7,
-	"logging_steps": 100,
-	"run_name": "QGAR",
-	"evaluation_strategy": "steps",
-	"save_steps": 500,
-	"optim": "adamw_torch",
-	"push_to_hub": true,
-	"hub_model_id": "the-coorporation/t5-qgar"
+	"model_arguments": {
+		"model_name": "t5-base",
+		"model_type": "t5"
+	},
+	"data_training_arguments": {
+		"training_file_path": "./data/training_data.pt",
+		"validation_file_path": "./data/validation_data.pt"
+	},
+	"training_arguments": {
+		"output_dir": "./model/",
+		"per_device_train_batch_size": 3,
+		"per_device_eval_batch_size": 3,
+		"gradient_accumulation_steps": 16,
+		"learning_rate": 1e-4,
+		"num_train_epochs": 7,
+		"logging_steps": 100,
+		"run_name": "QGAR",
+		"evaluation_strategy": "steps",
+		"save_steps": 500,
+		"optim": "adamw_torch",
+		"push_to_hub": true,
+		"hub_model_id": "the-coorporation/t5-qgar"
+	}
 }
