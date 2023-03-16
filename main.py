@@ -57,9 +57,12 @@ def run_model(model_name: str, device: str, input_text: str):
     input_string = "generate questions: " + input_text + " </s>"
     input_ids = tokenizer.encode(input_string, return_tensors="pt").to(device)
     res = model.generate(input_ids, **generator_args)
-    output = tokenizer.batch_decode(res, skip_special_tokens=True)[0]
+    output = tokenizer.batch_decode(res, skip_special_tokens=True)[0]    
     output = output.split("<sep>")
-    output = [question.strip() for question in output[:-1]] # Remove leading and trailing white space, remove last empty element from results
+
+    print(f"Output: \n{output}")
+    
+    output = [question.strip() for question in output] # Remove leading and trailing white space, remove last empty element from results
 
     print(f"Output: \n{output}")
 
