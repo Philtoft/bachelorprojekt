@@ -57,11 +57,34 @@ def run_model(model_name: str, device: str, input_text: str):
     input_string = "generate questions: " + input_text + " </s>"
     input_ids = tokenizer.encode(input_string, return_tensors="pt").to(device)
     res = model.generate(input_ids, **generator_args)
-    output = tokenizer.batch_decode(res, skip_special_tokens=True)[0]    
-    output = output.split("?")
-    output = [question.strip() + "?" for question in output] # Remove leading and trailing white space, remove last empty element from results
+    output = tokenizer.batch_decode(res, skip_special_tokens=False)[0]   
 
-    print(f"Output: \n{output}")
+    if len(output) == 0:
+        raise Exception("No questions could be generated.")
+        return
+    
+    output = output.split("<sep>")
+    output = [question.strip().replace("<pad>", "") for question in output] # Remove leading and trailing white space, remove last empty element from results
+
+    print(f"Output new: \n{output}")
+
+    return output
+
+def answer_questions(model_name: str, device: str, questions: list[str], context: str):
+    model, tokenizer = load_model_and_tokenizer(model_name, device)
+
+    print(f"Input: '{context}'")
+
+    generator_args = {
+        "max_length": 256,
+        "num_beams": 4,
+        "length_penalty": 1.5,
+        "no_repeat_ngram_size": 3,
+        "early_stopping": True,
+    }
+
+    answers = []
+
 
 def train_model(model_name: str, device: str, data_args: DataTrainingArguments, training_args: TrainingArguments):
     """
