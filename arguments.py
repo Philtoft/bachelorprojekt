@@ -8,10 +8,6 @@ class ModelArguments:
             "help": "Path to pretrained model or model identifier from huggingface.co/models"}
     )
 
-    model_type: str = field(
-        metadata={"help": "t5 or bart"}
-    )
-
 
 @dataclass
 class DataTrainingArguments:

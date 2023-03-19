@@ -18,7 +18,8 @@
 		"evaluation_strategy": "steps",
 		"save_steps": 500,
 		"optim": "adamw_torch",
+		"report_to": "wandb",
 		"push_to_hub": true,
-		"hub_model_id": "the-coorporation/t5-qgar"
+		"hub_model_id": "the-coorporation/t5-qg"
 	}
 }

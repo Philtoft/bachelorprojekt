@@ -5,7 +5,7 @@ import torch
 import logging
 from arguments import ModelArguments, DataTrainingArguments
 from transformers import (
-    HfArgumentParser, 
+    HfArgumentParser,
     TrainingArguments,
     AutoModelForSeq2SeqLM,
     AutoTokenizer,
@@ -15,12 +15,14 @@ from transformers import (
 from training.trainer import QGARTrainer
 from preprocessing.preprocessor import Preprocessor
 from huggingface_hub import login
+from models.qg import QG
 
 
 _SETTINGS = "./settings.json"
-_TOKEN_PATH = ".local/token.txt"
+_TOKEN_PATH = ".local/hg_token.txt"
 
 logger = logging.getLogger(__name__)
+
 
 def main(args: argparse.Namespace):
     # Log into Huggingface Hub
@@ -29,61 +31,18 @@ def main(args: argparse.Namespace):
     # Parse settings.json
     model_args, data_args, training_args = parse_settings()
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    
+
     if args.train:
         logger.warning("--- Training ---")
         train_model(model_args.model_name, device, data_args, training_args)
         exit()
     elif args.input:
         logger.warning("--- Question Generation ---")
-        run_model(model_args.model_name, device, args.input)
+        qg = QG()
+        print(json.dumps(qg(args.input), indent=4))
         exit()
     else:
         parser.print_help()
-
-def run_model(model_name: str, device: str, input_text: str):
-    model, tokenizer = load_model_and_tokenizer(model_name, device)
-
-    print(f"Input: '{input_text}'")
-
-    generator_args = {
-        "max_length": 256,
-        "num_beams": 4,
-        "length_penalty": 1.5,
-        "no_repeat_ngram_size": 3,
-        "early_stopping": True,
-    }
-    
-    input_string = "generate questions: " + input_text + " </s>"
-    input_ids = tokenizer.encode(input_string, return_tensors="pt").to(device)
-    res = model.generate(input_ids, **generator_args)
-    output = tokenizer.batch_decode(res, skip_special_tokens=False)[0]   
-
-    if len(output) == 0:
-        raise Exception("No questions could be generated.")
-        return
-    
-    output = output.split("<sep>")
-    output = [question.strip().replace("<pad>", "") for question in output] # Remove leading and trailing white space, remove last empty element from results
-
-    print(f"Output new: \n{output}")
-
-    return output
-
-def answer_questions(model_name: str, device: str, questions: list[str], context: str):
-    model, tokenizer = load_model_and_tokenizer(model_name, device)
-
-    print(f"Input: '{context}'")
-
-    generator_args = {
-        "max_length": 256,
-        "num_beams": 4,
-        "length_penalty": 1.5,
-        "no_repeat_ngram_size": 3,
-        "early_stopping": True,
-    }
-
-    answers = []
 
 
 def train_model(model_name: str, device: str, data_args: DataTrainingArguments, training_args: TrainingArguments):
@@ -97,17 +56,18 @@ def train_model(model_name: str, device: str, data_args: DataTrainingArguments, 
     if (not os.path.exists(data_args.training_file_path) or not os.path.exists(data_args.validation_file_path)):
         logger.warning("Datasets not present in './data/'.")
         create_datasets(model, tokenizer)
-    
+
     # Initialize trainer
     trainer = QGARTrainer(
-        model, 
+        model,
         tokenizer,
-        data_args.training_file_path, 
-        data_args.training_file_path, 
+        data_args.training_file_path,
+        data_args.training_file_path,
         training_args
     )
 
     trainer.train()
+
 
 def create_datasets(model, tokenizer):
     """Downloads and preprocesses the SQuAD dataset for model training."""
@@ -115,16 +75,23 @@ def create_datasets(model, tokenizer):
     preprocessor = Preprocessor(model, tokenizer)
     preprocessor.preprocess_dataset()
 
+
 def get_hg_token() -> str:
     with open(_TOKEN_PATH, "r") as file:
         return file.read()
 
+
 def load_model_and_tokenizer(model_name: str, device: str) -> tuple[PreTrainedModel, PreTrainedTokenizer]:
     # Load model and tokenizer
     model = AutoModelForSeq2SeqLM.from_pretrained(model_name).to(device)
-    tokenizer = AutoTokenizer.from_pretrained(model_name, model_max_length=512)
+    tokenizer = AutoTokenizer.from_pretrained("t5-small", model_max_length=512)
+
+    tokenizer.sep_token = '<sep>'
+    tokenizer.add_tokens(['<sep>'])
+    model.resize_token_embeddings(len(tokenizer))
 
     return model, tokenizer
+
 
 def parse_settings() -> tuple[ModelArguments, DataTrainingArguments, TrainingArguments]:
     """Parses the model, data and training arguments for the given model specified in 'settings.json'."""
@@ -135,6 +102,7 @@ def parse_settings() -> tuple[ModelArguments, DataTrainingArguments, TrainingArg
 
         parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TrainingArguments))
         return parser.parse_dict(mergedEntries)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog='QGAR', description="Run or train the QGAR model.")
