@@ -62,7 +62,7 @@ import re
 
 
 def test2():
-    with open ("./htmlTest.html", 'r') as html:
+    with open ("./htmlTest.html", 'r', encoding="utf-8") as html:
         # Initialize the object with the document
         soup = BeautifulSoup(html, "html.parser")
         
@@ -76,7 +76,7 @@ def test2():
             print(string)
             combined_string += string
         
-        with open("test.txt", "w") as text_file:
+        with open("test.txt", "w", encoding="utf-8") as text_file:
             text_file.write(combined_string)
 
         
