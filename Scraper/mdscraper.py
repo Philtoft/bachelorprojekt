@@ -68,8 +68,16 @@ def test2():
         
         # Get the whole body tag
         tag = soup.body
+
+        combined_string = ""
         
         # Print each string recursively
         for string in tag.strings:
             print(string)
+            combined_string += string
+        
+        with open("test.txt", "w") as text_file:
+            text_file.write(combined_string)
+
+        
 test2()
