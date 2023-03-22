@@ -14,7 +14,7 @@
 		"learning_rate": 1e-4,
 		"num_train_epochs": 10,
 		"logging_steps": 100,
-		"run_name": "QGAR",
+		"run_name": "QG",
 		"evaluation_strategy": "steps",
 		"save_steps": 500,
 		"optim": "adamw_torch",
