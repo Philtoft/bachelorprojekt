@@ -60,6 +60,11 @@ import re
 
 # test()
 
+def cleanHtml(htmlDoc):
+    with open (htmlDoc, 'r', encoding="utf-8"):
+        # Regex for Formulas: ((<ul).*(class="katex").*(<\/ul>))*
+        # Regex for billeder + fomulas: (((<ul).*(class="katex").*(<\/ul>))*((<img).*\/>)*)* 
+        # Regex for 
 
 def test2():
     with open ("./htmlTest.html", 'r', encoding="utf-8") as html:
