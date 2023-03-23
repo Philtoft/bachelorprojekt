@@ -60,11 +60,16 @@ import re
 
 # test()
 
+#currently only needs to remove formulas since images are removed by beautifulsoup.
 def cleanHtml(htmlDoc):
-    with open (htmlDoc, 'r', encoding="utf-8"):
-        regex = re.compile('(((<ul).*(class="katex").*(<\/ul>))*((<img).*\/>)*)*') 
+    # with open (htmlDoc, 'r', encoding="utf-8"):
+        # regex = re.compile('(((<ul).*(class="katex").*(<\/ul>))*((<img).*\/>)*)*') 
+        # clean_text = re.sub("(((<ul).*(class=\"katex\").*(<\/ul>))*((<img).*\/>)*)*", "", htmlDoc)
+        # clean_text = re.sub("(((<span).*(class=\"katex\").*(<\/ul>))*((<img).*\/>)*)*", "", htmlDoc)
+        clean_text = re.sub("/((<style).*(KaTeX)*(<\/span>))/gm", "", htmlDoc)
+        return clean_text
         # Regex for Formulas: ((<ul).*(class="katex").*(<\/ul>))*
-        # Regex for billeder + fomulas: (((<ul).*(class="katex").*(<\/ul>))*((<img).*\/>)*)* 
+        # Regex for images + formulas: (((<ul).*(class="katex").*(<\/ul>))*((<img).*\/>)*)* 
 
 def test2():
     with open ("./htmlTest.html", 'r', encoding="utf-8") as html:
@@ -73,13 +78,16 @@ def test2():
         
         # Get the whole body tag
         tag = soup.body
+        
 
         combined_string = ""
         
         # Print each string recursively
         for string in tag.strings:
-            print(string)
-            combined_string += string
+            clean_html = cleanHtml(string)
+            print(clean_html)
+            # combined_string += clean_html
+            combined_string += clean_html
         
         with open("test.txt", "w", encoding="utf-8") as text_file:
             text_file.write(combined_string)
