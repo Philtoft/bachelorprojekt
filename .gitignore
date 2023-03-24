@@ -10,6 +10,7 @@
 .local
 *.pt
 .vscode
+*.csv
 
 # User-specific files
 *.rsuser
