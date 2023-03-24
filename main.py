@@ -1,112 +1,61 @@
 import argparse
-import json
-import os
-import torch
+import sys
 import logging
-from arguments import ModelArguments, DataTrainingArguments
-from transformers import (
-    HfArgumentParser,
-    TrainingArguments,
-    AutoModelForSeq2SeqLM,
-    AutoTokenizer,
-    PreTrainedModel,
-    PreTrainedTokenizer
-)
-from training.trainer import QGARTrainer
-from preprocessing.preprocessor import Preprocessor
+import json
 from huggingface_hub import login
+from settings_parser import parse_settings
 from models.qg import QG
+from preprocessing.preprocessor import SquadPreprocessor
 
 
-_SETTINGS = "./settings.json"
-_TOKEN_PATH = ".local/hg_token.txt"
+_HF_TOKEN_PATH = ".local/hg_token.txt"
+_WANDB_TOKEN_PATH = ".local/wandb_token.txt"
 
 logger = logging.getLogger(__name__)
 
 
-def main(args: argparse.Namespace):
+def main(args: argparse.Namespace, no_arguments: bool):
     # Log into Huggingface Hub
-    login(get_hg_token(), add_to_git_credential=True)
+    log_into_hf_hub()
 
     # Parse settings.json
-    model_args, data_args, training_args = parse_settings()
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-
-    if args.train:
-        logger.warning("--- Training ---")
-        train_model(model_args.model_name, device, data_args, training_args)
-        exit()
-    elif args.input:
-        logger.warning("--- Question Generation ---")
-        qg = QG()
-        print(json.dumps(qg(args.input), indent=4))
-        exit()
-    else:
+    _, data_args, training_args = parse_settings()
+    
+    if no_arguments:
         parser.print_help()
+    else:
+        qg = QG("t5-small", "t5-small")
+
+        if args.input:
+            logger.warning("--- Question Generation ---")
+            print(json.dumps(qg(args.input), indent=4))
+        elif args.train:
+            logger.warning("--- Training ---")
+            qg.train(training_args, data_args, get_wandb_token())
+        elif args.dataset:
+            logger.warning("--- Dataset ---")
+            p = SquadPreprocessor(qg._model, qg._tokenizer)
+            p.preprocess_dataset()
+        else:
+            print("Unknown command")
 
 
-def train_model(model_name: str, device: str, data_args: DataTrainingArguments, training_args: TrainingArguments):
-    """
-    Trains the specified model on the provided datasets using the specified training arguments.
-    If the datasets are not present locally, they will be redownloaded and preprocesed.
-    """
-    model, tokenizer = load_model_and_tokenizer(model_name, device)
+def log_into_hf_hub(token_path: str = _HF_TOKEN_PATH):
+    """Logs into the Huggin Face hub using the provided access token."""
 
-    # Check if datasets are available
-    if (not os.path.exists(data_args.training_file_path) or not os.path.exists(data_args.validation_file_path)):
-        logger.warning("Datasets not present in './data/'.")
-        create_datasets(model, tokenizer)
+    with open(token_path, "r") as file:
+        login(file.read(), add_to_git_credential=True)
 
-    # Initialize trainer
-    trainer = QGARTrainer(
-        model,
-        tokenizer,
-        data_args.training_file_path,
-        data_args.training_file_path,
-        training_args
-    )
+def get_wandb_token(token_path: str = _WANDB_TOKEN_PATH) -> str:
+    """Loads and returns the wandb access token from the given path."""
 
-    trainer.train()
-
-
-def create_datasets(model, tokenizer):
-    """Downloads and preprocesses the SQuAD dataset for model training."""
-
-    preprocessor = Preprocessor(model, tokenizer)
-    preprocessor.preprocess_dataset()
-
-
-def get_hg_token() -> str:
-    with open(_TOKEN_PATH, "r") as file:
+    with open(token_path, "r") as file:
         return file.read()
 
-
-def load_model_and_tokenizer(model_name: str, device: str) -> tuple[PreTrainedModel, PreTrainedTokenizer]:
-    # Load model and tokenizer
-    model = AutoModelForSeq2SeqLM.from_pretrained(model_name).to(device)
-    tokenizer = AutoTokenizer.from_pretrained("t5-small", model_max_length=512)
-
-    tokenizer.sep_token = '<sep>'
-    tokenizer.add_tokens(['<sep>'])
-    model.resize_token_embeddings(len(tokenizer))
-
-    return model, tokenizer
-
-
-def parse_settings() -> tuple[ModelArguments, DataTrainingArguments, TrainingArguments]:
-    """Parses the model, data and training arguments for the given model specified in 'settings.json'."""
-
-    with open(_SETTINGS, "r", encoding="utf-8") as file:
-        settings = json.load(file)
-        mergedEntries = settings['model_arguments'] | settings['data_training_arguments'] | settings['training_arguments']
-
-        parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TrainingArguments))
-        return parser.parse_dict(mergedEntries)
-
-
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog='QGAR', description="Run or train the QGAR model.")
+    parser = argparse.ArgumentParser(prog='QG', description="Run or train the QG model.")
     parser.add_argument("-t", "--train", action='store_true', help="Specify that the model should be trained.")
+    parser.add_argument("-d", "--dataset", action='store_true', help="Download and preprocess SQuAD dataset.")
     parser.add_argument("-i", "--input", type=str, metavar="text", help="Input text to the model.")
 
-    main(parser.parse_args())
+    main(parser.parse_args(), not (len(sys.argv) > 1))
