@@ -1,0 +1,102 @@
+[
+	{
+		"context": "Ancient Egypt was a civilization in Northeast Africa situated in the Nile Valley. Ancient Egyptian civilization followed prehistoric Egypt and coalesced around 3100 BC (according to conventional Egyptian chronology) with the political unification of Upper and Lower Egypt under Menes (often identified with Narmer). The history of ancient Egypt occurred as a series of stable kingdoms, separated by periods of relative instability known as Intermediate Periods: the Old Kingdom of the Early Bronze Age, the Middl",
+		"questions": [
+			{
+				"question": "Where was Ancient Egypt located?",
+				"answer": "Northeast Africa situated in the Nile Valley",
+				"score": 0.38644278049468994
+			},
+			{
+				"question": "When did Ancient Egypt civilization coalesce?",
+				"answer": "3100 BC",
+				"score": 0.6627081632614136
+			},
+			{
+				"question": "Who was often identified with Narmer?",
+				"answer": "Menes",
+				"score": 0.998903214931488
+			},
+			{
+				"question": "What are the periods of relative instability known as?",
+				"answer": "Intermediate Periods",
+				"score": 0.9953044652938843
+			}
+		]
+	},
+	{
+		"context": "Artificial intelligence (AI) is intelligence\u2014perceiving, synthesizing, and inferring information\u2014demonstrated by machines, as opposed to intelligence displayed by non-human animals and humans. Example tasks in which this is done include speech recognition, computer vision, translation between (natural) languages, as well as other mappings of inputs.\nAI applications include advanced web search engines (e.g., Google Search), recommendation systems (used by YouTube, Amazon, and Netflix), understanding human sp",
+		"questions": [
+			{
+				"question": "What does AI stand for?",
+				"answer": "Artificial intelligence",
+				"score": 0.9967987537384033
+			},
+			{
+				"question": "What are examples of tasks in which AI is displayed by machines?",
+				"answer": "speech recognition, computer vision, translation between (natural) languages",
+				"score": 0.5325844287872314
+			},
+			{
+				"question": "Google Search is an example of what type of AI?",
+				"answer": "advanced web search engines",
+				"score": 0.594890296459198
+			}
+		]
+	},
+	{
+		"context": "Deep learning is part of a broader family of machine learning methods based on artificial neural networks with representation learning. Learning can be supervised, semi-supervised or unsupervised.Deep-learning architectures such as deep neural networks, deep belief networks, deep reinforcement learning, recurrent neural networks, convolutional neural networks and transformers have been applied to fields including computer vision, speech recognition, natural language processing, machine translation, bioinfor",
+		"questions": [
+			{
+				"question": "Deep learning is part of what family of machine learning methods?",
+				"answer": "artificial neural networks with representation learning",
+				"score": 0.3274032175540924
+			},
+			{
+				"question": "Deep learning can be supervised, semi-supervised or what?",
+				"answer": "unsupervised",
+				"score": 0.9970846176147461
+			},
+			{
+				"question": "What has deep learning architectures been applied to?",
+				"answer": "computer vision",
+				"score": 0.15098711848258972
+			}
+		]
+	},
+	{
+		"context": "Natural language processing (NLP) is an interdisciplinary subfield of linguistics, computer science, and artificial intelligence concerned with the interactions between computers and human language, in particular how to program computers to process and analyze large amounts of natural language data.  The goal is a computer capable of \"understanding\" the contents of documents, including the contextual nuances of the language within them. The technology can then accurately extract information and insights con",
+		"questions": [
+			{
+				"question": "What subfield of linguistics, computer science, and artificial intelligence is concerned with the interactions between computers and human language?",
+				"answer": "Natural language processing",
+				"score": 0.8277781009674072
+			},
+			{
+				"question": "What is the goal of a computer capable of understanding the contents of documents?",
+				"answer": "Natural language processing",
+				"score": 0.9660243391990662
+			},
+			{
+				"question": "The technology can then accurately extract what?",
+				"answer": "information and insights",
+				"score": 0.8851405382156372
+			}
+		]
+	},
+	{
+		"context": "Data science is an interdisciplinary academic field  that uses statistics, scientific computing, scientific methods, processes, algorithms and systems to extract or extrapolate knowledge and insights from noisy, structured, and unstructured data.Data science also integrates domain knowledge from the underlying application domain (e.g., natural sciences, information technology, and medicine). Data science is multifaceted and can be described as a science, a research paradigm, a research method, a discipline,",
+		"questions": [
+			{
+				"question": "Data science uses what to extract or extrapolate knowledge and insights from noisy, structured, and unstructured data?",
+				"answer": "algorithms and systems",
+				"score": 0.42878037691116333
+			},
+			{
+				"question": "Data science integrates domain knowledge from the underlying application domain?",
+				"answer": "Data science also integrates domain knowledge from the underlying application domain",
+				"score": 0.028403390198946
+			}
+		]
+	}
+]
