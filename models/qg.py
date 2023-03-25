@@ -57,9 +57,18 @@ class QG:
         # Remove leading and trailing white space, remove last empty element from results
         questions = [question.strip() for question in questions[:-1]]
 
+        # Loop through and split on questionmark
+        final_questions = []
+        for question in questions:
+            question = question.split("?")
+            final_questions.append(question)
+        
+        # Flatten list, remove empty elements and add questionmark
+        final_questions = [item.strip() + "?" for sublist in final_questions for item in sublist if item != '']
+
         return {
-            "context": context,
-            "questions": questions
+            # "context": context,
+            "questions": final_questions
         }
 
 
