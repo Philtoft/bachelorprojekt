@@ -67,7 +67,7 @@ class QG:
         final_questions = [item.strip() + "?" for sublist in final_questions for item in sublist if item != '']
 
         return {
-            # "context": context,
+            "context": context,
             "questions": final_questions
         }
 
