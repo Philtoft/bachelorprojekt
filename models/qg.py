@@ -5,6 +5,7 @@ from transformers import (
     PreTrainedTokenizer,
     TrainingArguments,
     Trainer,
+    DataCollatorWithPadding
 )
 from settings_parser import DataTrainingArguments
 from preprocessing.data_collator import T2TDataCollator
@@ -63,10 +64,10 @@ class QG:
         }
 
 
-    def train(self, training_args: TrainingArguments, data_args: DataTrainingArguments, wandb_key: str):
+    def train(self, training_args: TrainingArguments, data_args: DataTrainingArguments):
         """Start training the `QG` model. Once completed it will be pushed to the HuggingFace Hub."""
 
-        wandb.login(key=wandb_key)
+        # wandb.login(key=wandb_key)
 
         train = torch.load(data_args.training_file_path)
         validation = torch.load(data_args.validation_file_path)
@@ -76,9 +77,9 @@ class QG:
             args=training_args,
             train_dataset=train,
             eval_dataset=validation,
-            data_collator=T2TDataCollator()
+            data_collator=DataCollatorWithPadding(padding='longest', tokenizer=self._tokenizer)
         )
 
         trainer.train()
-        wandb.finish()
-        trainer.push_to_hub()
+        # wandb.finish()
+        # trainer.push_to_hub()

@@ -1,0 +1,33 @@
+{
+    "os": "macOS-13.2.1-arm64-arm-64bit",
+    "python": "3.10.8",
+    "heartbeatAt": "2023-03-29T08:11:17.351409",
+    "startedAt": "2023-03-29T08:11:16.734206",
+    "docker": null,
+    "cuda": null,
+    "args": null,
+    "state": "running",
+    "program": "question_generation-jvsc-0724306b-00ce-4b69-a3c0-e912c585838eabdd77d1-fa2f-48c1-951c-ee5e3e85d03d.ipynb",
+    "root": "/Users/philiphyltoft/MEGA/ITU/6sem/bachelorproject/bachelorprojekt",
+    "git": {
+        "remote": "https://github.com/Philtoft/bachelorprojekt.git",
+        "commit": "9a213acf3c474c72428268f3bc65cde0064e8400"
+    },
+    "email": "philip.hyltoft@gmail.com",
+    "host": "Philips-MacBook-Pro.local",
+    "username": "philiphyltoft",
+    "executable": "/Users/philiphyltoft/miniconda3/envs/hg_training/bin/python",
+    "cpu_count": 10,
+    "cpu_count_logical": 10,
+    "disk": {
+        "total": 460.4317207336426,
+        "used": 429.84792709350586
+    },
+    "gpuapple": {
+        "type": "arm",
+        "vendor": "Apple"
+    },
+    "memory": {
+        "total": 16.0
+    }
+}
