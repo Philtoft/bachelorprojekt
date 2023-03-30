@@ -1,20 +1,19 @@
-from ast import List
 from dataclasses import dataclass
+from transformers import T5TokenizerFast, DataCollatorForSeq2Seq, AutoModelForSeq2SeqLM
+from transformers.utils import PaddingStrategy
 import torch
 
 
 @dataclass
 class T2TDataCollator():
     """
-    A datacollator for a text-to-text transformer model, which can take a list of samples
+    A simple data collator for a text-to-text transformer model, which can take a list of samples
     from a dataset and collate them into a batch.
     """
 
-    def __call__(self, batch: List) -> dict[str, torch.Tensor]:
+    def __call__(self, batch: list) -> dict[str, torch.Tensor]:
         """
         Take a list of samples from a dataset and collate them into a batch.
-        Returns:
-        A dictionary of tensors.
         """
 
         # Convert encoder and decoder input ids to Tensors
@@ -33,3 +32,14 @@ class T2TDataCollator():
             'labels': lm_labels,
             'decoder_attention_mask': decoder_attention_mask
         }
+
+
+@dataclass
+class T2TDataCollatorWithDynamicPadding(DataCollatorForSeq2Seq):
+    """
+    A data collator for a text-to-text transformer model, which dynamically pads a batch to the longest
+    example length in the batch.
+    """
+
+    def __init__(self, model: AutoModelForSeq2SeqLM, tokenizer: T5TokenizerFast):
+        super().__init__(model=model, tokenizer=tokenizer, padding=PaddingStrategy.LONGEST, return_tensors='pt')
