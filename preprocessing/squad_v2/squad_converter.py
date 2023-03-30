@@ -5,7 +5,8 @@ import json
 
 def convert_and_save_squad_v2():
     """
-    Converts `SQuAD V2.0` to an aggregated context-questions format and saves it as two json files; train and validation.\n
+    Converts `SQuAD V2.0` to an aggregated context-questions format and saves it as two json files; train and validation.
+
     Each entry of the dataset will be transformed to be composed of
     a context and an array of questions related to that particular context.
     """
@@ -41,7 +42,6 @@ def _transform_dataset(df: pd.DataFrame) -> dict:
         questions: [
             "Example question 1",\n
             "Example question 2",\n
-            ...
         ]
     }
     """
