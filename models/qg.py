@@ -7,7 +7,7 @@ from transformers import (
     Trainer,
 )
 from settings_parser import DataTrainingArguments
-from preprocessing.data_collator import T2TDataCollator
+from preprocessing.data_collator import T2TDataCollatorWithDynamicPadding
 import torch
 import wandb
 
@@ -76,7 +76,7 @@ class QG:
             args=training_args,
             train_dataset=train,
             eval_dataset=validation,
-            data_collator=T2TDataCollator()
+            data_collator=T2TDataCollatorWithDynamicPadding()
         )
 
         trainer.train()
