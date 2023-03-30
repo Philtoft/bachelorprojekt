@@ -11,6 +11,7 @@
 *.pt
 .vscode
 *.csv
+wandb
 
 # User-specific files
 *.rsuser
