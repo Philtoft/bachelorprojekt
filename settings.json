@@ -1,10 +1,14 @@
 {
 	"model_arguments": {
-		"model_name": "the-coorporation/t5-qgar"
+		"qg_model_name": "the-coorporation/t5-qgar",
+		"qa_model_name": "distilbert-base-cased-distilled-squad"
 	},
 	"data_training_arguments": {
 		"training_file_path": "./data/training_data.pt",
-		"validation_file_path": "./data/validation_data.pt"
+		"validation_file_path": "./data/validation_data.pt",
+		"wandb_project_name": "QG",
+		"dataset": "the-coorporation/the_squad_v2",
+		"dataset_output_dir": "data"
 	},
 	"training_arguments": {
 		"output_dir": "./model/",
