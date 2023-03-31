@@ -10,14 +10,14 @@ from parsing.settings_parser import DataTrainingArguments
 from preprocessing.data_collator import T2TDataCollator
 import torch
 import wandb
+import os
 
-_MODEL = "the-coorporation/t5-qg"
 _MODEL_MAX_LENGTH = 512
 
 class QG:
-    """Question Generator model based on `T5-small`."""
+    """Question Generator model based on Google's `T5` model."""
 
-    def __init__(self, model: str = _MODEL, tokenizer: str = _MODEL):
+    def __init__(self, model: str, tokenizer: str):
         """Initializes the `QG` model."""
 
         self._device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -29,7 +29,7 @@ class QG:
         self._model.resize_token_embeddings(len(self._tokenizer))
 
 
-    def __call__(self, context: str) -> dict[str, str]:
+    def __call__(self, context: str) -> dict[str, list[str]]:
         """Generates questions based on the given context and formats it as a dictionary."""
 
         generator_args = {
@@ -65,6 +65,8 @@ class QG:
 
     def train(self, training_args: TrainingArguments, data_args: DataTrainingArguments, wandb_key: str):
         """Start training the `QG` model. Once completed it will be pushed to the HuggingFace Hub."""
+
+        os.environ['WANDB_PROJECT'] = data_args.wandb_project_name
 
         wandb.login(key=wandb_key)
 
