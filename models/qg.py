@@ -6,7 +6,7 @@ from transformers import (
     TrainingArguments,
     Trainer,
 )
-from settings_parser import DataTrainingArguments
+from parsing.settings_parser import DataTrainingArguments
 from preprocessing.data_collator import T2TDataCollator
 import torch
 import wandb

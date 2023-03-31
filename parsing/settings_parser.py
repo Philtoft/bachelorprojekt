@@ -1,25 +1,10 @@
-from dataclasses import dataclass, field
 from transformers import TrainingArguments, HfArgumentParser
+from parsing.arguments import ModelArguments, DataTrainingArguments
 import json
 
 _SETTINGS = "settings.json"
 
-@dataclass
-class ModelArguments:
-    model_name: str = field(
-        metadata={"help": "Path to pretrained model or model identifier from huggingface.co/models"}
-    )
 
-
-@dataclass
-class DataTrainingArguments:
-    training_file_path: str = field(
-        metadata={"help": "Path for cached training dataset"}
-    )
-
-    validation_file_path: str = field(
-        metadata={"help": "Path for cached validation dataset"}
-    )
 
 
 def parse_settings(settings_path: str = _SETTINGS) -> tuple[ModelArguments, DataTrainingArguments, TrainingArguments]:

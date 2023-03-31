@@ -3,7 +3,7 @@ import sys
 import logging
 import json
 from huggingface_hub import login
-from settings_parser import parse_settings
+from parsing.settings_parser import parse_settings
 from models.qg import QG
 from preprocessing.preprocessor import SquadPreprocessor
 
