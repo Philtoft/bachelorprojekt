@@ -87,7 +87,7 @@ class SquadPreprocessor:
             max_length=_MAX_INPUT_LENGTH,
             add_special_tokens=True,
             truncation=True,
-            padding=self._padding
+            padding=self._padding if not self._padding else 'max_length'
         )
 
         # Encode targets (all questions for the given context)
@@ -96,7 +96,7 @@ class SquadPreprocessor:
             max_length=_MAX_INPUT_LENGTH,
             add_special_tokens=True,
             truncation=True,
-            padding=self._padding
+            padding=self._padding if not self._padding else 'max_length'
         )
 
         # Add the target input_ids as the labels for the encoding
