@@ -5,8 +5,6 @@ import json
 _SETTINGS = "settings.json"
 
 
-
-
 def parse_settings(settings_path: str = _SETTINGS) -> tuple[ModelArguments, DataTrainingArguments, TrainingArguments]:
     """Parses the model, data and training arguments for the given model specified in 'settings.json'."""
 
