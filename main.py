@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 def main(args: argparse.Namespace, no_arguments: bool):
     # Log into Huggingface Hub
     hf_token = get_local_file(_HF_TOKEN)
-    login(hf_token)
+    login(hf_token, add_to_git_credential=True)
 
     # Parse settings.json
     _, data_args, training_args = parse_settings()
