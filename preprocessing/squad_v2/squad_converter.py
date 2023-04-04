@@ -35,6 +35,7 @@ def _transform_dataset(df: pd.DataFrame) -> dict:
     """
     Takes a `Pandas DataFrame` containing a split `SQuAD V2.0` dataset and transforms duplicate contexts to a single one,
     combining it with a list of its related questions.
+    Removes all questions that have no associated answer
 
     Output example:\n
     {
@@ -46,6 +47,10 @@ def _transform_dataset(df: pd.DataFrame) -> dict:
     }
     """
 
+    # Removes all questions with no answer
+    df = df.loc[df['answers'].apply(lambda x : len(x.get('text','')) > 0)]
+
+    # Makes it only include 'context' and 'question' columns
     df = df[["context", "question"]]
 
     # apply(list) is used to convert the list of questions into a list of strings instead of a list of lists
