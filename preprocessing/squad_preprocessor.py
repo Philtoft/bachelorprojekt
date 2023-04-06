@@ -13,14 +13,18 @@ logger = logging.getLogger(__name__)
 
 class SquadPreprocessor:
     """
-    A `SQuAD` preprocessor for a modified version of `SQuAD 2.0`.
+    A `SQuAD` preprocessor for a modified version of the `SQuAD` dataset.
     
     The preprocessor preprocesses the dataset by adding special tokens and 
     encodings to all entries in the dataset.
     """
 
     def __init__(self, tokenizer: T5TokenizerFast, padding: bool = False):
-        """Initializes a new instance of a `SquadPreprocessor`."""
+        """
+        Initializes a new instance of a `SquadPreprocessor`.
+
+        `padding` specifies whether to pad the entries in the dataset to the longest entry of the entire dataset.
+        """
 
         self._tokenizer = tokenizer
         self._padding = padding
@@ -30,14 +34,30 @@ class SquadPreprocessor:
         self._tokenizer.sep_token = _SEP_TOKEN
         self._tokenizer.add_tokens([_SEP_TOKEN])
 
-    def preprocess(self, dataset: str, save_dir: str = None) -> tuple[Dataset, Dataset]:
+
+    def preprocess_and_save(self, dataset: str, save_dir: str):
         """
-        Preprocesses a modified `SQuAD 2.0` dataset by adding end of sequence and separator tokens 
+        Preprocesses a modified `SQuAD` dataset by adding end of sequence and separator tokens 
         to each dataset entry followed by an encoding of the entry.
 
-        The preprocessed dataset can be saved in `PyTorch` format locally on disk if `save_dir` is specified.
+        The preprocessed dataset is saved in `PyTorch` format locally on disk in `save_dir`.
+        """
 
-        Returns
+        train, validation = self.preprocess(dataset)
+
+        # Save datasets to disk if save_dir is specified
+        logger.info(f"Saving processed dataset to {save_dir}")
+        torch.save(train, save_dir + "/training_data.pt")
+        torch.save(validation, save_dir + "/validation_data.pt")
+        logger.info("Successfully saved processed datasets.")
+
+
+    def preprocess(self, dataset: str) -> tuple[Dataset, Dataset]:
+        """
+        Preprocesses a modified `SQuAD` dataset by adding end of sequence and separator tokens 
+        to each dataset entry followed by an encoding of the entry.
+
+        Returns the in memory preprocessed train and validaiton datasets.
         """
 
         logger.info(f"Downloading '{dataset}' dataset...")
@@ -64,14 +84,8 @@ class SquadPreprocessor:
         training_dataset = tokenized_dataset["train"]
         validation_dataset = tokenized_dataset["validation"]
 
-        # Save datasets to disk if save_dir is specified
-        if save_dir:
-            logger.info(f"Saving processed dataset to {save_dir}")
-            torch.save(training_dataset, save_dir + "/training_data.pt")
-            torch.save(validation_dataset, save_dir + "/validation_data.pt")
-            logger.info("Successfully saved processed datasets.")
-
         return training_dataset, validation_dataset
+
 
     def _create_encodings(self, batch: dict[str, str] | dict[list[str], list[str]]) -> BatchEncoding:
         """
@@ -104,6 +118,7 @@ class SquadPreprocessor:
 
         return model_inputs
 
+
     def _add_eos_tokens(self, example: dict[str, str]):
         """Adds an `end of sequence (eos)` token to an example's context and questions."""
 
@@ -111,6 +126,7 @@ class SquadPreprocessor:
         example['questions'] = example['questions'] + _EOS_TOKEN
 
         return example
+
 
     def _add_sep_tokens(self, example: dict[str, str]):
         """Replaces the `{sep_token}` placeholder with a `<sep>` token for an example's questions."""
