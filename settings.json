@@ -1,6 +1,7 @@
 {
 	"model_arguments": {
 		"qg_model_name": "the-coorporation/t5-qgar",
+		"tokenizer_name": "t5-small",
 		"qa_model_name": "distilbert-base-cased-distilled-squad"
 	},
 	"data_training_arguments": {

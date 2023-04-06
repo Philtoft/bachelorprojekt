@@ -6,6 +6,10 @@ class ModelArguments:
         metadata={"help": "Path to pretrained qg model or model identifier from huggingface.co/models"}
     )
 
+    tokenizer_name: str = field(
+        metadata={"help": "Identifier for a pretrained tokenizer from huggingface"}
+    )
+
     qa_model_name: str = field(
         metadata={"help": "Path to pretrained qa model or model identifier from huggingface.co/models"}
     )

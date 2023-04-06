@@ -20,12 +20,12 @@ def main(args: argparse.Namespace, no_arguments: bool):
     login(hf_token, add_to_git_credential=True)
 
     # Parse settings.json
-    _, data_args, training_args = parse_settings()
+    model_args, data_args, training_args = parse_settings()
     
     if no_arguments:
         parser.print_help()
     else:
-        qg = QG("t5-small", "t5-small")
+        qg = QG(model_args.qg_model_name, model_args.tokenizer_name)
 
         if args.input:
             logger.info("--- Question Generation ---")
@@ -47,7 +47,7 @@ def main(args: argparse.Namespace, no_arguments: bool):
 
 
 def get_local_file(filename: str):
-    """Loads and returns a `.local` file."""
+    """Load and return the content of a `.local` file."""
 
     with open(f'.local/{filename}', 'r', encoding='utf-8') as file:
         return file.read()
