@@ -38,9 +38,9 @@ def main(args: argparse.Namespace, no_arguments: bool):
             qg.train(training_args, data_args, wandb_token)
 
         elif args.dataset:
-            logger.info("--- Dataset ---")
-            p = SquadPreprocessor(qg._tokenizer)
-            p.preprocess(data_args.dataset, data_args.dataset_output_dir)
+            logger.info("--- Preprocess Dataset ---")
+            preprocessor = SquadPreprocessor(qg._tokenizer)
+            preprocessor.preprocess_and_save(data_args.dataset, data_args.dataset_output_dir)
 
         else:
             print("Unknown command")
