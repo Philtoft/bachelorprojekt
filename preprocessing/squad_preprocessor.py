@@ -6,7 +6,7 @@ import logging
 _TASK_PREFIX = "generate questions: "
 _SEP_TOKEN = '<sep>'
 _EOS_TOKEN = ' </s>'
-_MAX_INPUT_LENGTH = 512
+_MAX_INPUT_OUTPUT_LENGTH = 512
 
 logger = logging.getLogger(__name__)
 
@@ -87,7 +87,7 @@ class SquadPreprocessor:
         return training_dataset, validation_dataset
 
 
-    def _create_encodings(self, batch: dict[str, str] | dict[list[str], list[str]]) -> BatchEncoding:
+    def _create_encodings(self, batch: dict) -> BatchEncoding:
         """
         Creates encodings for each example batch and returns them as a `BatchEncoding`.
         """
@@ -96,9 +96,9 @@ class SquadPreprocessor:
         inputs = [_TASK_PREFIX + context for context in batch['context']]
 
         # Encode inputs (context)
-        model_inputs = self._tokenizer(
+        input_encodings = self._tokenizer(
             inputs,
-            max_length=_MAX_INPUT_LENGTH,
+            max_length=_MAX_INPUT_OUTPUT_LENGTH,
             add_special_tokens=True,
             truncation=True,
             padding=self._padding if not self._padding else 'max_length'
@@ -107,16 +107,19 @@ class SquadPreprocessor:
         # Encode targets (all questions for the given context)
         labels = self._tokenizer(
             batch['questions'],
-            max_length=_MAX_INPUT_LENGTH,
+            max_length=_MAX_INPUT_OUTPUT_LENGTH,
             add_special_tokens=True,
             truncation=True,
             padding=self._padding if not self._padding else 'max_length'
         )
 
-        # Add the target input_ids as the labels for the encoding
-        model_inputs['labels'] = labels['input_ids']
-
-        return model_inputs
+        # Note: The forward function automatically creates the correct decoder_input_ids
+        # Hence, we don't create them manually
+        return {
+            'input_ids': input_encodings['input_ids'],
+            'attention_mask': input_encodings['attention_mask'],
+            'labels': labels['input_ids']
+        }
 
 
     def _add_eos_tokens(self, example: dict[str, str]):
