@@ -26,6 +26,7 @@
 		"optim": "adamw_torch",
 		"report_to": "wandb",
 		"push_to_hub": true,
+		"fp16": true,
 		"hub_model_id": "the-coorporation/t5-qg"
 	}
 }
