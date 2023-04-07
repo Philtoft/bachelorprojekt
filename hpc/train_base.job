@@ -8,8 +8,6 @@
 #SBATCH --partition=brown              # Run on either the Red or Brown queue
 #SBATCH --mail-type=FAIL,END
 
-env WANDB_PROJECT=T5-QG
-
 module load Anaconda3
 eval "$(conda shell.bash hook)"
 source activate hugging
