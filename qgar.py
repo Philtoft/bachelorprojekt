@@ -20,7 +20,7 @@ class qgar():
 
     def parse_notes(self):
         # 1) Get notes from file
-        with open("./data/notes/thhs.md") as fp:
+        with open(f"./data/notes/{self.notes}.md") as fp:
             self.notes = fp.read()
         self.markdown_to_html()
         self.html_to_plaintext()
@@ -49,7 +49,7 @@ class qgar():
         pass
 
 
-my_qgar = qgar("thhs-cleaned.txt")
+my_qgar = qgar("thhs")
 my_qgar.parse_notes()
 print(my_qgar.notes)
 
