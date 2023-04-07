@@ -78,7 +78,7 @@ class QG:
             args=training_args,
             train_dataset=train,
             eval_dataset=validation,
-            data_collator=T2TDataCollator()
+            data_collator=T2TDataCollator(self._model, self._tokenizer)
         )
 
         trainer.train()
