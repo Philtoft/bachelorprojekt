@@ -29,7 +29,7 @@ class QG:
         self._model.resize_token_embeddings(len(self._tokenizer))
 
 
-    def __call__(self, context: str) -> dict[str, str]:
+    def __call__(self, context: str) -> list:
         """Generates questions based on the given context and formats it as a dictionary."""
 
         generator_args = {
@@ -43,7 +43,7 @@ class QG:
         # Split the context into chunks of the maximum length
         context_chunks = self.split_text(context)
 
-        collected_context_questions = []
+        context_and_questions = []
 
         # Generate questions for each chunk
         i = 0
@@ -52,8 +52,6 @@ class QG:
                 break
                 
             i += 1
-
-            print(f"Context chunk: {context_chunk}\n")
 
             input_string = "generate questions: " + context_chunk + " </s>"
             
@@ -70,19 +68,22 @@ class QG:
             questions = questions.split("<sep>")
 
             # Remove leading and trailing white space, remove last empty element from results
-            questions = [question.strip() for question in questions[:-1]]
+            questions = [question.strip() for question in questions]
 
-            print(f"Questions: {questions}\n")
+            # Remove empty questions
+            questions = [question for question in questions if question != '']
 
-        return collected_context_questions
-        
+            context_and_questions.append({
+                "context": context_chunk,
+                "questions": questions
+            })
 
-        # return {
-        #     "context": context,
-        #     "questions": questions
-        # }
+        return context_and_questions
 
     def split_text(self, text:str, max_length:str=_MODEL_MAX_LENGTH):
+        """Splits the given text into chunks of the given maximum length."""
+        # todo: need to find correct way of splitting text into chunks in relation to the model's max length
+        max_length = max_length / 2
         sentences = text.split(".")
         chunks = []
         current_chunk = ""
