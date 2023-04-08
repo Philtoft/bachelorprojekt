@@ -15,7 +15,7 @@ class qgar():
 
     def __init__(self, notes: str):
         self.notes = notes
-        # self.qg = QG("t5-small", "t5-small")
+        self.qg = QG("t5-small", "t5-small")
         # self.qa = 
 
     def parse_notes(self):
@@ -39,6 +39,7 @@ class qgar():
     def generate_questions(self):
         """ Generates questions from the notes """
         questions = self.qg(self.notes)
+        return questions
     
     def generate_answers(self):
         """ Generates answers from the notes """
@@ -49,8 +50,9 @@ class qgar():
         pass
 
 
-my_qgar = qgar("thhs")
+my_qgar = qgar("samplenotes")
 my_qgar.parse_notes()
-print(my_qgar.notes)
+questions = my_qgar.generate_questions()
+print(f"Questions: {questions}")
 
 # my_qgar.generate_questions()
