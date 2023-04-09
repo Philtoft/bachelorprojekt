@@ -80,8 +80,7 @@ class QG:
             data_collator=T2TDataCollator(self._model, self._tokenizer)
         )
 
-        self._tokenizer.push_to_hub(training_args.hub_model_id)
-
         trainer.train()
         wandb.finish()
-        trainer.push_to_hub()
+        trainer.push_to_hub(blocking=True)
+        self._tokenizer.push_to_hub(training_args.hub_model_id)
