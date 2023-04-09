@@ -11,4 +11,4 @@
 module load Anaconda3
 eval "$(conda shell.bash hook)"
 source activate hugging
-python main.py -t
+python main.py -t -s hpc/large.json
