@@ -6,7 +6,7 @@
 #SBATCH --gres=gpu:4                   # Schedule a GPU, or more with gpu:2 etc
 #SBATCH --time=48:00:00                # Run time (hh:mm:ss) - run for one hour max
 #SBATCH --partition=brown              # Run on either the Red or Brown queue
-#SBATCH --mail-type=FAIL,END
+#SBATCH --mail-type=BEGIN,FAIL,END
 
 module load Anaconda3
 eval "$(conda shell.bash hook)"
