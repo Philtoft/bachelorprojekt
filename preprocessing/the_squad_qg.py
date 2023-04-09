@@ -91,7 +91,7 @@ class SquadProcessor(GeneratorBasedBuilder):
                 }
             ),
             supervised_keys=None,
-            homepage="https://huggingface.co/datasets/the-coorporation/the_squad_v2",
+            homepage="https://huggingface.co/datasets/the-coorporation/the_squad_qg",
             citation=_CITATION,
             task_templates=[]
         )
@@ -111,7 +111,7 @@ class SquadProcessor(GeneratorBasedBuilder):
             squad: dict[str, str] = json.load(file)
 
             for entry in squad["data"]:
-                questions = [question.strip()for question in entry['questions']]
+                questions = [question.strip() for question in entry['questions']]
                 target_text = " {sep_token} ".join(questions)
                 target_text = f"{target_text} {{sep_token}}"
                 
