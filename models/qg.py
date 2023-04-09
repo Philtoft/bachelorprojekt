@@ -24,7 +24,6 @@ class QG:
         self._model: PreTrainedModel = AutoModelForSeq2SeqLM.from_pretrained(model).to(self._device)
         self._tokenizer: PreTrainedTokenizer = AutoTokenizer.from_pretrained(tokenizer, model_max_length=_MODEL_MAX_LENGTH)
 
-        self._tokenizer.sep_token = '<sep>'
         self._tokenizer.add_tokens(['<sep>'])
         self._model.resize_token_embeddings(len(self._tokenizer))
 

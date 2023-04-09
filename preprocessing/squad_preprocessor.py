@@ -31,7 +31,6 @@ class SquadPreprocessor:
 
         # Each question is separated with a <sep> token.
         # Therefore we must add it to the tokenizer's tokens
-        self._tokenizer.sep_token = _SEP_TOKEN
         self._tokenizer.add_tokens([_SEP_TOKEN])
 
 
@@ -99,7 +98,6 @@ class SquadPreprocessor:
         input_encodings = self._tokenizer(
             inputs,
             max_length=_MAX_INPUT_OUTPUT_LENGTH,
-            add_special_tokens=True,
             truncation=True,
             padding=self._padding if not self._padding else 'max_length'
         )
@@ -108,7 +106,6 @@ class SquadPreprocessor:
         labels = self._tokenizer(
             batch['questions'],
             max_length=_MAX_INPUT_OUTPUT_LENGTH,
-            add_special_tokens=True,
             truncation=True,
             padding=self._padding if not self._padding else 'max_length'
         )
