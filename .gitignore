@@ -12,6 +12,7 @@
 .vscode
 *.csv
 wandb
+*.out
 
 # User-specific files
 *.rsuser
