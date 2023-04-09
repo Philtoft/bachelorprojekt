@@ -134,6 +134,6 @@ class SquadPreprocessor:
     def _add_sep_tokens(self, example: dict[str, str]):
         """Replaces the `{sep_token}` placeholder with a `<sep>` token for an example's questions."""
 
-        example['questions'] = example['questions'].replace('{septoken}', _SEP_TOKEN)
+        example['questions'] = example['questions'].replace('{sep_token}', _SEP_TOKEN)
 
         return example
