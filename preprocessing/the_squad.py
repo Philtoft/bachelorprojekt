@@ -11,7 +11,7 @@ from datasets import (
     Split
 )
 
-_SET_BASE_URL = "https://huggingface.co/datasets/the-coorporation/the_squad/resolve/main/"
+_SET_BASE_URL = "https://huggingface.co/datasets/the-coorporation/the_squad_qg/resolve/main/"
 _SET_URLS = {
     "v2": {
         "train":  _SET_BASE_URL + "squad_v2_train.json",
