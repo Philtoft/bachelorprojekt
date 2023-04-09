@@ -8,7 +8,7 @@
 		"training_file_path": "./data/training_data.pt",
 		"validation_file_path": "./data/validation_data.pt",
 		"wandb_project_name": "QG-small",
-		"dataset": "the-coorporation/the_squad",
+		"dataset": "the-coorporation/the_squad_qg",
 		"dataset_output_dir": "data"
 	},
 	"training_arguments": {
