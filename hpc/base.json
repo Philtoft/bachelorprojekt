@@ -1,18 +1,18 @@
 {
 	"model_arguments": {
-		"qg_model_name": "t5-small",
-		"tokenizer_name": "t5-small",
+		"qg_model_name": "t5-base",
+		"tokenizer_name": "t5-base",
 		"qa_model_name": "distilbert-base-cased-distilled-squad"
 	},
 	"data_training_arguments": {
 		"training_file_path": "./data/training_data.pt",
 		"validation_file_path": "./data/validation_data.pt",
-		"wandb_project_name": "QG-small",
+		"wandb_project_name": "QG-base",
 		"dataset": "the-coorporation/the_squad",
 		"dataset_output_dir": "data"
 	},
 	"training_arguments": {
-		"output_dir": "./model/t5-small-qg",
+		"output_dir": "./model/t5-base-qg",
 		"per_device_train_batch_size": 32,
 		"per_device_eval_batch_size": 32,
 		"gradient_accumulation_steps": 16,
@@ -27,6 +27,6 @@
 		"report_to": "wandb",
 		"push_to_hub": true,
 		"fp16": true,
-		"hub_model_id": "the-coorporation/t5-small-qg"
+		"hub_model_id": "the-coorporation/t5-base-qg"
 	}
 }

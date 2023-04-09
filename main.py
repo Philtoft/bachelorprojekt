@@ -20,7 +20,7 @@ def main(args: argparse.Namespace, no_arguments: bool):
     login(hf_token, add_to_git_credential=True)
 
     # Parse settings.json
-    model_args, data_args, training_args = parse_settings()
+    model_args, data_args, training_args = parse_settings(args.settings)
     
     if no_arguments:
         parser.print_help()
@@ -58,5 +58,6 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--train", action='store_true', help="Specify that the model should be trained.")
     parser.add_argument("-d", "--dataset", action='store_true', help="Download and preprocess SQuAD dataset.")
     parser.add_argument("-i", "--input", type=str, metavar="text", help="Input text to the model.")
+    parser.add_argument("-s", "--settings", type=str, metavar="settings", default="settings.json", help="Settings file to use.")
 
     main(parser.parse_args(), not (len(sys.argv) > 1))
