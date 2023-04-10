@@ -47,11 +47,7 @@ class QG:
         # Generate questions for each chunk
         i = 0
         for context_chunk in context_chunks:
-<<<<<<< HEAD
             if i > 5:
-=======
-            if i > 10:
->>>>>>> main
                 break
                 
             i += 1
@@ -70,7 +66,6 @@ class QG:
             # Split each question by the separator token
             questions = questions.split("<sep>")
 
-<<<<<<< HEAD
             # If there are multiple '?' in a question, split it into multiple questions
             # TODO: Doesn't create questionmark on each question
             for question in questions:
@@ -80,8 +75,6 @@ class QG:
                     split_questions = [newQuestion + '?' for newQuestion in split_questions]
                     questions.extend(split_questions)
 
-=======
->>>>>>> main
             # Remove leading and trailing white space, remove last empty element from results
             questions = [question.strip() for question in questions]
 

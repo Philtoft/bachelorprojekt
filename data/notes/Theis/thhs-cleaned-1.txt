@@ -1,4 +1,3 @@
-<<<<<<< HEAD:data/notes/Theis/thhs-cleaned-1.txt
 Computer Security: Measures and controls that ensure confidentiality, integrity,
 and availability of information system assets including hardware, software, firm-
 ware, and information being processed, stored, and communicated.
@@ -208,6 +207,3 @@ Inverse: 20-x = 0, so the inverse element is the result of that equation
 2.1: No inverse, limited to integers, so no rational numbers to return to the identity element
 
 2.2: No inverse, cannot remove when concatenating.
-=======
-Computer Security: Measures and controls that ensure confidentiality, integrity, and availability of information system assets including hardware, software, firmware, and information being processed, stored, and communicated.
->>>>>>> main:data/notes/thhs-cleaned.txt
