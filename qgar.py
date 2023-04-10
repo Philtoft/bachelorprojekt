@@ -3,6 +3,7 @@ from markdown import markdown
 from transformers import pipeline
 from models.qg import QG
 import json
+import re
 
 _CURRENT_STUDENT = "Una"
 
@@ -20,8 +21,8 @@ class qgar():
     """
 
     def __init__(self):
-        self._qg = QG("the-coorporation/t5-qgar", "t5-small")
-        self._qa = pipeline("question-answering")
+        self._qg = QG("the-coorporation/t5-small-qg", "the-coorporation/t5-small-qg")
+        self._qa = pipeline("question-answering", "distilbert-base-uncased-distilled-squad")
         self._context_and_questions = []
         self._questions_and_answeres = []
         self._context = ""
@@ -44,9 +45,12 @@ class qgar():
     def html_to_plaintext(self, html_notes: str):
         """ Converts a markdown string to plaintext """
         soup = BeautifulSoup(html_notes, "html.parser")
+        for h_tag in soup.find_all(["h1", "h2", "h3"]):
+            h_tag.decompose()
         result = ' '.join(soup.stripped_strings)
         result = result.replace("\n", " ")
-        # Consider replacing '\n-' with ''
+        result = result.replace("\t", " ")
+        result = re.sub("\s\s+", " ", result)
         return result
 
     def generate_questions(self, plaintext_notes: str):
@@ -62,6 +66,7 @@ class qgar():
             for question in questions:
                 answer = self._qa(context=context, question=question)
                 questions_ans_answers.append({
+                    "context": context,
                     "question": question,
                     "answer": answer
                 })
