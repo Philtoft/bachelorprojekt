@@ -6,25 +6,24 @@ from transformers import (
     TrainingArguments,
     Trainer,
 )
-from settings_parser import DataTrainingArguments
+from parsing.settings_parser import DataTrainingArguments
 from preprocessing.data_collator import T2TDataCollator
 import torch
 import wandb
+import os
 
-_MODEL = "the-coorporation/t5-qg"
 _MODEL_MAX_LENGTH = 512
 
 class QG:
-    """Question Generator model based on `T5-small`."""
+    """Question Generator model based on Google's `T5` model."""
 
-    def __init__(self, model: str = _MODEL, tokenizer: str = _MODEL):
+    def __init__(self, model: str, tokenizer: str):
         """Initializes the `QG` model."""
 
         self._device = "cuda" if torch.cuda.is_available() else "cpu"
         self._model: PreTrainedModel = AutoModelForSeq2SeqLM.from_pretrained(model).to(self._device)
         self._tokenizer: PreTrainedTokenizer = AutoTokenizer.from_pretrained(tokenizer, model_max_length=_MODEL_MAX_LENGTH)
 
-        self._tokenizer.sep_token = '<sep>'
         self._tokenizer.add_tokens(['<sep>'])
         self._model.resize_token_embeddings(len(self._tokenizer))
 
@@ -105,6 +104,8 @@ class QG:
     def train(self, training_args: TrainingArguments, data_args: DataTrainingArguments, wandb_key: str):
         """Start training the `QG` model. Once completed it will be pushed to the HuggingFace Hub."""
 
+        os.environ['WANDB_PROJECT'] = data_args.wandb_project_name
+
         wandb.login(key=wandb_key)
 
         train = torch.load(data_args.training_file_path)
@@ -115,9 +116,10 @@ class QG:
             args=training_args,
             train_dataset=train,
             eval_dataset=validation,
-            data_collator=T2TDataCollator()
+            data_collator=T2TDataCollator(self._model, self._tokenizer)
         )
 
         trainer.train()
         wandb.finish()
-        trainer.push_to_hub()
+        trainer.push_to_hub(blocking=True)
+        self._tokenizer.push_to_hub(training_args.hub_model_id)
