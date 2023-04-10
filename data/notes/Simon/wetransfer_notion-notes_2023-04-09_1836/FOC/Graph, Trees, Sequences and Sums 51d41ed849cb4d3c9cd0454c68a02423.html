@@ -1,0 +1,677 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Graph, Trees, Sequences and Sums</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="51d41ed8-49cb-4d3c-9cd0-454c68a02423" class="page sans"><header><h1 class="page-title">Graph, Trees, Sequences and Sums</h1><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>TEACHER</th><td><span class="selected-value select-value-color-red">Alessandro B.</span></td></tr><tr class="property-row property-row-file"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFile"><path d="M12.5938 8.44043L7.54883 13.4854C6.26367 14.7773 4.54102 14.6475 3.44043 13.54C2.32617 12.4326 2.20312 10.7168 3.49512 9.4248L10.3926 2.52734C11.1445 1.77539 12.2725 1.63867 13.0039 2.37695C13.7422 3.11523 13.6055 4.22949 12.8535 4.98828L6.08594 11.7627C5.77832 12.0703 5.41602 11.9814 5.2041 11.7764C4.99902 11.5576 4.91016 11.2021 5.21777 10.8877L9.93457 6.1709C10.1738 5.93164 10.1875 5.58301 9.96191 5.35059C9.72949 5.13184 9.38086 5.13867 9.1416 5.37793L4.39746 10.1152C3.67285 10.8535 3.7002 11.9746 4.34961 12.624C5.05371 13.3281 6.12012 13.3145 6.8584 12.5762L13.6602 5.77441C14.9795 4.45508 14.9316 2.71875 13.7764 1.55664C12.6416 0.428711 10.8779 0.34668 9.55176 1.66602L2.61328 8.61816C0.883789 10.3477 1 12.8291 2.57227 14.4014C4.14453 15.9668 6.63281 16.0898 8.3623 14.3672L13.4414 9.28809C13.6738 9.0625 13.667 8.64551 13.4346 8.41992C13.209 8.18066 12.833 8.21484 12.5938 8.44043Z"></path></svg></span>SLIDES</th><td><span style="margin-right:6px"><a href="https://learnit.itu.dk/pluginfile.php/267741/mod_resource/content/3/slides.pdf">Sequences and Sums, Graphs and Trees.pdf</a></span><span style="margin-right:6px"><a href="https://learnit.itu.dk/mod/lti/view.php?id=121378">Video: Sequences and Sums, Graphs and Trees.php</a></span></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>DONE</th><td><div class="checkbox checkbox-on"></div></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>FORM</th><td><span class="selected-value select-value-color-blue">EXECISES</span><span class="selected-value select-value-color-green">LECTURE</span></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>WEEK</th><td>39</td></tr></tbody></table></header><div class="page-body"><figure id="86844363-bddb-4933-b020-680a216fd8f3" class="image"><a href="Untitled%20136.png"><img style="width:1273px" src="Untitled%20136.png"/></a></figure><h3 id="a3023152-9a54-4795-839e-91dbfd658742" class="">Notes from lecture</h3><p id="88961fbf-7e81-4e1f-b41b-560b5fdf34f5" class="">
+</p><blockquote id="6c2f0ce3-964d-4830-8160-5dce7213e796" class="">1: Sequence</blockquote><ul id="d74acc4c-9d73-43cf-90c0-6f854f5c8202" class="toggle"><li><details open=""><summary>What is a sequence?</summary><figure id="41e885d9-839b-4211-80aa-a977cd3839b6" class="image"><a href="Untitled%20137.png"><img style="width:480px" src="Untitled%20137.png"/></a></figure></details></li></ul><ul id="c7644c04-e522-4b54-b1cd-b7a876eea51c" class="toggle"><li><details open=""><summary>Geometric progression</summary><figure id="1c6ff191-931b-4b73-b2a2-5d45efe41cd6" class="image"><a href="Untitled%20138.png"><img style="width:528px" src="Untitled%20138.png"/></a></figure><figure id="20f50b4c-7042-487e-ac3d-e0e26a64f29b" class="image"><a href="Untitled%20139.png"><img style="width:528px" src="Untitled%20139.png"/></a></figure></details></li></ul><ul id="212e8461-48f7-4972-ad8b-0795fe7e8883" class="toggle"><li><details open=""><summary>Arithmetic progression</summary><figure id="fe07bb78-efc7-4007-9e04-87837092f2e4" class="image"><a href="Untitled%20140.png"><img style="width:528px" src="Untitled%20140.png"/></a></figure><figure id="d2cedb8c-7751-4e13-9021-4fbf1dd7ee97" class="image"><a href="Untitled%20141.png"><img style="width:528px" src="Untitled%20141.png"/></a></figure></details></li></ul><ul id="9e428d5d-6472-4000-bafb-ac7d9e1b764e" class="toggle"><li><details open=""><summary>Recurrence relations</summary><figure id="92b94a0e-e590-4ff6-9a37-fc728bbaacd9" class="image"><a href="Untitled%20142.png"><img style="width:528px" src="Untitled%20142.png"/></a></figure><figure id="d9886e6d-b00b-4f1f-9b26-59570f531332" class="image"><a href="Untitled%20143.png"><img style="width:528px" src="Untitled%20143.png"/></a></figure></details></li></ul><ul id="29062827-c858-411c-b3f1-b708ae733f9f" class="toggle"><li><details open=""><summary>Recurrence relations: the Fibonacci sequence</summary><figure id="94109be6-c0d3-4b23-bad4-f98fbf574b80" class="image"><a href="Untitled%20144.png"><img style="width:831px" src="Untitled%20144.png"/></a></figure></details></li></ul><ul id="58aaa1e3-456f-4b06-a6d1-834c8ea0d30b" class="toggle"><li><details open=""><summary>Fibonacci.java</summary><figure id="c936aecb-9b98-4e24-bdb6-b1029d785dad" class="image"><a href="Untitled%20145.png"><img style="width:604px" src="Untitled%20145.png"/></a></figure></details></li></ul><p id="106d1c02-87ad-46ba-8d83-04048ea5bc91" class="">
+</p><blockquote id="35be719e-6b9c-4fec-bfec-2ded084b8076" class="">2: Sums</blockquote><ul id="ffac9ba6-45ae-4f60-9657-4e9cfc2bc6c6" class="toggle"><li><details open=""><summary>What is a summation?</summary><figure id="e1c639da-5a9d-4bbc-ae60-fb1de5ec0a36" class="image"><a href="Untitled%20146.png"><img style="width:480px" src="Untitled%20146.png"/></a></figure><figure id="ca4cb188-58da-4a35-8d5e-f8d4163ed6ce" class="image"><a href="Untitled%20147.png"><img style="width:480px" src="Untitled%20147.png"/></a></figure></details></li></ul><ul id="6dea504e-c917-4e9e-9c92-87c96596958a" class="toggle"><li><details open=""><summary>Geometric series I</summary><figure id="6d9be4cd-5d68-462d-a1d6-5f75cf9614ba" class="image"><a href="Untitled%20148.png"><img style="width:480px" src="Untitled%20148.png"/></a></figure></details></li></ul><ul id="64d99327-1dc4-4804-9074-bf866f3d79d1" class="toggle"><li><details open=""><summary>Geometric series II</summary><figure id="2aa5f16c-66dc-4cfc-8007-6d2cf640b404" class="image"><a href="Untitled%20149.png"><img style="width:528px" src="Untitled%20149.png"/></a></figure></details></li></ul><ul id="ff527292-b1f4-47ef-becc-7053a16e8ffb" class="toggle"><li><details open=""><summary>Geometric series III</summary><figure id="3bdcea5a-f5d3-47dd-8aea-c2121dc8f092" class="image"><a href="Untitled%20150.png"><img style="width:528px" src="Untitled%20150.png"/></a></figure></details></li></ul><ul id="0a7f8f62-6703-4a06-a97a-5ca63d388e0b" class="toggle"><li><details open=""><summary>Arithmetic series</summary><figure id="d72c0d64-135d-4e47-9a30-3fdece41232f" class="image"><a href="Untitled%20151.png"><img style="width:480px" src="Untitled%20151.png"/></a></figure></details></li></ul><ul id="ae5480f1-c442-43d8-bd54-cfd8b8464847" class="toggle"><li><details open=""><summary>Useful summation formulae</summary><figure id="370278e5-9df1-4eae-bc8c-5355c662ff30" class="image"><a href="Untitled%20152.png"><img style="width:480px" src="Untitled%20152.png"/></a></figure></details></li></ul><p id="59e86020-5cea-45dc-ab51-506fa4cc2b92" class="">
+</p><blockquote id="ec53f012-e957-4a38-af2e-dd15701e7d7f" class="">3: Graphs</blockquote><ul id="c50a3977-a1c5-4f13-9d84-f10de9e0154c" class="toggle"><li><details open=""><summary>Where do we find graphs?</summary><figure id="d7848054-96b5-4c1a-91d7-2aa3c9d73ba9" class="image"><a href="Untitled%20153.png"><img style="width:480px" src="Untitled%20153.png"/></a></figure></details></li></ul><ul id="c4496748-fd0b-4437-899b-cbd4886319e8" class="toggle"><li><details open=""><summary>Undirected graphs</summary><figure id="9e2618c3-07d7-4c75-918a-745f6c11a624" class="image"><a href="Untitled%20154.png"><img style="width:528px" src="Untitled%20154.png"/></a></figure></details></li></ul><ul id="d3380f59-99f7-4d0f-b87b-e78b24051ad5" class="toggle"><li><details open=""><summary>Graphical representation of graphs</summary><figure id="41e102ae-6dc4-466b-8101-24c68388fd0c" class="image"><a href="Untitled%20155.png"><img style="width:480px" src="Untitled%20155.png"/></a></figure></details></li></ul><ul id="cae930b2-ff69-4d44-8877-c9ce6621aae1" class="toggle"><li><details open=""><summary>Drawing graphs</summary><figure id="a835ee8d-93bb-416c-b5af-db0de013029e" class="image"><a href="Untitled%20156.png"><img style="width:480px" src="Untitled%20156.png"/></a></figure></details></li></ul><ul id="452db84d-3bb5-45b7-9a12-6249484c7149" class="toggle"><li><details open=""><summary>Undirected graphs</summary><figure id="ffc524b7-b9a9-4c48-848b-8a981ddb8e07" class="image"><a href="Untitled%20157.png"><img style="width:480px" src="Untitled%20157.png"/></a></figure></details></li></ul><ul id="a654b3d3-c095-4a42-a47a-55e1faf24b68" class="toggle"><li><details open=""><summary>Simple graphs, multigraphs and pseudographs</summary><figure id="fc094257-682b-4865-a70e-023a7666f535" class="image"><a href="Untitled%20158.png"><img style="width:480px" src="Untitled%20158.png"/></a></figure></details></li></ul><ul id="b0b7ac46-2dec-4cf9-bda5-fdc1a3db3bc1" class="toggle"><li><details open=""><summary>Directed graphs</summary><figure id="08e1d830-22d4-4b3e-ac5d-200b68f02d09" class="image"><a href="Untitled%20159.png"><img style="width:480px" src="Untitled%20159.png"/></a></figure></details></li></ul><ul id="e5025120-699e-4890-9a41-6b1dc992f222" class="toggle"><li><details open=""><summary>Different types of graphs</summary><figure id="3139b4c5-24d2-4dc5-b081-1a8e23be22aa" class="image"><a href="Untitled%20160.png"><img style="width:480px" src="Untitled%20160.png"/></a></figure></details></li></ul><p id="998b50ee-51cd-4dc1-a2b8-c145b498957f" class="">
+</p><blockquote id="9f85bb51-3c22-40a6-8692-945927ee7335" class="">4: Graph Terminology</blockquote><ul id="fdcbe573-9f87-43ee-85fd-b1ea7c482f4e" class="toggle"><li><details open=""><summary>Basic terminology for undirected graphs</summary><figure id="28f6d63b-9fc7-4cc5-9898-b4d9b927312f" class="image"><a href="Untitled%20161.png"><img style="width:528px" src="Untitled%20161.png"/></a></figure><figure id="017bfd5f-d145-4bb6-aed9-32b4108f8e16" class="image"><a href="Untitled%20162.png"><img style="width:528px" src="Untitled%20162.png"/></a></figure></details></li></ul><ul id="205ec415-d3ef-435f-88f4-4d303336545b" class="toggle"><li><details open=""><summary>The handshaking theorem</summary><figure id="b3c6d1b5-5eb5-4e46-b007-4aea93cbce1f" class="image"><a href="Untitled%20163.png"><img style="width:528px" src="Untitled%20163.png"/></a></figure></details></li></ul><ul id="0619cbbe-876b-48d8-8b18-4789f717bd0d" class="toggle"><li><details open=""><summary>Basic terminology for digraphs</summary><figure id="bfa6cb51-2a76-4a18-b339-a2694e2edf7f" class="image"><a href="Untitled%20164.png"><img style="width:480px" src="Untitled%20164.png"/></a></figure><figure id="a49cc8b5-4611-4e6c-a49f-02ea18b4e1c1" class="image"><a href="Untitled%20165.png"><img style="width:336px" src="Untitled%20165.png"/></a></figure></details></li></ul><ul id="30a3294c-4604-4f3e-9afb-d2da4c61b0fb" class="toggle"><li><details open=""><summary>Subgraphs</summary><figure id="1d249bad-0b61-4bb8-97dc-a277de5a90c5" class="image"><a href="Untitled%20166.png"><img style="width:528px" src="Untitled%20166.png"/></a></figure></details></li></ul><ul id="b02ec4eb-664f-4ec1-ae48-77c8d85a974e" class="toggle"><li><details open=""><summary>Paths in undirected graphs</summary><figure id="0cbf6b13-f90a-460f-9b85-e593c3c0a543" class="image"><a href="Untitled%20167.png"><img style="width:432px" src="Untitled%20167.png"/></a></figure><figure id="5f9a1031-6d65-474f-b66f-26e5a8e66a0e" class="image"><a href="Untitled%20168.png"><img style="width:432px" src="Untitled%20168.png"/></a></figure></details></li></ul><p id="d6d8bd4f-cb46-4a93-be7c-1db869541317" class="">
+</p><blockquote id="ba918504-6673-4464-adf8-55f2dab14968" class="">5: Trees</blockquote><ul id="df096a54-ee5a-46e7-bf69-83e58b413125" class="toggle"><li><details open=""><summary>Bernoulli family tree</summary><figure id="d10ce831-8e21-402c-bf38-8da25bfd24dc" class="image"><a href="Untitled%20169.png"><img style="width:432px" src="Untitled%20169.png"/></a></figure></details></li></ul><ul id="2eb9d389-9b48-4d76-8482-f7adf0921540" class="toggle"><li><details open=""><summary>Definition of a tree</summary><figure id="7ea687c5-35f6-4e31-8045-472199dbedbd" class="image"><a href="Untitled%20170.png"><img style="width:480px" src="Untitled%20170.png"/></a></figure><figure id="34d4a8b8-ff8b-45f3-b488-9f267bf9df60" class="image"><a href="Untitled%20171.png"><img style="width:432px" src="Untitled%20171.png"/></a></figure></details></li></ul><ul id="28f5b702-4eac-413f-91d7-16197978585f" class="toggle"><li><details open=""><summary>Definition of a rooted tree</summary><figure id="3b333789-6884-4533-a876-d573b11b90d7" class="image"><a href="Untitled%20172.png"><img style="width:432px" src="Untitled%20172.png"/></a></figure></details></li></ul><ul id="760b5a81-dd32-4195-bc19-9feab200333f" class="toggle"><li><details open=""><summary>Tree terminology</summary><figure id="1d393ea1-7856-4b1d-a879-c426e7a46ae9" class="image"><a href="Untitled%20173.png"><img style="width:528px" src="Untitled%20173.png"/></a></figure><p id="fce650fa-bbba-495c-aaa5-38fdda04a61a" class="">
+</p></details></li></ul><ul id="6d476500-43af-4f6f-bf1b-294b7cf820d9" class="toggle"><li><details open=""><summary>The arity of trees</summary><figure id="975ea253-cc42-4434-b372-725b717c202d" class="image"><a href="Untitled%20174.png"><img style="width:528px" src="Untitled%20174.png"/></a></figure></details></li></ul><p id="9675c844-b104-454a-a546-45b8cd0001e0" class="">
+</p><hr id="ff52691b-42bd-41df-a162-0894471ace27"/><h3 id="b2aa2970-dc8d-4963-8323-89a29e090f67" class="">Question—lecture</h3><ul id="6965e006-0ea7-4de6-a97e-b65a78dafa43" class="toggle"><li><details open=""><summary>Proof of geometric series I</summary><figure id="7301e4d5-5987-4384-8693-90dcc6c73de3" class="image"><a href="Untitled%20175.png"><img style="width:384px" src="Untitled%20175.png"/></a></figure></details></li></ul><ul id="53e90e31-c66c-4e35-aa74-f1dd470d235f" class="toggle"><li><details open=""><summary>Hamiltonian circuits</summary><ul id="ff609a0a-ce07-4b4c-898f-839e71409728" class="toggle"><li><details open=""><summary>Drawing</summary><figure id="01c32736-9914-45db-96dd-9a9312df4110" class="image"><a href="Untitled%20176.png"><img style="width:288px" src="Untitled%20176.png"/></a></figure></details></li></ul><ul id="37ae4f78-dc6b-4f65-a3c5-cafa0291c5e2" class="toggle"><li><details open=""><summary>Different between Eufer circuits and Hamiltonian circuits</summary><figure id="39bc95bc-9520-450e-8a79-a5c1cd2ae20a" class="image"><a href="Untitled%20177.png"><img style="width:978px" src="Untitled%20177.png"/></a></figure></details></li></ul></details></li></ul><figure id="4e75828d-90c2-4eac-8a87-d3a8444c27f9" class="image"><a href="Untitled%20178.png"><img style="width:480px" src="Untitled%20178.png"/></a></figure><p id="ffcf7d65-4a86-4c00-abd1-d2fb558d6443" class="">
+</p></div></article></body></html>

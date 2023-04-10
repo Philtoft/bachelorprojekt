@@ -1,0 +1,721 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Reflection on IT</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6b001fe3-ec1b-4e41-b717-856c8ebcc017" class="page sans"><header><h1 class="page-title">Reflection on IT</h1></header><div class="page-body"><ul id="5c360bb4-b25e-4364-9d79-c2303c8e193c" class="toggle"><li><details open=""><summary>Science</summary><p id="667e2a88-414e-4fe6-aaa9-a56cf78ed3ac" class="">The term “science” differs in meaning </p><ul id="b6df9560-ed93-42fc-bb04-c2b43f26402a" class="toggle"><li><details open=""><summary>Danish - videnskab</summary><p id="a5c2a1b7-ae6c-4fcd-8c60-f05fe0083f9d" class="">
+</p></details></li></ul><ul id="9a1cd76f-2def-4354-b636-adda5163d334" class="toggle"><li><details open=""><summary>English</summary><p id="d700d291-d60c-45c2-b446-f4209dd9c8cc" class="">Refers to only “natural sciences” or “hard sciences”</p><p id="d9a9b8cd-d8a2-4e11-9e97-831658852380" class="">Does not refer to humanities (or social sciences).</p><p id="7cb70324-04d8-4d29-8f8a-930ed74c24bf" class="">
+</p></details></li></ul><p id="ab48ffbf-c5a0-4057-8c14-6428f2aebca6" class=""><strong>What is so special about science?</strong></p><p id="576fe26a-fd40-4659-919c-e429a8b8261e" class="">Science as we go know it originated from ancient Greece.</p><p id="ca6f011b-80da-4080-b015-7a542b9a4a99" class="">The Greeks started answering mythology questions with science</p><p id="e0908a02-c47e-4d4a-90a9-8d96a2d70979" class="">Different from mythology</p><p id="8e3a9b65-5a56-40af-994e-399a6c2bce8f" class="">Different from religion</p><p id="2ee1601d-ecdb-40ed-8cc2-a6e9a9b5ca01" class="">They meant science when they said philosophy</p><p id="a4de10c2-9594-45cb-9946-611ecb1fc2e0" class="">
+</p><p id="9847fd6b-12c8-43b4-8daf-1e16abb66246" class=""><strong>What does science do?</strong></p><ul id="fec5b9bb-6281-4b72-99a3-ac62c0a6dd81" class="bulleted-list"><li style="list-style-type:disc">Explanation<ul id="314f1b2c-0c06-40c3-8b65-0c9e3ab5ddc3" class="bulleted-list"><li style="list-style-type:circle">We understand the mechanism behind something. We don’t just get that doing something results in something, but we understand why.</li></ul><ul id="3607684b-2279-433b-bc79-fa8c710e0739" class="bulleted-list"><li style="list-style-type:circle">“Knowledge” may not necessarily mean that we understand why</li></ul><ul id="82bc495c-b8c2-44f1-9917-7357ae40f41b" class="bulleted-list"><li style="list-style-type:circle">“Understanding” does</li></ul></li></ul><ul id="273eecb1-075b-47c7-82ed-ddba80d04246" class="bulleted-list"><li style="list-style-type:disc">Prediction<ul id="59d181cb-3073-4a4c-bc9f-94951772f08a" class="bulleted-list"><li style="list-style-type:circle">Science gives us a possibility to predict the future</li></ul></li></ul><ul id="3cb488b0-2d79-477d-9163-8bdb8ccee986" class="bulleted-list"><li style="list-style-type:disc">Control<ul id="f038c444-bab4-4777-83dd-3ca7a23ff741" class="bulleted-list"><li style="list-style-type:circle">Science enabled us to change the world</li></ul></li></ul><p id="6420ffb6-9f01-4380-ab9e-73a79fe14c58" class="">
+</p><p id="954c763e-78e4-4b47-b87a-6bd475a86bbb" class=""><strong>Classic views on science</strong></p><ul id="b630dcc7-638e-41d3-88f7-ad17bf51ca41" class="bulleted-list"><li style="list-style-type:disc">Plato<ul id="7e8b809c-9b4e-4538-85ae-4c71eb805449" class="bulleted-list"><li style="list-style-type:circle">“search of necessary truth”</li></ul><ul id="92907ee8-3b3b-451f-820d-c6b7f5677322" class="bulleted-list"><li style="list-style-type:circle">Doxa vs episteme<ul id="b1516579-8360-4f9b-adde-6ddf75115003" class="bulleted-list"><li style="list-style-type:square">Episteme is the Greek word for proper science</li></ul><ul id="25455113-b37b-476e-93a1-e0210477d32f" class="bulleted-list"><li style="list-style-type:square">Doxa is like everyday science (eh, work on this)</li></ul></li></ul></li></ul><ul id="1559c79d-9788-4d1f-af94-7aec546cf919" class="bulleted-list"><li style="list-style-type:disc">Aristotle<ul id="af491ac6-2c87-4636-86b9-832bbaf48f9c" class="bulleted-list"><li style="list-style-type:circle">Empirical tradition</li></ul><ul id="df12ca5d-00c8-4907-ab54-27870c699b18" class="bulleted-list"><li style="list-style-type:circle">Aristotle was the father of the many contemporary scientific disciplines:<ul id="df127df2-0ced-4e13-96bc-578a47eece19" class="bulleted-list"><li style="list-style-type:square">Chemistry</li></ul><ul id="25fc8525-e5fa-4d54-aeac-752fea923715" class="bulleted-list"><li style="list-style-type:square">Biology</li></ul><ul id="5297c62d-1077-466d-8138-247012e8e9b6" class="bulleted-list"><li style="list-style-type:square">Physics</li></ul></li></ul><ul id="b58103d9-2b93-445a-b8f2-94fc658fd101" class="bulleted-list"><li style="list-style-type:circle">Used observations but did not appreciate the empirical method enough. This led him to many blatantly false claims.</li></ul></li></ul><ul id="365c6040-9121-4495-abc6-d1320e65218c" class="bulleted-list"><li style="list-style-type:disc">David Hume<ul id="fa190e15-9d96-4bdf-a51d-c0eeece0704c" class="bulleted-list"><li style="list-style-type:circle">Empirical revolution</li></ul><ul id="2ba35d25-6ac1-42d1-9841-6d3dde146ec8" class="bulleted-list"><li style="list-style-type:circle">Suggested that there are two importantly different types of knowledge<ul id="5132a948-3efa-4d13-9420-8bbab7ffe44a" class="bulleted-list"><li style="list-style-type:square">Knowledge based on thinking</li></ul><ul id="dfebb931-2d45-40d6-9e21-4f2907558bf3" class="bulleted-list"><li style="list-style-type:square">Knowledge based on observations</li></ul></li></ul><ul id="9b5c571c-fcfa-4b8c-bf93-39c97729a4fc" class="bulleted-list"><li style="list-style-type:circle">He believed that they should be kept seperate.</li></ul></li></ul><p id="3081f835-4402-42bb-9f52-a5fcf7812b55" class="">
+</p><p id="90b93cc8-6b1e-4564-9b52-08168605794c" class=""><strong>The most important question of classic PoS</strong></p><p id="488a0fc9-3637-40d8-ba69-796721e88fd2" class="">How much can we learn about the world without observing it?</p><p id="c176a441-07f9-4d87-a3f4-70c68473629c" class="">Two extreme views: nothing (empiricist), everything (rationalists)</p><p id="cdc3bab9-8f0e-4d99-91ed-84f13b86733d" class="">
+</p><p id="771f2b15-01b1-45c5-bacc-90ea816ae832" class="">A more practical version of this question:</p><p id="3f98faed-dd10-41cf-9ab5-2f93a87a54da" class="">Can results of a given science be tested without empirical observations?</p><p id="143db7fc-68c8-4e89-8fe9-84febd77c808" class="">YES: non-empirical science</p><p id="a73368e3-8822-4921-bc7b-e6b5e0ca4d91" class="">NO: empirical science</p><p id="5d82d943-f4ff-47d5-add9-e0ce3d97849e" class="">
+</p><p id="601e45e6-8b06-41c1-a915-b36dfe9bbb9f" class=""><strong>How do both branches of science work?</strong></p><p id="88e7efc2-ba16-4091-90c3-c8888e4dc67f" class="">Examples of non-empirical sciences: mathematics, geometry, logic</p><p id="7cd16999-cf01-48bc-8584-d96010c0e2d6" class="">Examples of empirical science: physics, biology, chemistry</p><p id="aacf9709-11dc-4771-96da-1c836506a15b" class="">Questions about the methods of mathematics and logic led to researchers to the discovery of “proof theory”</p><p id="b19838eb-4bd2-478e-866c-f0c4f726e1b2" class="">
+</p></details></li></ul><ul id="f0115c8b-375c-451f-a621-677f494a2326" class="toggle"><li><details open=""><summary>Carnap’s empiricism</summary><p id="f5b1bd64-0778-4e01-9435-7056694a59e7" class="">Every meaningful sentence has to have empirical consequences - this is called “the principle of verification”</p><p id="b05cfede-facd-47d6-9f11-998b630765fa" class="">This led to a reductionist programme in science</p><p id="127691f4-058f-4ef6-af64-35643a2968b1" class="">Today most philosophers subscribe to a weaker view: naturalism</p><p id="8b98a9fa-2127-4bd1-823f-58b8f1fd6fbd" class="">
+</p></details></li></ul><ul id="77665f11-62aa-46d4-a384-138eb1a77be1" class="toggle"><li><details open=""><summary>Positivism</summary><p id="f6cda7f8-47c5-4832-86c8-c6228d553354" class="">Positivist view on science:</p><p id="74ed6ba3-29d6-490d-a393-040f3ca73a47" class="">Theories are cumulative in nature</p><p id="48baf476-ef60-4776-8997-d86f1055828b" class="">Theories are understood as sets of true sentences. Ideally this set grows over time: new true sentences are added and sentences which are discovered to be false are eliminated.</p><p id="f855efdf-fae1-4107-97e2-cedb40421935" class="">Science is a balance between theory and observation.  …</p></details></li></ul><ul id="dbc93760-ec37-4426-8524-74a496fce7d3" class="toggle"><li><details open=""><summary>Karl Popper - a more nuanced view on empiricism</summary><p id="d9f6c948-ad7d-4d63-b7e8-8c0f4862b371" class="">Science consists of “problem solving”</p><p id="1f8ea7fa-4264-48db-8d7b-35f6b8b31177" class="">What it means in practice is that scientists start with problems and hypotheses and not observation of “bare facts”.</p><p id="80ebf72b-c1d9-4dd4-842e-2529d1f7b154" class="">Needless to say, the problem are sometimes the result of observations.</p><p id="fe587d87-b3e4-4413-a4ad-adf334fcf11d" class="">
+</p><p id="bf9ae1da-5831-459c-acf2-b976f28af31c" class="">Step 1 - scientists test the coherence of the theory</p><p id="ffa6531a-cc1e-4c65-ae05-f1e1c12bd7b3" class="">Step 2 - scientists formalize the theory to see which of their claims are analytic</p><p id="8f78a5e0-7172-4377-a548-802d254afdfb" class="">Step 3 - scientists compare the theory with existing accounts</p><p id="e65c2f6f-7508-44d0-be1d-99452618cda1" class="">Step 4 - </p><p id="059325cf-b732-4dc9-8948-f1f7737f7aa3" class="">
+</p><p id="d708f77c-87fb-4b2e-a4fb-56c82c3eeec3" class="">The result: a theory can never be “verified”.</p><p id="425d1364-1957-4368-b6af-767d7b40f976" class="">But it can be falsified.</p><p id="60bc3b79-06ad-4d89-9f26-937321246646" class="">Only theories which can be falsified are scientific.</p><p id="f9bb0e6c-2180-427d-9e00-bf32d95216d7" class="">
+</p><p id="dd36c58a-eaca-4cdb-b5a4-fd21de2d9b7d" class=""><strong>Counterintuitive nature of good theories:</strong></p><p id="c83c606a-dccf-45b4-867a-b21d7ac1e89c" class="">Analytics sentences are obviously true. Problem is, they do not contain any information. They are trivial.</p><p id="5d8003b1-1b9d-4994-8ae6-1a62f6d48d5d" class="">The more information a sentence carries, the less obvious (less probable) it is.</p><p id="037e4a43-f637-4d77-8e0a-311653bd31f3" class="">The result: the more improbable a theory is, the better.</p><p id="0d13bb0f-c6d3-46e1-a254-41d3db9d3f85" class="">If it is false, it will be eventually falsified.</p><p id="db752044-2c59-46f7-98ec-d25f264a0e87" class="">But if it is true, then it gives us a lot of new information about the world.</p><p id="09a78958-6bd7-42f1-8f80-5f2d9107e63f" class="">
+</p><p id="c95aa3f7-adb2-4ace-9c33-444bb9ec2b25" class="">
+</p><p id="54d70db1-7c6f-4506-96ce-4cd0f78d501f" class="">Two examples of unfalsifiable theories</p><ul id="47b218f0-720c-4089-bbee-f88ca10cbe14" class="bulleted-list"><li style="list-style-type:disc">Freud’s psychoanalysis</li></ul><ul id="76b696f9-0497-4254-b8e5-23ef93a804ed" class="bulleted-list"><li style="list-style-type:disc">Conspiracy theories</li></ul></details></li></ul><p id="d4e023b2-f1d5-4d99-bd6b-3ce4470e424a" class=""><div class="indented"><p id="a0fb8337-21c5-4538-9756-52e8f797a40c" class="">Connection to Carnap: adding metaphysical components to a theory is the easiest way of making it unfalsifiable.</p><p id="7937d0cd-9531-442b-9cbc-7cdc8f4d5aed" class="">Similarly - creating a clever mockup of a theory comprising only from analytics sentenes also makes it unfalsifiable.</p><p id="a414a06b-18f2-4644-a09a-92b53cad0380" class="">
+</p><p id="6184034a-6f19-4a12-9843-b6c5cb903526" class=""><strong>Critique of historicism</strong></p><p id="2c893e01-4f4c-447f-86bc-e562106cc60e" class="">Popper criticized “historicism” and “holism”</p><p id="0fdb090c-4fd9-4fd5-b358-f71aabb1e25f" class="">Holism - a belief that individuals are formed by the social groupings they belong to</p><p id="68954617-2a5e-4ece-85f2-935942663413" class="">Historicism - a belief that individuals are shaped by the historical circumstances they live in.</p><p id="9894f387-8d01-49f1-b61d-0ef84de89422" class="">
+</p><p id="78bfde4a-436b-4c55-a534-a680dc7b2266" class="">The argument against historicism and holism:</p><p id="d0be1280-6863-41de-9340-3ee65b940f8a" class="">Science is not predictable. We cannot foresee future scientific and technological discoveries.</p><p id="13b1cc51-8d53-4160-a1e0-88af412a984e" class="">Physics predicts the future states of planets but not the future states of physics.</p><p id="c74cf875-e831-4144-9d13-88e39931ee51" class="">Science and technology influence history and society.</p><p id="a12471e2-7b6d-475e-a62a-d0e217f2f7b6" class="">For this reason it is not possible to predict future states of history and society.</p><p id="07f08fcb-9e9a-4ba6-94e9-78e7d70c022f" class="">Sociology and history cannot formulate laws (similar to physical laws).</p><p id="13ee5d9d-8b2f-4aa8-8b9b-f0b64dbf2023" class="">It is not possible to create a long-term social or historical politcal plan.</p><p id="f03d23b4-1bd4-426c-8c6a-2b11620bfc03" class="">If you do that you will end up forcing your vision of society on people</p></div></p><ul id="cfeb4d1d-7eea-4f6f-ae32-71390a017353" class="toggle"><li><details open=""><summary>Analytic and synthetic sentences</summary><ul id="ac1044a6-f076-4c0b-89b7-60d8f11114f7" class="bulleted-list"><li style="list-style-type:disc">Analytic sentences are sentences which can be evaluated without knowing the facts.</li></ul><p id="c3e285d9-1c22-43e4-82cf-d76a75f773f9" class="">Example: There is no mountain that is higher than the highest mountain.</p><p id="3717c4d8-c02b-4a54-854c-23d158fbe234" class="">Definitions are analytic sentences, they fix the meaning of new words.</p><p id="f8f93f32-0dd5-4088-a7e8-3bad7e45c546" class="">
+</p><ul id="f262e8d6-6aeb-4502-8575-2700c08b8a89" class="bulleted-list"><li style="list-style-type:disc">Synthetic sentences are sentences which cannot be evaluated without knowing the facts.</li></ul><p id="ae3bf0ff-8d9c-4e6b-886a-a1d223c93bc3" class="">Example: There is no higher mountain than Mount Everest.</p><p id="e1771124-eae8-48be-a97d-cb65170bc75b" class="">
+</p><p id="b1c5c4ed-ab95-43bc-aed2-13e576100415" class="">
+</p><p id="c0441314-8490-43fc-8fdb-00e58d7ebd5c" class="">Newton’s 2nd law: definition. </p><p id="8777e82a-b72e-410f-9f62-f15e9c609e37" class="">One might argue that there is no such thing as speed as it’s just a definition for time over space ???</p></details></li></ul><ul id="7132da65-cd21-466a-b5cc-b166e4d6f897" class="toggle"><li><details open=""><summary>Thomas Kuhn and the scientific revolutions</summary><p id="63536af1-7798-4382-94a5-58ed9a45b182" class="">In a stark contrast to Popper, Kuhn approached the study of science from the angle of its history (and not contents).</p><p id="e8d182cc-73a7-443c-97e2-a5417e2f43b1" class="">He realized that different scientific disciplines typically go through phases:</p><ul id="e52ceff3-68c3-4652-a934-bc38ad34f802" class="bulleted-list"><li style="list-style-type:disc">Prescientific phase</li></ul><ul id="6079f7d8-45b2-4535-b0a6-b7ce21ca2ca7" class="bulleted-list"><li style="list-style-type:disc">Some key discovery</li></ul><ul id="a9dc2a09-3f52-417a-9852-386bdc67b6f6" class="bulleted-list"><li style="list-style-type:disc">Key discovery becomes a paradigm</li></ul><ul id="aad48dea-ac1e-4ea3-82df-9792697142bc" class="bulleted-list"><li style="list-style-type:disc">Science normalizes and starts to rapidly solve new puzzles</li></ul><ul id="e224de94-9299-415f-827a-bf6c3d2e73f1" class="bulleted-list"><li style="list-style-type:disc">Anomalies appear</li></ul><ul id="eb68f871-c1ef-4bdf-86d0-210e48672117" class="bulleted-list"><li style="list-style-type:disc">Anomalies lead to crisis</li></ul><ul id="b540a1b2-c85b-4df5-8ed9-f1bdd5608971" class="bulleted-list"><li style="list-style-type:disc">Crisis leads to a revolution in a science</li></ul></details></li></ul><p id="c16ee92d-9f7c-4ed0-9006-47c7f76a1232" class=""><div class="indented"><p id="9fe364cb-c75a-4883-b96f-ddde715b1dc3" class="">Theories before and after the revolution are incommensurable (incompatible).</p><p id="702480e8-ecd9-4c43-a196-7f26dd4d798c" class="">They differ in:</p><ul id="cce3676f-122e-4c48-a252-7cdb0c282701" class="bulleted-list"><li style="list-style-type:disc">Methodology</li></ul><ul id="5c39f528-0297-4364-9866-6a1b6b163517" class="bulleted-list"><li style="list-style-type:disc">Observation</li></ul><ul id="40d7fd65-76f1-4934-a1e5-b83efd298b14" class="bulleted-list"><li style="list-style-type:disc">Language</li></ul></div></p><p id="74d3b7b8-3462-439d-a09a-0a44f51d4d1b" class=""><div class="indented"><p id="c98f08a7-6517-49f7-92d7-4e164c040afd" class="">Example of a sudden development: logic</p><p id="c48ce095-64d0-41b8-89f2-05b33868320f" class="">Example of a series of paradigm shifts: psychology</p><ul id="915237dc-8316-41c8-bbd3-12b057518a6d" class="bulleted-list"><li style="list-style-type:disc">Introspection</li></ul><ul id="22ad6f6a-6f80-4819-a9ff-b7450e4fa971" class="bulleted-list"><li style="list-style-type:disc">Behaviorism</li></ul><ul id="505cf6f6-d66f-453f-ab58-eb2cc769175a" class="bulleted-list"><li style="list-style-type:disc">Cognitive science</li></ul><ul id="a8c209b0-4527-4936-a8c2-f377c08c333b" class="bulleted-list"><li style="list-style-type:disc">Natural</li></ul></div></p><p id="ab8ffc27-4191-4c3c-9de2-b1a8fdf761aa" class=""><div class="indented"><p id="5d915001-9322-4a93-9633-9da9aa1f5f03" class="">We could say that Kuhn created a paradigm shift.</p><p id="e917b3fc-f025-4888-a1dc-abc84715813f" class="">His work split philosophy of science into two branches:</p><p id="a689f6ed-20a7-4824-9cef-04e4b68f3eac" class="">Content based: the analysis of content of scientific theories (with prescriptions as to how to make them better)</p><p id="75ebdfa4-aadb-4f7f-b736-088caae9b9cb" class="">Context based: the analysis of social, historical and economical background of science (with prescriptions as to how to make them better)</p><p id="eaa56d93-cc97-426f-b1dd-314dca71d927" class="">
+</p></div></p><ul id="1c9263bd-8e0d-4430-856e-97407c6b64bd" class="toggle"><li><details open=""><summary>Feminist philosophy of science</summary><p id="0efd3643-2c4d-4c53-9658-b143394ac173" class="">Enlightenment presented science as progressive</p><p id="c3c774ae-833b-4a97-86b1-d9dfc22c6051" class="">This view changed in XX century - science helps to maintain the status quo</p><p id="929dfcf1-12f8-45cd-a47d-22b7f9a3db08" class="">The most visible example of this is the gender bias in science</p><p id="72aa6c41-edfa-4365-a7f2-8afe3450bfef" class="">Political feminism: women were very underrepresented in science</p><p id="0ff66f1d-038c-41e5-a781-f00b46345911" class="">Philosophical feminism: the model of rationality was male oriented</p><p id="1b208156-1b8c-4a5d-bdcb-39befb2454fd" class="">We can map it to the context/content divide </p><p id="cc3aada1-a133-43e9-941d-da27c2b9339e" class="">Radical approaches: feminist epistemology and standpoint theory</p><p id="87031d28-0899-465e-9e9d-d80cdb23192c" class="">
+</p><p id="421934a9-fa0b-4c61-a650-11f39aed7da0" class="">
+</p><p id="de55546c-f541-4f5e-858e-f3f2309cec6b" class="">The kye question is, does women’s pojnt of view </p></details></li></ul><ul id="ad14c03e-5327-4aee-a1c8-8640b34a5080" class="toggle"><li><details open=""><summary>The difference between “necessary” and “sufficient” conditions</summary><p id="404f8b0e-df3b-4593-902a-685a874b23e3" class="">A necessary condition is a condition that has to be met for something to be the case.</p><p id="a20b830e-2790-46a9-a913-30bae67f3562" class="">A sufficient condition is a condition that, if met, suffices for something to be the case.</p><p id="ab307357-6d0b-4726-a783-1cba8a617d54" class="">If <mark class="highlight-teal">a human being gets blown into bits</mark> then <mark class="highlight-blue">they will die</mark></p><p id="2e331361-6d81-4643-8f7a-db4bdd31057e" class="">green = sufficient condition, blue = necessary condition</p></details></li></ul><ul id="e9d91796-c34b-4ed8-875e-f0f2b77fa3ab" class="toggle"><li><details open=""><summary>The difference between syntax, semantics, and pragmatics</summary><p id="11452582-4238-4fbe-a9b6-9a931a61c535" class="">We stay within <strong>syntax</strong> when the only thing we talk about are <strong>formal</strong> properties of expressions: in practice their shape and order of signs. We talk only about the language.</p><p id="3a05665e-e143-4c56-9b55-49167aa1c46a" class="">We move towards <strong>semantics</strong> when we are interested in what the expressions <strong>refer to</strong> - what they are about. We start talking about the world, not only the language.</p><p id="0e24e984-d63a-43f0-aa39-67b9b840283e" class="">We move towards <strong>pragmatics</strong> whenever we are interested in what <strong>speaker means</strong> and what the <strong>listener understands</strong>. We start talking about the language users.</p></details></li></ul><ul id="0832117a-51c3-4337-bb04-016ac51abb85" class="toggle"><li><details open=""><summary>Computer Science</summary><p id="d036ef56-5ac3-427b-aa09-b86b846d80cf" class="">Mathematics was supposed to be consistent.</p><p id="c333d2f2-129e-4ae5-970e-30e7edbd8ad8" class="">Consistency is simply the lack of contradiction in a theory.</p><p id="cd43eabb-170d-42a6-b509-97fd7c7231ae" class="">Mathematicians wanted to be the explanation of the fundamentals of mathematics on logic  specifically on the notion of a “set”.</p><p id="2aed446f-4cee-43e5-a5c1-41435de69e63" class="">Unfortunately, what they had at the time was only a simple notion of a set devised</p><p id="ccb0ff67-08e5-41c3-85a3-85538222a853" class="">
+</p><ul id="fec4cec7-5641-4dc0-9c93-7f3372f0ba13" class="toggle"><li><details open=""><summary>Russell’s Paradox</summary><p id="bb75d65d-d0d6-4c8e-92b2-ae8d6c23c252" class="">Can there be a “master set” of all the sets which do not contain themselves as members?</p><p id="45636d06-6028-479b-95dc-7f2e1a2508f6" class="">A set = a barber. To contain itself = to shave yourself.</p><p id="a4244926-fe02-43d7-8f43-04ecd350df1b" class="">Imagine a town where people are divied into two groups: those who shave themselves and thoes who don’t.</p><p id="9d704979-43d8-4c52-8585-a89c212115e2" class="">There is a barber in this town. The barber shaves all and only those who do not shave themselves.</p><p id="2cfce86c-1c7e-486b-8838-7148fcf8015c" class="">Does the barber shave himself?</p><p id="f25242a7-bb73-48ee-a45a-23b6ca9cdd98" class="">If the does, then he belongs to those people who shave themselves. By definition he does not shave those people. If he does then he does not.</p><p id="405933d8-74c2-4327-9d98-5d77afdc6d3c" class="">If he does not, then he belongs to those people who do not shave themselves. By definition</p></details></li></ul><p id="b16236dc-eede-4186-91f6-b04072f5f8fa" class="">Solution to this problem led to the theory of types and to a modern set theory.</p><p id="2fe602b7-8b96-4c3e-a1eb-cd64b68ca5c3" class="">Mathematics was saved…</p><p id="bf48947f-8653-45d5-8212-ab01a2475cba" class="">But there were two more things to do: completeness and decidability.</p><p id="a517b4bc-c1a0-4386-923f-a7e9e8ba8c69" class=""><strong>Completeness</strong> of a theory means that for any sentence it can be proven whether the sentence or its negation is in the theory.</p><p id="8af6f23f-0475-4d1d-b191-07f5f0504f0e" class=""><strong>Decidability</strong> means that there exists an effective procedure for making such a proof for any sentence.</p><p id="b7c7fb09-a395-4e03-8300-6776d0ca4a84" class="">
+</p><p id="71e14df5-52d7-46f5-856d-0fcfdf888735" class="">In 1936 Alan Turing published a paper which tried to provide a solution to these problems.</p><p id="5703d546-b35a-438a-a6d5-4a3e02bdd669" class="">Turing did not want to invent computing.</p><p id="6829ce71-7419-41b8-8781-e765815876c2" class="">He wanted to solve Hilbert’s problem and provide foundations do mathematics.</p><p id="9c253dae-e677-4726-b00a-cba037d7dc0a" class="">But with this fairly short paper he did both - provided the foundations to mathematics and kickstarted computing.</p><p id="c7b058b1-328b-434e-ad5c-761f00b5d197" class="">
+</p><p id="33cf111b-823c-4fd8-94a4-bdc3d3a5eb3c" class="">Turing started his paper with an observation about human “computers”.</p><p id="fe03df3e-138e-48b8-bada-66c0274c0af2" class="">He realized that they do not have to be terribly clever, they just have to be able to do arithmetics operations.</p><p id="20c40933-4921-4989-a924-424aa1676405" class="">Using a pencil and a sheet of paper they could solve difficult problems.</p><p id="a5243a01-acdd-4194-9e32-9ebbe8dab4cc" class="">He imagines a machine that operates on a string of tape and that can perform only 4 simple operations (move, stop, delete sign, write sign).</p><p id="552221ab-f217-42e2-9190-8ee7567cf195" class="">He has shown that using strings of these simple operations we can compute any mathematical formula that can be computed by human computers.</p><p id="366fdd64-0def-49c2-81c5-780099a84c4a" class="">
+</p><ul id="300fd9c2-1bc0-46dd-b286-f11ec7418c20" class="toggle"><li><details open=""><summary>Foundational problems of computer science</summary><p id="e172f80b-e079-42ca-b17b-1eb30da1808f" class="">Turing invented a computer as a purely theoretical, conceptual device.</p><p id="3f50c198-400a-4d87-97f9-30cc56ee9271" class="">The point of a Turing machine was to show that a definition of a mathematical proof can be presented in purely formal way.</p><p id="0dd09973-4ea8-49f3-8432-2a78deb7d3b0" class="">A proof can be performed by a n utterly “stupid” object. It is a purely mechanical process.</p><p id="9ed7c1f0-f7d9-4f88-91d4-76f9f7e9b540" class="">The upshot of his work was that mathematics was shown to be <strong>complete</strong> but <strong>not decidable</strong>.</p><p id="dfa2c5fb-a8cb-418c-a09c-c695ddd26717" class="">The consequence of this is: even if it is possible to evaluate if some statements are true, it is not possible to create a universal method that generates a proof for them.</p><p id="59774003-884d-4fac-9567-2267fc4a446a" class="">
+</p><p id="c30f6ead-9c59-4010-bbe6-6e1f29b9d0c3" class="">Consequences of Turing’s solution</p><p id="f763a6de-8bea-4bf2-8f49-85d2cceabfc5" class="">This conclusion has a very interesting consequence for computer science.</p><p id="9da42e72-bcd6-450a-9586-95d824d3526c" class="">We already know that some problems are decidable and some not.</p><p id="f5a1c04e-8c8b-4e1a-93c3-086e4f3ae000" class="">But computers are physical devices so we can also talk about problems that can be computed in reasonable time and once that take forever (sometimes literally) to compute.</p><p id="35e9c345-e809-47d7-81ee-613f564abd51" class="">Similarly to the case of decidability these sentences can be checked (validated) but not proven (in a reasonable time).</p><p id="e37ec1e0-df5a-4a36-90c6-5d50960a4ee1" class="">We still don’t know if it is true - maybe our computers are simply too slow? It has been described as the single biggest problem of computer science.</p><p id="0d0971d3-8867-4ea5-b949-5444d06c4535" class="">The whole field of computer security and cryptocurrencies hangs on this assumption.</p><p id="e280db08-90aa-42fb-897b-c5e5f6c77e9e" class="">
+</p><p id="ea3ca9ea-cb5d-4528-b78b-c8dd1e97bcf8" class="">Problem with <strong>realization</strong> (or physical implementation).</p><p id="a1ac1e6d-ea5f-46dd-b932-c90f613cafb3" class="">As we remember, Turing machines were originally planned only as a thought experiment.</p><p id="edb8b24f-3afc-4005-b75d-5e20ba19e762" class="">But today they are implemented physically.</p><p id="6582ecb9-dcc7-4b74-b7c0-7918b66027ff" class="">Implementation is a mapping of an abstract specification to a physical object, such that the states of the abstract objects match the states of the physical objects. Additionally, every transition between states of the abstract object maps onto a transition of the physical object.</p><p id="695bc0ab-5e60-463a-b84e-809e407e6a68" class="">This common-sense description leads to “pancomputionalism”.</p><p id="a94327b7-c6c0-43c9-a965-d124476a49b7" class="">There are more complex definitions of “implementation”, but they are still not considered</p><p id="958d6e30-8e09-4b1e-a0f2-3b3ea1a47298" class="">
+</p><p id="2fddfd7d-6d98-4253-843e-2e1898b9d126" class="">Turing machines were mechanical and “mindless” by design.</p><p id="ced297e2-5681-46ac-98ef-f5f1797ff22a" class="">But Turing himself suggested that they can match human intelligence.</p><p id="a609748c-8bef-405c-be0c-a87841ae45c4" class="">Famously he presented a test: if 70% of evaluators talk with a machine for 5 minutes and classify it as a person, the machine is intelligent.</p><p id="a3e06e87-6cb9-4746-a4b3-b038a9e330dc" class="">This tension is one of the reasons people such as John Searle dismissed Artificial Intelligence.</p></details></li></ul></details></li></ul><ul id="822fec12-0aae-4eac-83c2-f309d971c48d" class="toggle"><li><details open=""><summary>Philosophy and big data</summary><ul id="b604edf9-99c6-4e97-854f-97d1f03d3453" class="toggle"><li><details open=""><summary>Traditional view on science</summary><p id="2d1a3508-26a6-4e0c-a34c-b5c9ce0d1f2b" class="">Theories are sets of true sentences obtained on the basis of different types of logical reasonings.</p><p id="da8b313d-0a37-40e2-9d2a-c378f865139b" class="">Deduction:</p><ul id="92056f35-2f4f-4c4f-a2f2-329b1eb8091d" class="bulleted-list"><li style="list-style-type:disc">It moved from general sentences to individual sentences</li></ul><ul id="a3790a98-60f1-4b4f-b50f-7c7f77c9b1be" class="bulleted-list"><li style="list-style-type:disc">Every human is an animal, Socrates is a human, this: Socrates is an animal</li></ul><ul id="bfe17b33-de7f-4aa1-a4c7-10428daf1c29" class="bulleted-list"><li style="list-style-type:disc">This form of reasoning is infallible</li></ul><ul id="5ad671d1-4234-4523-b30f-e6e0a267f852" class="bulleted-list"><li style="list-style-type:disc">It is typically used in mathematics, logic, philosophy</li></ul><p id="397e009c-3fb2-4ea4-9849-bd4fee52bc01" class="">Induction:</p><ul id="499058b0-fb64-428a-bc6a-f6c725bd36c2" class="bulleted-list"><li style="list-style-type:disc">It moves from individual sentences (observations) to general sentences</li></ul><ul id="8f9c7644-bd14-4dbc-8d69-a71b7bd09b9e" class="bulleted-list"><li style="list-style-type:disc">Swan n1 is white, swan n2 is write, … Swan n5200 is white, this: all swans are white</li></ul><ul id="c1bb3247-fa90-431a-b6c3-baa972e2eb72" class="bulleted-list"><li style="list-style-type:disc">This form of reasoning is fallible</li></ul><p id="9c067da8-b41d-464c-a97b-e7c868134292" class="">Abduction (introduced by Charles S. Peirce):</p><ul id="0e6a2ffa-af35-4b7b-b8bd-751a35beb1c6" class="bulleted-list"><li style="list-style-type:disc">It moves from one individual sentence to another individual sentence</li></ul><ul id="213903c9-3215-4ae2-85fd-e80d4dae5b75" class="bulleted-list"><li style="list-style-type:disc">It tries to explain the effect by assuming the most probably cause</li></ul><ul id="833dd159-cbe8-4feb-a3f8-eb7e6b286d79" class="bulleted-list"><li style="list-style-type:disc">The pavement is wet. If it rained, the pavement became wet. It must have rained.</li></ul><ul id="88108469-d3ec-4821-8dfb-db976043fe5c" class="bulleted-list"><li style="list-style-type:disc">This form of reasoning is also fallible.</li></ul><ul id="7a3ee30d-66ce-4ffb-be56-36a35405a7cb" class="bulleted-list"><li style="list-style-type:disc">Its importance rose because of the rise of expert systems (expert systems = early ideas of huge databases of data, essentially a database of knowledge that you can ask and get info)</li></ul><ul id="98105b90-0a78-41b3-9984-710436871863" class="bulleted-list"><li style="list-style-type:disc">It is a <strong>pragmatic</strong> form of reasoning.</li></ul><ul id="b71c5f71-0c0c-4af3-8f37-c099e42168a8" class="bulleted-list"><li style="list-style-type:disc">Its usefulness relies on the notions of cause and effect</li></ul></details></li></ul><ul id="6e445bc0-6ac4-407a-8878-5c5226e68063" class="toggle"><li><details open=""><summary>The move towards big data</summary><p id="dca34f2e-c149-42ce-9841-ac46c8eda5fd" class="">There is a weaker notion than <strong>causation</strong> which starts to be more prominent in science: <strong>correlation</strong>.</p><p id="b9683dde-5f9b-4a39-ab6d-091e2972347c" class="">Correlation does not equal causation</p><p id="9fa9d735-8014-4896-b748-fbd44871b6ff" class="">The main reason for it is that both correlated phenomena may simply be the effects of the same cause (but not connected causally to each other)</p><p id="4d63fae3-071b-4c59-be11-f14b0948582f" class="">We typically use correlations for identification. Identification does not equal understanding. (for example if you assume something about someone by their clothing)</p><p id="98c10fa2-b1e5-414e-be68-267076826f02" class="">
+</p><p id="bbb570c0-7c37-4f45-86e6-b28e09535840" class="">Simple correlations can easily turn into prejudices and biases</p><p id="2d464d03-2c29-47be-be0f-954c9a1e188c" class="">Science uses more rigorous correlations as hypothesis generators</p><p id="35e01f85-aef0-43da-ab79-4bdfa17071ae" class="">Science does not stop at the verification of a hypothesis. It looks for mechanistic explanation.</p><p id="dcada950-6162-45d8-8bfa-2ab7325fa0c8" class="">Mechanistic explanation depicts a phenomenon as a system of causes and effects.</p><p id="1f65589a-c58d-411c-9b64-2af735c92f93" class="">It gives us an “a-ha” effect.</p><p id="9eb4b730-c5c6-4fc4-a5be-685ffd7de753" class="">Example: why we we like to watch violent pictures? </p><p id="e800ddb7-b280-48f6-81ca-ba37d51684dd" class="">
+</p><p id="659ee982-ad14-44d7-90c2-93b236b51066" class="">Initially computers enhanced the mechanistic nature of science</p><p id="dde8aba3-0ad2-4e04-83eb-42bf9634b896" class="">Computers used algorithms - finite step-by-step procedures we can understand.</p><p id="79112c1c-23d5-48f0-8836-fc8e34720eab" class="">They enabled us to build models and simulations</p><p id="2b94cda3-a402-45d4-a0c8-dc5da06f1d2f" class="">Simulations (dynamic models) are the embodiment of mechanistic explanations</p><p id="64fbdb1f-f451-46de-a4ec-16db033d27c8" class="">When we run a simulation we get results, but w can also look into the reasons these results came to be</p><p id="1bbc5229-f72e-4166-b3dc-3704784c44c6" class="">We not only predict what is about to happen, but why will this thing happen.</p><p id="6929e26a-7557-41e2-8a6d-9b7dd5424543" class="">We imagined future super-computers to be super-intelligent humans</p><p id="a612be0f-8c9f-42af-b7ea-9e81923c1f53" class="">This type of AI is nowadays called GOFAI (Good Old Fashioned Artificial Intelligence)</p><p id="448754da-1f96-41b8-9d4b-7f40b58223f9" class="">
+</p><p id="0fd3a41f-9972-4e0f-81c1-4bb334627624" class="">Single correlations are often completely accidental</p><p id="365e1d40-80df-434d-929c-ed448b2570f9" class="">What happens when you start to crunch a huge amount of data?</p><p id="17023038-ff04-4f95-a8e7-c1441cb7f5b8" class="">What if we were able to lock a billion of correlations?</p><p id="b7437d2c-afb0-4e64-bbcf-83b7b118808d" class="">Can a billion of fallible correlations combine into infallible knowledge?</p><p id="ea382140-52a9-45e9-9c3e-07a6b61117b3" class="">No, but it can turn into knowledge that is surprisingly reliable.</p><p id="a7e07df2-2e3d-43b3-aa0f-6792b9154e1d" class="">Problem is, this is not a simple evolution of computing as we knot it. It is a new paradigm.</p><p id="b95c2396-004c-4c47-86b7-73dd8848488d" class="">Deep learning is not based on algorithms. It is based on statistics. (case where Magnus Carlsen learned from old model but not new?)</p><p id="91094ddf-b924-407f-804f-5685acd334c4" class="">This leads to a completely new model of science</p><p id="825ea9b2-4867-45fc-9e34-6e5ae8179336" class="">
+</p><p id="63e669be-f7bc-4e5c-a082-8d3da152af4f" class="">“Big Data ushers in a new era of empiricism, wherein the volume of data, accompanied by techniques that can reveal their inherent truth, enables data to speak for themselves free of theory.”</p><p id="60cac76a-002b-414c-8ee8-5bc66f70bec8" class="">“There is now a better way. Petabytes allows us to say: ‘Correlation is enough’… We can analyze the data withouth hypoethese about what it might show. We can throw the nubmers into the biggest computing clusters the worls has ever seen and let statistical algorithms find patterns where science cannot … Correlation supersedes causation, and science can advance even without coherent models, unified theories, or really any mechanistic explaantion at all. There’s no reason to cling”</p><p id="70e4427b-3964-45d9-846b-37e955066e86" class="">“aaaa”</p><p id="05dffc89-c44b-4e8b-bf15-f5f81b3a0e1d" class="">
+</p><p id="d03213f5-deed-49e4-8394-9a19cbd6091c" class="">As shown by Seth Stevens-Davidowitz in hos book “Everybody lies”:</p><ul id="ba607007-f1f4-4333-897e-6eb3da9fefc4" class="bulleted-list"><li style="list-style-type:disc">We may be able to find predictors of pancreatic cancer</li></ul><ul id="baf82990-b121-47ee-8133-a8727218e8d6" class="bulleted-list"><li style="list-style-type:disc">We can settle long standing debates, such as: should couples have a shared groups of friends?</li></ul><p id="c4a59a35-028f-4513-8396-b589151cf041" class="">
+</p><p id="47dddb36-9503-419c-9167-bd3d8d3aade1" class="">
+</p></details></li></ul><p id="4ed31982-0d95-4b15-9128-fb41eff41154" class=""><strong>Risks of relying on big data</strong>:</p><ul id="8307d0f1-ae7c-43d1-aa0e-e47cab5077d6" class="bulleted-list"><li style="list-style-type:disc">Our machines reinforce our biases</li></ul><ul id="2286a7cd-7e70-4d36-8e7e-8a03959a0fff" class="bulleted-list"><li style="list-style-type:disc">They are insensitive to changes of real causes of these correlation</li></ul><ul id="35d98725-b121-466c-93a7-7137c5179ebe" class="bulleted-list"><li style="list-style-type:disc">They can adapt, but have to be retrained</li></ul><ul id="07c379e6-4647-4fab-a31d-f88346ca08cd" class="bulleted-list"><li style="list-style-type:disc">They are just as good as our data sets</li></ul><p id="5bc68bd4-cfa2-4a45-a062-c9010bb3c4db" class="">There is (probably) no going back</p><p id="548101c5-6707-475f-b2b2-3aa64f2b6a9d" class="">We have to accept that more and more of our activities will be substituted by big data results</p><p id="eabac5fe-f541-4bb7-9d2d-f82686881ced" class="">Example 1: Translations</p><p id="d4b85770-a2df-4b14-8ff4-5e00759a2507" class="">Example 2: Programming</p><p id="6c4c40c2-3a8f-4361-9d0b-6707cc6d7c4d" class="">Example 3: Science</p><ul id="a671ff44-cbb7-4ab2-b022-8008ec9a22c5" class="bulleted-list"><li style="list-style-type:disc">Do we want “black box science”?</li></ul><ul id="97f76da6-1319-4e36-b26a-3e0cd1fc88bc" class="bulleted-list"><li style="list-style-type:disc">Is it really science?</li></ul><ul id="56248b4e-3fa5-4eaa-aa48-7026862c2ee4" class="bulleted-list"><li style="list-style-type:disc">Are machine learners incredibly experienced with doctors?</li></ul><ul id="d0b508b4-c079-469e-a875-0ca930ed084b" class="bulleted-list"><li style="list-style-type:disc">Can we imagine how does it feel to be an artificial intelligence?</li></ul><p id="7f8db47a-8598-4be9-a974-7c1b1620e15a" class="">
+</p><p id="9953e31d-8d1c-4331-a90d-e53dddc7a465" class="">From Bacteria to Bach and Back</p><p id="eceb5ff7-bd15-479d-ad66-b4c081932d55" class="">Almost all intelligent systems in nature are based on sheer competence</p><p id="5d608a73-c0c1-4264-b768-7c160820d589" class="">This evolution led to a breakthrough - the rise of comprehension</p><p id="45b86232-7400-4f45-9c68-3f075544085d" class="">Humans created civilisations and build more and more advanced machines</p><p id="78412558-37bb-4c49-9999-eac89f35877b" class="">But the epitome of our civilisations goes back to sheer competence again</p><p id="22bf57bb-9b73-481c-b388-8247027b8604" class="">It’s not that we are too stupid to understand the machines.
+There is nothing to understand…</p><p id="44f4b3b2-a1dd-4b80-933d-e4224374f2b5" class="">How do we know it? (we do have this experience)</p><p id="41a4f1ba-1108-4bf7-9459-ba8c8248ff7d" class="">Human intelligence looks like a weird bump in the evolutionary history</p><p id="917e3c39-20f5-430b-9292-b932201c4c07" class="">
+</p><p id="fea97567-8074-456b-ba13-cfc337dc1921" class="">Summary:</p><p id="d97c9f86-391a-48e2-82db-ea115a66ddfd" class="">We saw that traditional science has been built on the ideas of deduction and induction</p><p id="c546f437-cb15-40d4-956f-9aa751432720" class="">Early expert systems made another form of reasoning - abduction - viable</p><p id="42ddcef2-3baa-4ee5-9a26-6a110716b74e" class="">Traditionally we believed that correlation is only good for hypothesis generation</p><p id="8b13fab6-e60c-40a7-8273-a0c5509fcf69" class="">Big Data and Deep Learning changed this paradigm</p><p id="e61c6387-f1db-4af1-9ae4-b28456152416" class="">This starts to change the current scientific landscape</p><p id="a7603440-0fc6-44c0-8567-3f707de083e7" class="">We should not be overly optimistic bout the new paradigm</p></details></li></ul><ul id="3e4f01f6-63b6-43d6-8d96-0bf2d18fe7d4" class="toggle"><li><details open=""><summary>Ethics</summary><ul id="862beb1c-81ff-49ad-9de0-7e23d66ad9e8" class="toggle"><li><details open=""><summary>How does ethics differ from other similar notions?</summary><ul id="5d7a2cbc-e420-4dc7-af11-3f7d1e0bbbdf" class="bulleted-list"><li style="list-style-type:disc">Law</li></ul><ul id="975fd83c-0f3f-450a-9209-afd17e88d65c" class="bulleted-list"><li style="list-style-type:disc">Morals<ul id="b719ba80-a3a3-4a76-b710-fa929f04dc0c" class="bulleted-list"><li style="list-style-type:circle">Set of all the behavior</li></ul></li></ul><ul id="f4d90338-17cc-4169-ae59-c71031777f77" class="bulleted-list"><li style="list-style-type:disc">Ethics<ul id="b62c2717-5393-4a43-8612-1b5b0e5bae74" class="bulleted-list"><li style="list-style-type:circle">Academic discipline </li></ul></li></ul><p id="68cf6122-970e-4c35-b34b-f0e45b466598" class="">Law: written rules - law changes (different rules in different countries, also changes in time as in laws may change)</p><p id="83834651-f5ed-4a7b-a698-376024e2fce8" class="">Morals &amp; Ethics: unwritten rules</p><p id="6b9938a1-621b-4ea5-a1cf-32ebe35afdd3" class="">Difference between morals and ethics: </p></details></li></ul><ul id="69df5382-b00e-429e-87e8-3c83bebad4a1" class="toggle"><li><details open=""><summary>Two scopes of ethics</summary><ul id="9c826aa4-2e0c-4e5e-91bd-cd23666f69c2" class="bulleted-list"><li style="list-style-type:disc">How should the individual behave?</li></ul><ul id="b72e979b-5859-4d3d-8e13-9c616c22171e" class="bulleted-list"><li style="list-style-type:disc">How should the society be organized?</li></ul><p id="c47fe314-01ba-495f-9e35-f2e1f36363d3" class="">
+</p></details></li></ul><ul id="4c539cb0-e228-41c2-979b-06b94c60638a" class="toggle"><li><details open=""><summary>Ethics key notion: Free will</summary><p id="19c5ac5d-fa9f-40db-b4e0-df120ec006f6" class="">Free will seems to be an intuitive concept</p><p id="6bd5ed57-38ff-4d62-95dd-9f3f2a808590" class="">What is more important: society seems to be built around the assumption of its existence.</p><p id="85b78eb3-57b0-470b-ac67-0c66f2c4a56e" class="">But the idea was challenged by two powerful traditions:</p><ul id="3d2d6d56-d191-4bfc-b189-c48ec0db1598" class="bulleted-list"><li style="list-style-type:disc">Religion<ul id="ef43b156-9335-4b2e-a63d-9bdfb934c955" class="bulleted-list"><li style="list-style-type:circle">Christianity: How can I be free if god is an omniscient creator of the universe?<ul id="759474d4-f58c-4e3f-8493-68894eef4b4c" class="bulleted-list"><li style="list-style-type:square">Solution 1) Freedom is just an internal choice</li></ul><ul id="a0b324ee-82d5-47c3-bd97-703c823a9e35" class="bulleted-list"><li style="list-style-type:square">Solution 2) Freedom is a recognized necessity</li></ul></li></ul></li></ul><ul id="a08d1f1d-057e-4644-85d5-698918607959" class="bulleted-list"><li style="list-style-type:disc">Science<ul id="9a375bf3-5486-489d-87b8-92658b94e2b7" class="bulleted-list"><li style="list-style-type:circle">Determinism<ul id="f3d5ae9b-9c8f-4d60-9b7f-6bb014d6b9ca" class="bulleted-list"><li style="list-style-type:square">Everything that happens must happen as it does and could not have happened any other way</li></ul></li></ul><p id="8e809b92-747a-4d04-8d3e-222e4455c3a9" class="">Laplace’s demon. (has been outdated by modern physics)</p><p id="c0a7fe63-d10f-4231-8ef1-60b66f402421" class="">Libet’s experiment.</p><p id="555282d0-423b-46f1-bd58-b3636d5922a6" class="">
+</p><p id="d7028f7f-46ae-4c62-96e0-1355b96219ec" class="">Free will is just an epiphenomenon of brain activity.</p><p id="d0778004-2d45-4e6a-9c2e-37fb99f71dc2" class="">It is just a lack of external extortion.</p><p id="db68e5b8-dfb9-431f-81f2-b225f989f732" class="">It is a random decision generator useful for limited beings.</p><p id="7eb55660-87a9-401e-a29f-d73979b93132" class="">It is a match between prediction and the result.</p></li></ul><ul id="d19bd863-c5e3-4207-bf7f-80b7373384f1" class="toggle"><li><details open=""><summary>The problem of free will in 21st century</summary><p id="571b4784-a646-4cf7-98e8-609b5fbf1d7a" class="">Which of the existing ethical systems should we implement in our robots?</p><p id="369db86e-70f0-439d-8595-0798bd7550fe" class="">Can robots make genuine ethical decisionsP</p><p id="976f8baa-c60e-4e53-8089-a4fb384cb7b7" class="">Should we treat robots as ethical subjects? If so - are they equal to humans?</p><p id="4dcd63c7-7ca6-4cae-98cc-a13467afda3d" class="">Can we destroy obsolete robots?</p><p id="f27341de-abbb-41e5-9ed1-00b05686cc9a" class="">Can we use robots as our sex toys?</p><p id="e8c84e8b-ff4a-46f2-8f8e-4d8d849eb6d5" class="">
+</p><p id="5f317240-8292-4c3e-aff0-d7e128e8d301" class="">Does good design promote choice?</p><p id="b6c0c148-36d4-409d-bdf0-89172026e6b4" class="">Is good design built on the basis of anticipation of human choices?</p><p id="958de774-e97d-4b6b-8574-521412cbfe4e" class="">Is good design an illusion of choice?</p><p id="bec8c6e6-ef45-4b41-9a7a-4f6dba8a63b7" class="">
+</p></details></li></ul></details></li></ul><ul id="41abc7ab-bb84-4ced-8e04-a75e0a2d6b36" class="toggle"><li><details open=""><summary>Ethics as justification systems</summary><p id="c58cf36a-a0f4-4308-ac0b-bfa44fcd7336" class="">Ethical systems suggest a set of privileged rules - ethical norms</p><p id="7e25c1dc-92bb-45da-8388-a331c6d42c54" class="">How can we ensure these rules are followed?</p><p id="088b420e-818f-43d7-87e1-27d15e4b1e85" class="">
+</p><p id="3b39c97d-412b-4140-b689-38b398d5aa5b" class="">Genuine prescriptive norms</p><p id="40ec3626-3f9f-4a30-94fd-ffa8ce702f5f" class="">If you know that you should do something, you will do it.</p><p id="98c4eece-ee99-41c7-99bb-fb933f3ba8fa" class="">David Hume: there is no obvious transition from norms to actions</p><p id="1b41e201-a696-4086-ae23-ec4ceac9a4f6" class="">I believe that this is wrong, but I will do it!</p><p id="05a342f0-e4ad-4e9b-8df4-9694e96067cc" class="">Do you really believe that this is wrong then?</p><p id="becdd9a0-f87d-4293-a2d4-3c5547d9701a" class="">
+</p><ul id="2c2fbdf5-33fd-424f-a0aa-eba48a2cf9c6" class="bulleted-list"><li style="list-style-type:disc">God</li></ul><ul id="068daca5-5a9d-4e10-a3ff-040ea8405217" class="bulleted-list"><li style="list-style-type:disc">Intuition</li></ul><ul id="6c711c63-1f60-43a6-9960-4ffb2b87f3de" class="bulleted-list"><li style="list-style-type:disc">Reason<ul id="b45c8fad-b3ab-4d89-90bf-1d8688c99140" class="bulleted-list"><li style="list-style-type:circle">Act only according to that maxim whereby you can at the same time will that it should become a universal law</li></ul><ul id="325f35f3-11e9-4505-ac10-64e68ca274d9" class="bulleted-list"><li style="list-style-type:circle"><em>Kant’s</em> <em><strong>categorical imperative</strong></em></li></ul></li></ul><p id="0c0ed127-ccb4-4aad-b1a4-225db1c2c940" class="">
+</p><p id="058328e8-40c7-4598-b91f-d2f680fc8e02" class="">Human nature</p><p id="206306e3-25d1-4ea5-800a-43f72a8a22e9" class="">Natural altruism</p><p id="c7234237-8d74-46de-873d-2a802df61bb7" class="">
+</p><p id="3d3fa020-0a77-4621-91bf-14f67aa41ca6" class="">
+</p><p id="a9e04c3e-6015-4982-bfa5-bc06ac96815a" class="">
+</p></details></li></ul><ul id="8217a37f-4f6b-4d55-ab98-05279fa48e00" class="toggle"><li><details open=""><summary>Three approaches to ethics</summary><ul id="8c3a605b-58f3-4ab2-a366-f023424d7873" class="bulleted-list"><li style="list-style-type:disc">Ethics of duty<ul id="efe82728-6a88-48e3-a3d2-30a3c7455e77" class="bulleted-list"><li style="list-style-type:circle">Top-down perspective: we evaluate the rule itself</li></ul><ul id="681cb27d-0dee-424b-b2d5-fc2ed4f9a3fc" class="bulleted-list"><li style="list-style-type:circle">Unethical acts are always based on making an exception for you</li></ul></li></ul><ul id="a8ca6142-62ee-4866-8f68-d44be9a37e37" class="bulleted-list"><li style="list-style-type:disc">Virtue ethics<ul id="50ae4a5b-041b-45db-b92a-93180c08e5d8" class="bulleted-list"><li style="list-style-type:circle">We evaluate the traits of the agent</li></ul><ul id="a7577275-aef3-4168-be8c-19a91dd99616" class="bulleted-list"><li style="list-style-type:circle">Ethical actions make you a better person</li></ul></li></ul><ul id="447dfb86-babf-4c4e-93b0-ea925f2ca2a0" class="bulleted-list"><li style="list-style-type:disc">Utilitarianism<ul id="0314e686-1fe2-4ac7-ad18-377f0751e9e5" class="bulleted-list"><li style="list-style-type:circle">We evaluate consequences of an act</li></ul></li></ul><ul id="e4ec88f4-030e-49e0-8696-de2b780a42fb" class="toggle"><li><details open=""><summary>Problems of utilitarianism</summary><p id="17ed51ae-bfb3-4f5d-9399-8d3ededb556b" class="">How to prevent mindless hedonism?</p><p id="607c8b34-c61e-4871-bc49-bba0de3be200" class="">How should we evaluate consequences? Actual vs foreseeable consequences.</p><p id="9ea28627-7f26-4f85-8fa5-e7f236d2ed76" class="">Should we maximize happiness or minimize suffering?</p></details></li></ul><p id="df2f39de-3afe-4b94-919d-ab10e5bde3b2" class="">
+</p></details></li></ul></details></li></ul><p id="4f2e7f95-4356-4b12-a379-8a09e3b81d10" class="">
+</p><p id="f3226f8f-0f2a-4afb-acde-6daf2db477a5" class="">Theories need to be falsifiable</p><p id="023a40ba-9825-4a60-a1e5-06ce9ef9a6b1" class="">
+</p></div></article></body></html>

@@ -1,0 +1,182 @@
+[
+	{
+		"question": "What is a balance between theory and observation?",
+		"answer": {
+			"score": 0.9949300289154053,
+			"start": 126,
+			"end": 133,
+			"answer": "Science"
+		}
+	},
+	{
+		"question": "What did the Greeks start answering mythology questions with?",
+		"answer": {
+			"score": 0.9910808205604553,
+			"start": 356,
+			"end": 363,
+			"answer": "science"
+		}
+	},
+	{
+		"question": "Who criticized \u201chistoricism\u201d and \u201cholism",
+		"answer": {
+			"score": 0.9697088003158569,
+			"start": 1537,
+			"end": 1543,
+			"answer": "Popper"
+		}
+	},
+	{
+		"question": "What is the argument against historicism and holism?",
+		"answer": {
+			"score": 0.9226347804069519,
+			"start": 45,
+			"end": 71,
+			"answer": "Science is not predictable"
+		}
+	},
+	{
+		"question": "Who was the father of many contemporary scientific disciplines: Chemistry Biology Physics",
+		"answer": {
+			"score": 0.9185206890106201,
+			"start": 1230,
+			"end": 1240,
+			"answer": "David Hume"
+		}
+	},
+	{
+		"question": "Who did Turing start his paper with an observation about human \u201ccomputers\u201d?",
+		"answer": {
+			"score": 0.9103566408157349,
+			"start": 235,
+			"end": 246,
+			"answer": "Alan Turing"
+		}
+	},
+	{
+		"question": "What is one example of unfalsifiable theories?",
+		"answer": {
+			"score": 0.691037654876709,
+			"start": 1240,
+			"end": 1282,
+			"answer": "Freud\u2019s psychoanalysis Conspiracy theories"
+		}
+	},
+	{
+		"question": "What is a condition that has to be met for something to be the case if a human gets blown into bits then they will die green = sufficient condition, blue = necessary condition",
+		"answer": {
+			"score": 0.5602138638496399,
+			"start": 1113,
+			"end": 1134,
+			"answer": "A necessary condition"
+		}
+	},
+	{
+		"question": "What was Alan Turing's paper that tried to provide a solution to these problems?",
+		"answer": {
+			"score": 0.5544392466545105,
+			"start": 230,
+			"end": 234,
+			"answer": "1936"
+		}
+	},
+	{
+		"question": "What does the term \"science\" differ in meaning Danish - videnskab English Refer to only \"natural sciences\" or \"hard sciences\" Does not refer to what?",
+		"answer": {
+			"score": 0.5235480666160583,
+			"start": 178,
+			"end": 188,
+			"answer": "humanities"
+		}
+	},
+	{
+		"question": "What is the most nuanced view on empiricism Science consists of?",
+		"answer": {
+			"score": 0.47976112365722656,
+			"start": 251,
+			"end": 266,
+			"answer": "problem solving"
+		}
+	},
+	{
+		"question": "What do we move towards semantics when we are interested in what expressions refer to?",
+		"answer": {
+			"score": 0.4153687655925751,
+			"start": 84,
+			"end": 103,
+			"answer": "what they are about"
+		}
+	},
+	{
+		"question": "Who approached the study of science from the angle of its history?",
+		"answer": {
+			"score": 0.2849486172199249,
+			"start": 1119,
+			"end": 1191,
+			"answer": "Thomas Kuhn and the scientific revolutions In a stark contrast to Popper"
+		}
+	},
+	{
+		"question": "What means that for any sentence it can be proved whether the sentence or its negation is in the theory?",
+		"answer": {
+			"score": 0.2754538357257843,
+			"start": 0,
+			"end": 12,
+			"answer": "Completeness"
+		}
+	},
+	{
+		"question": "What did Mathematicians want to be the explanation of the fundamentals of mathematics on logic specifically on the notion of a \u201cset\u201d?",
+		"answer": {
+			"score": 0.24537938833236694,
+			"start": 560,
+			"end": 564,
+			"answer": "set\u201d"
+		}
+	},
+	{
+		"question": "How can scientists test the coherence of the theory?",
+		"answer": {
+			"score": 0.1493711769580841,
+			"start": 509,
+			"end": 528,
+			"answer": "Step 2 - scientists"
+		}
+	},
+	{
+		"question": "What does science predict the future states of planets but not the future state of physics?",
+		"answer": {
+			"score": 0.09089089184999466,
+			"start": 140,
+			"end": 147,
+			"answer": "Physics"
+		}
+	},
+	{
+		"question": "How does the barber shave himself?",
+		"answer": {
+			"score": 0.0800655335187912,
+			"start": 1126,
+			"end": 1156,
+			"answer": "he does not shave those people"
+		}
+	},
+	{
+		"question": "?",
+		"answer": {
+			"score": 0.06898380815982819,
+			"start": 1147,
+			"end": 1199,
+			"answer": "it gives us a lot of new information about the world"
+		}
+	},
+	{
+		"question": "What is the most visible example of gender bias in science Political feminism?",
+		"answer": {
+			"score": 0.05207991227507591,
+			"start": 783,
+			"end": 815,
+			"answer": "women were very underrepresented"
+		}
+	}
+]
