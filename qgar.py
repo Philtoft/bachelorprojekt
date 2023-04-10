@@ -7,7 +7,7 @@ import re
 
 _CURRENT_STUDENT = "Una"
 
-class qgar():
+class QGAR():
     """
     This class has the following tasks:
     - Insert raw student notes into a notes folder
@@ -21,12 +21,12 @@ class qgar():
     """
 
     def __init__(self):
+        """Initializes a new instance of the QGAR pipeline."""
         self._qg = QG("the-coorporation/t5-small-qg", "the-coorporation/t5-small-qg")
         self._qa = pipeline("question-answering", "distilbert-base-uncased-distilled-squad")
         self._context_and_questions = []
         self._questions_and_answeres = []
         self._context = ""
-        # self.qa = 
 
     def parse_notes(self, student:str, notetype: str = "md"):
         with open(f"./data/notes/{student}/{student}.{notetype}") as fp:
@@ -87,7 +87,7 @@ class qgar():
 
 
 # Make the user having to define qg model name and qa model name
-qga = qgar()
+qga = QGAR()
 plaintext = qga.parse_notes(_CURRENT_STUDENT, "html")
 all_questions_and_answers = qga.output_questions_answers(plaintext)
 final_questions_answers = qga.sort_answers(all_questions_and_answers)

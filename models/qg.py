@@ -69,7 +69,7 @@ class QG:
                 if question.count('?') > 1:
                     questions.remove(question)
                     split_questions = question.split('?')
-                    split_questions = [newQuestion + '?' for newQuestion in split_questions]
+                    split_questions = [newQuestion + '?' for newQuestion in split_questions if newQuestion != '']
                     questions.extend(split_questions)
 
             # Remove leading and trailing white space, remove last empty element from results
