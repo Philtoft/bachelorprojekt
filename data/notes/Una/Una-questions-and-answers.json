@@ -1,0 +1,164 @@
+[
+	{
+		"question": "What is an activity that is not active in the foreground, but whose view is visible or partially visible?",
+		"answer": {
+			"score": 0.9990170001983643,
+			"start": 0,
+			"end": 6,
+			"answer": "Paused"
+		}
+	},
+	{
+		"question": "What is an Android component that can perform long-running operations in the background",
+		"answer": {
+			"score": 0.9813933372497559,
+			"start": 1102,
+			"end": 1130,
+			"answer": "Activites Services A Service"
+		}
+	},
+	{
+		"question": "What is a component that runs in the application background to perform long-running operations?",
+		"answer": {
+			"score": 0.9803946614265442,
+			"start": 196,
+			"end": 214,
+			"answer": "Services A service"
+		}
+	},
+	{
+		"question": "What is a block of code responsible to execute a set of tasks in your application Kotlin Coroutines?",
+		"answer": {
+			"score": 0.9802479147911072,
+			"start": 623,
+			"end": 637,
+			"answer": "Android Thread"
+		}
+	},
+	{
+		"question": "What is the best way to start a component in another application?",
+		"answer": {
+			"score": 0.9690362215042114,
+			"start": 1257,
+			"end": 1267,
+			"answer": "ViewHolder"
+		}
+	},
+	{
+		"question": "What is the name of the activity that the user is currently interacting with?",
+		"answer": {
+			"score": 0.9081011414527893,
+			"start": 407,
+			"end": 414,
+			"answer": "Resumed"
+		}
+	},
+	{
+		"question": "What is a good way to reduce boilerplate code, like lifecycle management, background tasks?",
+		"answer": {
+			"score": 0.8570845127105713,
+			"start": 1257,
+			"end": 1267,
+			"answer": "ViewHolder"
+		}
+	},
+	{
+		"question": "What is the FragmentManager responsible for adding the fragments\u2019 views to the activity\u2019s view hierarchy and driving the fragment lifecycles?",
+		"answer": {
+			"score": 0.620453417301178,
+			"start": 410,
+			"end": 471,
+			"answer": "a list of fragments and a back stack of fragment transactions"
+		}
+	},
+	{
+		"question": "How does a fragment work?",
+		"answer": {
+			"score": 0.59498131275177,
+			"start": 1158,
+			"end": 1182,
+			"answer": "on behalf of an activity"
+		}
+	},
+	{
+		"question": "When does the activity transition between four states?",
+		"answer": {
+			"score": 0.5515995621681213,
+			"start": 789,
+			"end": 809,
+			"answer": "During the lifecycle"
+		}
+	},
+	{
+		"question": "What does the FragmentManager call?",
+		"answer": {
+			"score": 0.5334094166755676,
+			"start": 1230,
+			"end": 1245,
+			"answer": "destroyed state"
+		}
+	},
+	{
+		"question": "Where is the nonexistent state referred to?",
+		"answer": {
+			"score": 0.4271213710308075,
+			"start": 1230,
+			"end": 1245,
+			"answer": "destroyed state"
+		}
+	},
+	{
+		"question": "What is a part of the activity class?",
+		"answer": {
+			"score": 0.41786739230155945,
+			"start": 338,
+			"end": 353,
+			"answer": "FragmentManager"
+		}
+	},
+	{
+		"question": "How can subclasses of Activity take advantage of the functions named in the figure?",
+		"answer": {
+			"score": 0.3356909155845642,
+			"start": 840,
+			"end": 908,
+			"answer": "to get work done at critical transitions in the activity\u2019s lifecycle"
+		}
+	},
+	{
+		"question": "What does a fragment lifecycle function call?",
+		"answer": {
+			"score": 0.3120601773262024,
+			"start": 597,
+			"end": 636,
+			"answer": "FragmentManager of the hosting activity"
+		}
+	},
+	{
+		"question": "What does Kotlin tirsdag 8.",
+		"answer": {
+			"score": 0.18677113950252533,
+			"start": 705,
+			"end": 727,
+			"answer": "declare a new variable"
+		}
+	},
+	{
+		"question": "What is the difference between the fragment lifecycle and the activity lifecycle?",
+		"answer": {
+			"score": 0.06835409998893738,
+			"start": 329,
+			"end": 391,
+			"answer": "fragment lifecycle functions are called by the FragmentManager"
+		}
+	},
+	{
+		"question": "?",
+		"answer": {
+			"score": 0.02817435935139656,
+			"start": 1366,
+			"end": 1378,
+			"answer": "recycle view"
+		}
+	}
+]

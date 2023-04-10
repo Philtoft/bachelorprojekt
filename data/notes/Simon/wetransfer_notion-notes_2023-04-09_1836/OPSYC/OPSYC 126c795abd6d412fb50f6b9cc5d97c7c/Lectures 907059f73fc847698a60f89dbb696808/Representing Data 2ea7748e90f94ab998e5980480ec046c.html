@@ -1,0 +1,682 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Representing Data</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2ea7748e-90f9-4ab9-98e5-980480ec046c" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/2.png"/></div><h1 class="page-title">Representing Data</h1><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>TEACHER</th><td><span class="selected-value select-value-color-blue">Willard Rafnsson</span></td></tr><tr class="property-row property-row-file"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFile"><path d="M12.5938 8.44043L7.54883 13.4854C6.26367 14.7773 4.54102 14.6475 3.44043 13.54C2.32617 12.4326 2.20312 10.7168 3.49512 9.4248L10.3926 2.52734C11.1445 1.77539 12.2725 1.63867 13.0039 2.37695C13.7422 3.11523 13.6055 4.22949 12.8535 4.98828L6.08594 11.7627C5.77832 12.0703 5.41602 11.9814 5.2041 11.7764C4.99902 11.5576 4.91016 11.2021 5.21777 10.8877L9.93457 6.1709C10.1738 5.93164 10.1875 5.58301 9.96191 5.35059C9.72949 5.13184 9.38086 5.13867 9.1416 5.37793L4.39746 10.1152C3.67285 10.8535 3.7002 11.9746 4.34961 12.624C5.05371 13.3281 6.12012 13.3145 6.8584 12.5762L13.6602 5.77441C14.9795 4.45508 14.9316 2.71875 13.7764 1.55664C12.6416 0.428711 10.8779 0.34668 9.55176 1.66602L2.61328 8.61816C0.883789 10.3477 1 12.8291 2.57227 14.4014C4.14453 15.9668 6.63281 16.0898 8.3623 14.3672L13.4414 9.28809C13.6738 9.0625 13.667 8.64551 13.4346 8.41992C13.209 8.18066 12.833 8.21484 12.5938 8.44043Z"></path></svg></span>SLIDES</th><td><span style="margin-right:6px"><a href="https://github.itu.dk/pages/OSC/22-Website/slides/osc22_02_representing_data.pdf">Slides-2.pdf</a></span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>FORM</th><td><span class="selected-value select-value-color-blue">EXECISES</span><span class="selected-value select-value-color-green">LECTURE</span></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>DONE</th><td><div class="checkbox checkbox-on"></div></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>WEEK</th><td>36</td></tr></tbody></table></header><div class="page-body"><h1 id="02956fa8-418e-4621-afa8-a8ff1ead1fbb" class=""><a href="https://github.itu.dk/pages/OSC/22-Website/slides/osc22_02_representing_data.pdf">Representing Data</a></h1><hr id="c1ad0c29-7c60-419e-be07-691f15a36078"/><nav id="50374423-2f0f-44d9-a460-865ab28241e5" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#02956fa8-418e-4621-afa8-a8ff1ead1fbb"><a href="https://github.itu.dk/pages/OSC/22-Website/slides/osc22_02_representing_data.pdf">Representing Data</a></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#aa8287a2-a45e-44bd-bcb1-4163a523e4ff">R<strong>eadings</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#03fb9d81-bbc6-439a-94d9-6ffcb069e73d">Lecture</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c77ec4a1-4deb-4f90-a7c9-cb9d833769a3">1. <strong>Two’s complement</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e65f2347-b169-4c79-9f55-f1b3ff26d809">Two issues</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9ffaf6bb-48d8-4e46-9190-8bc1f9761f90">Integers types in <em>C</em></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#acabb93f-55c0-4103-bd23-4010c921edcf">Sequences of bits</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#803f4870-8032-4a77-b4c9-c7a8f96a6e97">Signed vs. unsigned interpretation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3126711d-01c8-4ae6-a9ca-2aeaf7cc1797">Signed integers</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#29fa2ea7-2cf9-4e73-815f-9311cd9e5a53">Sign extension</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#fd44c1df-b215-459c-b5be-3f0ab8ca1775">2. <strong>Integer Arithmetic</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4b1aef84-2f20-431f-aea3-bf8b002a4603">Unsigned addition</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#feca8c87-f25c-4d1b-a6a8-0d4fd4e4e70b">Signed addition</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2d0bb2b5-3c68-4827-8614-f6f46097b9c7">Unsigned multiplication</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#bdf3f517-c486-447e-bc4d-3518e3b69be7">Signed multiplication</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2dfed29e-2192-45cd-8014-546c9a1986de">Power-of-2 multiply with shift</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7fccda84-12dd-4ad9-a316-e676eb899039">3. <strong>Bit Manipulation</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0c7812a4-7e4e-4e4d-a2ac-9fa989d7acb9">Bit representation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0797282f-4d0d-434b-aafc-51efdfe251d6"><strong>Sequence of bits and boolean</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#66b92ef2-8869-4c67-8ca1-98a9a3eedadc">TCP problem</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a09892c5-ff28-42f4-a1dd-87656b9f748f">4. Take aways</a></div></nav><p id="fa62907b-e9ea-4347-89c7-1d0c65a106b3" class="">
+</p><h2 id="aa8287a2-a45e-44bd-bcb1-4163a523e4ff" class="">R<strong>eadings</strong></h2><hr id="8e306ece-9e5a-49c7-94bb-df90bd130d78"/><blockquote id="ecf138aa-83c1-4086-8f98-c74a95917a9e" class=""><strong>Representing and Manipulating Information</strong><p id="5615f777-168b-4184-991c-9b518bcfff02" class="">We cover computer arithmetic, emphasizing the properties of unsigned and two’s-complement number representations that affect programmers. We consider how numbers are represented and therefore what range of values can be encoded for a given word size. We consider the effect of casting between signed and unsigned numbers.</p><ul id="1ceb7b14-f255-485c-9252-59cf6a1104eb" class="toggle"><li><details open=""><summary><strong>CS:APP 2.1 </strong>Information Storage</summary><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b9777055-cd4b-45bd-ba29-5eb50e1476c2"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/attachment_gray.svg"/></div><div style="width:100%">The electronic circuitry for storing and performing computations on two-valued signals is very simple and reliable, enabling manufacturers to integrate millions, or even billions, of such circuits on a single silicon chip.</div></figure><ul id="d39fffce-414b-4773-b50b-a2e05e6030ab" class="toggle"><li><details open=""><summary>What does <strong>backward compatability</strong> mean?</summary><p id="6eed3e06-a018-4f33-8daa-acf852a4a52d" class="">That a programs are written according to a ealier standard.</p></details></li></ul><h3 id="ed9849f1-c8df-41ab-87e9-c84230c406e3" class="">Pointers in C</h3><p id="6dbed7cf-5019-4b95-a7b5-a3cf4e90ad79" class="">A pointer has two aspects: its <strong>value </strong>and its <strong>type</strong>. The value indicates the location of some object, while its type indicates what kind of object (e.g., integer or floating-point number) is stored at that location.</p><h3 id="ae543df9-08f7-4b00-ad86-fa8a8f8ff51b" class="">Hexadecimal notation</h3><figure id="e63d0ee4-0dbc-48dc-aa6b-ed4cef5e6a67" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled.png"><img style="width:655px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled.png"/></a></figure><h3 id="2ed13c35-1b24-4036-acf1-8ce2ae1eba85" class="">Data sizes</h3><p id="fc8037c4-99e4-41db-85b6-0406d0863642" class="">Every computer has a word size, indicating the nominal size of pointer data.</p><p id="292df15a-c219-4860-8742-61a4106aebde" class="">A 32-bit word size limits the virtual address space to 4 gigabytes (written 4 GB), that is, just over 4 × 109 bytes. Scaling up to a 64-bit word size leads to a virtual address space of 16 exabytes, or around 1.84 × 1019 bytes.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="33cda402-3fef-47a3-a43c-a34607871fe8"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/attachment_gray.svg"/></div><div style="width:100%">Most 64-bit machines can also run programs compiled for use on 32-bit machines, a form of <strong>backward compatibility</strong>. This does not work the other way around.</div></figure><p id="ae77f96a-18f0-493a-9eb1-2d495c2616ba" class="">We will therefore refer to programs as being either &quot;32-bit programs&quot; or &quot;64-bit programs,&quot; since the distinction lies in how a program is compiled, rather than the type of machine on which it runs.</p><figure id="09b9870e-45fe-46fd-8b4e-7c0dbcb96591" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%201.png"><img style="width:655px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%201.png"/></a></figure><figure id="a90de621-e5c1-4a58-8ca9-b3b1916f429f" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%202.png"><img style="width:778px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%202.png"/></a></figure><h3 id="cbb5a692-8fba-4011-8031-211cb174c214" class="">Addressing and byte ordering</h3><p id="ae2197ec-c322-40d3-823a-4e44d3406482" class="">Some machines choose to store the object in memory ordered from least significant byte to most, while other machines store them from most to least. The former convention-where the least significant byte comes first-is referred to as little endian. The latter convention—where the most significant byte comes first—is referred to as big endian.</p><figure id="6235a5b4-2561-4634-bef7-901ea6688f2e" class="image" style="text-align:center"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%203.png"><img style="width:505px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%203.png"/></a></figure><figure id="325a3ec8-9b2a-4cfb-8391-56db0537dc13" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%204.png"><img style="width:780px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%204.png"/></a></figure><figure id="cc408fd1-2560-4153-9d72-1e34d65a4ad2" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%205.png"><img style="width:778px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%205.png"/></a></figure><pre id="be7342f5-7e6a-425c-b200-006375ba333f" class="code"><code>// You can display a table showing the ASCII character code by 
+// executing the command
+
+		man ascii</code></pre><h3 id="1a1eb3fc-b921-4a34-8eea-8d84060028a8" class="">Representing strings</h3><p id="7353937d-e017-4f9c-bfac-68d2da2354fd" class="">A string in C is encoded by an array of characters terminated by the null (having value 0) character.</p><h3 id="0ac4eb05-82f6-4c1d-a749-81e81b4c4b72" class="">Representing code</h3><p id="f9123618-2d84-4035-91d0-c885497818c9" class="">A fundamental concept of computer systems is that a program, from the perspective of the machine, is simply a sequence of bytes.</p><h3 id="86eee3e9-3a0a-42fc-a51c-43d700a4dd71" class="">Introduction to boolean algebra</h3><figure id="0b98510d-8d3b-4018-ab0e-34d4557026ac" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%206.png"><img style="width:657px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%206.png"/></a></figure><h3 id="405d922b-9eb6-430a-84f1-63b11331fc31" class="">Shift Operations in C</h3><p id="2a49c5ad-da79-4348-a35f-e55fb2ea4f82" class="">C also provides a set of shift operations for shifting bit patterns to the left and to the right. For an operand <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span></span><span>﻿</span></span> having bit representation <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>x</mi><mrow><mi>w</mi><mo>−</mo><mn>1</mn></mrow></msub><mo separator="true">,</mo><msub><mi>x</mi><mrow><mi>w</mi><mo>−</mo><mn>2</mn></mrow></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>x</mi><mn>0</mn></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[x_{w-1}, x_{w-2}, . . . , x_0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span><span class="mbin mtight">−</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span></span><span>﻿</span></span>, the C expression <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&lt;</mo><mo>&lt;</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">x &lt;&lt; k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span></span><span>﻿</span></span> yields a value with bit representation <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>x</mi><mrow><mi>w</mi><mo>−</mo><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub><mo separator="true">,</mo><msub><mi>x</mi><mrow><mi>w</mi><mo>−</mo><mi>k</mi><mo>−</mo><mn>2</mn></mrow></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>x</mi><mn>0</mn></msub><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[x_{w-k-1}, x_{w-k-2}, . . . , x_0, 0, . . . , 0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">−</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mclose">]</span></span></span></span></span><span>﻿</span></span>. That is, <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span></span><span>﻿</span></span> is shifted <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span></span><span>﻿</span></span> bits to the left, dropping off the <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span></span><span>﻿</span></span> most significant bits and filling the right end with <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span></span><span>﻿</span></span> zeros.</p><figure id="a303b5ae-7f35-439c-8a60-67005fe0b86e" class="image" style="text-align:center"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%207.png"><img style="width:379px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%207.png"/></a></figure></details></li></ul><ul id="ebb44946-e62b-4ddb-986d-4ee57ba214f5" class="toggle"><li><details open=""><summary><strong>CS:APP 2.2</strong> Integer Representations</summary><figure id="e1a398c4-d130-4e73-b1cd-af102d594680" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%208.png"><img style="width:646px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%208.png"/></a></figure><h3 id="13877109-b858-4fd1-9332-077346668cd4" class="">Integral data types</h3><figure id="fe7d3ed5-6328-4a71-b520-c95b4f4d8710" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%209.png"><img style="width:599px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%209.png"/></a></figure><h3 id="978045b2-ed7c-4cc8-8e16-a16dd1efc892" class="">Unsigned encodings</h3><p id="05de92e2-23d8-40e2-9e51-e8060435eede" class="">This always evaluates a non-negative number.</p><figure id="5c3a5e11-529d-419a-bac3-fb3ed3ff574a" class="image" style="text-align:center"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2010.png"><img style="width:528px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2010.png"/></a></figure><p id="91eb467c-592f-4100-a7ea-dcaf0b095305" class="">In this equation, the notation <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≐</mo></mrow><annotation encoding="application/x-tex">\doteq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.67em;vertical-align:0em;"></span><span class="mrel">≐</span></span></span></span></span><span>﻿</span></span> means that the left-hand side is defined to be equal to the right-hand side.</p><figure id="4bef17fb-96e7-44c1-84ef-a86b90bcb92e" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2011.png"><img style="width:616px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2011.png"/></a></figure><h3 id="18919022-22a3-4630-88b8-9c11b0a8b9e7" class="">Two’s-complement encodings</h3><p id="956658fd-6ec4-4d66-baa4-8a59e761b10b" class="">This is used to implement signed integers.</p><figure id="cd5f1ee9-199f-48a4-8d3c-9ed3eb4db92d" class="image" style="text-align:center"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2012.png"><img style="width:528px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2012.png"/></a></figure><p id="8185845b-ea23-4ea1-904d-0a766694ca01" class="">The most significant bit <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>w</mi><mtext>−</mtext><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">x_{w−1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.638891em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.301108em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span><span class="mord mtight">−1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span> is also called the sign bit.</p><figure id="67480314-fc59-4280-aa15-d15f59910b27" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2013.png"><img style="width:647px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2013.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="283eee7d-ff00-43d2-be84-e893cbe8978c"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/attachment_gray.svg"/></div><div style="width:100%">Since <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></span><span>﻿</span></span> is nonnegative, this means that it can represent one less positive number than negative. Second, the maximum unsigned value is just over twice the maximum two’s-complement value: <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mi>M</mi><mi>a</mi><mi>x</mi><mo>=</mo><mn>2</mn><mi>T</mi><mi>M</mi><mi>a</mi><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">UMax = 2TMax + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">a</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.10903em;">TM</span><span class="mord mathnormal">a</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span><span>﻿</span></span>.</div></figure><figure id="a175b1a1-61cd-4b9e-a239-a3831d1da0d8" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2014.png"><img style="width:774px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2014.png"/></a></figure><p id="ad5fc58a-3a90-4db6-ae4d-3db0c09b5197" class="">Both of these representations have the curious property that there are two different encodings of the number <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></span><span>﻿</span></span>. For both representations, <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>00...0</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[00 . . . 0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">00...0</span><span class="mclose">]</span></span></span></span></span><span>﻿</span></span> is interpreted as <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">+0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord">0</span></span></span></span></span><span>﻿</span></span>. The value <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">-0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">0</span></span></span></span></span><span>﻿</span></span> can be represented in sign-magnitude form as <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>10...0</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[10 . . . 0]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">10...0</span><span class="mclose">]</span></span></span></span></span><span>﻿</span></span> and in ones&#x27; complement as <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>11...1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[11 . . . 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">11...1</span><span class="mclose">]</span></span></span></span></span><span>﻿</span></span>.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1aee1309-b385-403d-9657-1c2c0f36f47d"><div style="font-size:1.5em"><span class="icon">🗣️</span></div><div style="width:100%">The <strong>main difference between 1´ s complement and 2´ s complement</strong> is that <span style="border-bottom:0.05em solid">1´ s complement has two representations of 0</span> (zero) - 00000000, which is positive zero (+0), and 11111111, which is negative zero (-0); whereas in <span style="border-bottom:0.05em solid">2´ s complement, there is only one representation for zero</span> - 00000000 (0) because if we add 1 to 11111111 (-1), we get 100000000, which is nine bits long.</div></figure><h3 id="73825aab-5371-4733-8e3b-8c3115bfc925" class="">Conversions between signed and unsigned</h3><p id="15b063fc-448e-4bd4-8acb-39be17baa6c7" class="">As a consequence, the values that are negative in a two&#x27;s-complement representation increase by <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>24</mn><mo>=</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">24 = 16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">24</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">16</span></span></span></span></span><span>﻿</span></span> with an unsigned representation. Thus, <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">5</span></span></span></span></span><span>﻿</span></span> becomes <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>11</mn></mrow><annotation encoding="application/x-tex">+11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord">11</span></span></span></span></span><span>﻿</span></span>, and <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></span><span>﻿</span></span> becomes <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">+15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord">15</span></span></span></span></span><span>﻿</span></span>.</p></details></li></ul></blockquote><p id="c9bdd300-5efa-46e1-a75e-6d949318ebb6" class="">
+</p><h1 id="03fb9d81-bbc6-439a-94d9-6ffcb069e73d" class="">Lecture</h1><hr id="ba836006-e0f7-4cd8-a752-49a0d77365d0"/><blockquote id="18df6bf7-561c-468f-b9e2-cff8c479e64f" class=""><strong>Agenda</strong><ul id="32f9de57-267e-4939-a11f-e9c5a76539e6" class="bulleted-list"><li style="list-style-type:disc">bin</li></ul><ul id="aa19e898-fab5-43ba-ac18-a7daadf89574" class="bulleted-list"><li style="list-style-type:disc">hex</li></ul><ul id="bee47664-970e-41ea-b101-1f625fbe8880" class="bulleted-list"><li style="list-style-type:disc">two’s complement</li></ul></blockquote><p id="8886aec8-8284-469d-86e2-5898c7bbb0dd" class="">
+</p><h1 id="c77ec4a1-4deb-4f90-a7c9-cb9d833769a3" class="block-color-gray_background">1. <strong>Two’s complement</strong></h1><h3 id="e65f2347-b169-4c79-9f55-f1b3ff26d809" class="">Two issues</h3><div id="538a1af0-cd80-42eb-976a-6c4f938a4d4c" class="column-list"><div id="dfdf2330-5670-4a7f-a595-4bf088fb8f6c" style="width:50%" class="column"><ol type="1" id="02be649a-8fae-45c4-9dc8-4fdcc5e366ff" class="numbered-list" start="1"><li><strong>Finite representation</strong><p id="ce50b9e8-19bf-436b-9448-a4f47ce798d4" class="">There is a limit to the number of integers (put differently, a max value) that can be represented on a fixed number of bytes.</p><p id="cd5e34d6-6fb0-49f4-8ecf-8a86e6a1239c" class="">
+</p></li></ol><figure id="ee17e731-5224-4b02-a49f-d1abde49c11d" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2015.png"><img style="width:745px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2015.png"/></a><figcaption>Unsigned</figcaption></figure></div><div id="af57acb0-a5c9-4e3d-8a8a-4853229b916a" style="width:50%" class="column"><ol type="1" id="919af173-efa1-487b-b0ae-3ff4e9db162c" class="numbered-list" start="2"><li><strong>Representing positive and negative integers</strong><p id="0228420c-b329-431d-80c6-29ac6dd95373" class="">Sign and values must be represented.</p><p id="b410c4b3-77d7-4ead-9f12-39ec8f4efd69" class="">
+</p><p id="8b97ea47-2d89-41b7-a72c-50914be8e135" class="">
+</p></li></ol><figure id="28963bdb-1e6a-4edb-9294-33d36e1c199a" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2016.png"><img style="width:810px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2016.png"/></a><figcaption>Signed</figcaption></figure></div></div><h3 id="9ffaf6bb-48d8-4e46-9190-8bc1f9761f90" class="">Integers types in <em>C</em></h3><ul id="763be0e1-54af-46e1-b1a1-3c3e7d4055ff" class="bulleted-list"><li style="list-style-type:disc">Signed and unsigned</li></ul><ul id="f0039dad-65dc-4b2d-8047-68b8a3f1aac9" class="bulleted-list"><li style="list-style-type:disc">Number of bytes<ul id="eb1e8750-97f4-47f5-bb87-3256164aa6c6" class="bulleted-list"><li style="list-style-type:circle">1B: char</li></ul><ul id="23e40fe5-3ff3-49b3-b2cb-47894fb93553" class="bulleted-list"><li style="list-style-type:circle">2B: short</li></ul><ul id="28ced6e3-893f-4a03-a66f-7692f61d4396" class="bulleted-list"><li style="list-style-type:circle">4B: int</li></ul><ul id="057ae6d9-f59a-4c1c-ad75-e02b2e32a4e0" class="bulleted-list"><li style="list-style-type:circle">4B (32 bits) or 8B (64 bits): long</li></ul><ul id="77512480-9bef-45e5-b2df-ff9502b25654" class="bulleted-list"><li style="list-style-type:circle">8: long long</li></ul></li></ul><h3 id="acabb93f-55c0-4103-bd23-4010c921edcf" class="">Sequences of bits</h3><p id="4e165c0f-6dd3-4dd6-a9a5-238a8f35ffe4" class="">Shorts ins C are coded on 2B. Used for examples in these slides.</p><p id="8bb4e38e-a1ba-4b55-8081-b9cb4c4739ba" class="">2B = 16 bits, or 4 Hexadecimals (prefixed with Ox)</p><p id="75469535-f9db-4831-b2b7-bbd36fdfd31b" class=""><strong>Operations on sequences of bits</strong></p><ul id="0147cd5c-65ed-4fd6-b0b1-0dc62fd370d6" class="bulleted-list"><li style="list-style-type:disc">Bitwise operations: and (<code>&amp;</code>), or (<code>|</code>), not (<code>~</code>), xor (<code>^</code>), shift (<code>&lt;&lt;</code>, <code>&gt;&gt;</code>)</li></ul><ul id="81103ca7-3a3c-45d5-8f6b-bab654b65b0c" class="bulleted-list"><li style="list-style-type:disc">[interpreted as Booleans] <code>0</code> is false; anything but <code>0</code> is true Logical operations: and (<code>&amp;&amp;</code>), or (<code>||</code>), not (<code>!</code>)</li></ul><ul id="a95117d8-0cb4-4e1a-a0b1-05a0f3cf9e69" class="bulleted-list"><li style="list-style-type:disc">[interpreted as integers] Arithmetic operations: <code>+</code>, <code>-</code>, <code>*</code>,</li></ul><h3 id="803f4870-8032-4a77-b4c9-c7a8f96a6e97" class="">Signed vs. unsigned interpretation</h3><p id="d831745f-47c9-4148-831a-aca153e5397a" class="">A sequence of bits is interpreted differently depending on whether the integer type is unsigned or signed.</p><div id="c5b3e314-1831-4eaa-b99c-18bb2808d7d6" class="column-list"><div id="bfa6533f-b639-4f6b-9521-252772a362fc" style="width:50%" class="column"><p id="a11ce6d4-9fc4-4dec-9db1-64efb3188e27" class=""><strong>Unsigned</strong></p><figure id="69345761-67d0-4ad9-9567-fae8de41686e" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2017.png"><img style="width:240px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2017.png"/></a></figure></div><div id="1bc50721-ab64-4e2f-a19e-0f245c39726d" style="width:50%" class="column"><p id="f8e80402-cf7a-4feb-b64a-3a2fd7c6f88f" class=""><strong>Signed (two’s complement)</strong></p><figure id="3387ab1b-51b3-4c15-bd1d-a56906cb98a5" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2018.png"><img style="width:502px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2018.png"/></a></figure></div></div><h3 id="3126711d-01c8-4ae6-a9ca-2aeaf7cc1797" class="">Signed integers</h3><p id="827e276f-532e-42cf-af72-0c548f5f908a" class="">Two&#x27;s Complement. Representation on <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span></span><span>﻿</span></span> bytes</p><ul id="a65fc990-92b8-415b-8000-abad0f074572" class="bulleted-list"><li style="list-style-type:disc">Positive numbers:<ul id="03771b49-2cdf-40d6-a649-8cea79071dd0" class="bulleted-list"><li style="list-style-type:circle">Sign bit is <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></span><span>﻿</span></span></li></ul><ul id="da1e6534-3730-45c8-95d0-fcffb7642b04" class="bulleted-list"><li style="list-style-type:circle">Binary representation of value on <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>8</mn><mo>∗</mo><mi>N</mi><mo stretchy="false">)</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">(8*N)-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span><span>﻿</span></span> bits</li></ul></li></ul><ul id="14cadbd8-a504-4f0d-a7aa-6e0617eba8e2" class="bulleted-list"><li style="list-style-type:disc">Negative numbers:<ul id="e14b4a79-9c4e-4659-93c2-c31838175dc4" class="bulleted-list"><li style="list-style-type:circle">Binary representation of corresponding positive value on <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>∗</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">8*N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span></span><span>﻿</span></span> bits</li></ul><ul id="05a3b892-70af-45c8-98d7-69421eafdf4c" class="bulleted-list"><li style="list-style-type:circle">Invert all digits (<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></span><span>﻿</span></span> becomes <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span><span>﻿</span></span>; <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span><span>﻿</span></span> becomes <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></span><span>﻿</span></span>)</li></ul><ul id="a8a1e72d-062d-4519-9465-6b1f01d0797d" class="bulleted-list"><li style="list-style-type:circle">Add one</li></ul></li></ul><figure id="043f8c4f-254b-4940-a5cc-2e02a7968f5f" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2019.png"><img style="width:1167px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2019.png"/></a></figure><h3 id="29fa2ea7-2cf9-4e73-815f-9311cd9e5a53" class="">Sign extension</h3><p id="342fd5c2-481d-4ab9-9789-18f3a1213da7" class="">Expanding: Converting from smaller to larger integer data type</p><figure id="f47717a9-9262-416d-9cc3-42d5b4471627" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2020.png"><img style="width:1035px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2020.png"/></a></figure><div id="ab0620c6-7273-4394-93af-77ba88aac98c" class="column-list"><div id="16090a4b-6183-4ac0-9d3e-01105b1d093d" style="width:50%" class="column"><p id="d67b9fb5-67f0-4ba1-8bce-b1a4334ea94d" class=""><strong>Expanding</strong> (e.g., short int to int) </p><ul id="5fc77e9e-7fac-4342-8b19-a050053c9758" class="bulleted-list"><li style="list-style-type:disc">Unsigned: zeros added (on left) </li></ul><ul id="1f769b9f-6192-46b8-a955-ebd3343391b6" class="bulleted-list"><li style="list-style-type:disc">Signed: sign extension (as shown on previous slides) </li></ul><ul id="9284985f-6df9-4621-ba34-0092a0933b46" class="bulleted-list"><li style="list-style-type:disc">Both yield expected result</li></ul></div><div id="3bbc1ab4-3628-41ed-b73c-adaa7665f02f" style="width:50%" class="column"><p id="683940f8-91a3-4600-9e04-f442ccde8d5a" class=""><strong>Truncating </strong>(e.g., unsigned to unsigned short)</p><ul id="335d1069-2c05-417d-ab74-87c159197106" class="bulleted-list"><li style="list-style-type:disc">Unsigned/signed: bits are truncated </li></ul><ul id="8bdb9f30-8df7-426b-b6b8-edca7e6d6941" class="bulleted-list"><li style="list-style-type:disc">Result reinterpreted Unsigned: mod operation </li></ul><ul id="debd00e8-c1b5-484d-91d9-7b5c624bf157" class="bulleted-list"><li style="list-style-type:disc">Signed: depends on bit pattern (large negative number might be truncated to positive number)</li></ul></div></div><p id="ba06a4b7-b4b8-45e1-bbcd-257e83fd87dc" class="">
+</p><h1 id="fd44c1df-b215-459c-b5be-3f0ab8ca1775" class="block-color-gray_background">2. <strong>Integer Arithmetic</strong></h1><p id="3d0be0d3-d466-4f32-baf6-86f93203b69a" class=""><strong>How to deal with finite representation?</strong></p><p id="16dcad08-5718-4e81-a36b-46dd6f8c1ded" class="">Adding two integers encoded on w bytes should take w+1 bytes. How to encode the sum on w bytes?</p><p id="f0544e64-278b-4948-801d-857cd45fdfd4" class=""><strong>No magic! The sum will overflow.</strong></p><div id="18f7b6c5-1817-413c-83fa-a1892f8e90d7" class="column-list"><div id="5b9f3e4e-044e-4071-a2d5-f23271923ec9" style="width:50%" class="column"><h3 id="4b1aef84-2f20-431f-aea3-bf8b002a4603" class="">Unsigned addition</h3><figure id="af6c4e3f-375b-4708-8f47-5aabeaf8a875" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2021.png"><img style="width:528px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2021.png"/></a></figure><p id="b3e31833-c1f4-4d7a-a76c-94e36fa0d6ad" class="">
+</p></div><div id="a856a820-fb0e-4ea6-8908-54ac9f56c62a" style="width:50%" class="column"><h3 id="feca8c87-f25c-4d1b-a6a8-0d4fd4e4e70b" class="">Signed addition</h3><figure id="905b2afe-1b8c-4fc7-9a8a-c9ab0d5fbbcd" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2022.png"><img style="width:1111px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2022.png"/></a></figure></div></div><div id="0b129ea8-f365-4cd9-b1fa-6a16ff54f4c4" class="column-list"><div id="33cd82dd-c3bb-48dd-a9ec-568f1225e351" style="width:50%" class="column"><h3 id="2d0bb2b5-3c68-4827-8614-f6f46097b9c7" class="">Unsigned multiplication</h3><figure id="746a3c7a-7ea2-4302-a63d-2c339b6e46c9" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2023.png"><img style="width:1181px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2023.png"/></a></figure></div><div id="56d75946-077e-4616-9793-53cb0aba94b5" style="width:50%" class="column"><h3 id="bdf3f517-c486-447e-bc4d-3518e3b69be7" class="">Signed multiplication</h3><figure id="203d99e1-8f69-4b0c-8354-fe9ab49ccfc5" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2024.png"><img style="width:1178px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2024.png"/></a></figure></div></div><h3 id="2dfed29e-2192-45cd-8014-546c9a1986de" class="">Power-of-2 multiply with shift</h3><figure id="c1a4a233-e965-4df3-aa05-6e00cea74faf" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2025.png"><img style="width:1174px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2025.png"/></a></figure><p id="f07f6006-3212-47ca-9efa-17e4e3eeaa38" class="">
+</p><h1 id="7fccda84-12dd-4ad9-a316-e676eb899039" class="block-color-gray_background">3. <strong>Bit Manipulation</strong></h1><h3 id="0c7812a4-7e4e-4e4d-a2ac-9fa989d7acb9" class="">Bit representation</h3><figure id="1a066449-1c2d-4d9c-bfcb-6e979d1eebd4" class="image"><a href="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2026.png"><img style="width:707px" src="Representing%20Data%202ea7748e90f94ab998e5980480ec046c/Untitled%2026.png"/></a></figure><h3 id="0797282f-4d0d-434b-aafc-51efdfe251d6" class=""><strong>Sequence of bits and boolean</strong></h3><ul id="ccb0002b-6ff1-4139-88be-3d206de64217" class="bulleted-list"><li style="list-style-type:disc"><code>00000000</code> interpreted as <code>False</code></li></ul><ul id="f41861e3-5459-4a5b-a6bf-baac3f024311" class="bulleted-list"><li style="list-style-type:disc">Byte containing at least a <code>1</code>, e.g., <code>00100010</code> interpreted as <code>True</code></li></ul><ul id="3470732c-c6de-41c4-bc80-819d3ec37f85" class="bulleted-list"><li style="list-style-type:disc"><code>X</code> is a sequence of bit<ul id="428e10d4-d943-4916-8ec5-e9979c0438eb" class="bulleted-list"><li style="list-style-type:circle"><code>X</code> interpreted as Boolean expression (<code>X != 0</code>)</li></ul><ul id="83c6a04b-2062-4477-83cd-c7c6ceabf75c" class="bulleted-list"><li style="list-style-type:circle"><code>!X</code> interpreted as Boolean expression (<code>X == 0</code>) </li></ul></li></ul><ul id="910a3618-9dc9-4ae1-8784-67842f5e68d7" class="bulleted-list"><li style="list-style-type:disc">Beware difference between:<ul id="291a4fcc-4778-478a-ada4-c03b5de575aa" class="bulleted-list"><li style="list-style-type:circle"><strong>Bitwise </strong>operations applied on sequence of bits <code>&amp;</code>, <code>|</code>, <code>~</code>, <code>^</code>, <code>&gt;&gt;</code>, <code>&lt;&lt;</code></li></ul><ul id="14ffe1d8-98b8-4a13-bcb4-ad0f8a174ecc" class="bulleted-list"><li style="list-style-type:circle"><strong>Logical </strong>operations applied on Booleans <code>&amp;&amp;</code>, <code>||</code>, <code>!</code></li></ul></li></ul><h3 id="66b92ef2-8869-4c67-8ca1-98a9a3eedadc" class="">TCP problem</h3><p id="f8d86aee-5f4d-4016-a5a2-d171bdc08937" class=""><strong>Consider the TCP flags encoded on 8 bits as X. </strong></p><ul id="cc65383e-b04b-4862-8dc4-bbb2c5016621" class="bulleted-list"><li style="list-style-type:disc">How do you test whether the Ack flag (0x10) is set? <ul id="fe7b3bc5-aae3-4aef-a110-a57a686d3edc" class="bulleted-list"><li style="list-style-type:circle"><code><strong>(X &amp; 0x10)</strong></code></li></ul><ul id="1f63102a-9451-4fcf-8ee5-b06f9732ee0e" class="bulleted-list"><li style="list-style-type:circle">Interpreted as false if flag not set, true otherwise.</li></ul></li></ul><ul id="1672dd2a-0e13-4306-b70b-9aef82f49726" class="bulleted-list"><li style="list-style-type:disc">How do you test whether any flag is set? <ul id="42efb41f-5651-4be1-b293-6154f995ec71" class="bulleted-list"><li style="list-style-type:circle"><code><strong>(X)</strong></code></li></ul><ul id="e98f3c10-baa3-4617-ad3c-652f6ae2dbba" class="bulleted-list"><li style="list-style-type:circle">Interpreted as false if no flag is set, true otherwise.</li></ul></li></ul><ul id="7e6aca9e-b29d-4655-9995-7398b5d83dbd" class="bulleted-list"><li style="list-style-type:disc">How do you test if a single flag is set? <ul id="14a75320-142a-4bc8-a5f1-dd3d1665fbf4" class="bulleted-list"><li style="list-style-type:circle"><code><strong>((X &amp; (X-1)) == 0) &amp;&amp; (X != 0)</strong></code></li></ul><ul id="58210050-4e48-40d7-9d6e-d35291637be6" class="bulleted-list"><li style="list-style-type:circle"><code>(X &amp; (X-1))</code> transforms the rightmost <code>1</code>-bit into a <code>0</code>-bi</li></ul></li></ul><ul id="79881071-f3c6-48aa-b325-0a16fe74ed70" class="bulleted-list"><li style="list-style-type:disc">How do you count the number of flags set?<ul id="d773f65a-bbce-4167-8e6a-c21edd060339" class="bulleted-list"><li style="list-style-type:circle">Divide and conquer.</li></ul><p id="ddaca983-2e15-4c50-a07a-b75541ef4133" class="">
+</p></li></ul><h1 id="a09892c5-ff28-42f4-a1dd-87656b9f748f" class="block-color-gray_background">4. Take aways</h1><ul id="a352ca2f-2708-44e0-86e1-73996c10ca2b" class="bulleted-list"><li style="list-style-type:disc">Two complements used to represent signed integers. </li></ul><ul id="eb30d986-b73b-4e1e-9418-4928411a6678" class="bulleted-list"><li style="list-style-type:disc">Two complements procedure is: <ol type="1" id="ed63b619-0237-4133-96b5-7d79d50f5cee" class="numbered-list" start="1"><li>Write positive value in binary </li></ol><ol type="1" id="c68612f8-8c38-4da0-92fc-b331534b83e0" class="numbered-list" start="2"><li>Invert all digits </li></ol><ol type="1" id="b790b358-2ed7-466b-8bec-b226d378d9c9" class="numbered-list" start="3"><li>Add 1 </li></ol></li></ul><ul id="44045fe5-de29-4e02-a5ec-b59d44ab59a8" class="bulleted-list"><li style="list-style-type:disc">Beware implicit cast to unsigned in C! </li></ul><ul id="85c36d92-8b87-4d73-8323-9c5c4f453548" class="bulleted-list"><li style="list-style-type:disc">Bit manipulation enables efficient operations. It is a rich algorithmic playground.</li></ul></div></article></body></html>

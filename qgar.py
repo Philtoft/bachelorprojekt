@@ -4,6 +4,7 @@ from transformers import pipeline
 from models.qg import QG
 import json
 
+_CURRENT_STUDENT = "Una"
 
 class qgar():
     """
@@ -26,13 +27,14 @@ class qgar():
         self._context = ""
         # self.qa = 
 
-    def parse_notes(self, notename: str):
-        # 1) Get notes from file
-        with open(f"./data/notes/{notename}.md") as fp:
+    def parse_notes(self, student:str, notetype: str = "md"):
+        with open(f"./data/notes/{student}/{student}.{notetype}") as fp:
             notes = fp.read()
-        html_notes = self.markdown_to_html(notes)
-        plaintext = self.html_to_plaintext(html_notes)
+        if notetype == "md":
+            notes = self.markdown_to_html(notes)
+        plaintext = self.html_to_plaintext(notes)
         return plaintext
+    
 
     def markdown_to_html(self, markdown_notes: str):
         """ Converts a markdown string to HTML """
@@ -43,42 +45,46 @@ class qgar():
         """ Converts a markdown string to plaintext """
         soup = BeautifulSoup(html_notes, "html.parser")
         result = ' '.join(soup.stripped_strings)
+        result = result.replace("\n", " ")
+        # Consider replacing '\n-' with ''
         return result
 
     def generate_questions(self, plaintext_notes: str):
         """ Generates questions from the notes """
-        questions_and_context = self._qg(plaintext_notes)
-        return questions_and_context
+        questions_and_contexts = self._qg(plaintext_notes)
+        return questions_and_contexts
     
-    def generate_answers(self, questions_and_context):
+    def generate_answers(self, questions_and_contexts):
         """ Generates answers from the notes """
         questions_ans_answers = []
-        for question_and_context in questions_and_context:
-            context, question = question_and_context.values()
-            answer = self._qa(context=context, question=question)
-            questions_ans_answers.append({
-                "question": question,
-                "answer": answer
-            })
+        for questions_and_context in questions_and_contexts:
+            context, questions = questions_and_context.values()
+            for question in questions:
+                answer = self._qa(context=context, question=question)
+                questions_ans_answers.append({
+                    "question": question,
+                    "answer": answer
+                })
+
         return questions_ans_answers
 
-    def sort_answers(self):
+    def sort_answers(self, questions_and_answers):
         """ Sorts the answers based on certainty score """
-        pass
+        sorted_answers = sorted(questions_and_answers, key=lambda x: x["answer"]["score"], reverse=True)
+        return sorted_answers
 
     def output_questions_answers(self, plaintext_notes: str):
         """ Outputs the questions and answers to a file """
-        questions_and_context = self.generate_questions(plaintext_notes)
-        questions_and_answers = self.generate_answers(questions_and_context)
+        questions_and_contexts = self.generate_questions(plaintext_notes)
+        questions_and_answers = self.generate_answers(questions_and_contexts)
         # TODO: Get the top 20 most certain answers
         return questions_and_answers
 
 
 # Make the user having to define qg model name and qa model name
-my_qgar = qgar()
-plaintext = my_qgar.parse_notes("thhs")
-questions_and_answers = my_qgar.output_questions_answers(plaintext)
-with open("questions_and_answers.json", "w") as fp:
-    json.dump(questions_and_answers, fp)
-
-# my_qgar.generate_questions()
+qga = qgar()
+plaintext = qga.parse_notes(_CURRENT_STUDENT, "html")
+all_questions_and_answers = qga.output_questions_answers(plaintext)
+final_questions_answers = qga.sort_answers(all_questions_and_answers)
+with open(f"./data/notes/{_CURRENT_STUDENT}/{_CURRENT_STUDENT}-questions-and-answers.json", "w") as fp:
+    json.dump(final_questions_answers, fp)

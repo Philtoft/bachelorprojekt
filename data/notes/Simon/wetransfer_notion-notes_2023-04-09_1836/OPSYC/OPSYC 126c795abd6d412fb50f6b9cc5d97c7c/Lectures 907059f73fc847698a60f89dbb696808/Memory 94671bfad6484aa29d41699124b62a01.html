@@ -1,0 +1,680 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Memory</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="94671bfa-d648-4aa2-9d41-699124b62a01" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Memory%2094671bfad6484aa29d41699124b62a01/10.png"/></div><h1 class="page-title">Memory</h1><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>TEACHER</th><td><span class="selected-value select-value-color-blue">Willard Rafnsson</span></td></tr><tr class="property-row property-row-file"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFile"><path d="M12.5938 8.44043L7.54883 13.4854C6.26367 14.7773 4.54102 14.6475 3.44043 13.54C2.32617 12.4326 2.20312 10.7168 3.49512 9.4248L10.3926 2.52734C11.1445 1.77539 12.2725 1.63867 13.0039 2.37695C13.7422 3.11523 13.6055 4.22949 12.8535 4.98828L6.08594 11.7627C5.77832 12.0703 5.41602 11.9814 5.2041 11.7764C4.99902 11.5576 4.91016 11.2021 5.21777 10.8877L9.93457 6.1709C10.1738 5.93164 10.1875 5.58301 9.96191 5.35059C9.72949 5.13184 9.38086 5.13867 9.1416 5.37793L4.39746 10.1152C3.67285 10.8535 3.7002 11.9746 4.34961 12.624C5.05371 13.3281 6.12012 13.3145 6.8584 12.5762L13.6602 5.77441C14.9795 4.45508 14.9316 2.71875 13.7764 1.55664C12.6416 0.428711 10.8779 0.34668 9.55176 1.66602L2.61328 8.61816C0.883789 10.3477 1 12.8291 2.57227 14.4014C4.14453 15.9668 6.63281 16.0898 8.3623 14.3672L13.4414 9.28809C13.6738 9.0625 13.667 8.64551 13.4346 8.41992C13.209 8.18066 12.833 8.21484 12.5938 8.44043Z"></path></svg></span>SLIDES</th><td><span style="margin-right:6px"><a href="https://github.itu.dk/pages/OSC/22-Website/slides/osc22_10_memory.pdf">Slides-10.pdf</a></span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>FORM</th><td><span class="selected-value select-value-color-default">HOMEWORK</span><span class="selected-value select-value-color-green">LECTURE</span></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>DONE</th><td><div class="checkbox checkbox-on"></div></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>WEEK</th><td>45</td></tr></tbody></table></header><div class="page-body"><h1 id="a682c8be-94b5-48e9-9a84-60ce6f28cc4b" class="">Virtual Memory</h1><hr id="254a60e0-5e2c-42fc-90a1-21fce066d4a3"/><nav id="7582c885-0975-408e-9f80-18b9cd2c2dfa" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a682c8be-94b5-48e9-9a84-60ce6f28cc4b">Virtual Memory</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#43614509-d81c-42bb-99c0-e9e68016d396">R<strong>eadings</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d38ba273-5cd3-42dc-866a-67847704d78c">Lecture</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f338bd63-c46d-40b9-8a6c-d48423e5aea7">1. Address Space</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f352384c-1fdf-494c-a8c6-42cc577eef34">Memory Abstraction</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#819c6f3b-a2d2-4753-afd1-d186f74f0b82">2. Physical and Virtual Memory</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#882dcba0-359f-42d6-98be-7ec22a247771"><mark class="highlight-blue">Physical</mark> Addressing vs. <mark class="highlight-red">Virtual </mark>Addressing</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e54ab201-b4dd-4e1f-ad72-8941fda2a12b">Address Space</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6e309bd3-a6de-4969-bad4-d84f109118ac">Virtual Memory</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d580881a-45a5-44de-bc3c-da1cc0b6d98e">VM is a Tool for Caching</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b59e13ef-a495-4033-9971-4f9687ab9818">DRAM Cache Organization</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#14e464a0-cfb2-42a5-8843-710590890875">3. Page Tables</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5fe559bc-125f-4588-8516-61886e0403cd">Page Hit</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#65aec14f-e68b-4c42-adb7-486a57adf229">Page Fault</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b2ce7e41-ea6e-4d16-ae24-749b6fea7f11">Handling Page Fault</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7b3e467d-41bc-426d-9786-f7ede2c017d6">Shared Memory in Linux</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6a2ba7f3-54bd-4fa9-88c4-32946696ca69">4. Translation Lookaside Buffer (TLB)</a></div></nav><p id="ef310812-c13a-43ad-852e-01e92132867f" class="">
+</p><h2 id="43614509-d81c-42bb-99c0-e9e68016d396" class="">R<strong>eadings</strong></h2><hr id="e2132163-434b-43fc-9719-6121a723a0e7"/><blockquote id="151968be-d781-43a8-b234-4cfd610a72a9" class=""><strong>Chapter 9: Virtual Memory</strong><ul id="490c9ad0-50fe-479a-9533-34918415045a" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>CS:APP 9.1 </strong>Physical and Virtual Addressing</span><div class="indented"></div></li></ul><ul id="88dc9b9e-b5cd-4604-bf6f-4725711e9a7e" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>CS:APP 9.2 </strong>Address Spaces</span><div class="indented"></div></li></ul><ul id="7f592dbe-2a20-448f-bd15-7761fe83ff1c" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>CS:APP 9.3 </strong>VM as a Tool for Caching</span><div class="indented"></div></li></ul><ul id="2b565aec-a246-4151-8f58-f0614974e391" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>CS:APP 9.4 </strong>VM as a Tool for Memory Management</span><div class="indented"></div></li></ul><ul id="2794df6a-295d-45df-8ada-3a289d5581dd" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>CS:APP 9.5</strong> VM as a Tool for Memory Protection</span><div class="indented"></div></li></ul><ul id="2054130a-7728-47ac-8fde-2ca2fd94655f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>CS:APP 9.6 </strong>Address Translation</span><div class="indented"></div></li></ul><ul id="b3232f45-2834-48c0-907e-d288a99a820c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>CS:APP 9.7 </strong>Case Study: The Intel Core i7/Linux Memory System</span><div class="indented"></div></li></ul></blockquote><p id="79275677-24a6-4e58-b623-f265e3276491" class="">
+</p><h1 id="d38ba273-5cd3-42dc-866a-67847704d78c" class="">Lecture</h1><hr id="8bfad295-7cde-49b4-aeab-6a2dde726d20"/><blockquote id="caf7dd1b-3a69-42d8-a40a-cdb68daf712b" class=""><strong>Agenda</strong><ul id="f083ce2d-14aa-48dc-83f1-305f1f81dbf7" class="bulleted-list"><li style="list-style-type:disc">Address Space</li></ul><ul id="f9edbc52-74a6-4f42-96a3-f3aa169839ce" class="bulleted-list"><li style="list-style-type:disc">Physical and Virtual Memory</li></ul><ul id="3fab95da-09f8-4c48-a2cd-2d97b3bff31d" class="bulleted-list"><li style="list-style-type:disc">MMU</li></ul><ul id="4ad2ca80-df65-402d-92ac-a5eda4ea762a" class="bulleted-list"><li style="list-style-type:disc">Pages</li></ul><ul id="e5ad2025-4ea9-4e4e-a907-4e00e203ca20" class="bulleted-list"><li style="list-style-type:disc">Page Table</li></ul><ul id="c8a71da6-c3de-429f-a69b-f34bb5bfa2c8" class="bulleted-list"><li style="list-style-type:disc">Translation Lookaside Buffer (TLB)</li></ul></blockquote><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ec4a6cc2-5e72-46f9-a745-30ab309a85bd"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">virtual memory: cache, page, tlb, link, load, <strong>aFO</strong></div></figure><p id="f219821c-0fc7-40c2-9add-062e0fe6ac1d" class="">
+</p><h1 id="f338bd63-c46d-40b9-8a6c-d48423e5aea7" class="block-color-gray_background">1. Address Space</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c0883a93-9ca1-4139-9527-d9bb3efa03ca"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%"><strong>Recall fundamental abstractions</strong><ul id="588d2151-ee55-40cb-b376-40580d8950ff" class="bulleted-list"><li style="list-style-type:disc">Interpreter</li></ul><ul id="6edce24f-5276-4551-8009-6d052b385aa9" class="bulleted-list"><li style="list-style-type:disc">Memory</li></ul><ul id="28543f8d-4ab2-4a4c-bd78-80a364815beb" class="bulleted-list"><li style="list-style-type:disc">Communication</li></ul></div></figure><p id="798ff85b-44c9-4e47-accf-9f1d44e62423" class="">
+</p><h3 id="f352384c-1fdf-494c-a8c6-42cc577eef34" class="">Memory Abstraction</h3><figure id="1604df68-ca08-48a2-bdc3-881df1807199" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled.png"><img style="width:1095px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8ed24cfe-7fff-4c2f-bcfd-837004448bcf"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">Usually when talking about RAM, we are referring to DRAM (main memory), not SRAM (L1 and L2 caches).</div></figure><p id="fd059c5f-6adc-4e6a-96cc-6809654d8ddf" class="">
+</p><h1 id="819c6f3b-a2d2-4753-afd1-d186f74f0b82" class="block-color-gray_background">2. Physical and Virtual Memory</h1><h3 id="882dcba0-359f-42d6-98be-7ec22a247771" class=""><mark class="highlight-blue">Physical</mark> Addressing vs. <mark class="highlight-red">Virtual </mark>Addressing</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b3b65e20-fb62-4c30-a62e-4920aeff9681"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">The advantage of using physical memory is that is cheaper (using less chips). The disadvantages is that we cannot do any caching.</div></figure><div id="d4c787b6-3a0b-4280-8715-f592f605d545" class="column-list"><div id="8bd2b3e1-74dd-4007-9075-a6fd315be954" style="width:50%" class="column"><figure id="5091f648-b235-4810-bf63-2da562abd8a9" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%201.png"><img style="width:1177px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%201.png"/></a></figure></div><div id="7377b149-7f5c-4d66-9861-eb72a7dc5e1c" style="width:50%" class="column"><figure id="86207268-1b8e-40cd-bb05-67c0f6b8ee18" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%202.png"><img style="width:1177px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%202.png"/></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="afbdbdcb-1fd1-4fc7-8437-581933943522"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">The Memory Management Unit is reponsible for the mapping of virtual address to physical address.</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="90a419ac-ea74-480b-a2f5-69c3064090fc"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">Using Virtual Address, allows for the memory hierarchy. Every layer is a cache for the layer below. DRAM is a cache for parts of a virtual address space.</div></figure><h3 id="e54ab201-b4dd-4e1f-ad72-8941fda2a12b" class="">Address Space</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="77e1abca-fa8b-4df7-b82f-9dedc4a32f45"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">From point of view of process, it has access to the whole memory, and that memory belongs to it. In actuality, it has access to parts of memory, some shared with other processes.</div></figure><figure id="068cd4f9-93fa-4055-b8fd-b4bcab9f4514" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%203.png"><img style="width:1138px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%203.png"/></a></figure><h3 id="6e309bd3-a6de-4969-bad4-d84f109118ac" class="">Virtual Memory</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4e92a3f0-d7b6-46ce-9b39-c0cca7078b11"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">What does virtual memory give us? (i.e. why VM?)</div></figure><figure id="2110e271-4d96-426f-aa5a-dccc8fd5bb8f" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%204.png"><img style="width:1156px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%204.png"/></a></figure><h3 id="d580881a-45a5-44de-bc3c-da1cc0b6d98e" class="">VM is a Tool for Caching</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6c3531ef-5c33-404f-9978-5834c2da2eef"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">I.e. for organizing how physical memory is used.</div></figure><figure id="d20a6224-b517-45c7-abee-e12e844f724f" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%205.png"><img style="width:1180px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%205.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="00acb645-2873-493f-91a6-a2472e101daf"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">The DRAM cache blocks are called pages.</div></figure><p id="06d02717-86e5-4536-8a55-86de6ab95cce" class="">
+</p><h3 id="b59e13ef-a495-4033-9971-4f9687ab9818" class="">DRAM Cache Organization</h3><figure id="8fe9752c-1ab9-4d9e-ae1a-64f5dcc20f23" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%206.png"><img style="width:1179px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%206.png"/></a></figure><p id="28ea1c0e-8fbb-474e-930f-d15509bf7cb8" class="">
+</p><p id="8efa6403-38ff-44b9-b664-a0131db7f1ba" class="">
+</p><h1 id="14e464a0-cfb2-42a5-8843-710590890875" class="block-color-gray_background">3. Page Tables</h1><figure id="2f13c750-efaf-4b80-9b88-7ef234ae5e26" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%207.png"><img style="width:1181px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%207.png"/></a></figure><h3 id="5fe559bc-125f-4588-8516-61886e0403cd" class="">Page Hit</h3><p id="5f0c0bff-8097-486e-be5e-fa0281e49638" class="">Reference to VM word that is in physical memory (DRAM cache hit).</p><h3 id="65aec14f-e68b-4c42-adb7-486a57adf229" class="">Page Fault</h3><p id="f18cf09a-2ffc-461a-8639-51bfc26d24db" class="">Reference to VM word that is not in physical memory (DRAM cache miss).</p><h3 id="b2ce7e41-ea6e-4d16-ae24-749b6fea7f11" class="">Handling Page Fault</h3><p id="3df04180-69fd-4da5-adf3-6e4c8cd67b7f" class="">Page miss causes page fault (an exception). Page fault handler selects a victim to be evicted (here VP 4).</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ce6596b0-870d-4aee-9679-8aeaf372d85d"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">Virtual memory works because of locality.</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3a23f1f4-818b-419f-a921-840615ced4c4"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/globe_blue.svg"/></div><div style="width:100%"><em>The principle of </em><strong><em>locality</em></strong><em>, also known as </em><strong><em>locality of reference</em></strong><em>, states that a computer program will only require access to a very small percentage of the overall memory space at any single instant during execution.</em><p id="5f4cf82a-3526-4773-b42c-7ec06481892f" class=""><em><strong>Temporal locality</strong></em><em> – memory that is accessed once tends to be accessed again soon thereafter. An example would be an iterator variable (loop variable) within a loop. It is accessed during each iteration.</em></p><p id="23cde6a0-dd8b-40f3-bdfc-578f6c47519b" class=""><em><strong>Spatial locality</strong></em><em> – items whose addresses are near that of an accessed item’s address tend to be referenced soon. An example would be elements within an array structure. In many cases, accessing the first element of an array directly precedes the access of the next element.</em></p></div></figure><figure id="9cfd1664-084d-4238-9e3c-981dc1f441e0" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%208.png"><img style="width:1174px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%208.png"/></a></figure><figure id="58da5651-b4ce-453c-b3f0-3f6be92b2948" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%209.png"><img style="width:1176px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%209.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b43bcc25-d298-466d-869d-433a204afad8"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%"><strong>PTE</strong> = <strong><span style="border-bottom:0.05em solid">P</span></strong>age <strong><span style="border-bottom:0.05em solid">T</span></strong>able <strong><span style="border-bottom:0.05em solid">E</span></strong>ntry.</div></figure><h3 id="7b3e467d-41bc-426d-9786-f7ede2c017d6" class="">Shared Memory in Linux</h3><p id="b96fbc11-05d9-4c7a-bb58-e564004c87a0" class="">Linux default: no sharing between processes. If you want sharing (shared memory), then yo have to work for it. There are primitives in the C std lib for this.</p><figure id="cac83d28-82a1-4cda-a3cc-de373f91fabd" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2010.png"><img style="width:1180px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2010.png"/></a></figure><figure id="28b6b778-fd49-476f-a8c1-7c6310ae8950" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2011.png"><img style="width:1180px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2011.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="070eacaf-68a5-46c2-bd29-f46237e04c78"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">If the Page table base register sees the valid bit = 0, then the page is not in memory (page fault).</div></figure><figure id="725e7eac-6a58-439d-a02e-809d7bbc9e46" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2012.png"><img style="width:1181px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2012.png"/></a></figure><figure id="51f40fbf-d3b8-4c6c-b036-1ae0f9f9eace" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2013.png"><img style="width:1181px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2013.png"/></a></figure><figure id="99807a21-c01f-4e0f-bca5-d49f80f317f3" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2014.png"><img style="width:1177px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2014.png"/></a></figure><figure id="3456c0de-6da5-4366-95f7-67a83120b20a" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2015.png"><img style="width:1180px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2015.png"/></a></figure><p id="e34f59e9-739a-49f2-ba9e-862a133147cf" class="">
+</p><p id="8f340484-1b01-45f2-8d3b-b350f4a61d0e" class="">
+</p><h1 id="6a2ba7f3-54bd-4fa9-88c4-32946696ca69" class="block-color-gray_background">4. Translation Lookaside Buffer (TLB)</h1><figure id="a5ca73f8-a610-4a7d-8a03-accc64395f1d" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2016.png"><img style="width:1177px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2016.png"/></a></figure><figure id="495a075c-cedc-41bb-8016-d0ce5f858eeb" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2017.png"><img style="width:1184px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2017.png"/></a></figure><figure id="0b5a4631-9fb7-4700-a581-d8bdc896bdf4" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2018.png"><img style="width:1181px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2018.png"/></a></figure><figure id="bbf3bf3d-57e2-42a6-84da-c89e40dc9c69" class="image"><a href="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2019.png"><img style="width:1182px" src="Memory%2094671bfad6484aa29d41699124b62a01/Untitled%2019.png"/></a></figure><p id="52ae3204-5490-47aa-8bd2-6db98e27a82b" class="">
+</p></div></article></body></html>

@@ -1,0 +1,681 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Process</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7b9d8eb9-bd71-4220-9e11-2e0d5cc0dc94" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/6.png"/></div><h1 class="page-title">Process</h1><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>TEACHER</th><td><span class="selected-value select-value-color-green">Niclas Hedam</span></td></tr><tr class="property-row property-row-file"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFile"><path d="M12.5938 8.44043L7.54883 13.4854C6.26367 14.7773 4.54102 14.6475 3.44043 13.54C2.32617 12.4326 2.20312 10.7168 3.49512 9.4248L10.3926 2.52734C11.1445 1.77539 12.2725 1.63867 13.0039 2.37695C13.7422 3.11523 13.6055 4.22949 12.8535 4.98828L6.08594 11.7627C5.77832 12.0703 5.41602 11.9814 5.2041 11.7764C4.99902 11.5576 4.91016 11.2021 5.21777 10.8877L9.93457 6.1709C10.1738 5.93164 10.1875 5.58301 9.96191 5.35059C9.72949 5.13184 9.38086 5.13867 9.1416 5.37793L4.39746 10.1152C3.67285 10.8535 3.7002 11.9746 4.34961 12.624C5.05371 13.3281 6.12012 13.3145 6.8584 12.5762L13.6602 5.77441C14.9795 4.45508 14.9316 2.71875 13.7764 1.55664C12.6416 0.428711 10.8779 0.34668 9.55176 1.66602L2.61328 8.61816C0.883789 10.3477 1 12.8291 2.57227 14.4014C4.14453 15.9668 6.63281 16.0898 8.3623 14.3672L13.4414 9.28809C13.6738 9.0625 13.667 8.64551 13.4346 8.41992C13.209 8.18066 12.833 8.21484 12.5938 8.44043Z"></path></svg></span>SLIDES</th><td><span style="margin-right:6px"><a href="https://github.itu.dk/pages/OSC/22-Website/slides/osc22_08_process.pdf">Slides-6.pdf</a></span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>FORM</th><td><span class="selected-value select-value-color-blue">EXECISES</span><span class="selected-value select-value-color-green">LECTURE</span></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>DONE</th><td><div class="checkbox checkbox-on"></div></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>WEEK</th><td>40</td></tr></tbody></table></header><div class="page-body"><h1 id="7213acec-7a85-4c80-a00c-bfd18092fb9e" class=""><a href="https://github.itu.dk/pages/OSC/22-Website/slides/osc22_08_process.pdf">Process</a></h1><hr id="810f9cbf-b949-4058-a9b2-53b44e54fa0c"/><nav id="62090816-29e1-4168-8a39-8c7ada23adf2" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7213acec-7a85-4c80-a00c-bfd18092fb9e"><a href="https://github.itu.dk/pages/OSC/22-Website/slides/osc22_08_process.pdf">Process</a></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#452bb496-c750-406d-8304-fc439af4509a">R<strong>eadings</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#85a886b9-a648-4afe-9dd8-08f3cd56f986">Lecture</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6b867762-1565-4e37-b9c6-398f1faabdab">1. Interrupt Handling</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1443e9ea-6530-42a3-936f-4b0b032dbe0a">Low vs. High Level Interrupts</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2c0bd743-d77f-44e1-94e6-8cd6e41b4388">2. Process Management</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3b543bab-92bf-45ad-a6ac-322fcae3b4c3">Processes</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#073d1a6d-c762-4ff0-ae63-b0dba22b3772">3. Signals</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7fb3d96f-b9f6-44e9-b4f2-b2c19cd98492">4. Take-Aways</a></div></nav><p id="89334eeb-b011-42f2-9065-2da17fd53dc4" class="">
+</p><h2 id="452bb496-c750-406d-8304-fc439af4509a" class="">R<strong>eadings</strong></h2><hr id="d099e85d-18cd-48f5-af2a-e4ad2ee3f888"/><blockquote id="114bdc5a-c273-4d0c-9e09-7f5eb3891235" class=""><strong>Exceptional Control Flow</strong><ul id="46ca894b-f6b8-47d1-9de2-1d7e73bba542" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>CS:APP 8.1 </strong>Exceptions</span><div class="indented"></div></li></ul><ul id="ee8a206f-d3ac-460d-96c2-18ed8a9023ce" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>CS:APP 8.2 </strong>Processes</span><div class="indented"></div></li></ul><ul id="4c0d4f5a-de1e-4300-aaba-29b196325fd6" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>CS:APP 8.3 </strong>System Call Error Handling</span><div class="indented"></div></li></ul><ul id="d8ae51de-dafe-4196-a74b-43b2e07c19ba" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>CS:APP 8.4 </strong>Signals</span><div class="indented"></div></li></ul><ul id="0d909d38-bf3d-44d9-815a-edfc487dad14" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>CS:APP 8.5 </strong>Nonlocal Jumps</span><div class="indented"></div></li></ul></blockquote><p id="82e6038f-c653-4f98-935a-62fad93a0095" class="">
+</p><h1 id="85a886b9-a648-4afe-9dd8-08f3cd56f986" class="">Lecture</h1><hr id="a39b3a47-56f0-4251-b6e5-5e3e0ab8dfe5"/><blockquote id="47d2ba11-347f-426d-9181-a17519b1ece0" class=""><strong>Agenda</strong><ul id="c43f9907-8de4-47d4-9ec8-da47bf288670" class="bulleted-list"><li style="list-style-type:disc">Interrupt Handling</li></ul><ul id="ff36c9c3-6d8f-4d38-a59d-072e0b3e3065" class="bulleted-list"><li style="list-style-type:disc">Process Management</li></ul><ul id="428fd376-c376-4cb4-9ce4-c257bbf56e74" class="bulleted-list"><li style="list-style-type:disc">Signals</li></ul></blockquote><figure class="callout" style="white-space:pre-wrap;display:flex" id="b79c1388-bd67-4c6e-9616-5c0a28fbda91"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%"><strong>Terms this week</strong><ul id="c5a06200-7ad6-4cfe-98ab-54863a23b608" class="bulleted-list"><li style="list-style-type:disc">interrupt, <code>fork</code>, <code>exit</code>, <code>wait</code>, <code>execve</code>, <strong>aO</strong></li></ul></div></figure><p id="c76fe3f6-40a9-463a-a153-547e46823d4d" class="">
+</p><h1 id="6b867762-1565-4e37-b9c6-398f1faabdab" class="block-color-gray_background">1. Interrupt Handling</h1><figure id="21e77d81-979b-4656-86b4-7095e6e7ac8d" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled.png"><img style="width:1217px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled.png"/></a></figure><h3 id="1443e9ea-6530-42a3-936f-4b0b032dbe0a" class="">Low vs. High Level Interrupts</h3><ul id="1c604d27-6109-434d-a96b-3b8dac5dfa76" class="bulleted-list"><li style="list-style-type:disc"><strong>Low level Interrupt mechanisms</strong><ul id="b0003049-3ace-4e98-bb30-264478173d85" class="bulleted-list"><li style="list-style-type:circle">Exceptions: change in control flow in response to a system event (i.e., change in system state)</li></ul><ul id="77f761e0-1cb8-4d48-856e-3695f3ee61bf" class="bulleted-list"><li style="list-style-type:circle">Combination of hardware and OS software</li></ul></li></ul><ul id="1cc20c39-271f-4ccb-93dc-08dabfe8734b" class="bulleted-list"><li style="list-style-type:disc"><strong>Higher level Interrupt mechanisms</strong><ul id="9e33644c-767c-430b-8505-1fe48d83f4a4" class="bulleted-list"><li style="list-style-type:circle">Process context switch</li></ul><ul id="16086d91-fb92-4ef4-9d0d-4461780faead" class="bulleted-list"><li style="list-style-type:circle">Signals</li></ul><ul id="81c49004-0f72-40b2-acc8-27162d07fc48" class="bulleted-list"><li style="list-style-type:circle">Nonlocal jumps: setjmp()/longjmp()</li></ul><ul id="4644a2bc-f3ae-4942-b414-d849f559d202" class="bulleted-list"><li style="list-style-type:circle">Implemented by either:<ul id="9de5e697-e01e-4fea-bd42-b61c630ace49" class="bulleted-list"><li style="list-style-type:square">OS software (context switch and signals)</li></ul><ul id="ecd46b77-64a9-4cbf-b069-b99f35ae285c" class="bulleted-list"><li style="list-style-type:square">C language runtime library (nonlocal jumps)</li></ul></li></ul></li></ul><p id="4002cb69-9927-4162-a1fe-925c38c44ab6" class="">
+</p><div id="ddf4704e-6b3c-4394-a65f-d27f01f99375" class="column-list"><div id="bfada8e1-9edb-4561-b6de-a3de78851f9c" style="width:50%" class="column"><figure id="7d11b35a-75c9-4cde-aab8-b715290a2266" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%201.png"><img style="width:1209px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%201.png"/></a></figure></div><div id="d7ae934d-a76a-49c7-91dd-6a20ab214eb5" style="width:50%" class="column"><figure id="2506ceb5-4e4a-494d-8112-99de5cdc498b" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%202.png"><img style="width:1182px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%202.png"/></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a0829b1b-6960-4e07-b1e9-40a6f2775079"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><div style="width:100%"><strong>Two different types of interrupts</strong><ul id="7c087f68-ebc7-4ba8-8e10-39f624c51d67" class="bulleted-list"><li style="list-style-type:disc">Asynchronous Events<ul id="54e36c3e-03cf-407e-abd9-c0f17f67c6c5" class="bulleted-list"><li style="list-style-type:circle">Only one type: Exception/Interrupt</li></ul></li></ul><ul id="e26eee0f-f19d-435f-8aea-3961221ee2a1" class="bulleted-list"><li style="list-style-type:disc">Synchrounous Events<ul id="06206c58-36e6-459a-8135-80724f345a71" class="bulleted-list"><li style="list-style-type:circle">Three different types: traps, faults, aborts</li></ul></li></ul></div></figure><div id="766a9912-eda7-4111-848a-13c271165ada" class="column-list"><div id="a783bece-6c33-4711-a83d-41482deedcea" style="width:50%" class="column"><figure id="1486ceda-63d9-4041-9f17-f57f6cf9bb17" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%203.png"><img style="width:1195px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%203.png"/></a></figure></div><div id="3f2fa6f7-23bb-4040-a884-39a2d173ccf6" style="width:50%" class="column"><figure id="c5943c8f-219f-4a71-98bb-bdfd2ef4d953" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%204.png"><img style="width:1142px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%204.png"/></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ca264ed7-56ac-4ede-8383-4968477e71d6"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><div style="width:100%"><strong>Interrupt Vector</strong><ul id="5ad0c91d-4ee1-4b85-a46a-6ae79aee3870" class="bulleted-list"><li style="list-style-type:disc">If the exception code is 0, then the code goes to the place in memory where the divide-by-zero exception is placed.</li></ul></div></figure><div id="e0da7143-34cb-4313-b9a9-c20a2c3ffd6e" class="column-list"><div id="cf6ed432-f428-4e1d-bb4e-88c5dfbf767d" style="width:50%" class="column"><figure id="1e8ff264-3b01-464c-9496-9daae0cbe49c" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%205.png"><img style="width:1190px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%205.png"/></a></figure><p id="63212b0b-6d88-4196-a543-1401993536d5" class="">
+</p></div><div id="c9bf3222-36e6-471c-b9c2-a5748959a43c" style="width:50%" class="column"><figure id="885206da-f74b-42c3-bd9c-ca16df378ca4" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%206.png"><img style="width:1226px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%206.png"/></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2032ac5f-e108-47bb-b6df-1fb9eaac37be"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><div style="width:100%"><strong>Synchronous Events</strong><ul id="d33a43ef-9370-4e86-a22b-88a4934e5310" class="bulleted-list"><li style="list-style-type:disc"><strong>Traps:</strong> return to next instruction</li></ul><ul id="7bb2a338-0b2f-47d4-9f4f-79955d743d98" class="bulleted-list"><li style="list-style-type:disc"><strong>Faults:</strong> either re-executes faulting (current) instruction or aborts.</li></ul><ul id="df8d6518-7bdb-44f6-b2aa-53d3939afde6" class="bulleted-list"><li style="list-style-type:disc"><strong>Aborts:</strong> abourts current program</li></ul></div></figure><div id="db08edf7-f974-423b-8579-b20e81ec3362" class="column-list"><div id="bba9fc66-6af7-4ca3-9c88-ab208c761703" style="width:50%" class="column"><figure id="745466cb-31c4-42d9-b566-df44b6289549" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%207.png"><img style="width:1154px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%207.png"/></a></figure></div><div id="83d7a80e-fefa-4ddf-8fa5-b54f73da9dfa" style="width:50%" class="column"><figure id="5c6c8f3a-fd3d-4d41-9889-535fa8f75dc2" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%208.png"><img style="width:1219px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%208.png"/></a></figure></div></div><div id="25202d85-db9d-466e-8f55-b2aba9ff0b69" class="column-list"><div id="5b171969-6da3-4876-a9b2-7006aa8cbc5e" style="width:50%" class="column"><figure id="417e117e-846a-4352-9e06-b1801506cfbd" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%209.png"><img style="width:1117px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%209.png"/></a></figure></div><div id="07c6371b-d89c-46dc-8b07-e6c8e7fa630b" style="width:50%" class="column"><figure id="adb438b3-e892-4f89-aed4-225fa19335c0" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2010.png"><img style="width:384px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2010.png"/></a></figure></div></div><p id="a89cc30b-21e4-4c43-b018-5d5c57d53710" class="">
+</p><h1 id="2c0bd743-d77f-44e1-94e6-8cd6e41b4388" class="block-color-gray_background">2. Process Management</h1><p id="705254bf-e8a7-484a-9e5f-cf01c9277dea" class=""><em>Processes</em> are the primitive units for allocation of system resources. Each process has its own address space and (usually) one thread of control. A process executes a program; you can have multiple processes executing the same program, but each process has its own copy of the program within its own address space and executes it independently of the other copies. </p><p id="303a5d3a-feb6-4b0d-9e26-6a21be38ae2e" class="">Processes are organized hierarchically. Each process has a <em>parent process</em> which explicitly arranged to create it. The processes created by a given parent are called its <em>child processes</em>. A child inherits many of its attributes from the parent process.</p><figure id="dcf8cfbe-8313-479f-a045-b9f4a8273658" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2011.png"><img style="width:1208px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2011.png"/></a></figure><h3 id="3b543bab-92bf-45ad-a6ac-322fcae3b4c3" class="">Processes</h3><ul id="2b1fe945-3c46-4c1c-94dc-db966723456a" class="bulleted-list"><li style="list-style-type:disc">Process creation/termination/control defined in standard C library (<code>unistd.h</code>)</li></ul><ul id="3a6a4402-4c61-43fe-9d52-3c35f01da5e7" class="bulleted-list"><li style="list-style-type:disc">Transferring the thread of control from one process to another is called context switching. It is managed by the OS kernel.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e05e91cb-1ab5-4c00-8fb9-b1ef9c0b074d"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><div style="width:100%"><strong>Context Switching</strong><ul id="34f94e53-74e2-4e2b-a18e-12a7450b9c14" class="bulleted-list"><li style="list-style-type:disc">Kernel mode is also called supervisor mode.</li></ul></div></figure><figure id="e21dae84-686f-46c2-b0a7-0ae9bfc126c8" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2012.png"><img style="width:1207px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2012.png"/></a></figure><p id="5ed2e1eb-e4db-4c80-865d-817bf431233e" class=""><strong>Processor modes</strong></p><ul id="216a0238-23ed-49d8-afdf-205614b125e3" class="bulleted-list"><li style="list-style-type:disc">Supervisor vs. user modes: &quot;Supervisor mode may provide access to different peripherals, to memory management hardware or to different memory address spaces. It is also capable of interrupt enabling, disabling, returning and loading of processor status.&quot;</li></ul><ul id="027807d0-d264-483b-84b1-098fce8dddda" class="bulleted-list"><li style="list-style-type:disc">Supervisor mode entered on system call (see slide 11)</li></ul><ul id="cd8aaa4c-ea25-4d36-a355-439d5eaec3bc" class="bulleted-list"><li style="list-style-type:disc">When a context switch is made the scheduler marks the task as interruptible, saves the process&#x27;s task_struct and replaces the current tasks pointer with a pointer to the new process&#x27;s task_struct, marked as running, restoring its memory access and register context.</li></ul><figure id="baa22954-0501-4b07-bf92-4d3abe9bd24d" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2013.png"><img style="width:1183px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2013.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d25fcb53-b72d-46ce-b9bc-bc136822e81d"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><div style="width:100%"><strong>Process Management</strong><ul id="8bad88a6-85d9-487d-90c7-daf14ef85f24" class="bulleted-list"><li style="list-style-type:disc"><strong>Spawning process: </strong><strong><code>fork()</code></strong><ul id="9d0b92fc-706e-46eb-b6ea-485cdd17a3b2" class="bulleted-list"><li style="list-style-type:circle">Create a new child process that is identical to the callig process (parent process)</li></ul><ul id="647f5d98-d6ff-45d4-8d8a-20a22d9ceecd" class="bulleted-list"><li style="list-style-type:circle">A fork returns two values, parent: <code>x=0</code>, child: <code>x=2</code></li></ul></li></ul><ul id="4ce21caa-348d-4482-8a1c-5c15259ed275" class="bulleted-list"><li style="list-style-type:disc"><strong>Terminating process: </strong><strong><code>exit()</code></strong><ul id="c4c176f9-fb47-420d-8867-79bb748d9aa9" class="bulleted-list"><li style="list-style-type:circle">Call once, and never return.</li></ul><ul id="b9dbe0ed-a2af-48dc-8191-acd1ff5ffd30" class="bulleted-list"><li style="list-style-type:circle"><code>void exit(int status)</code></li></ul><ul id="495f5d9c-eeb6-4774-acdc-7d09c1673c2e" class="bulleted-list"><li style="list-style-type:circle">Normally return with status 0</li></ul></li></ul><ul id="78ff1640-8a25-462d-bb91-d5aaeee3ae20" class="bulleted-list"><li style="list-style-type:disc"><strong>Waiting for process: </strong><strong><code>wait()</code></strong><ul id="5be82134-a101-445c-9831-590a2e0fd2ce" class="bulleted-list"><li style="list-style-type:circle"><code>int wait(int *child_status)</code></li></ul><ul id="9605e04e-a0ec-4785-8470-46ded919cd2a" class="bulleted-list"><li style="list-style-type:circle">Suspends current process until one of its children terminates</li></ul></li></ul><ul id="552615de-993d-4b20-9f0c-82cc0f9e187f" class="bulleted-list"><li style="list-style-type:disc"><strong>Executing a program within a process: </strong><strong><code>execve()</code></strong><pre id="34c7640f-06d3-4cb4-b700-787f1cf01f12" class="code"><code>int execve (
+	char *filename, // ececutable filename
+	char *argv[],   // with argument list
+	char *envp[]    // environment variable list
+)</code></pre></li></ul></div></figure><figure id="4b05717e-b663-494a-86ab-1d2fe744ee39" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2014.png"><img style="width:1144px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2014.png"/></a></figure><div id="eff5a5f9-360a-4f21-a987-c428fc4067c3" class="column-list"><div id="a94a0f77-b430-4a8b-a199-9563174c1870" style="width:50%" class="column"><figure id="eb40a785-254d-45d0-826c-d45b7888a140" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2015.png"><img style="width:1187px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2015.png"/></a></figure></div><div id="3a32cd43-503b-49b5-a889-be65369db1f7" style="width:50%" class="column"><figure id="235655a1-6306-4736-b571-42bb7dd3991c" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2016.png"><img style="width:1137px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2016.png"/></a></figure></div></div><div id="a301fbfb-05b2-4cee-a02b-b48197d2431f" class="column-list"><div id="9dcbe7a9-e2ee-4715-a855-71e50c0184ee" style="width:50%" class="column"><figure id="7c19d6bc-9f32-4aed-855d-67c799f6f4e7" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2017.png"><img style="width:1146px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2017.png"/></a></figure></div><div id="f55e0877-1ffb-40e7-9af1-aff89c69aba1" style="width:50%" class="column"><figure id="df1d6eba-3929-4afc-9b68-af8c8a4bec15" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2018.png"><img style="width:1134px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2018.png"/></a></figure></div></div><figure id="82df4009-20d6-4a87-9545-f2e9f90db69f" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2019.png"><img style="width:336px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2019.png"/></a></figure><figure id="0b037292-5058-41ee-b654-a14a79e76f6e" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2020.png"><img style="width:1096px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2020.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c762f2f7-7cd7-4a80-b9b7-1baa849dce0d"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><div style="width:100%"><strong>Zombies </strong>are when a process terminates, still consumes system resources.</div></figure><div id="4387335d-d728-430c-8e39-b0973bd07b28" class="column-list"><div id="cdd1d52b-78b7-4ef8-88d6-7a92ec62f6a8" style="width:50%" class="column"><figure id="e40b2a40-57f3-425d-8f54-d5cf70323b6f" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2021.png"><img style="width:1121px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2021.png"/></a></figure></div><div id="400fd4b8-eb60-493b-bc83-2ef07b5724e0" style="width:50%" class="column"><figure id="72b1b30a-12e4-49b6-9557-a33828e8590c" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2022.png"><img style="width:1201px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2022.png"/></a></figure></div></div><figure id="729016ef-1d8b-466f-9a78-e289bbe4d140" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2023.png"><img style="width:1171px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2023.png"/></a></figure><div id="fd0533d9-e0e8-48b6-a53e-b0682875ee50" class="column-list"><div id="122c0d62-ebf6-4d43-9f6d-b1bd5b460175" style="width:50%" class="column"><figure id="2aae9e28-b0a8-4f88-aecb-afdf066765b0" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2024.png"><img style="width:1180px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2024.png"/></a></figure></div><div id="587bd7fa-6b5b-4c54-b6d1-f1cdc3a12fdb" style="width:50%" class="column"><figure id="9c74ed6e-09af-4573-9307-acd1d577fa9e" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2025.png"><img style="width:1181px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2025.png"/></a></figure></div></div><div id="e949daa5-5a1f-459f-a404-1b29db4987e4" class="column-list"><div id="df88e8fa-72a7-41ba-a128-c4051f7f9b24" style="width:50%" class="column"><figure id="85186dcc-ca2f-4f28-9b3e-ba7b7b4e7a40" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2026.png"><img style="width:1185px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2026.png"/></a></figure></div><div id="4e2ab42b-f73d-4ba6-aecd-6ffa67e43a1e" style="width:50%" class="column"><figure id="0c4b10f8-5835-45aa-a542-34446d5b1db4" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2027.png"><img style="width:1199px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2027.png"/></a></figure></div></div><div id="72daa5c1-f509-47ef-94f6-d7e06dcf186c" class="column-list"><div id="4b741617-267c-4e6f-8ed6-d0008cc7aa08" style="width:50%" class="column"><figure id="1586a5e7-e460-4994-a775-2a6276251374" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2028.png"><img style="width:1173px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2028.png"/></a></figure></div><div id="c71d93f3-3fcd-4d8f-97cb-d507bd219010" style="width:50%" class="column"><figure id="0c1bc119-7cab-46e6-9287-a48aa7e4eb25" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2029.png"><img style="width:1071px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2029.png"/></a></figure></div></div><p id="2f0af89b-f8c6-43aa-b2ec-8778e6d85701" class="">
+</p><h1 id="073d1a6d-c762-4ff0-ae63-b0dba22b3772" class="block-color-gray_background">3. Signals</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="db90b48f-5332-4ec9-b1c2-db22e0f4420b"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/arrow-right_gray.svg"/></div><div style="width:100%">A <strong>signal </strong>is a small message that notifies a process that an event of some type has occurred in the system.<ul id="3154b5ee-60fc-4adc-a2e9-424e4aff578a" class="bulleted-list"><li style="list-style-type:disc">The kernel sends (delivers) a signal to a destination process by updating some state in the context of the destination process.</li></ul><ul id="a0d4f310-5e5a-4e24-976e-fca5f10f3202" class="bulleted-list"><li style="list-style-type:disc">The kernel sends a signal for one of the following reasons:<ul id="7b35d9a2-6a07-4b2a-8a3f-a8b004dd1986" class="bulleted-list"><li style="list-style-type:circle">The kernel has detected a system event (e.g. divide-by-zero).</li></ul><ul id="9ee2bbc0-8bea-439f-8261-30ff020714c8" class="bulleted-list"><li style="list-style-type:circle">Another process has invoked the kill system call to explicitly request the kernel to send a signal to the destination process.</li></ul></li></ul></div></figure><figure id="25b9847e-c221-41fa-86b6-728f78a98487" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2030.png"><img style="width:1207px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2030.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ab133bf9-0d5a-43f9-8b80-5cdd59f8b2b6"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/globe_blue.svg"/></div><div style="width:100%">A segmentation fault <strong>occurs when a program attempts to access a memory location that it is not  allowed to access, or attempts to access a memory location in a way that is not allowed</strong> (for example, attempting to write to a read-only location, or to overwrite part of the operating system).</div></figure><div id="8cc025ff-6eda-4558-8ce5-13cd007ba852" class="column-list"><div id="045f23d4-8b54-4e26-917f-100a259f87ab" style="width:50%" class="column"><figure id="0d393d22-da1c-4f09-b8dd-2d284f19125d" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2031.png"><img style="width:1207px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2031.png"/></a></figure></div><div id="b392b12c-29c4-4939-9e91-1ed3fb0c5ece" style="width:50%" class="column"><figure id="03f6da29-3e11-4b3d-8f9a-8d85862faf4f" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2032.png"><img style="width:1207px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2032.png"/></a></figure></div></div><div id="06f05f84-ee9f-4b80-b8f5-c67e0809e4e4" class="column-list"><div id="0fcd687e-be17-41fe-aa5d-33e0bc822c32" style="width:50%" class="column"><figure id="c10e699e-518c-416d-b405-ee00140b72c8" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2033.png"><img style="width:1193px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2033.png"/></a></figure></div><div id="f14e6386-9553-42bf-aa9a-bef2001d04d9" style="width:50%" class="column"><figure id="61c4e321-60df-4ab5-8d0d-7585e6593bfd" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2034.png"><img style="width:1164px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2034.png"/></a></figure></div></div><div id="2357527f-0e13-4f59-981f-55dba5bc2980" class="column-list"><div id="83053dcf-9587-49a7-80bb-0c04d2de1d67" style="width:50%" class="column"><figure id="fd79e78f-1094-46cc-a31f-a84eec99cc97" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2035.png"><img style="width:1060px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2035.png"/></a></figure></div><div id="9c2ce003-f413-4823-8906-bb3e2cbf5f1b" style="width:50%" class="column"><figure id="579c6b87-a352-4b5b-b806-950aa50f969c" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2036.png"><img style="width:1180px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2036.png"/></a></figure></div></div><div id="311413b0-aedd-430b-8e0c-9ad9789e7003" class="column-list"><div id="43b76e4d-a7e7-4141-ae5a-edd07d1c7fbe" style="width:50%" class="column"><figure id="a2ec33f0-e134-4ef0-a81b-4b3cd271d7ae" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2037.png"><img style="width:1205px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2037.png"/></a></figure></div><div id="8f09a94c-5a65-4688-8b85-ac2c61022bbb" style="width:50%" class="column"><figure id="449ad0a9-5eb9-4425-8ce9-c6070ac342b7" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2038.png"><img style="width:1206px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2038.png"/></a></figure></div></div><figure id="12d18bc3-6abe-4c2b-ad0f-77242f1a5de2" class="image"><a href="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2039.png"><img style="width:336px" src="Process%207b9d8eb9bd7142209e112e0d5cc0dc94/Untitled%2039.png"/></a></figure><p id="40c06f34-7eb2-4d23-bfa6-172ac985936b" class="">
+</p><h1 id="7fb3d96f-b9f6-44e9-b4f2-b2c19cd98492" class="block-color-gray_background">4. Take-Aways</h1><ul id="64c884f7-8e29-464a-9bfb-621a23058c13" class="bulleted-list"><li style="list-style-type:disc">An <strong>exception </strong>is a transfer of control to the OS in response to some event (asynchronous vs. synchronous (trap, fault, abort)). </li></ul><ul id="c9a8624c-3845-490b-8e18-12c676f5230f" class="bulleted-list"><li style="list-style-type:disc">The <strong>process </strong>has its own address space and thread of control. Libs defines primitives for spawning/terminating processes, waiting for processes and executing programs within a process. The kernel takes care of context switching. </li></ul><ul id="d15c2182-993b-4ce4-bc51-4a1c046d5792" class="bulleted-list"><li style="list-style-type:disc"><strong>Hardware interrupts</strong> are first handled in hardware then in software (kernel) through interrupt vector. Signals as process-level interrupt handling.</li></ul></div></article></body></html>
