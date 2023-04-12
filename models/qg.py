@@ -12,10 +12,10 @@ import torch
 import wandb
 import os
 
-_MODEL_MAX_LENGTH = 512
+_MODEL_MAX_LENGTH = 100
 
 class QG:
-    """Question Generator model based on Google's `T5` model."""
+    """Question Generation model based on Google's `T5` model."""
 
     def __init__(self, model: str, tokenizer: str):
         """Initializes the `QG` model."""
@@ -25,7 +25,7 @@ class QG:
         self._tokenizer: T5TokenizerFast = AutoTokenizer.from_pretrained(tokenizer, model_max_length=_MODEL_MAX_LENGTH)
 
 
-    def __call__(self, context: str) -> list:
+    def __call__(self, context: str) -> list[dict]:
         """Generates questions based on the given context and formats it as a dictionary."""
 
         generator_args = {
@@ -44,7 +44,7 @@ class QG:
         # Generate questions for each chunk
         i = 0
         for context_chunk in context_chunks:
-            if i > 5:
+            if i > 15:
                 break
                 
             i += 1
@@ -64,7 +64,6 @@ class QG:
             questions = questions.split("<sep>")
 
             # If there are multiple '?' in a question, split it into multiple questions
-            # TODO: Doesn't create questionmark on each question
             for question in questions:
                 if question.count('?') > 1:
                     questions.remove(question)

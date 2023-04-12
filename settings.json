@@ -2,7 +2,7 @@
 	"model_arguments": {
 		"qg_model_name": "the-coorporation/t5-small-qg",
 		"tokenizer_name": "the-coorporation/t5-small-qg",
-		"qa_model_name": "distilbert-base-cased-distilled-squad"
+		"qa_model_name": "distilbert-base-uncased-distilled-squad"
 	},
 	"data_training_arguments": {
 		"training_file_path": "./data/training_data.pt",
@@ -26,7 +26,6 @@
 		"optim": "adamw_torch",
 		"report_to": "wandb",
 		"push_to_hub": true,
-		"fp16": true,
 		"hub_model_id": "the-coorporation/t5-small-qg"
 	}
 }
