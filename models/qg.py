@@ -1,10 +1,10 @@
 from transformers import (
     AutoModelForSeq2SeqLM,
     AutoTokenizer,
-    PreTrainedModel,
-    PreTrainedTokenizer,
     TrainingArguments,
     Trainer,
+    T5TokenizerFast,
+    T5ForConditionalGeneration
 )
 from parsing.settings_parser import DataTrainingArguments
 from preprocessing.data_collator import T2TDataCollator
@@ -12,27 +12,24 @@ import torch
 import wandb
 import os
 
-_MODEL_MAX_LENGTH = 512
+_MODEL_MAX_LENGTH = 100
 
 class QG:
-    """Question Generator model based on Google's `T5` model."""
+    """Question Generation model based on Google's `T5` model."""
 
     def __init__(self, model: str, tokenizer: str):
         """Initializes the `QG` model."""
 
         self._device = "cuda" if torch.cuda.is_available() else "cpu"
-        self._model: PreTrainedModel = AutoModelForSeq2SeqLM.from_pretrained(model).to(self._device)
-        self._tokenizer: PreTrainedTokenizer = AutoTokenizer.from_pretrained(tokenizer, model_max_length=_MODEL_MAX_LENGTH)
-
-        self._tokenizer.add_tokens(['<sep>'])
-        self._model.resize_token_embeddings(len(self._tokenizer))
+        self._model: T5ForConditionalGeneration = AutoModelForSeq2SeqLM.from_pretrained(model).to(self._device)
+        self._tokenizer: T5TokenizerFast = AutoTokenizer.from_pretrained(tokenizer, model_max_length=_MODEL_MAX_LENGTH)
 
 
-    def __call__(self, context: str) -> list:
+    def __call__(self, context: str) -> list[dict]:
         """Generates questions based on the given context and formats it as a dictionary."""
 
         generator_args = {
-            "max_length": 256,
+            "max_length": _MODEL_MAX_LENGTH,
             "num_beams": 4,
             "length_penalty": 1.5,
             "no_repeat_ngram_size": 3,
@@ -47,7 +44,7 @@ class QG:
         # Generate questions for each chunk
         i = 0
         for context_chunk in context_chunks:
-            if i > 5:
+            if i > 15:
                 break
                 
             i += 1
@@ -67,12 +64,11 @@ class QG:
             questions = questions.split("<sep>")
 
             # If there are multiple '?' in a question, split it into multiple questions
-            # TODO: Doesn't create questionmark on each question
             for question in questions:
                 if question.count('?') > 1:
                     questions.remove(question)
                     split_questions = question.split('?')
-                    split_questions = [newQuestion + '?' for newQuestion in split_questions]
+                    split_questions = [newQuestion + '?' for newQuestion in split_questions if newQuestion != '']
                     questions.extend(split_questions)
 
             # Remove leading and trailing white space, remove last empty element from results
@@ -91,7 +87,7 @@ class QG:
     def split_text(self, text:str, max_length:str=_MODEL_MAX_LENGTH):
         """Splits the given text into chunks of the given maximum length."""
         # todo: need to find correct way of splitting text into chunks in relation to the model's max length
-        max_length = max_length / 2
+        max_length = max_length
         sentences = text.split(".")
         chunks = []
         current_chunk = ""

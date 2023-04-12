@@ -14,10 +14,12 @@ Once the training has commenced, the model will be pushed to `The Coorporation` 
 
 `main.py` can take arguments to specify what to do:
 
-* `main.py -t` starts a training session for the `QG` model.
-* `main.py -i <text>` runs the `QG` model on the input text and generates questions from the given context.
-* `main.py -d` downloads and preprocesses our modified `SQuAD V2.0` dataset
-* `main.py -h` shows instructions on how to run the program
+- `main.py -t` starts a training session for the `QG` model.
+- `main.py -i <text>` runs the `QG` model on the input text and generates questions from the given context.
+- `main.py -d` downloads and preprocesses our modified `SQuAD` dataset
+- `main.py -n <name>` creates questions and answers and saves it under `<name>.json`
+- `main.py -s <settings>.json` use the specified settings file. Defaults to `settings.json`
+- `main.py -h` shows instructions on how to run the program
 
 </br>
 

@@ -1,0 +1,230 @@
+[
+	{
+		"context": "Android Development Android Components Activities Represents a single screen with a user interface, in-short Activity performs actions on the screen and answer to the events on the UI components. Services A service is a component that runs in the application background to perform long-running operations. User services: when the user starts a service, the app tells App services Broadcast Receivers Broadcast Receivers simply respond to broadcast messages from other application or from the Android operating system. Content Providers A content provider component supplies data from one application to others on request. Introduction to Kotlin tirsdag 8. februar Variable: Var indicates that you want to declare a new variable. Read-only variable: Val indicates a new immutable variable, a constant. App Resources and Basic UI tirsdag 15. februar Android App Manifest Package name: Determine the location of code entities when building your project Permissions: Set permissions to access content from the app, e.g. access contacts in WhatsApp. Components: Information about activities, services, broadcast receivers and content providers. Requirements: Requirements of software and hardware Color and style in res folder. Intent class Explicit Intents - Used in the context of your application, in which you can start internal components. You define what will happen when you do something, mapping activity. You explicitly state what you want. Implicit Intents E.g I want to take a photo. You can say \u201cI want to send a mail\u201d, then it can be suggested that you want to open the mail app, but you don\u2019t explicitly say what you want the phone to do, you imply it. Aim to start a component in another application. More in lecture 9 Android Jetpack Suite of Android libraries to reduce boilerplate code, like lifecycle management, background tasks. Reduce complexity with libraries that work consistently across Android versions and devices. By lazy, means I will only instantiate this if I use it, or else it doesn\u2019t exist. Share objects/data between activities with intent. Material design and fragments tirsdag 22. februar One critical difference between the fragment lifecycle and the activity lifecycle is that fragment lifecycle functions are called by the FragmentManager of the hosting activity, not the OS. The OS knows nothing about the fragments that an activity is using to manage things. Fragments are the activity\u2019s internal business. The onAttach(Context?), onCreate(Bundle?), onCreateView(...), and onViewCreated(...) functions are called when you add the fragment to the FragmentManager. Difference between activity and fragment? Activity has three steps: Java/Kotlin class file, XML layout and add to manifest Fragments do not need to be added in the manifest, only two files, namely: Java/Kotlin class file and XML layout. On rotate, update savedInstanceState to resume to where you were on the screen. ViewHolder is not mandatory with list view, but it is the best way to do it, also with performance. But with recycle view, it is necessary with a view holder. RecyclerView library must be added as a dependency library in your project. Slide #5 page 5. Views use ViewHolders and Adapters to select a small sample form a large data set. It only provides a limited number of the items that can be shown in the screen.",
+		"questions_answers": [
+			{
+				"question": "What is a component that runs in the application background to perform long-running operations?",
+				"answer": {
+					"score": 0.978558361530304,
+					"start": 196,
+					"end": 214,
+					"answer": "Services A service"
+				}
+			},
+			{
+				"question": "What does the FragmentManager do to reduce boilerplate code?",
+				"answer": {
+					"score": 0.5535581111907959,
+					"start": 2560,
+					"end": 2563,
+					"answer": "add"
+				}
+			},
+			{
+				"question": "What is the best way to do it with list view?",
+				"answer": {
+					"score": 0.1682947874069214,
+					"start": 3005,
+					"end": 3016,
+					"answer": "performance"
+				}
+			}
+		]
+	},
+	{
+		"context": "Flexible Data View and Thread RecyclerView vs ListView When an item scrolls off the screen, RecyclerView doesn\u2019t destroy its view. RecyclerView adapter forces the developer to use the ViewHolder pattern. LayoutManager allows us to choose that we want to show the row views and how to scroll. Notifying Adapter Recycle - View\u2019s adapter provides a set of notifiers to react while the data are binding to the view If your application requires an operation that does not return an immediate result, you must perform this operation in a separated thread know as worker thread. Android provides the following threads components: Android Thread: A block of code responsible to execute a set of tasks in your application Kotlin Coroutines: Kotlin coroutines provide an api that enables you to write asynchronous code. Android handler: It allows you to send and process \"messages\" and \"runnable objects\u201d Download data from the internet, slide 54. Set on the manifest. You only need to ask for permission once. When to use async? When you don\u2019t have control over how much time something takes. Android services: Activites Services: A Service is an Android component that can perform long-running operations in the background. Once started, a service might continue running for some time, even after the user switches to another application Local tests: Execute on your development machine or a server, so they\u2019re also called host-side tests. Instrumented tests: Execute on an Android device (phone, smartwatch, tablet), either physical or emulated. Internal vs external memory: External example: Micro SD card, removable storage medium. GPS The satellite sends you a very precise timestamp.You need at least three satellites to provide a precise location. Android sensors: Motion sensors Environmental sensors Position sensors Exam Practice The Android application lifecycle; One critical difference between the fragment lifecycle and the activity lifecycle is that fragment lifecycle functions are called by the FragmentManager of the hosting activity, not the OS. The OS knows nothing about the fragments that an activity is using to manage things. Fragments are the activity\u2019s internal business. The onAttach(Context?), onCreate(Bundle?), onCreateView(...), and onViewCreated(...) functions are called when you add the fragment to the FragmentManager. Activity State Diagram Every instance of an activity has a lifecycle. During the lifecycle, the activity transitions between four states: resumed, paused, stopped and nonexistent. For each transaction, there is an Activity function that notifies the activity of changes of the state. The nonexistent state represents an activity that has not been launched yet, or an activity that was just destroyed (for example by the user pressing the back button). For that reason this state is sometimes referred to as the destroyed state. There is no instance in memory, and there is no associated view for the user to see or interact with. Stopped represents an activity that has an instance in memory, but whose view is not visible on the screen. This state occurs in passing when the activity is first spinning up, and re-occurs any time the view is fully occluded (such as when the user launches another full-screen activity to the foreground, presses the home button, or uses the overview screen to switch tasks).",
+		"questions_answers": [
+			{
+				"question": "What is a block of code responsible to execute a set of tasks in your application?",
+				"answer": {
+					"score": 0.9231347441673279,
+					"start": 623,
+					"end": 637,
+					"answer": "Android Thread"
+				}
+			},
+			{
+				"question": "What is an api that forces the developer to use the ViewHolder pattern?",
+				"answer": {
+					"score": 0.8852525949478149,
+					"start": 131,
+					"end": 151,
+					"answer": "RecyclerView adapter"
+				}
+			},
+			{
+				"question": "What does the FragmentManager do to manage an activity?",
+				"answer": {
+					"score": 0.164376899600029,
+					"start": 231,
+					"end": 290,
+					"answer": "choose that we want to show the row views and how to scroll"
+				}
+			},
+			{
+				"question": "What is the activity lifecycle of a service?",
+				"answer": {
+					"score": 0.9321880340576172,
+					"start": 2345,
+					"end": 2367,
+					"answer": "Activity State Diagram"
+				}
+			}
+		]
+	},
+	{
+		"context": "Paused represents an activity that is not active in the foreground, but whose view is visible or partially visible. An activity would be partially visible, for example if the user launched a new dialog-themed or transparent activity on top of it. An activity could also be fully visible but not in the foreground if the user is viewing two activities in multi window mode (also called \u201csplit screen mode\u201d). Resumed represents an activity that is in memory, fully visible and in the foreground. It is the activity the user is currently interacting with. Only one activity across the entire system can be in the resumed state at any given time. That means that if one activity is moving into the resumed state, another is likely moving out of the resumed state. Subclasses of Activity can take advantage of the functions named in the figure, to get work done at critical transitions in the activity\u2019s lifecycle. These functions are often called lifecycle callbacks. You are already acquaninted with one of these lifecycle callback functions -onCreate(Bundle?). The OS calls this function after the activity instance is created but before it is put onscreen. An activity usually overrides the increase to prepare the UI (inflating the layout, setContentView, listeners etc.) When you finish an activity, onPause, onStop and then onDestroy is called. Pressing the back button destroys the activity and starts a new one. Rotating your device changes the device configuration. The device configuration is a set of characteristics that describe the current state of an individual device. When. Runtime configuration change occurs, there may be resources that ar a better match for the new configuration. So Android destroys the activity and looks for resources that are the best fit for the new configurations and then rebuilds a new instance of the activity with those resources. Fragment Lifecycle and Fragment Manager. The FragmentManager is a part of the activity class. It handles two things: a list of fragments and a back stack of fragment transactions. It is responsible for adding the fragments\u2019 views to the activity\u2019s view hierarchy and driving the fragments lifecycles. Fragmentmanager is good when you have multiple fragments in one activity. To add a fragment to an activity in code, you make explicit calls to the activity\u2019s FragmentManager. You can access the activity\u2019s fragment manager using supportFragmentManager. The FragmentManager maintains a back stack of fragment transactions that you can navigate. Diagram of the Fragment Lifecycle. The Fragment lifecycle is similar to the activity lifecycle. It has stopped, paused and resumed states, and you can override them to get things done at critical points. A fragment works on behalf of an activity, so its state should reflect the activity\u2019s state. Thus it need corresponding lifecycle functions to handle the activity\u2019s work. A critical difference between the fragment lifecycle and the activity lifecycle is that fragment lifecycle functions are called by the FragmentManager of the hosting activity, not the OS. The OS knows nothing about the fragments that an activity is using to manage things. Fragments are the activity\u2019s internal business. OnActivityCreated is called after the hosting activity\u2019s onCreate has been executed.",
+		"questions_answers": [
+			{
+				"question": "What is an activity that is not active in the foreground, but whose view is visible or partially visible?",
+				"answer": {
+					"score": 0.9808439612388611,
+					"start": 0,
+					"end": 6,
+					"answer": "Paused"
+				}
+			},
+			{
+				"question": "What is the activity that the user is currently interacting with?",
+				"answer": {
+					"score": 0.9318791031837463,
+					"start": 407,
+					"end": 414,
+					"answer": "Resumed"
+				}
+			},
+			{
+				"question": "What is a part of the activity class?",
+				"answer": {
+					"score": 0.3647715449333191,
+					"start": 1915,
+					"end": 1934,
+					"answer": "The FragmentManager"
+				}
+			},
+			{
+				"question": "What does the FragmentManager handle?",
+				"answer": {
+					"score": 0.5712326765060425,
+					"start": 2457,
+					"end": 2494,
+					"answer": "a back stack of fragment transactions"
+				}
+			}
+		]
+	},
+	{
+		"context": "What happens if you add a fragment while the activity is already resumed? In that case, the FragmentManager immediately walks the fragment through whatever steps are necessary to get it caught up to the activity\u2019s state. Example it calls onAttach, onCreate, onCreateView etc.. The four different types of Android components, namely: (1) activities, (2) services, (3) broadcast receivers, and (4) content providers; Activities Activity represents a single screen with a UI and it is the entry point for interacting with the user. Example for my app: my app had two activities: loginActivity and ScooterSharingActivity. The ScooterSharingActivity connected to all the other fragments When to use activities and fragments? Fragments are Android's solution to creating reusable user interfaces. You can achieve some of the same things using activities and layouts (for example by using includes). Fragments, as tablets emerged with larger screens, are reusable components that are attached to and displayed within activities The ActionBar is super clever with fragments. If you want tabs up there to navigate your app, you quickly see that ActionBar.TabListener interface gives you a FragmentTransaction as an input argument to the onTabSelected method. You could probably ignore this, and do something else and clever, but you'd be working against the API, not with it. The FragmentManager handles \u00abback\u00bb for you in a very clever way. Back does not mean back to the last activity, like for regular activities. It means back to the previous fragment state. You can reuse code a lot! We need to mention all activity it in the manifest.xml file, not fragments Services Services are the entry point for keeping an app running in the background for all kinds of reasons. When the user starts a service, the app tells the OS to run the service in background with a notification to tell the user about it. A Background Service is a service that runs only when the app is running so it'll get terminated when the app is terminated. A Foreground Service is a service that stays alive even when the app is terminated. Foreground A foreground service performs operations that are noticeable to the user. For example, an audio app would use a foreground service to play an audio track. Background A background service performs an operation that isn't noticed by the user. The process like schedule syncing of data or storing of data fall under this service. The process like schedule syncing of data or storing of data fall under this service. And a Bound Service is a service that runs only if the component it is bound to is still active. Bound A bound service offers a client-server interface that allows components to interact with the service, send requests, receive results, and even do so across processes with interprocess communication (IPC). In my app, I used a foreground service for running the ride even when the app was not open/screen was locked. This was showed as a notification. Other example: service might play music in the background while the user is in a different app without blocking the user interaction with an activity, or fetch data over the network to the Android application Broadcast Receivers They allow the system to deliver events to the app outside of a regular user flow.",
+		"questions_answers": [
+			{
+				"question": "What does the FragmentManager walk through when the activity is already resumed?",
+				"answer": {
+					"score": 0.6730493307113647,
+					"start": 147,
+					"end": 219,
+					"answer": "whatever steps are necessary to get it caught up to the activity\u2019s state"
+				}
+			},
+			{
+				"question": "What are the four different types of Android components that are used to create reusable user interfaces?",
+				"answer": {
+					"score": 0.3265276253223419,
+					"start": 3191,
+					"end": 3210,
+					"answer": "Broadcast Receivers"
+				}
+			},
+			{
+				"question": "What is a foreground service that runs only when the app is terminated?",
+				"answer": {
+					"score": 0.4246404469013214,
+					"start": 2533,
+					"end": 2548,
+					"answer": "a Bound Service"
+				}
+			},
+			{
+				"question": "What does a Foreground Service perform?",
+				"answer": {
+					"score": 0.911933422088623,
+					"start": 2880,
+					"end": 2896,
+					"answer": "running the ride"
+				}
+			}
+		]
+	},
+	{
+		"context": "Broadcast Receivers simply respond to broadcast messages from other application or from the Android operating system. You can develop your own custom broadcast to send or receive broadcast messages about the devices and system components. Broadcasts originate from the OS: a broadcast announcing that the screen has turned off, the battery is low, or a picture was captured. The scooter-sharing application uses the broadcast receiver to send data from the foreground service to the UI/main thread. The data itself is sent as (wrapped in) a broadcast intent, similar to the command dispatching to the service. Content Providers A content provider component supplies data from one application to others on request. They manage a shared set of app data that can be persisted at any storage location your app can access. Content providers are also useful for reading and writing data that is private to your app and not shared Example from my app: the camera is accessed for photographing and scanning qr codes. Other example: The OS provides a content provider that manages the user's contact information. As such, any app with the proper permissions can query the content provider, to read and write information about a contact. The design of user interfaces (UI) using layouts, resources, and a set of Android UI controls (e.g., TextView, EditText, Button, Checkbox, Progressbar, among others); The user interface is designed using xml layout file which is connected to the activity or fragment. You can write code or design directly. You can also import predesigned buttons etc from material design for a better look. Resources is a folder containing values, strings, themes and so on, and is stored there for enabling a better structure and reusing code. Especially strings and images can be saved there with and ID, and then easily referred to by using the ID. ListView ListView is a scrollable collection of views where each view is positioned immediately below the previous view in the list. List items requests views on demand from a ListAdapter as needed as the user scrolls up or down. You must implement an Adapter which holds items from a dataset and binds them to the list. You also must implement a ViewHolder pattern to make our scrolling list smoother. RecyclerView Recycler View is a user interface component that allows you create and display dynamically a list of child View objects from a collection, one for each item in your list of items. It uses ViewHolders and Adapters to select a small sample from a large data set.It only provides a limited number of the items that can be shown in the screen. In general, RecyclerView makes it easy to efficiently display large sets of data than a ListView because: Recycling: When an item scrolls off the screen, RecyclerView doesn't destroy its view ViewHolder: RecyclerView\u2019s adapter forces the developer to use the ViewHolder pattern LayoutManager: It allows us to choose the way that we want to show the row views and how to scroll the list Notifying Adapter: RecycleView\u2019s adapter provides a set of notifiers to react while the data are binding to the view The items in your RecyclerView are arranged by a LayoutManager.",
+		"questions_answers": [
+			{
+				"question": "What does RecyclerView use to create and display large sets of data?",
+				"answer": {
+					"score": 0.6959896087646484,
+					"start": 2468,
+					"end": 2492,
+					"answer": "ViewHolders and Adapters"
+				}
+			},
+			{
+				"question": "What is a set of notifiers to react while the data is binding to the view?",
+				"answer": {
+					"score": 0.8310902714729309,
+					"start": 3025,
+					"end": 3046,
+					"answer": "RecycleView\u2019s adapter"
+				}
+			},
+			{
+				"question": "What is the name of a user interface component that supplies data from one application to others on request?",
+				"answer": {
+					"score": 0.8921622633934021,
+					"start": 2267,
+					"end": 2293,
+					"answer": "RecyclerView Recycler View"
+				}
+			}
+		]
+	},
+	{
+		"context": "The RecyclerView library provides three layout managers, which handle the most common layout situations: Linear Layout This layout arranges the items of a RecyclerView in a one-dimensional list Grid Layout The items in a row have the same height (vertical) or in a column have the same width (horizontal) Staggered Layout It is similar to the grid layout, but it does not require that items in rows and columns have the same size ViewPager ViewPager is a user interface component that allows the user to flip a fragment to the left and right through pages of data. It uses a PagerAdapter to generate the pages of fragments to be shown Adapters BaseAdapter is an abstract class that you need to implement all the Adapter methods. ArrayAdapter is a complex implementation that works for data in arrays or collections (ArrayList). How to share data between Android components, how to persist data using files and databases, and how to manage the internal and external file storages; Singletons A singleton is a class that allows only ONE instance of itself to be created, and it exists as long as the application stays in memory. A singleton exists as long as the application stays in memory, so storing any properties on the singleton will keep them available throughout any lifecycle changes in your activities and fragments. However, singletons do have a few downsides. For example, while they allow for an easy place to stash data with a longer lifetime than a controller, singletons do have a lifetime. Singletons will be destroyed, along with all of their instance variables, as Android reclaims memory at some point after you switch out of an application. Singletons are not a long-term storage solution. (Writing the files to disk or sending them to a web server is.) Persisting UI State - ViewModel ViewModel is a lifecycle extension used to save the instance state on rotation or other changes in ui. A ViewModel is related to one particular screen, and is a great place to put logic involved in formatting the data to display on that screen. It holds on to a model object and \u201cdecorates\u201d the model, adding. Viewmodel is good for keeping track of if the activity is finished, or just paused, so to know if it should reset the content and memory, or just pause it. Shared Preferences Save the UI state, user preferences or application settings as a set of key/ value pairs of primitive data. The data from shared preferences are stored in the app\u2019s sandbox. Therefore, it can be shared only between the app\u2019s components. Use the method apply() to save the changes asynchronously or the method commit() to save the changes synchronously. You have to use serialization to save an object into the Shared Preferences. Therefore, you can convert the object instance into a JSON representation, then save the parsed data as a String Internal and External storage - Write/Read data in files Android supplies access to file-management tools to help you deal with the file system. In Android, these tools are available from the application Context: Read: FileInputStream is an useful class to read data from files in the form of sequence of bytes Write: FileOutputStream is a byte stream class that is used to handle raw binary data Delete: The method deleteFile() deletes a given private file associated with this Context's application List of Files: The method fileList() returns an array with all files created by the current application java.",
+		"questions_answers": [
+			{
+				"question": "What does the RecyclerView library provide?",
+				"answer": {
+					"score": 0.5316533446311951,
+					"start": 34,
+					"end": 55,
+					"answer": "three layout managers"
+				}
+			},
+			{
+				"question": "What is the name of a class that works for data in arrays or collections?",
+				"answer": {
+					"score": 0.3954024910926819,
+					"start": 3353,
+					"end": 3368,
+					"answer": "method fileList"
+				}
+			},
+			{
+				"question": "What does a singleton allow for as long as the application stays in memory?",
+				"answer": {
+					"score": 0.4962536096572876,
+					"start": 1031,
+					"end": 1067,
+					"answer": "ONE instance of itself to be created"
+				}
+			},
+			{
+				"question": "What is a great place to put logic involved in formatting the data to display on a screen?",
+				"answer": {
+					"score": 0.4044369161128998,
+					"start": 1908,
+					"end": 1919,
+					"answer": "A ViewModel"
+				}
+			}
+		]
+	}
+]

@@ -5,6 +5,7 @@ import json
 from huggingface_hub import login
 from parsing.settings_parser import parse_settings
 from models.qg import QG
+from models.qgar import QGAR
 from preprocessing.squad_preprocessor import SquadPreprocessor
 
 
@@ -19,21 +20,27 @@ def main(args: argparse.Namespace, no_arguments: bool):
     hf_token = get_local_file(_HF_TOKEN)
     login(hf_token, add_to_git_credential=True)
 
-    # Parse settings.json
-    model_args, data_args, training_args = parse_settings(args.settings)
     
     if no_arguments:
         parser.print_help()
     else:
-        qg = QG(model_args.qg_model_name, model_args.tokenizer_name)
+        # Parse settings.json
+        model_args, data_args, training_args = parse_settings(args.settings)
 
-        if args.input:
+        qg = QG(model_args.qg_model_name, model_args.tokenizer_name)
+        qgar = QGAR(qg, model_args.qa_model_name)
+
+        if args.note:
+            logger.info("--- QGAR ---")
+            qgar(args.note)
+
+        elif args.input:
             logger.info("--- Question Generation ---")
             qg_result = qg(args.input)
             print(json.dumps(qg_result, indent=4))
-
+            
         elif args.train:
-            logger.info("--- Training ---")
+            logger.info("--- QG Training ---")
             wandb_token = get_local_file(_WANDB_TOKEN)
             qg.train(training_args, data_args, wandb_token)
 
@@ -59,5 +66,6 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--dataset", action='store_true', help="Download and preprocess SQuAD dataset.")
     parser.add_argument("-i", "--input", type=str, metavar="text", help="Input text to the model.")
     parser.add_argument("-s", "--settings", type=str, metavar="settings", default="settings.json", help="Settings file to use.")
+    parser.add_argument("-n", "--note", type=str, metavar="note", help="Path to note file.")
 
     main(parser.parse_args(), not (len(sys.argv) > 1))
