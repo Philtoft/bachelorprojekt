@@ -30,7 +30,7 @@ function Home() {
 
     return (
         <div className="App">
-            <div style={{ flexDirection: 'column', display: 'flex', width: 500 }}>
+            <div style={{ flexDirection: 'column', display: 'flex', width: 500, margin: '0 auto' }}>
                 <h1>Scraper SLUG</h1>
                 {/* input SLUG */}
                 <input type="text" style={{ padding: 15 }} onChange={(e) => setWikiSlug(e.target.value)} value={wikiSlug} />
