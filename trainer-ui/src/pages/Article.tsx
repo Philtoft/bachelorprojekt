@@ -24,11 +24,11 @@ const QAComponent = ({ index, qa }: { index: number, qa: QuestionAnswer }): JSX.
 
 function Article() {
 
+    // 1. Get articleId from params
     let { articleId } = useParams()
 
     /**
-     * 1. Get articleId from params
-     * 2. Get article from API
+     * 
      * 3. Get questions & answers from API
      * 
      */
@@ -37,9 +37,9 @@ function Article() {
         return <div>ArticleId is not defined</div>
     }
 
-    const [article, setArticle] = useState(null)
+    const [article, setArticle] = useState("")
     const [questionsAnswers, setQuestionsAnswers] = useState<QuestionAnswer[]>([])
-    const link = useSelector((state: any) => state.wiki.links[articleId])
+    const link = useSelector((state: any) => state.wiki.links[articleId ? articleId : 0].link)
 
 
     useEffect(() => {
@@ -55,9 +55,17 @@ function Article() {
             <div className={styles.column_wrapper}>
                 <div className={styles.context}>
                     <p><b>Link</b>: {link}</p>
-                    <div>ArticleId: {articleId}</div>
+                    <h2 style={{ marginTop: 0, marginBottom: 0 }}>Article</h2>
+                    <p>{article}</p>
+
+                    {
+                        questionsAnswers.length == 0 && (
+                            <button>Generate Questions & Answers</button>
+                        )
+                    }
                 </div>
                 <div className={styles.question_answer_wrapper}>
+                    <h2 style={{ marginTop: 0 }}>Questions and answers</h2>
                     {questionsAnswers.map((qa, index) => (
                         <QAComponent index={index} qa={qa} />
                     ))}

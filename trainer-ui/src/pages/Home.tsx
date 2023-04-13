@@ -3,12 +3,14 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { setLinks } from '../redux/wikiSlice'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { RootState } from '../store'
 
 function Home() {
 
     const [wikiSlug, setWikiSlug] = useState('Artificial_intelligence')
     const [text, setText] = useState('')
-    const [wikiLinks, setWikiLinks] = useState([])
+    const wikiLinks = useSelector((state: RootState) => state.wiki.links)
     const dispatch = useDispatch()
 
     function handleSubmit() {
@@ -40,7 +42,7 @@ function Home() {
                     wikiLinks.length > 0 && <h3 style={{ marginBottom: 0 }}>Links</h3>
                 }
                 {
-                    wikiLinks.map((link, index) => {
+                    wikiLinks.map(({ link }, index) => {
                         return (
                             <div key={index} style={{ display: 'flex', flexDirection: 'column', marginTop: 10 }}>
                                 <span>{link}</span>

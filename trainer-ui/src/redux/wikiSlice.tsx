@@ -2,23 +2,28 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 interface Link {
     link: string
-    questionsGenerated: boolean
+    questionsAnswersGenerated: boolean
 }
 
-interface initialState {
+interface InitialState {
     links: Link[]
 }
 
-const initialState: initialState = {
+const initialState: InitialState = {
     links: [],
 }
 
 const slice = createSlice({
     name: 'wiki',
-    initialState,
+    initialState: initialState,
     reducers: {
-        setLinks: (state, { payload }: PayloadAction<Link[]>) => {
-            state.links = payload
+        setLinks: (state, { payload }: PayloadAction<string[]>) => {
+            payload.map((link) => {
+                state.links.push({ link: link, questionsAnswersGenerated: false })
+            })
+        },
+        setQuestionsAnswersGenerated: (state, { payload }: PayloadAction<number>) => {
+            state.links[payload].questionsAnswersGenerated = true
         }
     }
 })

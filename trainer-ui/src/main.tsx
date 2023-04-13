@@ -6,7 +6,6 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Article from './pages/Article'
 import Home from './pages/Home'
 import { store } from './store'
-import { PersistGate } from 'redux-persist/integration/react'
 
 const router = createBrowserRouter([
   {
