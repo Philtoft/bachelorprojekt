@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-import { setLinks } from '../redux/wikiSlice'
+import { clearStore, setLinks } from '../redux/wikiSlice'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
@@ -22,7 +22,6 @@ function Home() {
         )
             .then((res) => {
                 console.log('res', res)
-                setWikiLinks(res.data.links.map((link: any) => "https://en.wikipedia.org" + link))
                 dispatch(setLinks(res.data.links.map((link: any) => "https://en.wikipedia.org" + link)))
             })
             .catch((err) => {
@@ -59,7 +58,7 @@ function Home() {
                     )
                 }
 
-                <button style={{ marginTop: 20 }}>Clear store</button>
+                <button style={{ marginTop: 20 }} onClick={() => dispatch(clearStore())}>Clear store</button>
             </div>
         </div>
     )

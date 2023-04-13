@@ -24,9 +24,12 @@ const slice = createSlice({
         },
         setQuestionsAnswersGenerated: (state, { payload }: PayloadAction<number>) => {
             state.links[payload].questionsAnswersGenerated = true
+        },
+        clearStore: (state) => {
+            state.links = []
         }
     }
 })
 
-export const { setLinks } = slice.actions
+export const { setLinks, setQuestionsAnswersGenerated, clearStore } = slice.actions
 export default slice.reducer
