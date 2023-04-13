@@ -6,19 +6,20 @@ import './App.css'
 
 function App() {
 
-  const [wikiURL, setWikiURL] = useState('https://en.wikipedia.org/wiki/Artificial_intelligence')
+  const [wikiSlug, setWikiSlug] = useState('Artificial_intelligence')
   const [text, setText] = useState('')
+  const [wikiLinks, setWikiLinks] = useState([])
 
   function handleSubmit() {
     axios.get('http://127.0.0.1:5000/',
       {
         headers: { "Access-Control-Allow-Origin": "*" },
-        params: { url: wikiURL }
+        params: { slug: wikiSlug }
       }
     )
       .then((res) => {
         console.log('res', res)
-        setText(res.data)
+        setWikiLinks(res.data.links.map((link: any) => "https://en.wikipedia.org" + link))
       })
       .catch((err) => {
         console.log('err', err)
@@ -28,12 +29,20 @@ function App() {
   return (
     <div className="App">
       <div style={{ flexDirection: 'column', display: 'flex', width: 500 }}>
-        <h1>Scraper URL</h1>
-        {/* input URL */}
-        <input type="text" style={{ padding: 15 }} onChange={(e) => setWikiURL(e.target.value)} value={wikiURL} />
+        <h1>Scraper SLUG</h1>
+        {/* input SLUG */}
+        <input type="text" style={{ padding: 15 }} onChange={(e) => setWikiSlug(e.target.value)} value={wikiSlug} />
         {/* button */}
         <button style={{ marginTop: '10px' }} onClick={handleSubmit}>Submit</button>
-        <p>{JSON.stringify(text)}</p>
+        {
+          wikiLinks.map((link, index) => {
+            return (
+              <div key={index} style={{ display: 'flex', flexDirection: 'column', marginTop: 10 }}>
+                <span>{link}</span>
+              </div>
+            )
+          })
+        }
       </div>
     </div>
   )

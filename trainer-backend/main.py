@@ -13,17 +13,19 @@ CORS(app)
 # Should return link with the first 10 articles from the search that can be scraped
 @app.route('/')
 def index():
-    wikiURL = request.args.get('url')
+    wikiSlug = request.args.get('slug')
 
-    if wikiURL is None:
+    if wikiSlug is None:
         return Response('{"error": "No URL provided"}', status=400, mimetype='application/json')
     
     # Check if article exists
-    wiki_article_scraped = get_first_10_links(wikiURL)
+    links = get_first_10_links(wikiSlug)
     
-    return json.dumps({ 'article': wiki_article_scraped })
+    return json.dumps({ 'links': links })
 
-def get_first_10_links(url):
+def get_first_10_links(slug):
+
+    url = "https://en.wikipedia.org/wiki/" + slug
     
     response = requests.get(url=url)
 
@@ -45,11 +47,7 @@ def get_first_10_links(url):
         if link.find_parent(class_="hatnote navigation-not-searchable") is None and link.has_attr('href') and link['href'].startswith("/wiki/") and len(links) < 10:
             links.append(link['href'])
 
-    print(f"Links: {links}")
-
-    print(title.string)
-
-    return "result"
+    return links
     
 if __name__ == '__main__':
     app.run(debug=True)
