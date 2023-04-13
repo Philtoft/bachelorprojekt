@@ -1,14 +1,28 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import axios from 'axios'
 import './App.css'
 
 function App() {
 
   const [url, setUrl] = useState('https://en.wikipedia.org/wiki/Artificial_intelligence')
+  const [text, setText] = useState('')
 
   function handleSubmit() {
-    console.log('url', url)
+    axios.get('http://127.0.0.1:5000/',
+      {
+        headers: { "Access-Control-Allow-Origin": "*" },
+        params: { url: url }
+      }
+    )
+      .then((res) => {
+        console.log('res', res)
+        setText(res.data)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
   }
 
   return (
@@ -19,6 +33,7 @@ function App() {
         <input type="text" style={{ padding: 15 }} onChange={(e) => setUrl(e.target.value)} value={url} />
         {/* button */}
         <button style={{ marginTop: '10px' }} onClick={handleSubmit}>Submit</button>
+        <p>{JSON.stringify(text)}</p>
       </div>
     </div>
   )
