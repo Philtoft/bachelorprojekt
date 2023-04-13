@@ -35,6 +35,9 @@ function App() {
         {/* button */}
         <button style={{ marginTop: '10px' }} onClick={handleSubmit}>Submit</button>
         {
+          wikiLinks.length > 0 && <h3 style={{ marginBottom: 0 }}>Links</h3>
+        }
+        {
           wikiLinks.map((link, index) => {
             return (
               <div key={index} style={{ display: 'flex', flexDirection: 'column', marginTop: 10 }}>
@@ -42,6 +45,13 @@ function App() {
               </div>
             )
           })
+        }
+        {
+          wikiLinks.length > 0 && (
+            <div>
+              <button style={{ marginTop: 15 }}>Start question answering generation process</button>
+            </div>
+          )
         }
       </div>
     </div>
