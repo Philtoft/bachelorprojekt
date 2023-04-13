@@ -1,16 +1,20 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
+interface QuestionAnswer {
+    question: string
+    answer: string
+}
 interface Link {
     link: string
-    questionsAnswersGenerated: boolean
+    questionsAndAnswers: QuestionAnswer[]
 }
 
 interface InitialState {
-    links: Link[]
+    articles: Link[]
 }
 
 const initialState: InitialState = {
-    links: [],
+    articles: [],
 }
 
 const slice = createSlice({
@@ -19,17 +23,18 @@ const slice = createSlice({
     reducers: {
         setLinks: (state, { payload }: PayloadAction<string[]>) => {
             payload.map((link) => {
-                state.links.push({ link: link, questionsAnswersGenerated: false })
+                state.articles.push({ link: link, questionsAndAnswers: [] })
             })
         },
-        setQuestionsAnswersGenerated: (state, { payload }: PayloadAction<number>) => {
-            state.links[payload].questionsAnswersGenerated = true
+        setQuestionsAnswers: (state, { payload }: PayloadAction<{ articleId: number, questionsAnswers: QuestionAnswer[] }>) => {
+            state.articles[payload.articleId].questionsAndAnswers = payload.questionsAnswers
         },
+
         clearStore: (state) => {
-            state.links = []
+            state.articles = []
         }
     }
 })
 
-export const { setLinks, setQuestionsAnswersGenerated, clearStore } = slice.actions
+export const { setLinks, setQuestionsAnswers, clearStore } = slice.actions
 export default slice.reducer

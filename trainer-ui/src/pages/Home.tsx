@@ -10,7 +10,7 @@ function Home() {
 
     const [wikiSlug, setWikiSlug] = useState('Artificial_intelligence')
     const [text, setText] = useState('')
-    const wikiLinks = useSelector((state: RootState) => state.wiki.links)
+    const wikiLinks = useSelector((state: RootState) => state.wiki.articles)
     const dispatch = useDispatch()
 
     function handleSubmit() {

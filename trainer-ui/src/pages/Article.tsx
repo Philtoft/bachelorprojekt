@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import styles from './Article.module.css'
 import { faker } from '@faker-js/faker';
+import { useDispatch } from 'react-redux';
+import { setQuestionsAnswers } from '../redux/wikiSlice';
 
 interface QuestionAnswer {
     question: string
@@ -24,31 +26,33 @@ const QAComponent = ({ index, qa }: { index: number, qa: QuestionAnswer }): JSX.
 
 function Article() {
 
+    const dispatch = useDispatch()
+
     // 1. Get articleId from params
     let { articleId } = useParams()
 
-    /**
-     * 
-     * 3. Get questions & answers from API
-     * 
-     */
-
-    if (!articleId) {
+    if (articleId == undefined) {
         return <div>ArticleId is not defined</div>
     }
 
-    const [article, setArticle] = useState("")
-    const [questionsAnswers, setQuestionsAnswers] = useState<QuestionAnswer[]>([])
-    const link = useSelector((state: any) => state.wiki.links[articleId ? articleId : 0].link)
+    let id = parseInt(articleId)
 
+    if (isNaN(id)) {
+        return <div>ArticleId is not a number</div>
+    }
 
-    useEffect(() => {
-        for (let i = 0; i < 10; i++) {
-            let question = faker.lorem.sentence(Math.floor(Math.random() * (3 - 1 + 1)) + 1)
-            let answer = faker.lorem.sentence(Math.floor(Math.random() * (3 - 1 + 1)) + 1)
-            setQuestionsAnswers(prev => [...prev, { question: `${question}`, answer: `${answer}` }])
+    const { link, questionsAndAnswers } = useSelector((state: any) => state.wiki.articles[id])
+
+    function generateQuestionsAnswers() {
+        let questionsAndAnswers: QuestionAnswer[] = []
+        for (let i = 0; i < 5; i++) {
+            questionsAndAnswers.push({
+                question: faker.lorem.sentence(),
+                answer: faker.lorem.paragraph()
+            })
         }
-    }, [])
+        return questionsAndAnswers
+    }
 
     return (
         <div style={{ width: '100%' }}>
@@ -56,18 +60,21 @@ function Article() {
                 <div className={styles.context}>
                     <p><b>Link</b>: {link}</p>
                     <h2 style={{ marginTop: 0, marginBottom: 0 }}>Article</h2>
-                    <p>{article}</p>
+                    <p>{link}</p>
 
                     {
-                        questionsAnswers.length == 0 && (
-                            <button>Generate Questions & Answers</button>
+                        questionsAndAnswers.length == 0 && (
+                            <button onClick={() => dispatch(setQuestionsAnswers({
+                                articleId: id,
+                                questionsAnswers: generateQuestionsAnswers()
+                            }))}>Generate Questions & Answers</button>
                         )
                     }
                 </div>
                 <div className={styles.question_answer_wrapper}>
                     <h2 style={{ marginTop: 0 }}>Questions and answers</h2>
-                    {questionsAnswers.map((qa, index) => (
-                        <QAComponent index={index} qa={qa} />
+                    {questionsAndAnswers.map((qa: QuestionAnswer, index: number) => (
+                        <QAComponent key={index} index={index} qa={qa} />
                     ))}
                 </div>
             </div>
