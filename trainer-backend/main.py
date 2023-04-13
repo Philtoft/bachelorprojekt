@@ -17,16 +17,14 @@ def index():
     
     # Check if article exists
     wiki_article_abstract = get_wiki_data(slug)
+    article_merged = merge_abstract_sentences(wiki_article_abstract)
     
-    return json.dumps({ 'article': wiki_article_abstract })
+    return json.dumps({ 'article': article_merged })
 
-def get_wiki_data(url):
-    ws_result = ws.searchBySlug(url)
-    print(ws_result)
+def get_wiki_data(slug):
+    ws_result = ws.searchBySlug(slug)
     return ws_result.getAbstract()
     
-
-                       
 if __name__ == '__main__':
     app.run(debug=True)
                        
