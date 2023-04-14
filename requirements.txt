@@ -1,0 +1,8 @@
+beautifulsoup4==4.12.2
+datasets==2.10.1
+huggingface_hub==0.13.4
+Markdown==3.4.3
+pandas==1.5.3
+torch==2.0.0
+transformers==4.27.1
+wandb==0.14.2
