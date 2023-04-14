@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import styles from './Article.module.css'
 import { faker } from '@faker-js/faker';
 import { useDispatch } from 'react-redux';
@@ -78,7 +78,18 @@ function Article() {
                     ))}
                 </div>
             </div>
-        </div>
+            <div>
+                <button style={{ backgroundColor: 'green', color: 'white', marginTop: 15 }}>Save</button>
+            </div>
+            <div style={{ marginTop: 15 }}>
+                <Link to={`/article/${id - 1 < 0 ? 0 : id - 1}`}>
+                    <button>Previous article</button>
+                </Link>
+                <Link to={`/article/${id + 1}`}>
+                    <button>Next article</button>
+                </Link>
+            </div>
+        </div >
     )
 }
 

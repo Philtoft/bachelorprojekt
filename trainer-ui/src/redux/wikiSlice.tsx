@@ -6,7 +6,8 @@ interface QuestionAnswer {
 }
 interface Link {
     link: string
-    questionsAndAnswers: QuestionAnswer[]
+    questionsAndAnswers: QuestionAnswer[],
+    content: string
 }
 
 interface InitialState {
@@ -23,7 +24,7 @@ const slice = createSlice({
     reducers: {
         setLinks: (state, { payload }: PayloadAction<string[]>) => {
             payload.map((link) => {
-                state.articles.push({ link: link, questionsAndAnswers: [] })
+                state.articles.push({ link: link, questionsAndAnswers: [], content: '' })
             })
         },
         setQuestionsAnswers: (state, { payload }: PayloadAction<{ articleId: number, questionsAnswers: QuestionAnswer[] }>) => {

@@ -4,6 +4,7 @@ from flask_cors import CORS
 import requests
 import wikiscraper as ws
 from bs4 import BeautifulSoup as bs4
+# from ..models.qg import QG
 
 ws.lang("en")
 
@@ -48,6 +49,49 @@ def get_first_10_links(slug):
             links.append(link['href'])
 
     return links
+
+def get_content():
+    wikiSlug = request.args.get('slug')
+
+    if wikiSlug is None:
+        return Response('{"error": "No URL provided"}', status=400, mimetype='application/json')
+
+    url = "https://en.wikipedia.org/wiki/" + wikiSlug
+
+    response = requests.get(url=url)
+
+    soup = bs4(response.content, 'html.parser')
+
+    # get content
+    content = soup.find(id="mw-content-text").find_all("p")
+
+    return json.dumps({ 'content': content })
+
+@app.route('/questions_and_answers')
+def get_questions_and_answers():
+    wikiSlug = request.args.get('slug')
+
+    if wikiSlug is None:
+        return Response('{"error": "No URL provided"}', status=400, mimetype='application/json')
+
+    url = "https://en.wikipedia.org/wiki/" + wikiSlug
+
+    response = requests.get(url=url)
+
+    soup = bs4(response.content, 'html.parser')
+
+    # get content
+    content = soup.find(id="mw-content-text").find_all("p")
+
+    # qg = QG(model="coorporation/t5-small", tokenizer="t5-small")
+
+    # # Gives content and context
+    # qg(content)
+    
+
+
+
+    return json.dumps({ 'content': content })
     
 if __name__ == '__main__':
     app.run(debug=True)
