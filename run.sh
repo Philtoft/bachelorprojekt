@@ -12,14 +12,14 @@ function println {
 function print_help {
     println "--- RUN HELP ---" "$green"
     println "Available Commands:"
-    println ">> NOT IMPLEMENTED"
+    println ">> -n <name> - Run QGAR and create QGAs from '<name>'"
     println ">> -r - Create 'requirements.txt' containing all dependencies for the project"
     println ">> -h - Print this page"
     println "----------------" "$green"
 }
 
-if [ "$#" -eq 0 ]; then
-    println "Not implemented!" "$red"
+if [ "$1" = "-n" ]; then
+    python main.py -n "$2"
 elif [ "$1" = "-r" ]; then
     pip install pipreqs -q
     println "Creating 'requirements.txt'..." "$green"
