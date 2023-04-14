@@ -33,8 +33,9 @@ class QGAR:
 
         self._qg = qg
         self._qa = pipeline("question-answering", qa)
+        self.student_name = None
 
-    def __call__(self, student: str):
+    def __call__(self, student_name: str):
         """
         Generates questions and answers and saves them in json format. 
 
@@ -44,10 +45,11 @@ class QGAR:
         3. Saves them as `<student>.json` to disk
         """
 
-        plaintext = self._parse_notes(student)
+        self.student_name = student_name
+        plaintext = self._parse_notes(student_name)
         qgas = self._generate_questions_answers(plaintext)
 
-        with open(f"{_NOTE_DIR}/{student}/{student}-questions-and-answers.json", "w") as file:
+        with open(f"{_NOTE_DIR}/{student_name}/{student_name}-questions-and-answers.json", "w") as file:
             json.dump(qgas, file)
 
     def _parse_notes(self, student: str):
@@ -74,6 +76,9 @@ class QGAR:
         """ Converts a markdown string to HTML """
 
         escaped_markdown = html.escape(markdown_notes)
+        # write HTML values  
+        with open(f"data/notes/{self.student_name}/{self.student_name}-parsed.html", "w") as file:
+            file.write(escaped_markdown)
         return markdown(escaped_markdown)
 
     def add_colon_if_last_char_not_dot(self, text: str):
@@ -134,7 +139,7 @@ class QGAR:
 
         # Print score average
         print(f"Score average: {sum(scores) / len(scores)}")
-        logging.info(f"Score average: {sum(scores) / len(scores)}")
+        logging.info(f"Score average: {sum(scores) / len(scores)} - notes from {self.student_name}")
 
         return questions_and_answers
 
