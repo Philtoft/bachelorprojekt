@@ -7,6 +7,9 @@ import re
 import os
 import pathlib
 import html
+import logging
+
+logging.basicConfig(level=logging.INFO, filename="qgar.log", filemode="a", format='%(asctime)s %(message)s')
 
 _FILE_TYPES = [".md", ".html"]
 _NOTE_DIR = "data/notes"
@@ -73,12 +76,29 @@ class QGAR:
         escaped_markdown = html.escape(markdown_notes)
         return markdown(escaped_markdown)
 
+    def add_colon_if_last_char_not_dot(self, text: str):
+        if text[-1] != "." and text[-1] != ":":
+            text += ":"
+        return text
+    
+    def add_dot_if_last_char_not_dot(self, text: str):
+        if text[-1] != "." and  text[-1] != ":":
+            text += "."
+        return text
+
     def _html_to_plaintext(self, html_notes: str):
         """ Converts a markdown string to plaintext """
 
         soup = BeautifulSoup(html_notes, "html.parser")
         for h_tag in soup.find_all(["h1", "h2", "h3"]):
-            h_tag.decompose()
+            # add_dot_if_last_char_not_dot(h_tag.text)
+            # h_tag.decompose()
+            h_tag.string = self.add_dot_if_last_char_not_dot(h_tag.text)
+
+        # On all tags add dor if last c
+        for tag in soup.find_all():
+            tag.string = self.add_dot_if_last_char_not_dot(tag.text)
+
         result = ' '.join(soup.stripped_strings)
         result = result.replace("\n", " ")
         result = result.replace("\t", " ")
@@ -105,6 +125,16 @@ class QGAR:
                 })
 
             questions_and_answers.append(result)
+
+        # Aggregate score value
+        scores = []
+        for qa in questions_and_answers:
+            for q_a in qa["questions_answers"]:
+                scores.append(q_a["answer"]["score"])
+
+        # Print score average
+        print(f"Score average: {sum(scores) / len(scores)}")
+        logging.info(f"Score average: {sum(scores) / len(scores)}")
 
         return questions_and_answers
 
