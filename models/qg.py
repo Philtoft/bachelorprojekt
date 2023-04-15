@@ -14,6 +14,7 @@ import os
 
 _MODEL_MAX_LENGTH = 100
 
+
 class QG:
     """Question Generation model based on Google's `T5` model."""
 
@@ -23,6 +24,9 @@ class QG:
         self._device = "cuda" if torch.cuda.is_available() else "cpu"
         self._model: T5ForConditionalGeneration = AutoModelForSeq2SeqLM.from_pretrained(model).to(self._device)
         self._tokenizer: T5TokenizerFast = AutoTokenizer.from_pretrained(tokenizer, model_max_length=_MODEL_MAX_LENGTH)
+
+        self._tokenizer.add_tokens(['<sep>'])
+        self._model.resize_token_embeddings(len(self._tokenizer))
 
 
     def __call__(self, context: str) -> list[dict]:
@@ -46,11 +50,11 @@ class QG:
         for context_chunk in context_chunks:
             if i > 15:
                 break
-                
+
             i += 1
 
             input_string = "generate questions: " + context_chunk + " </s>"
-            
+
             # Encode input string
             input_ids = self._tokenizer.encode(input_string, return_tensors="pt").to(self._device)
 
@@ -84,10 +88,11 @@ class QG:
 
         return context_and_questions
 
-    def split_text(self, text:str, max_length:str=_MODEL_MAX_LENGTH):
+
+    def split_text(self, text: str, max_length: str = _MODEL_MAX_LENGTH) -> list:
         """Splits the given text into chunks of the given maximum length."""
-        # todo: need to find correct way of splitting text into chunks in relation to the model's max length
-        max_length = max_length
+        # TODO: need to find correct way of splitting text into chunks in relation to the model's max length
+
         sentences = text.split(".")
         chunks = []
         current_chunk = ""
@@ -106,13 +111,15 @@ class QG:
 
         return chunks
 
+
     def train(self, training_args: TrainingArguments, data_args: DataTrainingArguments, wandb_key: str):
-        """Start training the `QG` model. Once completed it will be pushed to the HuggingFace Hub."""
+        """Start training the `QG` model. Once completed it will be pushed to the HuggingFace Hub along with the `tokenizer`."""
 
+        # Set WANDB project name and login
         os.environ['WANDB_PROJECT'] = data_args.wandb_project_name
-
         wandb.login(key=wandb_key)
 
+        # Load preprocessed datasets
         train = torch.load(data_args.training_file_path)
         validation = torch.load(data_args.validation_file_path)
 

@@ -81,6 +81,7 @@ class SquadProcessor(GeneratorBasedBuilder):
         )
     ]
 
+
     def _info(self) -> DatasetInfo:
         return DatasetInfo(
             description=_DESCRIPTION,
@@ -96,6 +97,7 @@ class SquadProcessor(GeneratorBasedBuilder):
             task_templates=[]
         )
 
+
     def _split_generators(self, dl_manager: DownloadManager) -> list[SplitGenerator]:
         urls = _SET_URLS[self.config.name]
         files = dl_manager.download_and_extract(urls)
@@ -104,6 +106,7 @@ class SquadProcessor(GeneratorBasedBuilder):
             SplitGenerator(name=Split.TRAIN, gen_kwargs={"filepath": files["train"]}),
             SplitGenerator(name=Split.VALIDATION, gen_kwargs={"filepath": files["validation"]})
         ]
+
 
     def _generate_examples(self, filepath: str):
         key = 0
