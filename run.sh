@@ -12,7 +12,7 @@ function println {
 function print_help {
     println "--- RUN HELP ---" "$green"
     println "Available Commands:"
-    println ">> -n <name> - Run QGAR and create QGAs from '<name>'"
+    println ">> -n <name> - Run QGAR and create QGAs for '<name>'"
     println ">> -r - Create 'requirements.txt' containing all dependencies for the project"
     println ">> -h - Print this page"
     println "----------------" "$green"
