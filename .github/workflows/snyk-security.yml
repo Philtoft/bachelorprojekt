@@ -24,7 +24,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       
-      - name: Set up Snyk CLI and dependencies
+      - name: Run Snyk
         uses: snyk/actions/python-3.10@master
         continue-on-error: true
         with:
