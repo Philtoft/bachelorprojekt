@@ -33,7 +33,7 @@ class QGAR:
         self._qa = pipeline("question-answering", qa)
 
 
-    def __call__(self, student: str):
+    def __call__(self, student: str) -> list:
         """
         Generates questions and answers and saves them in json format. 
 
@@ -47,7 +47,9 @@ class QGAR:
         qgas = self._generate_questions_answers(plaintext)
 
         with open(f"{_NOTE_DIR}/{student}/{student}-questions-and-answers.json", "w") as file:
-            json.dump(qgas, file)
+            json.dump(qgas, file, indent=4)
+
+        return qgas
 
 
     def _parse_notes(self, student: str) -> str:
