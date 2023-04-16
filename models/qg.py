@@ -89,7 +89,7 @@ class QG:
         return context_and_questions
 
 
-    def split_text(self, text: str, max_length: str = _MODEL_MAX_LENGTH) -> list:
+    def split_text(self, text: str, max_length: str = 100) -> list:
         """Splits the given text into chunks of the given maximum length."""
         # TODO: need to find correct way of splitting text into chunks in relation to the model's max length
 
