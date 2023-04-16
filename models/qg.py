@@ -12,7 +12,7 @@ import torch
 import wandb
 import os
 
-_MODEL_MAX_LENGTH = 100
+_MODEL_MAX_LENGTH = 512
 
 
 class QG:
