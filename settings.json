@@ -1,7 +1,7 @@
 {
 	"model_arguments": {
-		"qg_model_name": "the-coorporation/t5-small-qg-fix",
-		"tokenizer_name": "the-coorporation/t5-small-qg-fix",
+		"qg_model_name": "the-coorporation/t5-small-qg-2.0",
+		"tokenizer_name": "the-coorporation/t5-small-qg-2.0",
 		"qa_model_name": "distilbert-base-uncased-distilled-squad"
 	},
 	"data_training_arguments": {
@@ -14,7 +14,7 @@
 		"upload_to_hub": true
 	},
 	"training_arguments": {
-		"output_dir": "./model/t5-small-qg",
+		"output_dir": "./model/t5-small-qg-2.0",
 		"per_device_train_batch_size": 8,
 		"per_device_eval_batch_size": 8,
 		"gradient_accumulation_steps": 16,
@@ -26,6 +26,6 @@
 		"save_steps": 500,
 		"optim": "adafactor",
 		"report_to": "wandb",
-		"hub_model_id": "the-coorporation/t5-small-qg-fix"
+		"hub_model_id": "the-coorporation/t5-small-qg-2.0"
 	}
 }
