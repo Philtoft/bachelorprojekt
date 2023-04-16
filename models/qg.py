@@ -6,6 +6,7 @@ from transformers import (
     T5TokenizerFast,
     T5ForConditionalGeneration
 )
+from transformers.utils import PaddingStrategy
 from parsing.settings_parser import DataTrainingArguments
 from preprocessing.data_collator import T2TDataCollator
 import torch
@@ -123,15 +124,26 @@ class QG:
         train = torch.load(data_args.training_file_path)
         validation = torch.load(data_args.validation_file_path)
 
+        # Whether to apply Smart Batching and Mixed Precision Training
+        padding_strategy = PaddingStrategy.LONGEST if data_args.optimized_training else PaddingStrategy.MAX_LENGTH
+        training_args.group_by_length = data_args.optimized_training
+        training_args.fp16 = True if torch.cuda.is_available() and data_args.optimized_training else False
+        training_args.run_name = "With Smart Bacthing & Mixed Precision Training" if data_args.optimized_training else training_args.run_name
+
+        # Trainer whether to upload to hub
+        training_args.push_to_hub = data_args.upload_to_hub
+
         trainer = Trainer(
             model=self._model,
             args=training_args,
             train_dataset=train,
             eval_dataset=validation,
-            data_collator=T2TDataCollator(self._model, self._tokenizer)
+            data_collator=T2TDataCollator(self._model, self._tokenizer, padding_strategy)
         )
 
         trainer.train()
         wandb.finish()
-        trainer.push_to_hub(blocking=True)
-        self._tokenizer.push_to_hub(training_args.hub_model_id)
+
+        if data_args.upload_to_hub:
+            trainer.push_to_hub(blocking=True)
+            self._tokenizer.push_to_hub(training_args.hub_model_id)

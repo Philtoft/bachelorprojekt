@@ -40,3 +40,11 @@ class DataTrainingArguments:
     dataset_output_dir: str = field(
         metadata={"help": "The path to the output directory to save locally created datasets"}
     )
+
+    optimized_training: bool = field(
+        metadata={"help": "Whether to apply Smart Batching and Mixed Precision Training"}
+    )
+
+    upload_to_hub: bool = field(
+        metadata={"help": "Whether to upload the model and tokenizer to Huggingface post training"}
+    )
