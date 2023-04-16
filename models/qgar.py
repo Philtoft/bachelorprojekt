@@ -96,9 +96,7 @@ class QGAR:
 
         soup = BeautifulSoup(html_notes, "html.parser")
         for h_tag in soup.find_all(["h1", "h2", "h3"]):
-            # add_dot_if_last_char_not_dot(h_tag.text)
-            # h_tag.decompose()
-            h_tag.string = self.add_dot_if_last_char_not_dot(h_tag.text)
+            h_tag.string = self.add_colon_if_last_char_not_dot(h_tag.text)
 
         # On all tags add dor if last c
         for tag in soup.find_all():
