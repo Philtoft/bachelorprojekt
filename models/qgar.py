@@ -9,7 +9,8 @@ import pathlib
 import html
 import logging
 
-logging.basicConfig(level=logging.INFO, filename="qgar.log", filemode="a", format='%(asctime)s %(message)s')
+logging.basicConfig(level=logging.INFO, filename="qgar.log",
+                    filemode="a", format='%(asctime)s %(message)s')
 
 _FILE_TYPES = [".md", ".html"]
 _NOTE_DIR = "data/notes"
@@ -70,24 +71,22 @@ class QGAR:
             if suffix in _FILE_TYPES:
                 return suffix
 
-        raise FileNotFoundError(f"No supported filetypes found in directory '{student}'")
+        raise FileNotFoundError(
+            f"No supported filetypes found in directory '{student}'")
 
     def _markdown_to_html(self, markdown_notes: str):
         """ Converts a markdown string to HTML """
 
         escaped_markdown = html.escape(markdown_notes)
-        # write HTML values  
-        with open(f"data/notes/{self.student_name}/{self.student_name}-parsed.html", "w") as file:
-            file.write(escaped_markdown)
         return markdown(escaped_markdown)
 
     def add_colon_if_last_char_not_dot(self, text: str):
         if text[-1] != "." and text[-1] != ":":
             text += ":"
         return text
-    
+
     def add_dot_if_last_char_not_dot(self, text: str):
-        if text[-1] != "." and  text[-1] != ":":
+        if text[-1] != "." and text[-1] != ":":
             text += "."
         return text
 
@@ -95,6 +94,7 @@ class QGAR:
         """ Converts a markdown string to plaintext """
 
         soup = BeautifulSoup(html_notes, "html.parser")
+
         for h_tag in soup.find_all(["h1", "h2", "h3"]):
             h_tag.string = self.add_colon_if_last_char_not_dot(h_tag.text)
 
@@ -137,7 +137,8 @@ class QGAR:
 
         # Print score average
         print(f"Score average: {sum(scores) / len(scores)}")
-        logging.info(f"Score average: {sum(scores) / len(scores)} - notes from {self.student_name}")
+        logging.info(
+            f"Score average: {sum(scores) / len(scores)} - notes from {self.student_name}")
 
         return questions_and_answers
 

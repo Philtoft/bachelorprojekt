@@ -12,5 +12,6 @@ def parse_settings(settings_path: str = _SETTINGS) -> tuple[ModelArguments, Data
         settings = json.load(file)
         mergedEntries = settings['model_arguments'] | settings['data_training_arguments'] | settings['training_arguments']
 
-        parser = HfArgumentParser((ModelArguments, DataTrainingArguments, TrainingArguments))
+        parser = HfArgumentParser(
+            (ModelArguments, DataTrainingArguments, TrainingArguments))
         return parser.parse_dict(mergedEntries)
