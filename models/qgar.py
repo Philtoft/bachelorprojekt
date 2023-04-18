@@ -78,7 +78,13 @@ class QGAR:
         """ Converts a markdown string to HTML """
 
         escaped_markdown = html.escape(markdown_notes)
-        return markdown(escaped_markdown)
+
+        result = markdown(escaped_markdown)
+        # write HTML values
+        # with open(f"data/notes/{self.student_name}/{self.student_name}-parsed.html", "w") as file:
+        #     file.write(result)
+
+        return result
 
     def add_colon_if_last_char_not_dot(self, text: str):
         if text[-1] != "." and text[-1] != ":":
@@ -99,13 +105,18 @@ class QGAR:
             h_tag.string = self.add_colon_if_last_char_not_dot(h_tag.text)
 
         # On all tags add dor if last c
-        for tag in soup.find_all():
-            tag.string = self.add_dot_if_last_char_not_dot(tag.text)
+        # BUG: Can be out of range
+        # for tag in soup.find_all():
+        #     tag.string = self.add_dot_if_last_char_not_dot(tag.text)
 
         result = ' '.join(soup.stripped_strings)
         result = result.replace("\n", " ")
         result = result.replace("\t", " ")
         result = re.sub("\s\s+", " ", result)
+
+        # with open(f"data/notes/{self.student_name}/{self.student_name}-parsed.md", "w") as file:
+        #     file.write(result)
+
         return result
 
     def _generate_answers(self, questions_and_contexts: list[dict]) -> list:
