@@ -86,15 +86,18 @@ class QGAR:
 
         return result
 
-    def add_colon_if_last_char_not_dot(self, text: str):
-        if text[-1] != "." and text[-1] != ":":
+    def add_colon_if_last_char_not_dot_or_colon(self, text: str):
+        if len(text) > 0 and text[-1] != "." and text[-1] != ":":
             text += ":"
         return text
 
     def add_dot_if_last_char_not_dot(self, text: str):
-        if text[-1] != "." and text[-1] != ":":
-            text += "."
-        return text
+        try:
+            if len(text) > 0 and text[-1] != "." and text[-1] != ":":
+                text += "."
+            return text
+        except:
+            print(f"Text fucks up {text}")
 
     def _html_to_plaintext(self, html_notes: str):
         """ Converts a markdown string to plaintext """
@@ -102,12 +105,14 @@ class QGAR:
         soup = BeautifulSoup(html_notes, "html.parser")
 
         for h_tag in soup.find_all(["h1", "h2", "h3"]):
-            h_tag.string = self.add_colon_if_last_char_not_dot(h_tag.text)
+            # if len(tag.text) > 0:
+            h_tag.string = self.add_colon_if_last_char_not_dot_or_colon(
+                h_tag.text)
 
         # On all tags add dor if last c
-        # BUG: Can be out of range
-        # for tag in soup.find_all():
-        #     tag.string = self.add_dot_if_last_char_not_dot(tag.text)
+        for tag in soup.find_all():
+            # if len(tag.text) > 0:
+            tag.string = self.add_dot_if_last_char_not_dot(tag.text)
 
         result = ' '.join(soup.stripped_strings)
         result = result.replace("\n", " ")
