@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=qg-training         # Job name
+#SBATCH --job-name=qg-training-large   # Job name
 #SBATCH --output=training-large.%j.out # Name of output file (%j expands to jobId)
 #SBATCH --cpus-per-task=16             # Schedule 16 cores (includes hyperthreading)
 #SBATCH --gres=gpu:rtx8000:1           # Schedule a GPU, or more with gpu:2 etc
