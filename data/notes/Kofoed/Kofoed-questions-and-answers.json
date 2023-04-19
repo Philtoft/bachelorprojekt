@@ -1,1 +1,75 @@
-[{"context": "Reflection on ITReflection on IT: ScienceThe term \u201cscience\u201d differs in meaning Danish - videnskab EnglishRefers to only \u201cnatural sciences\u201d or \u201chard sciences\u201dDoes not refer to humanities (or social sciences). What is so special about science?Science as we go know it originated from ancient Greece.The Greeks started answering mythology questions with scienceDifferent from mythologyDifferent from religionThey meant science when they said philosophy What does science do?ExplanationWe understand the mechanism behind something. We don\u2019t just get that doing something results in something, but we understand why.\u201cKnowledge\u201d may not necessarily mean that we understand why\u201cUnderstanding\u201d doesPredictionScience gives us a possibility to predict the futureControlScience enabled us to change the world Classic views on sciencePlato\u201csearch of necessary truth\u201dDoxa vs epistemeEpisteme is the Greek word for proper scienceDoxa is like everyday science (eh, work on this)AristotleEmpirical traditionAristotle was the father of the many contemporary scientific disciplines:ChemistryBiologyPhysicsUsed observations but did not appreciate the empirical method enough.", "questions_answers": [{"question": "What is the term science?", "answer": {"score": 0.15133284032344818, "start": 121, "end": 156, "answer": "natural sciences\u201d or \u201chard sciences"}}, {"question": "What does science mean?", "answer": {"score": 0.11433132737874985, "start": 121, "end": 156, "answer": "natural sciences\u201d or \u201chard sciences"}}, {"question": "What is the Greek word for proper scienceDoxa vs episteme?", "answer": {"score": 0.45517778396606445, "start": 854, "end": 858, "answer": "Doxa"}}, {"question": "Who was the father of the many contemporary scientific disciplines?", "answer": {"score": 0.9893644452095032, "start": 963, "end": 1000, "answer": "AristotleEmpirical traditionAristotle"}}]}, {"context": "This led him to many blatantly false claims.David HumeEmpirical revolutionSuggested that there are two importantly different types of knowledgeKnowledge based on thinkingKnowledge based on observationsHe believed that they should be kept seperate. The most important question of classic PoSHow much can we learn about the world without observing it?Two extreme views: nothing (empiricist), everything (rationalists) A more practical version of this question:Can results of a given science be tested without empirical observations?YES: non-empirical scienceNO: empirical science How do both branches of science work?Examples of non-empirical sciences: mathematics, geometry, logicExamples of empirical science: physics, biology, chemistryQuestions about the methods of mathematics and logic led to researchers to the discovery of \u201cproof theory\u201d Carnap\u2019s empiricismEvery meaningful sentence has to have empirical consequences - this is called \u201cthe principle of verification\u201dThis led to a reductionist programme in scienceToday most philosophers subscribe to a weaker view: naturalism PositivismPositivist view on science:Theories are cumulative in natureTheories are understood as sets of true sentences.", "questions_answers": [{"question": "What is the most important question of classic PoSHow much can we learn about the world without observing it?", "answer": {"score": 0.05766485258936882, "start": 368, "end": 375, "answer": "nothing"}}, {"question": "What is called the principle of verification?", "answer": {"score": 0.5212390422821045, "start": 830, "end": 842, "answer": "proof theory"}}, {"question": "What is a reductionist programme in science?", "answer": {"score": 0.36967939138412476, "start": 942, "end": 971, "answer": "the principle of verification"}}]}]
+[
+	{
+		"context": "Reflection on IT Reflection on IT: ScienceThe term \u201cscience\u201d differs in meaning Danish - videnskab EnglishRefers to only \u201cnatural sciences\u201d or \u201chard sciences\u201dDoes not refer to humanities (or social sciences). What is so special about science?Science as we go know it originated from ancient Greece.The Greeks started answering mythology questions with scienceDifferent from mythologyDifferent from religionThey meant science when they said philosophy What does science do?ExplanationWe understand the mechanism behind something. We don\u2019t just get that doing something results in something, but we understand why.\u201cKnowledge\u201d may not necessarily mean that we understand why\u201cUnderstanding\u201d doesPredictionScience gives us a possibility to predict the futureControlScience enabled us to change the world Classic views on sciencePlato\u201csearch of necessary truth\u201dDoxa vs epistemeEpisteme is the Greek word for proper scienceDoxa is like everyday science (eh, work on this)AristotleEmpirical traditionAristotle was the father of the many contemporary scientific disciplines:ChemistryBiologyPhysicsUsed observations but did not appreciate the empirical method enough.",
+		"questions_answers": [
+			{
+				"question": "What is the term science?",
+				"answer": {
+					"score": 0.1747695356607437,
+					"start": 122,
+					"end": 157,
+					"answer": "natural sciences\u201d or \u201chard sciences"
+				}
+			},
+			{
+				"question": "What does science mean?",
+				"answer": {
+					"score": 0.1011585146188736,
+					"start": 122,
+					"end": 157,
+					"answer": "natural sciences\u201d or \u201chard sciences"
+				}
+			},
+			{
+				"question": "What is the Greek word for proper scienceDoxa vs episteme?",
+				"answer": {
+					"score": 0.40773412585258484,
+					"start": 855,
+					"end": 859,
+					"answer": "Doxa"
+				}
+			},
+			{
+				"question": "Who was the father of the many contemporary scientific disciplines?",
+				"answer": {
+					"score": 0.9915759563446045,
+					"start": 964,
+					"end": 1001,
+					"answer": "AristotleEmpirical traditionAristotle"
+				}
+			}
+		]
+	},
+	{
+		"context": "This led him to many blatantly false claims.David HumeEmpirical revolutionSuggested that there are two importantly different types of knowledgeKnowledge based on thinkingKnowledge based on observationsHe believed that they should be kept seperate. The most important question of classic PoSHow much can we learn about the world without observing it?Two extreme views: nothing (empiricist), everything (rationalists) A more practical version of this question:Can results of a given science be tested without empirical observations?YES: non-empirical scienceNO: empirical science How do both branches of science work?Examples of non-empirical sciences: mathematics, geometry, logicExamples of empirical science: physics, biology, chemistryQuestions about the methods of mathematics and logic led to researchers to the discovery of \u201cproof theory\u201d Carnap\u2019s empiricismEvery meaningful sentence has to have empirical consequences - this is called \u201cthe principle of verification\u201dThis led to a reductionist programme in scienceToday most philosophers subscribe to a weaker view: naturalism PositivismPositivist view on science:Theories are cumulative in natureTheories are understood as sets of true sentences.",
+		"questions_answers": [
+			{
+				"question": "What is the most important question of classic PoSHow much can we learn about the world without observing it?",
+				"answer": {
+					"score": 0.05766485258936882,
+					"start": 368,
+					"end": 375,
+					"answer": "nothing"
+				}
+			},
+			{
+				"question": "What is called the principle of verification?",
+				"answer": {
+					"score": 0.5212390422821045,
+					"start": 830,
+					"end": 842,
+					"answer": "proof theory"
+				}
+			},
+			{
+				"question": "What is a reductionist programme in science?",
+				"answer": {
+					"score": 0.36967939138412476,
+					"start": 942,
+					"end": 971,
+					"answer": "the principle of verification"
+				}
+			}
+		]
+	}
+]

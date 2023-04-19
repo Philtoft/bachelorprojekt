@@ -93,13 +93,13 @@ class QGAR:
 
     def add_colon_if_last_char_not_dot_or_colon(self, text: str):
         if self._validate_text(text):
-            text += ": "
-        return text + " "
+            text = " " + text + ": "
+        return " " + text + " "
 
     def add_dot_if_last_char_not_dot(self, text: str):
         if self._validate_text(text):
-            text += ". "
-        return text + " "
+            text = " " + text + ". "
+        return " " + text + " "
 
     def _html_to_plaintext(self, html_notes: str):
         """ Converts a markdown string to plaintext """
