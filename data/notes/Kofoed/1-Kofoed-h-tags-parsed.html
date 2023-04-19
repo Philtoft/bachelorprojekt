@@ -1,676 +1,804 @@
 <html>
  <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-  <title>
-   Reflection on IT
-  </title>
   <style>
    /* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 3px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(55, 53, 47, 1);
-}
-.highlight-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.highlight-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.highlight-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.highlight-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.highlight-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.highlight-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.highlight-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.highlight-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.highlight-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.highlight-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.highlight-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.highlight-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.highlight-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.highlight-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.highlight-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.block-color-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.block-color-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.block-color-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.block-color-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.block-color-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.block-color-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.block-color-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.block-color-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.block-color-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.block-color-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.block-color-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.block-color-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
-.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
-.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
-.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
-.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
-.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
-.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
-.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
-.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
-.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
+		/* webkit printing magic: print all background colors */
+		html {
+			-webkit-print-color-adjust: exact;
+		}
+
+		* {
+			box-sizing: border-box;
+			-webkit-print-color-adjust: exact;
+		}
+
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		@media only screen {
+			body {
+				margin: 2em auto;
+				max-width: 900px;
+				color: rgb(55, 53, 47);
+			}
+		}
+
+		body {
+			line-height: 1.5;
+			white-space: pre-wrap;
+		}
+
+		a,
+		a.visited {
+			color: inherit;
+			text-decoration: underline;
+		}
+
+		.pdf-relative-link-path {
+			font-size: 80%;
+			color: #444;
+		}
+
+		h1,
+		h2,
+		h3 {
+			letter-spacing: -0.01em;
+			line-height: 1.2;
+			font-weight: 600;
+			margin-bottom: 0;
+		}
+
+		.page-title {
+			font-size: 2.5rem;
+			font-weight: 700;
+			margin-top: 0;
+			margin-bottom: 0.75em;
+		}
+
+		h1 {
+			font-size: 1.875rem;
+			margin-top: 1.875rem;
+		}
+
+		h2 {
+			font-size: 1.5rem;
+			margin-top: 1.5rem;
+		}
+
+		h3 {
+			font-size: 1.25rem;
+			margin-top: 1.25rem;
+		}
+
+		.source {
+			border: 1px solid #ddd;
+			border-radius: 3px;
+			padding: 1.5em;
+			word-break: break-all;
+		}
+
+		.callout {
+			border-radius: 3px;
+			padding: 1rem;
+		}
+
+		figure {
+			margin: 1.25em 0;
+			page-break-inside: avoid;
+		}
+
+		figcaption {
+			opacity: 0.5;
+			font-size: 85%;
+			margin-top: 0.5em;
+		}
+
+		mark {
+			background-color: transparent;
+		}
+
+		.indented {
+			padding-left: 1.5em;
+		}
+
+		hr {
+			background: transparent;
+			display: block;
+			width: 100%;
+			height: 1px;
+			visibility: visible;
+			border: none;
+			border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+		}
+
+		img {
+			max-width: 100%;
+		}
+
+		@media only print {
+			img {
+				max-height: 100vh;
+				object-fit: contain;
+			}
+		}
+
+		@page {
+			margin: 1in;
+		}
+
+		.collection-content {
+			font-size: 0.875rem;
+		}
+
+		.column-list {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.column {
+			padding: 0 1em;
+		}
+
+		.column:first-child {
+			padding-left: 0;
+		}
+
+		.column:last-child {
+			padding-right: 0;
+		}
+
+		.table_of_contents-item {
+			display: block;
+			font-size: 0.875rem;
+			line-height: 1.3;
+			padding: 0.125rem;
+		}
+
+		.table_of_contents-indent-1 {
+			margin-left: 1.5rem;
+		}
+
+		.table_of_contents-indent-2 {
+			margin-left: 3rem;
+		}
+
+		.table_of_contents-indent-3 {
+			margin-left: 4.5rem;
+		}
+
+		.table_of_contents-link {
+			text-decoration: none;
+			opacity: 0.7;
+			border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid rgba(55, 53, 47, 0.09);
+			border-collapse: collapse;
+		}
+
+		table {
+			border-left: none;
+			border-right: none;
+		}
+
+		th,
+		td {
+			font-weight: normal;
+			padding: 0.25em 0.5em;
+			line-height: 1.5;
+			min-height: 1.5em;
+			text-align: left;
+		}
+
+		th {
+			color: rgba(55, 53, 47, 0.6);
+		}
+
+		ol,
+		ul {
+			margin: 0;
+			margin-block-start: 0.6em;
+			margin-block-end: 0.6em;
+		}
+
+		li>ol:first-child,
+		li>ul:first-child {
+			margin-block-start: 0.6em;
+		}
+
+		ul>li {
+			list-style: disc;
+		}
+
+		ul.to-do-list {
+			padding-inline-start: 0;
+		}
+
+		ul.to-do-list>li {
+			list-style: none;
+		}
+
+		.to-do-children-checked {
+			text-decoration: line-through;
+			opacity: 0.375;
+		}
+
+		ul.toggle>li {
+			list-style: none;
+		}
+
+		ul {
+			padding-inline-start: 1.7em;
+		}
+
+		ul>li {
+			padding-left: 0.1em;
+		}
+
+		ol {
+			padding-inline-start: 1.6em;
+		}
+
+		ol>li {
+			padding-left: 0.2em;
+		}
+
+		.mono ol {
+			padding-inline-start: 2em;
+		}
+
+		.mono ol>li {
+			text-indent: -0.4em;
+		}
+
+		.toggle {
+			padding-inline-start: 0em;
+			list-style-type: none;
+		}
+
+		/* Indent toggle children */
+		.toggle>li>details {
+			padding-left: 1.7em;
+		}
+
+		.toggle>li>details>summary {
+			margin-left: -1.1em;
+		}
+
+		.selected-value {
+			display: inline-block;
+			padding: 0 0.5em;
+			background: rgba(206, 205, 202, 0.5);
+			border-radius: 3px;
+			margin-right: 0.5em;
+			margin-top: 0.3em;
+			margin-bottom: 0.3em;
+			white-space: nowrap;
+		}
+
+		.collection-title {
+			display: inline-block;
+			margin-right: 1em;
+		}
+
+		.simple-table {
+			margin-top: 1em;
+			font-size: 0.875rem;
+			empty-cells: show;
+		}
+
+		.simple-table td {
+			height: 29px;
+			min-width: 120px;
+		}
+
+		.simple-table th {
+			height: 29px;
+			min-width: 120px;
+		}
+
+		.simple-table-header-color {
+			background: rgb(247, 246, 243);
+			color: black;
+		}
+
+		.simple-table-header {
+			font-weight: 500;
+		}
+
+		time {
+			opacity: 0.5;
+		}
+
+		.icon {
+			display: inline-block;
+			max-width: 1.2em;
+			max-height: 1.2em;
+			text-decoration: none;
+			vertical-align: text-bottom;
+			margin-right: 0.5em;
+		}
+
+		img.icon {
+			border-radius: 3px;
+		}
+
+		.user-icon {
+			width: 1.5em;
+			height: 1.5em;
+			border-radius: 100%;
+			margin-right: 0.5rem;
+		}
+
+		.user-icon-inner {
+			font-size: 0.8em;
+		}
+
+		.text-icon {
+			border: 1px solid #000;
+			text-align: center;
+		}
+
+		.page-cover-image {
+			display: block;
+			object-fit: cover;
+			width: 100%;
+			max-height: 30vh;
+		}
+
+		.page-header-icon {
+			font-size: 3rem;
+			margin-bottom: 1rem;
+		}
+
+		.page-header-icon-with-cover {
+			margin-top: -0.72em;
+			margin-left: 0.07em;
+		}
+
+		.page-header-icon img {
+			border-radius: 3px;
+		}
+
+		.link-to-page {
+			margin: 1em 0;
+			padding: 0;
+			border: none;
+			font-weight: 500;
+		}
+
+		p>.user {
+			opacity: 0.5;
+		}
+
+		td>.user,
+		td>time {
+			white-space: nowrap;
+		}
+
+		input[type="checkbox"] {
+			transform: scale(1.5);
+			margin-right: 0.6em;
+			vertical-align: middle;
+		}
+
+		p {
+			margin-top: 0.5em;
+			margin-bottom: 0.5em;
+		}
+
+		.image {
+			border: none;
+			margin: 1.5em 0;
+			padding: 0;
+			border-radius: 0;
+			text-align: center;
+		}
+
+		.code,
+		code {
+			background: rgba(135, 131, 120, 0.15);
+			border-radius: 3px;
+			padding: 0.2em 0.4em;
+			border-radius: 3px;
+			font-size: 85%;
+			tab-size: 2;
+		}
+
+		code {
+			color: #eb5757;
+		}
+
+		.code {
+			padding: 1.5em 1em;
+		}
+
+		.code-wrap {
+			white-space: pre-wrap;
+			word-break: break-all;
+		}
+
+		.code>code {
+			background: none;
+			padding: 0;
+			font-size: 100%;
+			color: inherit;
+		}
+
+		blockquote {
+			font-size: 1.25em;
+			margin: 1em 0;
+			padding-left: 1em;
+			border-left: 3px solid rgb(55, 53, 47);
+		}
+
+		.bookmark {
+			text-decoration: none;
+			max-height: 8em;
+			padding: 0;
+			display: flex;
+			width: 100%;
+			align-items: stretch;
+		}
+
+		.bookmark-title {
+			font-size: 0.85em;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			height: 1.75em;
+			white-space: nowrap;
+		}
+
+		.bookmark-text {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.bookmark-info {
+			flex: 4 1 180px;
+			padding: 12px 14px 14px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.bookmark-image {
+			width: 33%;
+			flex: 1 1 180px;
+			display: block;
+			position: relative;
+			object-fit: cover;
+			border-radius: 1px;
+		}
+
+		.bookmark-description {
+			color: rgba(55, 53, 47, 0.6);
+			font-size: 0.75em;
+			overflow: hidden;
+			max-height: 4.5em;
+			word-break: break-word;
+		}
+
+		.bookmark-href {
+			font-size: 0.75em;
+			margin-top: 0.25em;
+		}
+
+		.sans {
+			font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+		}
+
+		.code {
+			font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
+		}
+
+		.serif {
+			font-family: Lyon-Text, Georgia, ui-serif, serif;
+		}
+
+		.mono {
+			font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+		}
+
+		.pdf .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR';
+		}
+
+		.pdf .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+		}
+
+		.pdf .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR';
+		}
+
+		.pdf .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+		}
+
+		.highlight-default {
+			color: rgba(55, 53, 47, 1);
+		}
+
+		.highlight-gray {
+			color: rgba(120, 119, 116, 1);
+			fill: rgba(120, 119, 116, 1);
+		}
+
+		.highlight-brown {
+			color: rgba(159, 107, 83, 1);
+			fill: rgba(159, 107, 83, 1);
+		}
+
+		.highlight-orange {
+			color: rgba(217, 115, 13, 1);
+			fill: rgba(217, 115, 13, 1);
+		}
+
+		.highlight-yellow {
+			color: rgba(203, 145, 47, 1);
+			fill: rgba(203, 145, 47, 1);
+		}
+
+		.highlight-teal {
+			color: rgba(68, 131, 97, 1);
+			fill: rgba(68, 131, 97, 1);
+		}
+
+		.highlight-blue {
+			color: rgba(51, 126, 169, 1);
+			fill: rgba(51, 126, 169, 1);
+		}
+
+		.highlight-purple {
+			color: rgba(144, 101, 176, 1);
+			fill: rgba(144, 101, 176, 1);
+		}
+
+		.highlight-pink {
+			color: rgba(193, 76, 138, 1);
+			fill: rgba(193, 76, 138, 1);
+		}
+
+		.highlight-red {
+			color: rgba(212, 76, 71, 1);
+			fill: rgba(212, 76, 71, 1);
+		}
+
+		.highlight-gray_background {
+			background: rgba(241, 241, 239, 1);
+		}
+
+		.highlight-brown_background {
+			background: rgba(244, 238, 238, 1);
+		}
+
+		.highlight-orange_background {
+			background: rgba(251, 236, 221, 1);
+		}
+
+		.highlight-yellow_background {
+			background: rgba(251, 243, 219, 1);
+		}
+
+		.highlight-teal_background {
+			background: rgba(237, 243, 236, 1);
+		}
+
+		.highlight-blue_background {
+			background: rgba(231, 243, 248, 1);
+		}
+
+		.highlight-purple_background {
+			background: rgba(244, 240, 247, 0.8);
+		}
+
+		.highlight-pink_background {
+			background: rgba(249, 238, 243, 0.8);
+		}
+
+		.highlight-red_background {
+			background: rgba(253, 235, 236, 1);
+		}
+
+		.block-color-default {
+			color: inherit;
+			fill: inherit;
+		}
+
+		.block-color-gray {
+			color: rgba(120, 119, 116, 1);
+			fill: rgba(120, 119, 116, 1);
+		}
+
+		.block-color-brown {
+			color: rgba(159, 107, 83, 1);
+			fill: rgba(159, 107, 83, 1);
+		}
+
+		.block-color-orange {
+			color: rgba(217, 115, 13, 1);
+			fill: rgba(217, 115, 13, 1);
+		}
+
+		.block-color-yellow {
+			color: rgba(203, 145, 47, 1);
+			fill: rgba(203, 145, 47, 1);
+		}
+
+		.block-color-teal {
+			color: rgba(68, 131, 97, 1);
+			fill: rgba(68, 131, 97, 1);
+		}
+
+		.block-color-blue {
+			color: rgba(51, 126, 169, 1);
+			fill: rgba(51, 126, 169, 1);
+		}
+
+		.block-color-purple {
+			color: rgba(144, 101, 176, 1);
+			fill: rgba(144, 101, 176, 1);
+		}
+
+		.block-color-pink {
+			color: rgba(193, 76, 138, 1);
+			fill: rgba(193, 76, 138, 1);
+		}
+
+		.block-color-red {
+			color: rgba(212, 76, 71, 1);
+			fill: rgba(212, 76, 71, 1);
+		}
+
+		.block-color-gray_background {
+			background: rgba(241, 241, 239, 1);
+		}
+
+		.block-color-brown_background {
+			background: rgba(244, 238, 238, 1);
+		}
+
+		.block-color-orange_background {
+			background: rgba(251, 236, 221, 1);
+		}
+
+		.block-color-yellow_background {
+			background: rgba(251, 243, 219, 1);
+		}
+
+		.block-color-teal_background {
+			background: rgba(237, 243, 236, 1);
+		}
+
+		.block-color-blue_background {
+			background: rgba(231, 243, 248, 1);
+		}
+
+		.block-color-purple_background {
+			background: rgba(244, 240, 247, 0.8);
+		}
+
+		.block-color-pink_background {
+			background: rgba(249, 238, 243, 0.8);
+		}
+
+		.block-color-red_background {
+			background: rgba(253, 235, 236, 1);
+		}
+
+		.select-value-color-pink {
+			background-color: rgba(245, 224, 233, 1);
+		}
+
+		.select-value-color-purple {
+			background-color: rgba(232, 222, 238, 1);
+		}
+
+		.select-value-color-green {
+			background-color: rgba(219, 237, 219, 1);
+		}
+
+		.select-value-color-gray {
+			background-color: rgba(227, 226, 224, 1);
+		}
+
+		.select-value-color-opaquegray {
+			background-color: rgba(255, 255, 255, 0.0375);
+		}
+
+		.select-value-color-orange {
+			background-color: rgba(250, 222, 201, 1);
+		}
+
+		.select-value-color-brown {
+			background-color: rgba(238, 224, 218, 1);
+		}
+
+		.select-value-color-red {
+			background-color: rgba(255, 226, 221, 1);
+		}
+
+		.select-value-color-yellow {
+			background-color: rgba(253, 236, 200, 1);
+		}
+
+		.select-value-color-blue {
+			background-color: rgba(211, 229, 239, 1);
+		}
+
+		.checkbox {
+			display: inline-flex;
+			vertical-align: text-bottom;
+			width: 16;
+			height: 16;
+			background-size: 16px;
+			margin-left: 2px;
+			margin-right: 5px;
+		}
+
+		.checkbox-on {
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+		}
+
+		.checkbox-off {
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+		}
   </style>
  </head>
  <body>
@@ -708,10 +836,12 @@ blockquote {
            English
           </summary>
           <p class="" id="d700d291-d60c-45c2-b446-f4209dd9c8cc">
-           Refers to only “natural sciences” or “hard sciences”
+           Refers to only “natural
+										sciences” or “hard sciences”
           </p>
           <p class="" id="d9a9b8cd-d8a2-4e11-9e97-831658852380">
-           Does not refer to humanities (or social sciences).
+           Does not refer to humanities
+										(or social sciences).
           </p>
           <p class="" id="7cb70324-04d8-4d29-8f8a-930ed74c24bf">
           </p>
@@ -720,14 +850,17 @@ blockquote {
        </ul>
        <p class="" id="ab48ffbf-c5a0-4057-8c14-6428f2aebca6">
         <strong>
-         What is so special about science?
+         What is so special about
+								science?
         </strong>
        </p>
        <p class="" id="576fe26a-fd40-4659-919c-e429a8b8261e">
-        Science as we go know it originated from ancient Greece.
+        Science as we go know it originated from
+							ancient Greece.
        </p>
        <p class="" id="ca6f011b-80da-4080-b015-7a542b9a4a99">
-        The Greeks started answering mythology questions with science
+        The Greeks started answering mythology
+							questions with science
        </p>
        <p class="" id="e0908a02-c47e-4d4a-90a9-8d96a2d70979">
         Different from mythology
@@ -736,7 +869,8 @@ blockquote {
         Different from religion
        </p>
        <p class="" id="2ee1601d-ecdb-40ed-8cc2-a6e9a9b5ca01">
-        They meant science when they said philosophy
+        They meant science when they said
+							philosophy
        </p>
        <p class="" id="a4de10c2-9594-45cb-9946-611ecb1fc2e0">
        </p>
@@ -750,12 +884,14 @@ blockquote {
          Explanation
          <ul class="bulleted-list" id="314f1b2c-0c06-40c3-8b65-0c9e3ab5ddc3">
           <li style="list-style-type:circle">
-           We understand the mechanism behind something. We don’t just get that doing something results in something, but we understand why.
+           We understand the mechanism behind something. We
+										don’t just get that doing something results in something, but we understand why.
           </li>
          </ul>
          <ul class="bulleted-list" id="3607684b-2279-433b-bc79-fa8c710e0739">
           <li style="list-style-type:circle">
-           “Knowledge” may not necessarily mean that we understand why
+           “Knowledge” may not necessarily mean that we
+										understand why
           </li>
          </ul>
          <ul class="bulleted-list" id="82bc495c-b8c2-44f1-9917-7357ae40f41b">
@@ -770,7 +906,8 @@ blockquote {
          Prediction
          <ul class="bulleted-list" id="59d181cb-3073-4a4c-bc9f-94951772f08a">
           <li style="list-style-type:circle">
-           Science gives us a possibility to predict the future
+           Science gives us a possibility to predict the
+										future
           </li>
          </ul>
         </li>
@@ -805,12 +942,14 @@ blockquote {
            Doxa vs episteme
            <ul class="bulleted-list" id="b1516579-8360-4f9b-adde-6ddf75115003">
             <li style="list-style-type:square">
-             Episteme is the Greek word for proper science
+             Episteme is the Greek word for proper
+												science
             </li>
            </ul>
            <ul class="bulleted-list" id="25455113-b37b-476e-93a1-e0210477d32f">
             <li style="list-style-type:square">
-             Doxa is like everyday science (eh, work on this)
+             Doxa is like everyday science (eh, work
+												on this)
             </li>
            </ul>
           </li>
@@ -827,7 +966,8 @@ blockquote {
          </ul>
          <ul class="bulleted-list" id="df12ca5d-00c8-4907-ab54-27870c699b18">
           <li style="list-style-type:circle">
-           Aristotle was the father of the many contemporary scientific disciplines:
+           Aristotle was the father of the many contemporary
+										scientific disciplines:
            <ul class="bulleted-list" id="df127df2-0ced-4e13-96bc-578a47eece19">
             <li style="list-style-type:square">
              Chemistry
@@ -847,7 +987,8 @@ blockquote {
          </ul>
          <ul class="bulleted-list" id="b58103d9-2b93-445a-b8f2-94fc658fd101">
           <li style="list-style-type:circle">
-           Used observations but did not appreciate the empirical method enough. This led him to many blatantly false claims.
+           Used observations but did not appreciate the
+										empirical method enough. This led him to many blatantly false claims.
           </li>
          </ul>
         </li>
@@ -862,7 +1003,8 @@ blockquote {
          </ul>
          <ul class="bulleted-list" id="2ba35d25-6ac1-42d1-9841-6d3dde146ec8">
           <li style="list-style-type:circle">
-           Suggested that there are two importantly different types of knowledge
+           Suggested that there are two importantly
+										different types of knowledge
            <ul class="bulleted-list" id="5132a948-3efa-4d13-9420-8bbab7ffe44a">
             <li style="list-style-type:square">
              Knowledge based on thinking
@@ -886,14 +1028,17 @@ blockquote {
        </p>
        <p class="" id="90b93cc8-6b1e-4564-9b52-08168605794c">
         <strong>
-         The most important question of classic PoS
+         The most important question of
+								classic PoS
         </strong>
        </p>
        <p class="" id="488a0fc9-3637-40d8-ba69-796721e88fd2">
-        How much can we learn about the world without observing it?
+        How much can we learn about the world
+							without observing it?
        </p>
        <p class="" id="c176a441-07f9-4d87-a3f4-70c68473629c">
-        Two extreme views: nothing (empiricist), everything (rationalists)
+        Two extreme views: nothing (empiricist),
+							everything (rationalists)
        </p>
        <p class="" id="cdc3bab9-8f0e-4d99-91ed-84f13b86733d">
        </p>
@@ -901,7 +1046,8 @@ blockquote {
         A more practical version of this question:
        </p>
        <p class="" id="3f98faed-dd10-41cf-9ab5-2f93a87a54da">
-        Can results of a given science be tested without empirical observations?
+        Can results of a given science be tested
+							without empirical observations?
        </p>
        <p class="" id="143db7fc-68c8-4e89-8fe9-84febd77c808">
         YES: non-empirical science
@@ -913,17 +1059,21 @@ blockquote {
        </p>
        <p class="" id="601e45e6-8b06-41c1-a915-b36dfe9bbb9f">
         <strong>
-         How do both branches of science work?
+         How do both branches of science
+								work?
         </strong>
        </p>
        <p class="" id="88e7efc2-ba16-4091-90c3-c8888e4dc67f">
-        Examples of non-empirical sciences: mathematics, geometry, logic
+        Examples of non-empirical sciences:
+							mathematics, geometry, logic
        </p>
        <p class="" id="7cd16999-cf01-48bc-8584-d96010c0e2d6">
-        Examples of empirical science: physics, biology, chemistry
+        Examples of empirical science: physics,
+							biology, chemistry
        </p>
        <p class="" id="aacf9709-11dc-4771-96da-1c836506a15b">
-        Questions about the methods of mathematics and logic led to researchers to the discovery of “proof theory”
+        Questions about the methods of mathematics
+							and logic led to researchers to the discovery of “proof theory”
        </p>
        <p class="" id="b19838eb-4bd2-478e-866c-f0c4f726e1b2">
        </p>
@@ -937,13 +1087,16 @@ blockquote {
         Carnap’s empiricism
        </summary>
        <p class="" id="f5b1bd64-0778-4e01-9435-7056694a59e7">
-        Every meaningful sentence has to have empirical consequences - this is called “the principle of verification”
+        Every meaningful sentence has to have
+							empirical consequences - this is called “the principle of verification”
        </p>
        <p class="" id="b05cfede-facd-47d6-9f11-998b630765fa">
-        This led to a reductionist programme in science
+        This led to a reductionist programme in
+							science
        </p>
        <p class="" id="127691f4-058f-4ef6-af64-35643a2968b1">
-        Today most philosophers subscribe to a weaker view: naturalism
+        Today most philosophers subscribe to a
+							weaker view: naturalism
        </p>
        <p class="" id="8b98a9fa-2127-4bd1-823f-58b8f1fd6fbd">
        </p>
@@ -963,10 +1116,13 @@ blockquote {
         Theories are cumulative in nature
        </p>
        <p class="" id="48baf476-ef60-4776-8997-d86f1055828b">
-        Theories are understood as sets of true sentences. Ideally this set grows over time: new true sentences are added and sentences which are discovered to be false are eliminated.
+        Theories are understood as sets of true
+							sentences. Ideally this set grows over time: new true sentences are added and sentences
+							which are discovered to be false are eliminated.
        </p>
        <p class="" id="f855efdf-fae1-4107-97e2-cedb40421935">
-        Science is a balance between theory and observation.  …
+        Science is a balance between theory and
+							observation. …
        </p>
       </details>
      </li>
@@ -981,21 +1137,26 @@ blockquote {
         Science consists of “problem solving”
        </p>
        <p class="" id="1f8ea7fa-4264-48db-8d7b-35f6b8b31177">
-        What it means in practice is that scientists start with problems and hypotheses and not observation of “bare facts”.
+        What it means in practice is that
+							scientists start with problems and hypotheses and not observation of “bare facts”.
        </p>
        <p class="" id="80ebf72b-c1d9-4dd4-842e-2529d1f7b154">
-        Needless to say, the problem are sometimes the result of observations.
+        Needless to say, the problem are sometimes
+							the result of observations.
        </p>
        <p class="" id="fe587d87-b3e4-4413-a4ad-adf334fcf11d">
        </p>
        <p class="" id="bf9ae1da-5831-459c-acf2-b976f28af31c">
-        Step 1 - scientists test the coherence of the theory
+        Step 1 - scientists test the coherence of
+							the theory
        </p>
        <p class="" id="ffa6531a-cc1e-4c65-ae05-f1e1c12bd7b3">
-        Step 2 - scientists formalize the theory to see which of their claims are analytic
+        Step 2 - scientists formalize the theory
+							to see which of their claims are analytic
        </p>
        <p class="" id="8f78a5e0-7172-4377-a548-802d254afdfb">
-        Step 3 - scientists compare the theory with existing accounts
+        Step 3 - scientists compare the theory
+							with existing accounts
        </p>
        <p class="" id="e65c2f6f-7508-44d0-be1d-99452618cda1">
         Step 4 -
@@ -1003,35 +1164,43 @@ blockquote {
        <p class="" id="059325cf-b732-4dc9-8948-f1f7737f7aa3">
        </p>
        <p class="" id="d708f77c-87fb-4b2e-a4fb-56c82c3eeec3">
-        The result: a theory can never be “verified”.
+        The result: a theory can never be
+							“verified”.
        </p>
        <p class="" id="425d1364-1957-4368-b6af-767d7b40f976">
         But it can be falsified.
        </p>
        <p class="" id="60bc3b79-06ad-4d89-9f26-937321246646">
-        Only theories which can be falsified are scientific.
+        Only theories which can be falsified are
+							scientific.
        </p>
        <p class="" id="f9bb0e6c-2180-427d-9e00-bf32d95216d7">
        </p>
        <p class="" id="dd36c58a-eaca-4cdb-b5a4-fd21de2d9b7d">
         <strong>
-         Counterintuitive nature of good theories:
+         Counterintuitive nature of good
+								theories:
         </strong>
        </p>
        <p class="" id="c83c606a-dccf-45b4-867a-b21d7ac1e89c">
-        Analytics sentences are obviously true. Problem is, they do not contain any information. They are trivial.
+        Analytics sentences are obviously true.
+							Problem is, they do not contain any information. They are trivial.
        </p>
        <p class="" id="5d8003b1-1b9d-4994-8ae6-1a62f6d48d5d">
-        The more information a sentence carries, the less obvious (less probable) it is.
+        The more information a sentence carries,
+							the less obvious (less probable) it is.
        </p>
        <p class="" id="037e4a43-f637-4d77-8e0a-311653bd31f3">
-        The result: the more improbable a theory is, the better.
+        The result: the more improbable a theory
+							is, the better.
        </p>
        <p class="" id="0d13bb0f-c6d3-46e1-a254-41d3db9d3f85">
-        If it is false, it will be eventually falsified.
+        If it is false, it will be eventually
+							falsified.
        </p>
        <p class="" id="db752044-2c59-46f7-98ec-d25f264a0e87">
-        But if it is true, then it gives us a lot of new information about the world.
+        But if it is true, then it gives us a lot
+							of new information about the world.
        </p>
        <p class="" id="09a78958-6bd7-42f1-8f80-5f2d9107e63f">
        </p>
@@ -1056,10 +1225,12 @@ blockquote {
     <p class="" id="d4e023b2-f1d5-4d99-bd6b-3ce4470e424a">
      <div class="indented">
       <p class="" id="a0fb8337-21c5-4538-9756-52e8f797a40c">
-       Connection to Carnap: adding metaphysical components to a theory is the easiest way of making it unfalsifiable.
+       Connection to Carnap: adding metaphysical
+					components to a theory is the easiest way of making it unfalsifiable.
       </p>
       <p class="" id="7937d0cd-9531-442b-9cbc-7cdc8f4d5aed">
-       Similarly - creating a clever mockup of a theory comprising only from analytics sentenes also makes it unfalsifiable.
+       Similarly - creating a clever mockup of a theory
+					comprising only from analytics sentenes also makes it unfalsifiable.
       </p>
       <p class="" id="a414a06b-18f2-4644-a09a-92b53cad0380">
       </p>
@@ -1072,10 +1243,12 @@ blockquote {
        Popper criticized “historicism” and “holism”
       </p>
       <p class="" id="0fdb090c-4fd9-4fd5-b358-f71aabb1e25f">
-       Holism - a belief that individuals are formed by the social groupings they belong to
+       Holism - a belief that individuals are formed by
+					the social groupings they belong to
       </p>
       <p class="" id="68954617-2a5e-4ece-85f2-935942663413">
-       Historicism - a belief that individuals are shaped by the historical circumstances they live in.
+       Historicism - a belief that individuals are shaped
+					by the historical circumstances they live in.
       </p>
       <p class="" id="9894f387-8d01-49f1-b61d-0ef84de89422">
       </p>
@@ -1083,25 +1256,32 @@ blockquote {
        The argument against historicism and holism:
       </p>
       <p class="" id="d0be1280-6863-41de-9340-3ee65b940f8a">
-       Science is not predictable. We cannot foresee future scientific and technological discoveries.
+       Science is not predictable. We cannot foresee
+					future scientific and technological discoveries.
       </p>
       <p class="" id="13b1cc51-8d53-4160-a1e0-88af412a984e">
-       Physics predicts the future states of planets but not the future states of physics.
+       Physics predicts the future states of planets but
+					not the future states of physics.
       </p>
       <p class="" id="c74cf875-e831-4144-9d13-88e39931ee51">
-       Science and technology influence history and society.
+       Science and technology influence history and
+					society.
       </p>
       <p class="" id="a12471e2-7b6d-475e-a62a-d0e217f2f7b6">
-       For this reason it is not possible to predict future states of history and society.
+       For this reason it is not possible to predict
+					future states of history and society.
       </p>
       <p class="" id="07f08fcb-9e9a-4ba6-94e9-78e7d70c022f">
-       Sociology and history cannot formulate laws (similar to physical laws).
+       Sociology and history cannot formulate laws
+					(similar to physical laws).
       </p>
       <p class="" id="13ee5d9d-8b2f-4aa8-8b9b-f0b64dbf2023">
-       It is not possible to create a long-term social or historical politcal plan.
+       It is not possible to create a long-term social or
+					historical politcal plan.
       </p>
       <p class="" id="f03d23b4-1bd4-426c-8c6a-2b11620bfc03">
-       If you do that you will end up forcing your vision of society on people
+       If you do that you will end up forcing your vision
+					of society on people
       </p>
      </div>
     </p>
@@ -1113,24 +1293,29 @@ blockquote {
        </summary>
        <ul class="bulleted-list" id="ac1044a6-f076-4c0b-89b7-60d8f11114f7">
         <li style="list-style-type:disc">
-         Analytic sentences are sentences which can be evaluated without knowing the facts.
+         Analytic sentences are sentences which can be evaluated
+								without knowing the facts.
         </li>
        </ul>
        <p class="" id="c3e285d9-1c22-43e4-82cf-d76a75f773f9">
-        Example: There is no mountain that is higher than the highest mountain.
+        Example: There is no mountain that is
+							higher than the highest mountain.
        </p>
        <p class="" id="3717c4d8-c02b-4a54-854c-23d158fbe234">
-        Definitions are analytic sentences, they fix the meaning of new words.
+        Definitions are analytic sentences, they
+							fix the meaning of new words.
        </p>
        <p class="" id="f8f93f32-0dd5-4088-a7e8-3bad7e45c546">
        </p>
        <ul class="bulleted-list" id="f262e8d6-6aeb-4502-8575-2700c08b8a89">
         <li style="list-style-type:disc">
-         Synthetic sentences are sentences which cannot be evaluated without knowing the facts.
+         Synthetic sentences are sentences which cannot be evaluated
+								without knowing the facts.
         </li>
        </ul>
        <p class="" id="ae3bf0ff-8d9c-4e6b-886a-a1d223c93bc3">
-        Example: There is no higher mountain than Mount Everest.
+        Example: There is no higher mountain than
+							Mount Everest.
        </p>
        <p class="" id="e1771124-eae8-48be-a97d-cb65170bc75b">
        </p>
@@ -1140,7 +1325,8 @@ blockquote {
         Newton’s 2nd law: definition.
        </p>
        <p class="" id="8777e82a-b72e-410f-9f62-f15e9c609e37">
-        One might argue that there is no such thing as speed as it’s just a definition for time over space ???
+        One might argue that there is no such
+							thing as speed as it’s just a definition for time over space ???
        </p>
       </details>
      </li>
@@ -1152,10 +1338,12 @@ blockquote {
         Thomas Kuhn and the scientific revolutions
        </summary>
        <p class="" id="63536af1-7798-4382-94a5-58ed9a45b182">
-        In a stark contrast to Popper, Kuhn approached the study of science from the angle of its history (and not contents).
+        In a stark contrast to Popper, Kuhn
+							approached the study of science from the angle of its history (and not contents).
        </p>
        <p class="" id="e8d182cc-73a7-443c-97e2-a5417e2f43b1">
-        He realized that different scientific disciplines typically go through phases:
+        He realized that different scientific
+							disciplines typically go through phases:
        </p>
        <ul class="bulleted-list" id="e52ceff3-68c3-4652-a934-bc38ad34f802">
         <li style="list-style-type:disc">
@@ -1198,7 +1386,8 @@ blockquote {
     <p class="" id="c16ee92d-9f7c-4ed0-9006-47c7f76a1232">
      <div class="indented">
       <p class="" id="9fe364cb-c75a-4883-b96f-ddde715b1dc3">
-       Theories before and after the revolution are incommensurable (incompatible).
+       Theories before and after the revolution are
+					incommensurable (incompatible).
       </p>
       <p class="" id="702480e8-ecd9-4c43-a196-7f26dd4d798c">
        They differ in:
@@ -1256,13 +1445,16 @@ blockquote {
        We could say that Kuhn created a paradigm shift.
       </p>
       <p class="" id="e917b3fc-f025-4888-a1dc-abc84715813f">
-       His work split philosophy of science into two branches:
+       His work split philosophy of science into two
+					branches:
       </p>
       <p class="" id="a689f6ed-20a7-4824-9cef-04e4b68f3eac">
-       Content based: the analysis of content of scientific theories (with prescriptions as to how to make them better)
+       Content based: the analysis of content of
+					scientific theories (with prescriptions as to how to make them better)
       </p>
       <p class="" id="75ebdfa4-aadb-4f7f-b736-088caae9b9cb">
-       Context based: the analysis of social, historical and economical background of science (with prescriptions as to how to make them better)
+       Context based: the analysis of social, historical
+					and economical background of science (with prescriptions as to how to make them better)
       </p>
       <p class="" id="eaa56d93-cc97-426f-b1dd-314dca71d927">
       </p>
@@ -1275,32 +1467,40 @@ blockquote {
         Feminist philosophy of science
        </summary>
        <p class="" id="0efd3643-2c4d-4c53-9658-b143394ac173">
-        Enlightenment presented science as progressive
+        Enlightenment presented science as
+							progressive
        </p>
        <p class="" id="c3c774ae-833b-4a97-86b1-d9dfc22c6051">
-        This view changed in XX century - science helps to maintain the status quo
+        This view changed in XX century - science
+							helps to maintain the status quo
        </p>
        <p class="" id="929dfcf1-12f8-45cd-a47d-22b7f9a3db08">
-        The most visible example of this is the gender bias in science
+        The most visible example of this is the
+							gender bias in science
        </p>
        <p class="" id="72aa6c41-edfa-4365-a7f2-8afe3450bfef">
-        Political feminism: women were very underrepresented in science
+        Political feminism: women were very
+							underrepresented in science
        </p>
        <p class="" id="0ff66f1d-038c-41e5-a781-f00b46345911">
-        Philosophical feminism: the model of rationality was male oriented
+        Philosophical feminism: the model of
+							rationality was male oriented
        </p>
        <p class="" id="1b208156-1b8c-4a5d-bdcb-39befb2454fd">
-        We can map it to the context/content divide
+        We can map it to the context/content
+							divide
        </p>
        <p class="" id="cc3aada1-a133-43e9-941d-da27c2b9339e">
-        Radical approaches: feminist epistemology and standpoint theory
+        Radical approaches: feminist epistemology
+							and standpoint theory
        </p>
        <p class="" id="87031d28-0899-465e-9e9d-d80cdb23192c">
        </p>
        <p class="" id="421934a9-fa0b-4c61-a650-11f39aed7da0">
        </p>
        <p class="" id="de55546c-f541-4f5e-858e-f3f2309cec6b">
-        The kye question is, does women’s pojnt of view
+        The kye question is, does women’s pojnt of
+							view
        </p>
       </details>
      </li>
@@ -1312,15 +1512,18 @@ blockquote {
         The difference between “necessary” and “sufficient” conditions
        </summary>
        <p class="" id="404f8b0e-df3b-4593-902a-685a874b23e3">
-        A necessary condition is a condition that has to be met for something to be the case.
+        A necessary condition is a condition that
+							has to be met for something to be the case.
        </p>
        <p class="" id="a20b830e-2790-46a9-a913-30bae67f3562">
-        A sufficient condition is a condition that, if met, suffices for something to be the case.
+        A sufficient condition is a condition
+							that, if met, suffices for something to be the case.
        </p>
        <p class="" id="ab307357-6d0b-4726-a783-1cba8a617d54">
         If
         <mark class="highlight-teal">
-         a human being gets blown into bits
+         a human
+								being gets blown into bits
         </mark>
         then
         <mark class="highlight-blue">
@@ -1328,7 +1531,8 @@ blockquote {
         </mark>
        </p>
        <p class="" id="2e331361-6d81-4643-8f7a-db4bdd31057e">
-        green = sufficient condition, blue = necessary condition
+        green = sufficient condition, blue =
+							necessary condition
        </p>
       </details>
      </li>
@@ -1348,7 +1552,8 @@ blockquote {
         <strong>
          formal
         </strong>
-        properties of expressions: in practice their shape and order of signs. We talk only about the language.
+        properties of expressions: in
+							practice their shape and order of signs. We talk only about the language.
        </p>
        <p class="" id="3a05665e-e143-4c56-9b55-49167aa1c46a">
         We move towards
@@ -1359,7 +1564,8 @@ blockquote {
         <strong>
          refer to
         </strong>
-        - what they are about. We start talking about the world, not only the language.
+        - what they are
+							about. We start talking about the world, not only the language.
        </p>
        <p class="" id="0e24e984-d63a-43f0-aa39-67b9b840283e">
         We move towards
@@ -1368,13 +1574,15 @@ blockquote {
         </strong>
         whenever we are interested in what
         <strong>
-         speaker means
+         speaker
+								means
         </strong>
         and what the
         <strong>
          listener understands
         </strong>
-        . We start talking about the language users.
+        . We start talking
+							about the language users.
        </p>
       </details>
      </li>
@@ -1389,13 +1597,17 @@ blockquote {
         Mathematics was supposed to be consistent.
        </p>
        <p class="" id="c333d2f2-129e-4ae5-970e-30e7edbd8ad8">
-        Consistency is simply the lack of contradiction in a theory.
+        Consistency is simply the lack of
+							contradiction in a theory.
        </p>
        <p class="" id="cd43eabb-170d-42a6-b509-97fd7c7231ae">
-        Mathematicians wanted to be the explanation of the fundamentals of mathematics on logic  specifically on the notion of a “set”.
+        Mathematicians wanted to be the
+							explanation of the fundamentals of mathematics on logic specifically on the notion of a
+							“set”.
        </p>
        <p class="" id="2aed446f-4cee-43e5-a5c1-41435de69e63">
-        Unfortunately, what they had at the time was only a simple notion of a set devised
+        Unfortunately, what they had at the time
+							was only a simple notion of a set devised
        </p>
        <p class="" id="ccb0ff67-08e5-41c3-85a3-85538222a853">
        </p>
@@ -1406,80 +1618,102 @@ blockquote {
            Russell’s Paradox
           </summary>
           <p class="" id="bb75d65d-d0d6-4c8e-92b2-ae8d6c23c252">
-           Can there be a “master set” of all the sets which do not contain themselves as members?
+           Can there be a “master set” of
+										all the sets which do not contain themselves as members?
           </p>
           <p class="" id="45636d06-6028-479b-95dc-7f2e1a2508f6">
-           A set = a barber. To contain itself = to shave yourself.
+           A set = a barber. To contain
+										itself = to shave yourself.
           </p>
           <p class="" id="a4244926-fe02-43d7-8f43-04ecd350df1b">
-           Imagine a town where people are divied into two groups: those who shave themselves and thoes who don’t.
+           Imagine a town where people
+										are divied into two groups: those who shave themselves and thoes who don’t.
           </p>
           <p class="" id="9d704979-43d8-4c52-8585-a89c212115e2">
-           There is a barber in this town. The barber shaves all and only those who do not shave themselves.
+           There is a barber in this
+										town. The barber shaves all and only those who do not shave themselves.
           </p>
           <p class="" id="2cfce86c-1c7e-486b-8838-7148fcf8015c">
            Does the barber shave himself?
           </p>
           <p class="" id="f25242a7-bb73-48ee-a45a-23b6ca9cdd98">
-           If the does, then he belongs to those people who shave themselves. By definition he does not shave those people. If he does then he does not.
+           If the does, then he belongs
+										to those people who shave themselves. By definition he does not shave those
+										people. If he does then he does not.
           </p>
           <p class="" id="405933d8-74c2-4327-9d98-5d77afdc6d3c">
-           If he does not, then he belongs to those people who do not shave themselves. By definition
+           If he does not, then he
+										belongs to those people who do not shave themselves. By definition
           </p>
          </details>
         </li>
        </ul>
        <p class="" id="b16236dc-eede-4186-91f6-b04072f5f8fa">
-        Solution to this problem led to the theory of types and to a modern set theory.
+        Solution to this problem led to the theory
+							of types and to a modern set theory.
        </p>
        <p class="" id="2fe602b7-8b96-4c3e-a1eb-cd64b68ca5c3">
         Mathematics was saved…
        </p>
        <p class="" id="bf48947f-8653-45d5-8212-ab01a2475cba">
-        But there were two more things to do: completeness and decidability.
+        But there were two more things to do:
+							completeness and decidability.
        </p>
        <p class="" id="a517b4bc-c1a0-4386-923f-a7e9e8ba8c69">
         <strong>
          Completeness
         </strong>
-        of a theory means that for any sentence it can be proven whether the sentence or its negation is in the theory.
+        of a theory
+							means that for any sentence it can be proven whether the sentence or its negation is in the
+							theory.
        </p>
        <p class="" id="8af6f23f-0475-4d1d-b191-07f5f0504f0e">
         <strong>
          Decidability
         </strong>
-        means that there exists an effective procedure for making such a proof for any sentence.
+        means that
+							there exists an effective procedure for making such a proof for any sentence.
        </p>
        <p class="" id="b7c7fb09-a395-4e03-8300-6776d0ca4a84">
        </p>
        <p class="" id="71e14df5-52d7-46f5-856d-0fcfdf888735">
-        In 1936 Alan Turing published a paper which tried to provide a solution to these problems.
+        In 1936 Alan Turing published a paper
+							which tried to provide a solution to these problems.
        </p>
        <p class="" id="5703d546-b35a-438a-a6d5-4a3e02bdd669">
         Turing did not want to invent computing.
        </p>
        <p class="" id="6829ce71-7419-41b8-8781-e765815876c2">
-        He wanted to solve Hilbert’s problem and provide foundations do mathematics.
+        He wanted to solve Hilbert’s problem and
+							provide foundations do mathematics.
        </p>
        <p class="" id="9c253dae-e677-4726-b00a-cba037d7dc0a">
-        But with this fairly short paper he did both - provided the foundations to mathematics and kickstarted computing.
+        But with this fairly short paper he did
+							both - provided the foundations to mathematics and kickstarted computing.
        </p>
        <p class="" id="c7b058b1-328b-434e-ad5c-761f00b5d197">
        </p>
        <p class="" id="33cf111b-823c-4fd8-94a4-bdc3d3a5eb3c">
-        Turing started his paper with an observation about human “computers”.
+        Turing started his paper with an
+							observation about human “computers”.
        </p>
        <p class="" id="fe03df3e-138e-48b8-bada-66c0274c0af2">
-        He realized that they do not have to be terribly clever, they just have to be able to do arithmetics operations.
+        He realized that they do not have to be
+							terribly clever, they just have to be able to do arithmetics operations.
        </p>
        <p class="" id="20c40933-4921-4989-a924-424aa1676405">
-        Using a pencil and a sheet of paper they could solve difficult problems.
+        Using a pencil and a sheet of paper they
+							could solve difficult problems.
        </p>
        <p class="" id="a5243a01-acdd-4194-9e32-9ebbe8dab4cc">
-        He imagines a machine that operates on a string of tape and that can perform only 4 simple operations (move, stop, delete sign, write sign).
+        He imagines a machine that operates on a
+							string of tape and that can perform only 4 simple operations (move, stop, delete sign, write
+							sign).
        </p>
        <p class="" id="552221ab-f217-42e2-9190-8ee7567cf195">
-        He has shown that using strings of these simple operations we can compute any mathematical formula that can be computed by human computers.
+        He has shown that using strings of these
+							simple operations we can compute any mathematical formula that can be computed by human
+							computers.
        </p>
        <p class="" id="366fdd64-0def-49c2-81c5-780099a84c4a">
        </p>
@@ -1490,50 +1724,68 @@ blockquote {
            Foundational problems of computer science
           </summary>
           <p class="" id="e172f80b-e079-42ca-b17b-1eb30da1808f">
-           Turing invented a computer as a purely theoretical, conceptual device.
+           Turing invented a computer as
+										a purely theoretical, conceptual device.
           </p>
           <p class="" id="3f50c198-400a-4d87-97f9-30cc56ee9271">
-           The point of a Turing machine was to show that a definition of a mathematical proof can be presented in purely formal way.
+           The point of a Turing machine
+										was to show that a definition of a mathematical proof can be presented in purely
+										formal way.
           </p>
           <p class="" id="0dd09973-4ea8-49f3-8432-2a78deb7d3b0">
-           A proof can be performed by a n utterly “stupid” object. It is a purely mechanical process.
+           A proof can be performed by a
+										n utterly “stupid” object. It is a purely mechanical process.
           </p>
           <p class="" id="9ed7c1f0-f7d9-4f88-91d4-76f9f7e9b540">
-           The upshot of his work was that mathematics was shown to be
+           The upshot of his work was
+										that mathematics was shown to be
            <strong>
             complete
            </strong>
            but
            <strong>
-            not decidable
+            not
+											decidable
            </strong>
            .
           </p>
           <p class="" id="dfa2c5fb-a8cb-418c-a09c-c695ddd26717">
-           The consequence of this is: even if it is possible to evaluate if some statements are true, it is not possible to create a universal method that generates a proof for them.
+           The consequence of this is:
+										even if it is possible to evaluate if some statements are true, it is not
+										possible to create a universal method that generates a proof for them.
           </p>
           <p class="" id="59774003-884d-4fac-9567-2267fc4a446a">
           </p>
           <p class="" id="c30f6ead-9c59-4010-bbe6-6e1f29b9d0c3">
-           Consequences of Turing’s solution
+           Consequences of Turing’s
+										solution
           </p>
           <p class="" id="f763a6de-8bea-4bf2-8f49-85d2cceabfc5">
-           This conclusion has a very interesting consequence for computer science.
+           This conclusion has a very
+										interesting consequence for computer science.
           </p>
           <p class="" id="9da42e72-bcd6-450a-9586-95d824d3526c">
-           We already know that some problems are decidable and some not.
+           We already know that some
+										problems are decidable and some not.
           </p>
           <p class="" id="f5a1c04e-8c8b-4e1a-93c3-086e4f3ae000">
-           But computers are physical devices so we can also talk about problems that can be computed in reasonable time and once that take forever (sometimes literally) to compute.
+           But computers are physical
+										devices so we can also talk about problems that can be computed in reasonable
+										time and once that take forever (sometimes literally) to compute.
           </p>
           <p class="" id="35e9c345-e809-47d7-81ee-613f564abd51">
-           Similarly to the case of decidability these sentences can be checked (validated) but not proven (in a reasonable time).
+           Similarly to the case of
+										decidability these sentences can be checked (validated) but not proven (in a
+										reasonable time).
           </p>
           <p class="" id="e37ec1e0-df5a-4a36-90c6-5d50960a4ee1">
-           We still don’t know if it is true - maybe our computers are simply too slow? It has been described as the single biggest problem of computer science.
+           We still don’t know if it is
+										true - maybe our computers are simply too slow? It has been described as the
+										single biggest problem of computer science.
           </p>
           <p class="" id="0d0971d3-8867-4ea5-b949-5444d06c4535">
-           The whole field of computer security and cryptocurrencies hangs on this assumption.
+           The whole field of computer
+										security and cryptocurrencies hangs on this assumption.
           </p>
           <p class="" id="e280db08-90aa-42fb-897b-c5e5f6c77e9e">
           </p>
@@ -1545,33 +1797,46 @@ blockquote {
            (or physical implementation).
           </p>
           <p class="" id="a1ac1e6d-ea5f-46dd-b932-c90f613cafb3">
-           As we remember, Turing machines were originally planned only as a thought experiment.
+           As we remember, Turing
+										machines were originally planned only as a thought experiment.
           </p>
           <p class="" id="edb8b24f-3afc-4005-b75d-5e20ba19e762">
-           But today they are implemented physically.
+           But today they are implemented
+										physically.
           </p>
           <p class="" id="6582ecb9-dcc7-4b74-b7c0-7918b66027ff">
-           Implementation is a mapping of an abstract specification to a physical object, such that the states of the abstract objects match the states of the physical objects. Additionally, every transition between states of the abstract object maps onto a transition of the physical object.
+           Implementation is a mapping of
+										an abstract specification to a physical object, such that the states of the
+										abstract objects match the states of the physical objects. Additionally, every
+										transition between states of the abstract object maps onto a transition of the
+										physical object.
           </p>
           <p class="" id="695bc0ab-5e60-463a-b84e-809e407e6a68">
-           This common-sense description leads to “pancomputionalism”.
+           This common-sense description
+										leads to “pancomputionalism”.
           </p>
           <p class="" id="a94327b7-c6c0-43c9-a965-d124476a49b7">
-           There are more complex definitions of “implementation”, but they are still not considered
+           There are more complex
+										definitions of “implementation”, but they are still not considered
           </p>
           <p class="" id="958d6e30-8e09-4b1e-a0f2-3b3ea1a47298">
           </p>
           <p class="" id="2fddfd7d-6d98-4253-843e-2e1898b9d126">
-           Turing machines were mechanical and “mindless” by design.
+           Turing machines were
+										mechanical and “mindless” by design.
           </p>
           <p class="" id="ced297e2-5681-46ac-98ef-f5f1797ff22a">
-           But Turing himself suggested that they can match human intelligence.
+           But Turing himself suggested
+										that they can match human intelligence.
           </p>
           <p class="" id="a609748c-8bef-405c-be0c-a87841ae45c4">
-           Famously he presented a test: if 70% of evaluators talk with a machine for 5 minutes and classify it as a person, the machine is intelligent.
+           Famously he presented a test:
+										if 70% of evaluators talk with a machine for 5 minutes and classify it as a
+										person, the machine is intelligent.
           </p>
           <p class="" id="a3e06e87-6cb9-4746-a4b3-b038a9e330dc">
-           This tension is one of the reasons people such as John Searle dismissed Artificial Intelligence.
+           This tension is one of the
+										reasons people such as John Searle dismissed Artificial Intelligence.
           </p>
          </details>
         </li>
@@ -1592,19 +1857,22 @@ blockquote {
            Traditional view on science
           </summary>
           <p class="" id="2d1a3508-26a6-4e0c-a34c-b5c9ce0d1f2b">
-           Theories are sets of true sentences obtained on the basis of different types of logical reasonings.
+           Theories are sets of true
+										sentences obtained on the basis of different types of logical reasonings.
           </p>
           <p class="" id="da8b313d-0a37-40e2-9d2a-c378f865139b">
            Deduction:
           </p>
           <ul class="bulleted-list" id="92056f35-2f4f-4c4f-a2f2-329b1eb8091d">
            <li style="list-style-type:disc">
-            It moved from general sentences to individual sentences
+            It moved from general sentences to individual
+											sentences
            </li>
           </ul>
           <ul class="bulleted-list" id="a3790a98-60f1-4b4f-b50f-7c7f77c9b1be">
            <li style="list-style-type:disc">
-            Every human is an animal, Socrates is a human, this: Socrates is an animal
+            Every human is an animal, Socrates is a human,
+											this: Socrates is an animal
            </li>
           </ul>
           <ul class="bulleted-list" id="bfe17b33-de7f-4aa1-a4c7-10428daf1c29">
@@ -1614,7 +1882,8 @@ blockquote {
           </ul>
           <ul class="bulleted-list" id="5ad671d1-4234-4523-b30f-e6e0a267f852">
            <li style="list-style-type:disc">
-            It is typically used in mathematics, logic, philosophy
+            It is typically used in mathematics, logic,
+											philosophy
            </li>
           </ul>
           <p class="" id="397e009c-3fb2-4ea4-9849-bd4fee52bc01">
@@ -1622,12 +1891,14 @@ blockquote {
           </p>
           <ul class="bulleted-list" id="499058b0-fb64-428a-bc6a-f6c725bd36c2">
            <li style="list-style-type:disc">
-            It moves from individual sentences (observations) to general sentences
+            It moves from individual sentences
+											(observations) to general sentences
            </li>
           </ul>
           <ul class="bulleted-list" id="8f9c7644-bd14-4dbc-8d69-a71b7bd09b9e">
            <li style="list-style-type:disc">
-            Swan n1 is white, swan n2 is write, … Swan n5200 is white, this: all swans are white
+            Swan n1 is white, swan n2 is write, … Swan
+											n5200 is white, this: all swans are white
            </li>
           </ul>
           <ul class="bulleted-list" id="c1bb3247-fa90-431a-b6c3-baa972e2eb72">
@@ -1636,21 +1907,25 @@ blockquote {
            </li>
           </ul>
           <p class="" id="9c067da8-b41d-464c-a97b-e7c868134292">
-           Abduction (introduced by Charles S. Peirce):
+           Abduction (introduced by
+										Charles S. Peirce):
           </p>
           <ul class="bulleted-list" id="0e6a2ffa-af35-4b7b-b8bd-751a35beb1c6">
            <li style="list-style-type:disc">
-            It moves from one individual sentence to another individual sentence
+            It moves from one individual sentence to
+											another individual sentence
            </li>
           </ul>
           <ul class="bulleted-list" id="213903c9-3215-4ae2-85fd-e80d4dae5b75">
            <li style="list-style-type:disc">
-            It tries to explain the effect by assuming the most probably cause
+            It tries to explain the effect by assuming the
+											most probably cause
            </li>
           </ul>
           <ul class="bulleted-list" id="833dd159-cbe8-4feb-a3f8-eb7e6b286d79">
            <li style="list-style-type:disc">
-            The pavement is wet. If it rained, the pavement became wet. It must have rained.
+            The pavement is wet. If it rained, the pavement
+											became wet. It must have rained.
            </li>
           </ul>
           <ul class="bulleted-list" id="88108469-d3ec-4821-8dfb-db976043fe5c">
@@ -1660,7 +1935,9 @@ blockquote {
           </ul>
           <ul class="bulleted-list" id="7a3ee30d-66ce-4ffb-be56-36a35405a7cb">
            <li style="list-style-type:disc">
-            Its importance rose because of the rise of expert systems (expert systems = early ideas of huge databases of data, essentially a database of knowledge that you can ask and get info)
+            Its importance rose because of the rise of
+											expert systems (expert systems = early ideas of huge databases of data,
+											essentially a database of knowledge that you can ask and get info)
            </li>
           </ul>
           <ul class="bulleted-list" id="98105b90-0a78-41b3-9984-710436871863">
@@ -1669,12 +1946,14 @@ blockquote {
             <strong>
              pragmatic
             </strong>
-            form of reasoning.
+            form of
+											reasoning.
            </li>
           </ul>
           <ul class="bulleted-list" id="b71c5f71-0c0c-4af3-8f37-c099e42168a8">
            <li style="list-style-type:disc">
-            Its usefulness relies on the notions of cause and effect
+            Its usefulness relies on the notions of cause
+											and effect
            </li>
           </ul>
          </details>
@@ -1698,93 +1977,130 @@ blockquote {
            .
           </p>
           <p class="" id="b9683dde-5f9b-4a39-ab6d-091e2972347c">
-           Correlation does not equal causation
+           Correlation does not equal
+										causation
           </p>
           <p class="" id="9fa9d735-8014-4896-b748-fbd44871b6ff">
-           The main reason for it is that both correlated phenomena may simply be the effects of the same cause (but not connected causally to each other)
+           The main reason for it is that
+										both correlated phenomena may simply be the effects of the same cause (but not
+										connected causally to each other)
           </p>
           <p class="" id="4d63fae3-071b-4c59-be11-f14b0948582f">
-           We typically use correlations for identification. Identification does not equal understanding. (for example if you assume something about someone by their clothing)
+           We typically use correlations
+										for identification. Identification does not equal understanding. (for example if
+										you assume something about someone by their clothing)
           </p>
           <p class="" id="98c10fa2-b1e5-414e-be68-267076826f02">
           </p>
           <p class="" id="bbb570c0-7c37-4f45-86e6-b28e09535840">
-           Simple correlations can easily turn into prejudices and biases
+           Simple correlations can easily
+										turn into prejudices and biases
           </p>
           <p class="" id="2d464d03-2c29-47be-be0f-954c9a1e188c">
-           Science uses more rigorous correlations as hypothesis generators
+           Science uses more rigorous
+										correlations as hypothesis generators
           </p>
           <p class="" id="35e01f85-aef0-43da-ab79-4bdfa17071ae">
-           Science does not stop at the verification of a hypothesis. It looks for mechanistic explanation.
+           Science does not stop at the
+										verification of a hypothesis. It looks for mechanistic explanation.
           </p>
           <p class="" id="dcada950-6162-45d8-8bfa-2ab7325fa0c8">
-           Mechanistic explanation depicts a phenomenon as a system of causes and effects.
+           Mechanistic explanation
+										depicts a phenomenon as a system of causes and effects.
           </p>
           <p class="" id="1f65589a-c58d-411c-9b64-2af735c92f93">
            It gives us an “a-ha” effect.
           </p>
           <p class="" id="9eb4b730-c5c6-4fc4-a5be-685ffd7de753">
-           Example: why we we like to watch violent pictures?
+           Example: why we we like to
+										watch violent pictures?
           </p>
           <p class="" id="e800ddb7-b280-48f6-81ca-ba37d51684dd">
           </p>
           <p class="" id="659ee982-ad14-44d7-90c2-93b236b51066">
-           Initially computers enhanced the mechanistic nature of science
+           Initially computers enhanced
+										the mechanistic nature of science
           </p>
           <p class="" id="dde8aba3-0ad2-4e04-83eb-42bf9634b896">
-           Computers used algorithms - finite step-by-step procedures we can understand.
+           Computers used algorithms -
+										finite step-by-step procedures we can understand.
           </p>
           <p class="" id="79112c1c-23d5-48f0-8836-fc8e34720eab">
-           They enabled us to build models and simulations
+           They enabled us to build
+										models and simulations
           </p>
           <p class="" id="2b94cda3-a402-45d4-a0c8-dc5da06f1d2f">
-           Simulations (dynamic models) are the embodiment of mechanistic explanations
+           Simulations (dynamic models)
+										are the embodiment of mechanistic explanations
           </p>
           <p class="" id="64fbdb1f-f451-46de-a4ec-16db033d27c8">
-           When we run a simulation we get results, but w can also look into the reasons these results came to be
+           When we run a simulation we
+										get results, but w can also look into the reasons these results came to be
           </p>
           <p class="" id="1bbc5229-f72e-4166-b3dc-3704784c44c6">
-           We not only predict what is about to happen, but why will this thing happen.
+           We not only predict what is
+										about to happen, but why will this thing happen.
           </p>
           <p class="" id="6929e26a-7557-41e2-8a6d-9b7dd5424543">
-           We imagined future super-computers to be super-intelligent humans
+           We imagined future
+										super-computers to be super-intelligent humans
           </p>
           <p class="" id="a612be0f-8c9f-42af-b7ea-9e81923c1f53">
-           This type of AI is nowadays called GOFAI (Good Old Fashioned Artificial Intelligence)
+           This type of AI is nowadays
+										called GOFAI (Good Old Fashioned Artificial Intelligence)
           </p>
           <p class="" id="448754da-1f96-41b8-9d4b-7f40b58223f9">
           </p>
           <p class="" id="0fd3a41f-9972-4e0f-81c1-4bb334627624">
-           Single correlations are often completely accidental
+           Single correlations are often
+										completely accidental
           </p>
           <p class="" id="365e1d40-80df-434d-929c-ed448b2570f9">
-           What happens when you start to crunch a huge amount of data?
+           What happens when you start to
+										crunch a huge amount of data?
           </p>
           <p class="" id="17023038-ff04-4f95-a8e7-c1441cb7f5b8">
-           What if we were able to lock a billion of correlations?
+           What if we were able to lock a
+										billion of correlations?
           </p>
           <p class="" id="b7437d2c-afb0-4e64-bbcf-83b7b118808d">
-           Can a billion of fallible correlations combine into infallible knowledge?
+           Can a billion of fallible
+										correlations combine into infallible knowledge?
           </p>
           <p class="" id="ea382140-52a9-45e9-9c3e-07a6b61117b3">
-           No, but it can turn into knowledge that is surprisingly reliable.
+           No, but it can turn into
+										knowledge that is surprisingly reliable.
           </p>
           <p class="" id="a7e07df2-2e3d-43b3-aa0f-6792b9154e1d">
-           Problem is, this is not a simple evolution of computing as we knot it. It is a new paradigm.
+           Problem is, this is not a
+										simple evolution of computing as we knot it. It is a new paradigm.
           </p>
           <p class="" id="b95c2396-004c-4c47-86b7-73dd8848488d">
-           Deep learning is not based on algorithms. It is based on statistics. (case where Magnus Carlsen learned from old model but not new?)
+           Deep learning is not based on
+										algorithms. It is based on statistics. (case where Magnus Carlsen learned from
+										old model but not new?)
           </p>
           <p class="" id="91094ddf-b924-407f-804f-5685acd334c4">
-           This leads to a completely new model of science
+           This leads to a completely new
+										model of science
           </p>
           <p class="" id="825ea9b2-4867-45fc-9e34-6e5ae8179336">
           </p>
           <p class="" id="63e669be-f7bc-4e5c-a082-8d3da152af4f">
-           “Big Data ushers in a new era of empiricism, wherein the volume of data, accompanied by techniques that can reveal their inherent truth, enables data to speak for themselves free of theory.”
+           “Big Data ushers in a new era
+										of empiricism, wherein the volume of data, accompanied by techniques that can
+										reveal their inherent truth, enables data to speak for themselves free of
+										theory.”
           </p>
           <p class="" id="60cac76a-002b-414c-8ee8-5bc66f70bec8">
-           “There is now a better way. Petabytes allows us to say: ‘Correlation is enough’… We can analyze the data withouth hypoethese about what it might show. We can throw the nubmers into the biggest computing clusters the worls has ever seen and let statistical algorithms find patterns where science cannot … Correlation supersedes causation, and science can advance even without coherent models, unified theories, or really any mechanistic explaantion at all. There’s no reason to cling”
+           “There is now a better way.
+										Petabytes allows us to say: ‘Correlation is enough’… We can analyze the data
+										withouth hypoethese about what it might show. We can throw the nubmers into the
+										biggest computing clusters the worls has ever seen and let statistical
+										algorithms find patterns where science cannot … Correlation supersedes
+										causation, and science can advance even without coherent models, unified
+										theories, or really any mechanistic explaantion at all. There’s no reason to
+										cling”
           </p>
           <p class="" id="70e4427b-3964-45d9-846b-37e955066e86">
            “aaaa”
@@ -1792,16 +2108,19 @@ blockquote {
           <p class="" id="05dffc89-c44b-4e8b-bf15-f5f81b3a0e1d">
           </p>
           <p class="" id="d03213f5-deed-49e4-8394-9a19cbd6091c">
-           As shown by Seth Stevens-Davidowitz in hos book “Everybody lies”:
+           As shown by Seth
+										Stevens-Davidowitz in hos book “Everybody lies”:
           </p>
           <ul class="bulleted-list" id="ba607007-f1f4-4333-897e-6eb3da9fefc4">
            <li style="list-style-type:disc">
-            We may be able to find predictors of pancreatic cancer
+            We may be able to find predictors of pancreatic
+											cancer
            </li>
           </ul>
           <ul class="bulleted-list" id="baf82990-b121-47ee-8133-a8727218e8d6">
            <li style="list-style-type:disc">
-            We can settle long standing debates, such as: should couples have a shared groups of friends?
+            We can settle long standing debates, such as:
+											should couples have a shared groups of friends?
            </li>
           </ul>
           <p class="" id="c4a59a35-028f-4513-8396-b589151cf041">
@@ -1813,7 +2132,8 @@ blockquote {
        </ul>
        <p class="" id="4ed31982-0d95-4b15-9128-fb41eff41154">
         <strong>
-         Risks of relying on big data
+         Risks of relying on big
+								data
         </strong>
         :
        </p>
@@ -1824,7 +2144,8 @@ blockquote {
        </ul>
        <ul class="bulleted-list" id="2286a7cd-7e70-4d36-8e7e-8a03959a0fff">
         <li style="list-style-type:disc">
-         They are insensitive to changes of real causes of these correlation
+         They are insensitive to changes of real causes of these
+								correlation
         </li>
        </ul>
        <ul class="bulleted-list" id="35d98725-b121-466c-93a7-7137c5179ebe">
@@ -1841,7 +2162,8 @@ blockquote {
         There is (probably) no going back
        </p>
        <p class="" id="548101c5-6707-475f-b2b2-3aa64f2b6a9d">
-        We have to accept that more and more of our activities will be substituted by big data results
+        We have to accept that more and more of
+							our activities will be substituted by big data results
        </p>
        <p class="" id="eabac5fe-f541-4bb7-9d2d-f82686881ced">
         Example 1: Translations
@@ -1869,7 +2191,8 @@ blockquote {
        </ul>
        <ul class="bulleted-list" id="d0b508b4-c079-469e-a875-0ca930ed084b">
         <li style="list-style-type:disc">
-         Can we imagine how does it feel to be an artificial intelligence?
+         Can we imagine how does it feel to be an artificial
+								intelligence?
         </li>
        </ul>
        <p class="" id="7f8db47a-8598-4be9-a974-7c1b1620e15a">
@@ -1878,26 +2201,33 @@ blockquote {
         From Bacteria to Bach and Back
        </p>
        <p class="" id="eceb5ff7-bd15-479d-ad66-b4c081932d55">
-        Almost all intelligent systems in nature are based on sheer competence
+        Almost all intelligent systems in nature
+							are based on sheer competence
        </p>
        <p class="" id="5d608a73-c0c1-4264-b768-7c160820d589">
-        This evolution led to a breakthrough - the rise of comprehension
+        This evolution led to a breakthrough - the
+							rise of comprehension
        </p>
        <p class="" id="45b86232-7400-4f45-9c68-3f075544085d">
-        Humans created civilisations and build more and more advanced machines
+        Humans created civilisations and build
+							more and more advanced machines
        </p>
        <p class="" id="78412558-37bb-4c49-9999-eac89f35877b">
-        But the epitome of our civilisations goes back to sheer competence again
+        But the epitome of our civilisations goes
+							back to sheer competence again
        </p>
        <p class="" id="22bf57bb-9b73-481c-b388-8247027b8604">
-        It’s not that we are too stupid to understand the machines.
-There is nothing to understand…
+        It’s not that we are too stupid to
+							understand the machines.
+							There is nothing to understand…
        </p>
        <p class="" id="44f4b3b2-a1dd-4b80-933d-e4224374f2b5">
-        How do we know it? (we do have this experience)
+        How do we know it? (we do have this
+							experience)
        </p>
        <p class="" id="41a4f1ba-1108-4bf7-9459-ba8c8248ff7d">
-        Human intelligence looks like a weird bump in the evolutionary history
+        Human intelligence looks like a weird bump
+							in the evolutionary history
        </p>
        <p class="" id="917e3c39-20f5-430b-9292-b932201c4c07">
        </p>
@@ -1905,22 +2235,28 @@ There is nothing to understand…
         Summary:
        </p>
        <p class="" id="d97c9f86-391a-48e2-82db-ea115a66ddfd">
-        We saw that traditional science has been built on the ideas of deduction and induction
+        We saw that traditional science has been
+							built on the ideas of deduction and induction
        </p>
        <p class="" id="c546f437-cb15-40d4-956f-9aa751432720">
-        Early expert systems made another form of reasoning - abduction - viable
+        Early expert systems made another form of
+							reasoning - abduction - viable
        </p>
        <p class="" id="42ddcef2-3baa-4ee5-9a26-6a110716b74e">
-        Traditionally we believed that correlation is only good for hypothesis generation
+        Traditionally we believed that correlation
+							is only good for hypothesis generation
        </p>
        <p class="" id="8b13fab6-e60c-40a7-8273-a0c5509fcf69">
-        Big Data and Deep Learning changed this paradigm
+        Big Data and Deep Learning changed this
+							paradigm
        </p>
        <p class="" id="e61c6387-f1db-4af1-9ae4-b28456152416">
-        This starts to change the current scientific landscape
+        This starts to change the current
+							scientific landscape
        </p>
        <p class="" id="a7603440-0fc6-44c0-8567-3f707de083e7">
-        We should not be overly optimistic bout the new paradigm
+        We should not be overly optimistic bout
+							the new paradigm
        </p>
       </details>
      </li>
@@ -1963,13 +2299,17 @@ There is nothing to understand…
            </li>
           </ul>
           <p class="" id="68cf6122-970e-4c35-b34b-f0e45b466598">
-           Law: written rules - law changes (different rules in different countries, also changes in time as in laws may change)
+           Law: written rules - law
+										changes (different rules in different countries, also changes in time as in laws
+										may change)
           </p>
           <p class="" id="83834651-f5ed-4a7b-a698-376024e2fce8">
-           Morals &amp; Ethics: unwritten rules
+           Morals &amp; Ethics: unwritten
+										rules
           </p>
           <p class="" id="6b9938a1-621b-4ea5-a1cf-32ebe35afdd3">
-           Difference between morals and ethics:
+           Difference between morals and
+										ethics:
           </p>
          </details>
         </li>
@@ -2002,28 +2342,34 @@ There is nothing to understand…
            Ethics key notion: Free will
           </summary>
           <p class="" id="19c5ac5d-fa9f-40db-b4e0-df120ec006f6">
-           Free will seems to be an intuitive concept
+           Free will seems to be an
+										intuitive concept
           </p>
           <p class="" id="6bd5ed57-38ff-4d62-95dd-9f3f2a808590">
-           What is more important: society seems to be built around the assumption of its existence.
+           What is more important:
+										society seems to be built around the assumption of its existence.
           </p>
           <p class="" id="85b78eb3-57b0-470b-ac67-0c66f2c4a56e">
-           But the idea was challenged by two powerful traditions:
+           But the idea was challenged by
+										two powerful traditions:
           </p>
           <ul class="bulleted-list" id="3d2d6d56-d191-4bfc-b189-c48ec0db1598">
            <li style="list-style-type:disc">
             Religion
             <ul class="bulleted-list" id="ef43b156-9335-4b2e-a63d-9bdfb934c955">
              <li style="list-style-type:circle">
-              Christianity: How can I be free if god is an omniscient creator of the universe?
+              Christianity: How can I be free if
+													god is an omniscient creator of the universe?
               <ul class="bulleted-list" id="759474d4-f58c-4e3f-8493-68894eef4b4c">
                <li style="list-style-type:square">
-                Solution 1) Freedom is just an internal choice
+                Solution 1) Freedom is just
+															an internal choice
                </li>
               </ul>
               <ul class="bulleted-list" id="a0b324ee-82d5-47c3-bd97-703c823a9e35">
                <li style="list-style-type:square">
-                Solution 2) Freedom is a recognized necessity
+                Solution 2) Freedom is a
+															recognized necessity
                </li>
               </ul>
              </li>
@@ -2038,13 +2384,15 @@ There is nothing to understand…
               Determinism
               <ul class="bulleted-list" id="f3d5ae9b-9c8f-4d60-9b7f-6bb014d6b9ca">
                <li style="list-style-type:square">
-                Everything that happens must happen as it does and could not have happened any other way
+                Everything that happens must
+															happen as it does and could not have happened any other way
                </li>
               </ul>
              </li>
             </ul>
             <p class="" id="8e809b92-747a-4d04-8d3e-222e4455c3a9">
-             Laplace’s demon. (has been outdated by modern physics)
+             Laplace’s demon. (has
+												been outdated by modern physics)
             </p>
             <p class="" id="c0a7fe63-d10f-4231-8ef1-60b66f402421">
              Libet’s experiment.
@@ -2052,16 +2400,20 @@ There is nothing to understand…
             <p class="" id="555282d0-423b-46f1-bd58-b3636d5922a6">
             </p>
             <p class="" id="d7028f7f-46ae-4c62-96e0-1355b96219ec">
-             Free will is just an epiphenomenon of brain activity.
+             Free will is just an
+												epiphenomenon of brain activity.
             </p>
             <p class="" id="d0778004-2d45-4e6a-9c2e-37fb99f71dc2">
-             It is just a lack of external extortion.
+             It is just a lack of
+												external extortion.
             </p>
             <p class="" id="db68e5b8-dfb9-431f-81f2-b225f989f732">
-             It is a random decision generator useful for limited beings.
+             It is a random
+												decision generator useful for limited beings.
             </p>
             <p class="" id="7eb55660-87a9-401e-a29f-d73979b93132">
-             It is a match between prediction and the result.
+             It is a match between
+												prediction and the result.
             </p>
            </li>
           </ul>
@@ -2072,30 +2424,38 @@ There is nothing to understand…
               The problem of free will in 21st century
              </summary>
              <p class="" id="571b4784-a646-4cf7-98e8-609b5fbf1d7a">
-              Which of the existing ethical systems should we implement in our robots?
+              Which of the
+													existing ethical systems should we implement in our robots?
              </p>
              <p class="" id="369db86e-70f0-439d-8595-0798bd7550fe">
-              Can robots make genuine ethical decisionsP
+              Can robots make
+													genuine ethical decisionsP
              </p>
              <p class="" id="976f8baa-c60e-4e53-8089-a4fb384cb7b7">
-              Should we treat robots as ethical subjects? If so - are they equal to humans?
+              Should we treat
+													robots as ethical subjects? If so - are they equal to humans?
              </p>
              <p class="" id="4dcd63c7-7ca6-4cae-98cc-a13467afda3d">
-              Can we destroy obsolete robots?
+              Can we destroy
+													obsolete robots?
              </p>
              <p class="" id="f27341de-abbb-41e5-9ed1-00b05686cc9a">
-              Can we use robots as our sex toys?
+              Can we use robots
+													as our sex toys?
              </p>
              <p class="" id="e8c84e8b-ff4a-46f2-8f8e-4d8d849eb6d5">
              </p>
              <p class="" id="5f317240-8292-4c3e-aff0-d7e128e8d301">
-              Does good design promote choice?
+              Does good design
+													promote choice?
              </p>
              <p class="" id="b6c0c148-36d4-409d-bdf0-89172026e6b4">
-              Is good design built on the basis of anticipation of human choices?
+              Is good design
+													built on the basis of anticipation of human choices?
              </p>
              <p class="" id="958de774-e97d-4b6b-8574-521412cbfe4e">
-              Is good design an illusion of choice?
+              Is good design an
+													illusion of choice?
              </p>
              <p class="" id="bec8c6e6-ef45-4b41-9a7a-4f6dba8a63b7">
              </p>
@@ -2112,10 +2472,12 @@ There is nothing to understand…
            Ethics as justification systems
           </summary>
           <p class="" id="c58cf36a-a0f4-4308-ac0b-bfa44fcd7336">
-           Ethical systems suggest a set of privileged rules - ethical norms
+           Ethical systems suggest a set
+										of privileged rules - ethical norms
           </p>
           <p class="" id="7e25c1dc-92bb-45da-8388-a331c6d42c54">
-           How can we ensure these rules are followed?
+           How can we ensure these rules
+										are followed?
           </p>
           <p class="" id="088b420e-818f-43d7-87e1-27d15e4b1e85">
           </p>
@@ -2123,16 +2485,20 @@ There is nothing to understand…
            Genuine prescriptive norms
           </p>
           <p class="" id="40ec3626-3f9f-4a30-94fd-ffa8ce702f5f">
-           If you know that you should do something, you will do it.
+           If you know that you should do
+										something, you will do it.
           </p>
           <p class="" id="98c4eece-ee99-41c7-99bb-fb933f3ba8fa">
-           David Hume: there is no obvious transition from norms to actions
+           David Hume: there is no
+										obvious transition from norms to actions
           </p>
           <p class="" id="1b41e201-a696-4086-ae23-ec4ceac9a4f6">
-           I believe that this is wrong, but I will do it!
+           I believe that this is wrong,
+										but I will do it!
           </p>
           <p class="" id="05a342f0-e4ad-4e9b-8df4-9694e96067cc">
-           Do you really believe that this is wrong then?
+           Do you really believe that
+										this is wrong then?
           </p>
           <p class="" id="becdd9a0-f87d-4293-a2d4-3c5547d9701a">
           </p>
@@ -2151,7 +2517,9 @@ There is nothing to understand…
             Reason
             <ul class="bulleted-list" id="b45c8fad-b3ab-4d89-90bf-1d8688c99140">
              <li style="list-style-type:circle">
-              Act only according to that maxim whereby you can at the same time will that it should become a universal law
+              Act only according to that maxim
+													whereby you can at the same time will that it should become a
+													universal law
              </li>
             </ul>
             <ul class="bulleted-list" id="325f35f3-11e9-4505-ac10-64e68ca274d9">
@@ -2196,12 +2564,14 @@ There is nothing to understand…
             Ethics of duty
             <ul class="bulleted-list" id="efe82728-6a88-48e3-a3d2-30a3c7455e77">
              <li style="list-style-type:circle">
-              Top-down perspective: we evaluate the rule itself
+              Top-down perspective: we evaluate the
+													rule itself
              </li>
             </ul>
             <ul class="bulleted-list" id="681cb27d-0dee-424b-b2d5-fc2ed4f9a3fc">
              <li style="list-style-type:circle">
-              Unethical acts are always based on making an exception for you
+              Unethical acts are always based on
+													making an exception for you
              </li>
             </ul>
            </li>
@@ -2216,7 +2586,8 @@ There is nothing to understand…
             </ul>
             <ul class="bulleted-list" id="a7577275-aef3-4168-be8c-19a91dd99616">
              <li style="list-style-type:circle">
-              Ethical actions make you a better person
+              Ethical actions make you a better
+													person
              </li>
             </ul>
            </li>
@@ -2238,13 +2609,16 @@ There is nothing to understand…
               Problems of utilitarianism
              </summary>
              <p class="" id="17ed51ae-bfb3-4f5d-9399-8d3ededb556b">
-              How to prevent mindless hedonism?
+              How to prevent
+													mindless hedonism?
              </p>
              <p class="" id="607c8b34-c61e-4871-bc49-bba0de3be200">
-              How should we evaluate consequences? Actual vs foreseeable consequences.
+              How should we
+													evaluate consequences? Actual vs foreseeable consequences.
              </p>
              <p class="" id="9ea28627-7f26-4f85-8fa5-e7f236d2ed76">
-              Should we maximize happiness or minimize suffering?
+              Should we maximize
+													happiness or minimize suffering?
              </p>
             </details>
            </li>

@@ -93,13 +93,13 @@ class QGAR:
 
     def add_colon_if_last_char_not_dot_or_colon(self, text: str):
         if self._validate_text(text):
-            text = " " + text + ": "
-        return " " + text + " "
+            text = "" + text + ":"
+        return "" + text + " "
 
     def add_dot_if_last_char_not_dot(self, text: str):
         if self._validate_text(text):
-            text = " " + text + ". "
-        return " " + text + " "
+            text = "" + text + "."
+        return "" + text + ""
 
     def _html_to_plaintext(self, html_notes: str):
         """ Converts a markdown string to plaintext """
@@ -110,22 +110,30 @@ class QGAR:
             h_tag.string = self.add_colon_if_last_char_not_dot_or_colon(
                 h_tag.text)
 
-        with open(f"data/notes/{self.student_name}/{self.student_name}-h-tags-parsed.html", "w") as file:
-            file.write(soup.prettify())
+        for title_tag in soup.find_all(["title"]):
+            title_tag.decompose()
+
+        with open(f"data/notes/{self.student_name}/1-{self.student_name}-h-tags-parsed.html", "w") as file:
+            file.write(soup.prettify()) 
 
         # On all tags add dor if last c
-        for tag in soup.find_all():
-            tag.string = self.add_dot_if_last_char_not_dot(tag.text)
+        # for tag in soup.find_all():
+        #     print(tag.)
+        #     tag.string = self.add_dot_if_last_char_not_dot(tag.text)
 
-        with open(f"data/notes/{self.student_name}/{self.student_name}-dots-parsed.html", "w") as file:
-            file.write(soup.prettify())
+        result = soup.get_text(separator=" ")
 
-        result = ' '.join(soup.stripped_strings)
+        # with open(f"data/notes/{self.student_name}/2-{self.student_name}-dots-parsed.html", "w") as file:
+        #     file.write(soup.prettify())
+
+        # result = ' '.join(soup.stripped_strings)
+        # result = result.replace("<span>", "")
+        # result = result.replace("</span>", "")
         result = result.replace("\n", " ")
         result = result.replace("\t", " ")
         result = re.sub("\s\s+", " ", result)
 
-        with open(f"data/notes/{self.student_name}/{self.student_name}-parsed.md", "w") as file:
+        with open(f"data/notes/{self.student_name}/3-{self.student_name}-parsed.txt", "w") as file:
             file.write(result)
 
         return result
