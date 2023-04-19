@@ -6,13 +6,15 @@ from transformers import (
     T5TokenizerFast,
     T5ForConditionalGeneration
 )
+from transformers.utils import PaddingStrategy
 from parsing.settings_parser import DataTrainingArguments
 from preprocessing.data_collator import T2TDataCollator
 import torch
 import wandb
 import os
 
-_MODEL_MAX_LENGTH = 100
+_MODEL_MAX_LENGTH = 512
+
 
 class QG:
     """Question Generation model based on Google's `T5` model."""
@@ -23,6 +25,9 @@ class QG:
         self._device = "cuda" if torch.cuda.is_available() else "cpu"
         self._model: T5ForConditionalGeneration = AutoModelForSeq2SeqLM.from_pretrained(model).to(self._device)
         self._tokenizer: T5TokenizerFast = AutoTokenizer.from_pretrained(tokenizer, model_max_length=_MODEL_MAX_LENGTH)
+
+        self._tokenizer.add_tokens(['<sep>'])
+        self._model.resize_token_embeddings(len(self._tokenizer))
 
 
     def __call__(self, context: str) -> list[dict]:
@@ -46,11 +51,11 @@ class QG:
         for context_chunk in context_chunks:
             if i > 15:
                 break
-                
+
             i += 1
 
             input_string = "generate questions: " + context_chunk + " </s>"
-            
+
             # Encode input string
             input_ids = self._tokenizer.encode(input_string, return_tensors="pt").to(self._device)
 
@@ -84,10 +89,11 @@ class QG:
 
         return context_and_questions
 
-    def split_text(self, text:str, max_length:str=_MODEL_MAX_LENGTH):
+
+    def split_text(self, text: str, max_length: str = 100) -> list:
         """Splits the given text into chunks of the given maximum length."""
-        # todo: need to find correct way of splitting text into chunks in relation to the model's max length
-        max_length = max_length
+        # TODO: need to find correct way of splitting text into chunks in relation to the model's max length
+
         sentences = text.split(".")
         chunks = []
         current_chunk = ""
@@ -106,25 +112,38 @@ class QG:
 
         return chunks
 
+
     def train(self, training_args: TrainingArguments, data_args: DataTrainingArguments, wandb_key: str):
-        """Start training the `QG` model. Once completed it will be pushed to the HuggingFace Hub."""
+        """Start training the `QG` model. Once completed it will be pushed to the HuggingFace Hub along with the `tokenizer`."""
 
+        # Set WANDB project name and login
         os.environ['WANDB_PROJECT'] = data_args.wandb_project_name
-
         wandb.login(key=wandb_key)
 
+        # Load preprocessed datasets
         train = torch.load(data_args.training_file_path)
         validation = torch.load(data_args.validation_file_path)
+
+        # Whether to apply Smart Batching and Mixed Precision Training
+        padding_strategy = PaddingStrategy.LONGEST if data_args.optimized_training else PaddingStrategy.MAX_LENGTH
+        training_args.group_by_length = data_args.optimized_training
+        training_args.fp16 = True if torch.cuda.is_available() and data_args.optimized_training else False
+        training_args.run_name = "With Smart Bacthing & Mixed Precision Training" if data_args.optimized_training else training_args.run_name
+
+        # Trainer whether to upload to hub
+        training_args.push_to_hub = data_args.upload_to_hub
 
         trainer = Trainer(
             model=self._model,
             args=training_args,
             train_dataset=train,
             eval_dataset=validation,
-            data_collator=T2TDataCollator(self._model, self._tokenizer)
+            data_collator=T2TDataCollator(self._model, self._tokenizer, padding_strategy)
         )
 
         trainer.train()
         wandb.finish()
-        trainer.push_to_hub(blocking=True)
-        self._tokenizer.push_to_hub(training_args.hub_model_id)
+
+        if data_args.upload_to_hub:
+            trainer.push_to_hub(blocking=True)
+            self._tokenizer.push_to_hub(training_args.hub_model_id)

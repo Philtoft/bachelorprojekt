@@ -6,17 +6,20 @@ from pathlib import Path
 
 
 class SquadVersion(str, Enum):
+    """A string enum for specifying a `SQuAD` version."""
+
     V1 = "v1"
     V2 = "v2"
 
 
 def convert_and_save_squad(version: SquadVersion, out_path: str):
     """
-    Converts `SQuAD 2.0` to an aggregated context-questions format and saves it as two json files; train and validation.
+    Converts `SQuAD` to an aggregated context-questions format and saves it as two json files; train and validation.
 
     Each entry of the dataset will be transformed to be composed of
     a context and an array of questions related to that particular context.
     """
+
     train, validation = convert_squad(version)
 
     _save_dataset(version, train, "train", out_path)
@@ -25,7 +28,7 @@ def convert_and_save_squad(version: SquadVersion, out_path: str):
 
 def convert_squad(version: SquadVersion) -> tuple[dict, dict]:
     """
-    Converts `SQuAD 2.0` to an aggregated context-questions format and returns a tuple for train and validation.
+    Converts `SQuAD` to an aggregated context-questions format and returns a tuple for train and validation.
 
     Each entry of the dataset will be transformed to be composed of
     a context and an array of questions related to that particular context.
@@ -48,9 +51,7 @@ def convert_squad(version: SquadVersion) -> tuple[dict, dict]:
 
 
 def _save_dataset(version: SquadVersion, dataset: dict, suffix: str, out_path: str):
-    """
-    Save a dataset in json format at the specified `out_path`.
-    """
+    """Save a dataset in json format at the specified `out_path`."""
 
     Path(out_path).mkdir(parents=True, exist_ok=True)
 

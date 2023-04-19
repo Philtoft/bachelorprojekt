@@ -1,47 +1,51 @@
-# Bachelor Project
+# QGAR - Question Generation Answering RRR
 
-## Setup before running
+Welcome to the `QGAR Project` - a flashcard generation application.
 
-The `QG` model automatically pushes the model post training to Huggingface Hub if you provide an access token.
-
-Therefore you must create a `.local` directory in the root directory.
-
-In the `.local` directory create a file called `hg_token.txt` containing your personal access token to Huggingface Hub.
-
-Once the training has commenced, the model will be pushed to `The Coorporation` organization.
-
-## Run main.py
-
-`main.py` can take arguments to specify what to do:
-
-- `main.py -t` starts a training session for the `QG` model.
-- `main.py -i <text>` runs the `QG` model on the input text and generates questions from the given context.
-- `main.py -d` downloads and preprocesses our modified `SQuAD` dataset
-- `main.py -n <name>` creates questions and answers and saves it under `<name>.json`
-- `main.py -s <settings>.json` use the specified settings file. Defaults to `settings.json`
-- `main.py -h` shows instructions on how to run the program
-
-</br>
-
----
-
-</br>
-
-## Setup Environment
-
-The following sections describe the setup process to use Hugging Face and PyTorch locally on your device.
-
-The steps have been tested to run without errors on `Linux 22.04 (LTS)`.
+If you want to run the application please read the [Prerequisites section](#1-prerequisites).
 
 </br>
 
 ## Table of Contents
 
-1. [Setup Miniconda](#setup-miniconda)
-2. [Install PyTorch with NVIDIA GPU](#install-pytorch-with-nvidia-gpu)
-3. [Install HuggingFace Transformers](#install-huggingface-transformers)
-4. [Configure VS Code to use Virtual Environment](#configure-vs-code-to-use-virtual-environment)
-5. [Setup on MAC M1](#running-on-apple-silicon-m1)
+* [1. Prerequisites](#1-prerequisites)
+  * [1.1 Create Access Token Files](#11-create-access-token-files)
+  * [1.2 Install Dependencies](#12-install-dependencies)
+* [2. Run QGAR](#2-run-qgar)
+* [3. Setup Virtual Environment](#3-setup-virtual-environment)
+
+---
+
+## 1. Prerequisites
+
+</br>
+
+### 1.1 Create Access Token Files
+
+To get access to our models and datasets you must be a part of our organization, [The Coorporation](https://huggingface.co/the-coorporation), on Huggingface Hub.
+
+Moreover, when training the `QG` model, the training process will be uploaded to [wandb](wandb.ai).
+
+In order for the `QGAR` to do the above, you must be authorized via access tokens.
+
+Therefore you must create a `.local` directory in the root directory and create the following files containing your tokens:
+
+* `hg_token.txt` - contains your access token to Huggingface
+* `wandb_token.txt` - contains your access token to Weight and Biases
+
+</br>
+
+### 1.2 Install Dependencies
+
+`QGAR` uses 3rd party libraries which are specified in [requirements.txt](requirements.txt).
+
+To install them either use the command `make install` or:
+
+```txt
+pip install -r requirements.txt
+```
+
+**NB:** Make sure you install the libraries in a [Virtual Environment](#3-setup-virtual-environment)!
 
 </br>
 
@@ -49,7 +53,52 @@ The steps have been tested to run without errors on `Linux 22.04 (LTS)`.
 
 </br>
 
-## Setup Miniconda
+## 2. Run QGAR
+
+You run `QGAR` by running `main.py` via:
+
+```txt
+python main.py <args>
+```
+
+The application can take arguments to specify what to do:
+
+* `main.py -t` - starts a training session for the `QG` model.
+* `main.py -i <text>` - runs the `QG` model on the input text and generates questions from the given context.
+* `main.py -d` - downloads and preprocesses our modified `SQuAD` dataset
+* `main.py -n <name>` - creates questions and answers and saves it under `<name>.json`
+* `main.py -s <filename>.json` - use the specified settings file. Defaults to `settings.json`
+* `main.py -h` -  shows instructions on how to run the program
+
+</br>
+
+---
+
+</br>
+
+## 3. Setup Virtual Environment
+
+The following sections describe the setup process to use Hugging Face and PyTorch locally on your device running in a Virtual Environment.
+
+The steps have been tested to run without errors on `Linux 22.04 (LTS)`.
+
+</br>
+
+**Table of Contents:**
+
+* [3.1 Setup Miniconda](#31-setup-miniconda)
+* [3.2 Install PyTorch with NVIDIA GPU](#32-install-pytorch-with-nvidia-gpu)
+* [3.3 Install HuggingFace Transformers](#33-install-huggingface-transformers)
+* [3.4 Configure VS Code to use Virtual Environment](#34-configure-vs-code-to-use-virtual-environment)
+* [3.5 Setup on MAC M1](#35-running-on-apple-silicon-m1)
+
+</br>
+
+---
+
+</br>
+
+## 3.1 Setup Miniconda
 
 1. Install Miniconda
 
@@ -93,7 +142,7 @@ The steps have been tested to run without errors on `Linux 22.04 (LTS)`.
 
 </br>
 
-### Install PyTorch with NVIDIA GPU
+### 3.2 Install PyTorch with NVIDIA GPU
 
 1. Activate your Virtual Environment
 
@@ -129,7 +178,7 @@ The steps have been tested to run without errors on `Linux 22.04 (LTS)`.
 
 ---
 
-### Install HuggingFace Transformers
+### 3.3 Install HuggingFace Transformers
 
 1. Activate your Virtual Environment
 
@@ -169,7 +218,7 @@ The steps have been tested to run without errors on `Linux 22.04 (LTS)`.
 
 </br>
 
-### Configure VS Code to use Virtual Environment
+### 3.4 Configure VS Code to use Virtual Environment
 
 1. Open example.py to activate the VS Code Python Extension.
 2. Press the `F1` key on your keyboard
@@ -188,7 +237,7 @@ The steps have been tested to run without errors on `Linux 22.04 (LTS)`.
 
 </br>
 
-## Running on Apple Silicon (M1)
+## 3.5 Running on Apple Silicon (M1)
 
 Follow instructions here [link](https://www.youtube.com/watch?v=17gDhXU55oU)
 
@@ -205,3 +254,7 @@ To install packages, use
 ```bash
 python3 -m pip install [package]
 ```
+
+</br>
+
+---
