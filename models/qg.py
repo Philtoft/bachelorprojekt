@@ -46,7 +46,7 @@ class QG:
         # Generate questions for each chunk
         i = 0
         for context_chunk in context_chunks:
-            if i > 15:
+            if i > 1:
                 break
             i += 1
 

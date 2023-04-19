@@ -86,18 +86,20 @@ class QGAR:
 
         return result
 
+    def _validate_text(self, text: str):
+        if len(text) > 0 and text[-1] != "." and text[-1] != ":" and text[-1] != "?":
+            return True
+        return False
+
     def add_colon_if_last_char_not_dot_or_colon(self, text: str):
-        if len(text) > 0 and text[-1] != "." and text[-1] != ":":
-            text += ":"
-        return text
+        if self._validate_text(text):
+            text += ": "
+        return text + " "
 
     def add_dot_if_last_char_not_dot(self, text: str):
-        try:
-            if len(text) > 0 and text[-1] != "." and text[-1] != ":":
-                text += "."
-            return text
-        except:
-            print(f"Text fucks up {text}")
+        if self._validate_text(text):
+            text += ". "
+        return text + " "
 
     def _html_to_plaintext(self, html_notes: str):
         """ Converts a markdown string to plaintext """
@@ -105,22 +107,26 @@ class QGAR:
         soup = BeautifulSoup(html_notes, "html.parser")
 
         for h_tag in soup.find_all(["h1", "h2", "h3"]):
-            # if len(tag.text) > 0:
             h_tag.string = self.add_colon_if_last_char_not_dot_or_colon(
                 h_tag.text)
 
+        with open(f"data/notes/{self.student_name}/{self.student_name}-h-tags-parsed.html", "w") as file:
+            file.write(soup.prettify())
+
         # On all tags add dor if last c
         for tag in soup.find_all():
-            # if len(tag.text) > 0:
             tag.string = self.add_dot_if_last_char_not_dot(tag.text)
+
+        with open(f"data/notes/{self.student_name}/{self.student_name}-dots-parsed.html", "w") as file:
+            file.write(soup.prettify())
 
         result = ' '.join(soup.stripped_strings)
         result = result.replace("\n", " ")
         result = result.replace("\t", " ")
         result = re.sub("\s\s+", " ", result)
 
-        # with open(f"data/notes/{self.student_name}/{self.student_name}-parsed.md", "w") as file:
-        #     file.write(result)
+        with open(f"data/notes/{self.student_name}/{self.student_name}-parsed.md", "w") as file:
+            file.write(result)
 
         return result
 
