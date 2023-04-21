@@ -1,0 +1,514 @@
+[
+    {
+        "context": "IAI notes Summary This chapter defines AI and establishes the cultural background against which it has developed. Some of the important points are as follows: Different people approach AI with different goals in mind. Two important questions to ask are: Are you concerned with thinking or behavior? Do you want to model humans or work from an ideal standard? In this book, we adopt the view that intelligence is concerned mainly with rational action. Ideally, an intelligent agent takes the best possible action in a situation. We study the problem of building agents that are intelligent in this sense.",
+        "questions_answers": [
+            {
+                "question": "What chapter defines AI and establishes the cultural background against which it has developed?",
+                "answer": {
+                    "score": 0.4109407365322113,
+                    "start": 18,
+                    "end": 30,
+                    "answer": "This chapter"
+                }
+            },
+            {
+                "question": "What do different people approach AI with different goals in mind?",
+                "answer": {
+                    "score": 0.21407833695411682,
+                    "start": 159,
+                    "end": 217,
+                    "answer": "Different people approach AI with different goals in mind."
+                }
+            },
+            {
+                "question": "What is the main question to ask about intelligence in this book?",
+                "answer": {
+                    "score": 0.747644305229187,
+                    "start": 434,
+                    "end": 449,
+                    "answer": "rational action"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Philosophers (going back to 400 B.C.) made AI conceivable by considering the ideas that the mind is in some ways like a machine, that it operates on knowledge encoded in some internal language, and that thought can be used to choose what actions to take. Mathematicians provided the tools to manipulate statements of logical certainty as well as uncertain, probabilistic statements. They also set the groundwork for understanding computation and reasoning about algorithms. Economists formalized the problem of making decisions that maximize the expected outcome to the decision maker. Neuroscientists discovered some facts about how the brain works and the ways in which it is similar to and different from computers.",
+        "questions_answers": [
+            {
+                "question": "Who made AI conceivable by considering the ideas that the mind is in some ways like a machine?",
+                "answer": {
+                    "score": 0.9874662160873413,
+                    "start": 0,
+                    "end": 12,
+                    "answer": "Philosophers"
+                }
+            },
+            {
+                "question": "What did Mathematicians provide to manipulate statements of logical certainty and probabilistic statements?",
+                "answer": {
+                    "score": 0.8005615472793579,
+                    "start": 283,
+                    "end": 288,
+                    "answer": "tools"
+                }
+            },
+            {
+                "question": "How did Economists formalize the problem of making decisions that maximize the expected outcome to the decision maker?",
+                "answer": {
+                    "score": 0.23948611319065094,
+                    "start": 383,
+                    "end": 472,
+                    "answer": "They also set the groundwork for understanding computation and reasoning about algorithms"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Psychologists adopted the idea that humans and animals can be considered information processing machines. Linguists showed that language use fits into this model. Computer engineers provided the ever-more-powerful machines that make AI applications possible. Control theory deals with designing devices that act optimally on the basis of feedback from the environment. Initially, the mathematical tools of control theory were quite different from AI, but the fields are coming closer together. The history of AI has had cycles of success, misplaced optimism, and resulting cutbacks in enthusiasm and funding. There have also been cycles of introducing new creative approaches and systematically refining the best ones.",
+        "questions_answers": [
+            {
+                "question": "What did Computer engineers provide to make AI applications possible? What did control theory deal with designing devices that act optimally on the basis of feedback from the environment?",
+                "answer": {
+                    "score": 0.48403146862983704,
+                    "start": 191,
+                    "end": 222,
+                    "answer": "the ever-more-powerful machines"
+                }
+            },
+            {
+                "question": "Who adopted the idea that humans and animals can be considered information processing machines?",
+                "answer": {
+                    "score": 0.9982863664627075,
+                    "start": 0,
+                    "end": 13,
+                    "answer": "Psychologists"
+                }
+            },
+            {
+                "question": "What did Linguists show that language use fits into this model?",
+                "answer": {
+                    "score": 0.5134565234184265,
+                    "start": 73,
+                    "end": 104,
+                    "answer": "information processing machines"
+                }
+            }
+        ]
+    },
+    {
+        "context": "AI has advanced more rapidly in the past decade because of greater use of the scientific method in experimenting with and comparing approaches. Recent progress in understanding the theoretical basis for intelligence has gone hand in hand with improvements in the capabilities of real systems. The subfields of AI have become more integrated, and AI has found common ground with other disciplines. 1.1 What is AI 1.1.1 Acting humanly: The Turing Test approach Requirements for passing the Turing test: natural language processing to enable it to communicate successfully in English; knowledge representation to store what it knows or hears; automated reasoning to use the stored information to answer questions and to draw new conclusions; machine learning to adapt to new circumstances and to detect and extrapolate patterns The total Turing test: this form of the test also includes the subject to handle visual input and physical objects given by the interrogator.",
+        "questions_answers": [
+            {
+                "question": "What is AI 1.1.1 Acting humanly?",
+                "answer": {
+                    "score": 0.4025826156139374,
+                    "start": 434,
+                    "end": 499,
+                    "answer": "The Turing Test approach Requirements for passing the Turing test"
+                }
+            },
+            {
+                "question": "What is the Turing Test approach Requirements for passing a Turing test?",
+                "answer": {
+                    "score": 0.3774954080581665,
+                    "start": 501,
+                    "end": 580,
+                    "answer": "natural language processing to enable it to communicate successfully in English"
+                }
+            },
+            {
+                "question": "How does AI learn to handle visual input and physical objects given by the interrogator?",
+                "answer": {
+                    "score": 0.06171461567282677,
+                    "start": 848,
+                    "end": 869,
+                    "answer": "this form of the test"
+                }
+            }
+        ]
+    },
+    {
+        "context": "The computer would need: computer vision to perceive objects robotics to manipulate objects and move about 1.1.2 Thinking humanly: The cognitive modeling approach 1.1.3 Thinking rationally: The \u201claws of thought\u201d approach 1.1.4 Acting rationally: The rational agent approach A rational agent is one that acts so as to achieve the best outcome or, when there is uncertainty, the best expected outcome. The rational-agent approach has two advantages over the other approaches. First, it is more general than the \u201claws of thought\u201d approach because correct inference is just one of several possible mechanisms for achieving rationality. Second, it is more amenable to scientific development than are approaches based on human behavior or human thought.",
+        "questions_answers": [
+            {
+                "question": "What would the computer need to perceive objects robotics to manipulate objects and move about 1.1.2 Thinking humanly: The cognitive modeling approach 1.1.3 Thinking rationally: What is one that acts so as to achieve the best outcome or, when there is uncertainty, the best expected outcome?",
+                "answer": {
+                    "score": 0.8924508690834045,
+                    "start": 25,
+                    "end": 40,
+                    "answer": "computer vision"
+                }
+            },
+            {
+                "question": "What is more general than the \u201claws of thought\u201d approach because correct inference is just one of several possible mechanisms for achieving rationality?",
+                "answer": {
+                    "score": 0.3104914128780365,
+                    "start": 404,
+                    "end": 427,
+                    "answer": "rational-agent approach"
+                }
+            }
+        ]
+    },
+    {
+        "context": "1.2 The foundations of AI 1.2.1 Philosophy The final element in the philosophical picture of the mind is the connection between knowledge and action. This question is vital to AI because intelligence requires action as well as reasoning. Moreover, only by understanding how actions are justified can we understand how to build an agent whose actions are justifiable (or rational). 1.2.2 Mathematics 1.2.3 Economics 1.2.4 Neuroscience 1.2.5 Psychology 1.2.6 Computer engineering 1.2.7 Control theory and cybernetics 1.2.8 Linguistics 1.3 The history of AI 1.3.1 The gestation of artificial intelligence (1943\u20131955) 1.3.2 The birth of artificial intelligence (1956) 1.",
+        "questions_answers": [
+            {
+                "question": "What are the foundations of AI 1.2.1 Philosophy What is the final element in the philosophical picture of the mind?",
+                "answer": {
+                    "score": 0.546474039554596,
+                    "start": 105,
+                    "end": 148,
+                    "answer": "the connection between knowledge and action"
+                }
+            },
+            {
+                "question": "What is essential to AI because intelligence requires action as well as reasoning?",
+                "answer": {
+                    "score": 0.2530461847782135,
+                    "start": 128,
+                    "end": 148,
+                    "answer": "knowledge and action"
+                }
+            },
+            {
+                "question": "How can we understand how to build an agent whose actions are justifiable (or rational)?",
+                "answer": {
+                    "score": 0.7040658593177795,
+                    "start": 253,
+                    "end": 295,
+                    "answer": "by understanding how actions are justified"
+                }
+            }
+        ]
+    },
+    {
+        "context": "3.3 Early enthusiasm, great expectations (1952\u20131969) 1.3.4 A dose of reality (1966\u20131973) 1.3.5 Knowledge-based systems: The key to power? (1969\u20131979) 1.3.6 AI becomes an industry (1980\u2013present) 1.3.7 The return of neural networks (1986\u2013present) 1.3.8 AI adopts the scientific method (1987\u2013present) 1.3.9 The emergence of intelligent agents (1995\u2013present) 1.3.10 The availability of very large data sets (2001\u2013present) 1.4 The state of the art Summary An agent is something that perceives and acts in an environment. The agent function for an agent specifies the action taken by the agent in response to any percept sequence. The performance measure evaluates the behavior of the agent in an environment.",
+        "questions_answers": [
+            {
+                "question": "What is the key to power?",
+                "answer": {
+                    "score": 0.993501603603363,
+                    "start": 95,
+                    "end": 118,
+                    "answer": "Knowledge-based systems"
+                }
+            },
+            {
+                "question": "What is an example of how AI becomes an industry?",
+                "answer": {
+                    "score": 0.33572813868522644,
+                    "start": 200,
+                    "end": 229,
+                    "answer": "The return of neural networks"
+                }
+            },
+            {
+                "question": "How does AI adopt the scientific method?",
+                "answer": {
+                    "score": 0.06543410569429398,
+                    "start": 298,
+                    "end": 339,
+                    "answer": "1.3.9 The emergence of intelligent agents"
+                }
+            },
+            {
+                "question": "How does the performance measure evaluate the behavior of the agent in an environment?",
+                "answer": {
+                    "score": 0.2260313630104065,
+                    "start": 625,
+                    "end": 702,
+                    "answer": "The performance measure evaluates the behavior of the agent in an environment"
+                }
+            }
+        ]
+    },
+    {
+        "context": "A rational agent acts so as to maximize the expected value of the performance measure, given the percept sequence it has seen so far. A task environment specification includes the performance measure, the external environment, the actuators, and the sensors. In designing an agent, the first step must always be to specify the task environment as fully as possible. Task environments vary along several significant dimensions. They can be fully or partially observable, single-agent or multiagent, deterministic or stochastic, episodic or sequential, static or dynamic, discrete or continuous, and known or unknown. The agent program implements the agent function.",
+        "questions_answers": [
+            {
+                "question": "What is a rational agent acting so as to maximize the expected value of the performance measure?",
+                "answer": {
+                    "score": 0.06281445175409317,
+                    "start": 0,
+                    "end": 16,
+                    "answer": "A rational agent"
+                }
+            },
+            {
+                "question": "What is the purpose of a task environment specification?",
+                "answer": {
+                    "score": 0.23425771296024323,
+                    "start": 28,
+                    "end": 85,
+                    "answer": "to maximize the expected value of the performance measure"
+                }
+            },
+            {
+                "question": "When designing an agent, the first step must always be to specify the task environment as fully as possible?",
+                "answer": {
+                    "score": 0.022397320717573166,
+                    "start": 347,
+                    "end": 364,
+                    "answer": "fully as possible"
+                }
+            }
+        ]
+    },
+    {
+        "context": "There exists a variety of basic agent-program designs reflecting the kind of information made explicit and used in the decision process. The designs vary in efficiency, compactness, and flexibility. The appropriate design of the agent program depends on the nature of the environment. Simple reflex agents respond directly to percepts, whereas model-based reflex agents maintain internal state to track aspects of the world that are not evident in the current percept. Goal-based agents act to achieve their goals, and utility-based agents try to maximize their own expected \u201chappiness.\u201d All agents can improve their performance through learning. 2.1 Agents and Environments An agent is anything that can be viewed as perceiving its environment through sensors and acting upon that environment through actuators.",
+        "questions_answers": [
+            {
+                "question": "What is the type of information that is made explicit and used in the decision process?",
+                "answer": {
+                    "score": 0.4420212507247925,
+                    "start": 32,
+                    "end": 53,
+                    "answer": "agent-program designs"
+                }
+            },
+            {
+                "question": "What type of design depends on the nature of the environment?",
+                "answer": {
+                    "score": 0.27320459485054016,
+                    "start": 203,
+                    "end": 242,
+                    "answer": "appropriate design of the agent program"
+                }
+            },
+            {
+                "question": "What is a model-based reflex agent that maintains internal state to track aspects of the world that are not evident in the current percept?",
+                "answer": {
+                    "score": 0.21818597614765167,
+                    "start": 285,
+                    "end": 305,
+                    "answer": "Simple reflex agents"
+                }
+            }
+        ]
+    },
+    {
+        "context": "percept sequence : the history of everything an agent has perceived(memories) agent function: An action mapped from a given input(percept) which result in a given action 2.2 Good behaviour: the concept of rationality A rational agent is one that does the right thing. Put in an environment an agent perceives it and creates a sequence of actions, if the actions are good as a whole then it has performed well. a performance measure: Evaluation of the desirability of a sequence of environment states. As a general rule, it is better to design performance measures according to what one actually wants in the environment, rather than according to how one thinks the agent should behave 2.",
+        "questions_answers": [
+            {
+                "question": "What is the history of everything an agent has perceived agent function?",
+                "answer": {
+                    "score": 0.8880653977394104,
+                    "start": 0,
+                    "end": 16,
+                    "answer": "percept sequence"
+                }
+            },
+            {
+                "question": "What is a concept of rationality that does the right thing in an agent's environment?",
+                "answer": {
+                    "score": 0.5073810815811157,
+                    "start": 174,
+                    "end": 188,
+                    "answer": "Good behaviour"
+                }
+            },
+            {
+                "question": "What is an example of a performance measure that is better to design performance measures according to what one actually wants in the environment?",
+                "answer": {
+                    "score": 0.20908446609973907,
+                    "start": 646,
+                    "end": 686,
+                    "answer": "how one thinks the agent should behave 2"
+                }
+            }
+        ]
+    },
+    {
+        "context": "2.1 Rationality What is rational at any given time depends on four things: \u2022 The performance measure that defines the criterion of success. \u2022 The agent\u2019s prior knowledge of the environment. \u2022 The actions that the agent can perform. \u2022 The agent\u2019s percept sequence to date. definition of a rational agent: For each possible percept sequence, a rational agent should select an action that is expected to maximize its performance measure, given the evidence provided by the percept sequence and whatever built-in knowledge the agent has An agent can be called rational when its expected performance is at least as high as any other agent\u2019s, meaning it already has optimal efficiency for its environment.",
+        "questions_answers": [
+            {
+                "question": "What is a rational agent? What is an agent that can be called rational when its expected performance is at least as high as any other agent?",
+                "answer": {
+                    "score": 0.03275134786963463,
+                    "start": 4,
+                    "end": 15,
+                    "answer": "Rationality"
+                }
+            },
+            {
+                "question": "What is rational at any given time depends on four things: \u2022 The performance measure that defines the criterion of success?",
+                "answer": {
+                    "score": 0.27540189027786255,
+                    "start": 77,
+                    "end": 100,
+                    "answer": "The performance measure"
+                }
+            },
+            {
+                "question": "What is the agent\u2019s prior knowledge of the environment?",
+                "answer": {
+                    "score": 0.16054320335388184,
+                    "start": 192,
+                    "end": 230,
+                    "answer": "The actions that the agent can perform"
+                }
+            }
+        ]
+    },
+    {
+        "context": "2.2.2 Omniscience, learning and autonomy An omniscient agent knows the actual outcome of its actions and can act accordingly; but omniscience is impossible in reality. Rationality maximizes expected performance, while perfection maximizes actual performance. information gathering : Doing actions in order to modify future percepts - essentially spending time to learn and improve its future performance A priori: en environment which is completely known Autonomous : Relies on its own percepts rather than the prior knowledge it is given - it thinks and reacts on its own 2.3.1 specifying the task environment Task environment(aka. PEAS (Performance, Environment, Actuators, Sensors)): The agent\u2019s actuators and sensors.",
+        "questions_answers": [
+            {
+                "question": "What does omniscient agent know the actual outcome of its actions and can act accordingly?",
+                "answer": {
+                    "score": 0.5741536021232605,
+                    "start": 19,
+                    "end": 40,
+                    "answer": "learning and autonomy"
+                }
+            },
+            {
+                "question": "What is omniscience impossible in reality?",
+                "answer": {
+                    "score": 0.13762003183364868,
+                    "start": 130,
+                    "end": 141,
+                    "answer": "omniscience"
+                }
+            },
+            {
+                "question": "How does perfection maximize the actual performance of the agent?",
+                "answer": {
+                    "score": 0.15098267793655396,
+                    "start": 168,
+                    "end": 179,
+                    "answer": "Rationality"
+                }
+            },
+            {
+                "question": "What is the task environment that is completely known Autonomous?",
+                "answer": {
+                    "score": 0.29104140400886536,
+                    "start": 414,
+                    "end": 428,
+                    "answer": "en environment"
+                }
+            }
+        ]
+    },
+    {
+        "context": "PEAS description: a description of the environment, agent actuators, performance measurement and sensors of the agent and its acting environment: Performance measures: Criterias for a rational and well performing agent Environment: the environment(s) in which the agent will operate Actuators: Actions available to the agent Sensors: Ways for the agent to perceive its environment 2.3.2 Properties of task environments Fully observable : The agent\u2019s sensors gives it knowledge of the whole environment at all times and detects all relevant aspects for the choice of action. Agents need not keep track of its perceived environment as memory, since it is always available.",
+        "questions_answers": [
+            {
+                "question": "What is a description of the environment, agent actuators, performance measurement and sensors of the agent and its acting environment?",
+                "answer": {
+                    "score": 0.9136022925376892,
+                    "start": 0,
+                    "end": 4,
+                    "answer": "PEAS"
+                }
+            },
+            {
+                "question": "What are the criteria for a rational and well performing agent Environment: Actions available to the agent Sensors: Ways for the agent to perceive its environment Fully observable : The agent\u2019s sensors gives it knowledge of the whole environment at all times and detects all relevant aspects for the choice of action?",
+                "answer": {
+                    "score": 0.9863404035568237,
+                    "start": 146,
+                    "end": 166,
+                    "answer": "Performance measures"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Partially observable : The agent\u2019s sensors gives it perception of a limited area at a time, fx. a roomba can only see right in front of it. Multiagent: Multiple agents affect each other in a given environment - often requires communication between agents for rational behaviour Single agent: Only a single agent affects an environment, it is not affected by other agents Agents can be competitive or cooperative, eg. chess AI or multiple Roombas in a room. Randomized behaviour is rational since is avoids predictability which can be negative. Deterministic: The next state of the environment is completely determined by the current state and the action executed by the agent Stochastic: The next state of the environment is not determined by state and executed action of the agent Uncertain environment: not fully observable or not deterministic environment nondeterministic environment: Environments where actions are characterized by their possible outcomes, but no probabilities are attached to them Episodic environment: Agents experience is divided into atomic episodes.",
+        "questions_answers": [
+            {
+                "question": "What is partially observable : The agent\u2019s sensors give it perception of a limited area at a time, fx?",
+                "answer": {
+                    "score": 0.05773930624127388,
+                    "start": 96,
+                    "end": 104,
+                    "answer": "a roomba"
+                }
+            },
+            {
+                "question": "What is a roomba that can only see right in front of it?",
+                "answer": {
+                    "score": 0.7117165327072144,
+                    "start": 92,
+                    "end": 94,
+                    "answer": "fx"
+                }
+            },
+            {
+                "question": "What is the next state of the environment determined by the current state and executed action of the agent Stochastic?",
+                "answer": {
+                    "score": 0.7350953817367554,
+                    "start": 544,
+                    "end": 557,
+                    "answer": "Deterministic"
+                }
+            }
+        ]
+    },
+    {
+        "context": "In each episode the agent receives a percept and then performs a single action. the next episode does not depend on the actions taken in previous episodes Sequential environment: the agent\u2019s current decision could affect all future decisions Static environment: The environment is stable and does not change while the agent is deliberating its action Dynamic environment: The environment may change while the agent is deliberating Discrete environment: The time is based upon steps, like a turn based game Continuous environment: Time is continuous and not affected by amount of actions Known/unknown environment: The agents knowledge of the laws of the environment such as physics.",
+        "questions_answers": [
+            {
+                "question": "In what episode does the agent receive a percept and then perform a single action?",
+                "answer": {
+                    "score": 0.4472824037075043,
+                    "start": 3,
+                    "end": 15,
+                    "answer": "each episode"
+                }
+            },
+            {
+                "question": "What is the current decision of the agent?",
+                "answer": {
+                    "score": 0.2825216054916382,
+                    "start": 179,
+                    "end": 260,
+                    "answer": "the agent\u2019s current decision could affect all future decisions Static environment"
+                }
+            },
+            {
+                "question": "When does the environment change while the agent is deliberating its action Dynamic environment: The time is based upon steps, like a turn based game Continuous environment: Time is continuous and not affected by amount of actions Known/unknown environment?",
+                "answer": {
+                    "score": 0.10021419823169708,
+                    "start": 372,
+                    "end": 398,
+                    "answer": "The environment may change"
+                }
+            }
+        ]
+    },
+    {
+        "context": "If it is unknown the agent must learn it by itself 2.4.1 Agent programs 2.4.2 Simple reflex agents These agents select actions on the basis of the current percept, ignoring the rest of the percept history. This type of agent is ruled by condition\u2013action rules: essentially if statements - If X happens then do Y Infinite loops are often unavoidable for simple reflex agents operating in partially observable environments. Escape from infinite loops is possible if the agent can randomize its actions. In single-agent environments, however, randomization is usually not rational 2.4.3 Model-based reflex agents A Model-based agent : an agent that uses a model of the world(knowledge about how the environment works, such as traffic rules fx.",
+        "questions_answers": [
+            {
+                "question": "What is an agent that uses a model of the world?",
+                "answer": {
+                    "score": 0.5199649333953857,
+                    "start": 596,
+                    "end": 609,
+                    "answer": "reflex agents"
+                }
+            },
+            {
+                "question": "What is a Model-based agent based on?",
+                "answer": {
+                    "score": 0.3312581181526184,
+                    "start": 653,
+                    "end": 671,
+                    "answer": "model of the world"
+                }
+            },
+            {
+                "question": "What is the name of the agent who uses the model of how the environment works?",
+                "answer": {
+                    "score": 0.8191858530044556,
+                    "start": 723,
+                    "end": 739,
+                    "answer": "traffic rules fx"
+                }
+            }
+        ]
+    }
+]

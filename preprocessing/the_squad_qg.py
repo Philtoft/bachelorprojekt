@@ -55,7 +55,7 @@ archivePrefix = {arXiv},
 
 
 class SquadConfig(BuilderConfig):
-    """Builder configuration for `SQuAD V2.0`."""
+    """Builder configuration for `SQuAD`."""
 
     def __init__(self, **kwargs):
         super(SquadConfig, self).__init__(**kwargs)
@@ -63,7 +63,7 @@ class SquadConfig(BuilderConfig):
 
 class SquadProcessor(GeneratorBasedBuilder):
     """
-    `SQuAD V2.0` preprocessor to transform a modified `SQuAD V2.0` dataset to be used for training a `T5 model`
+    `SQuAD` preprocessor to transform a modified `SQuAD` dataset to be used for training a `T5 model`
     to generate multiple questions from a single context.
     """
     
@@ -81,6 +81,7 @@ class SquadProcessor(GeneratorBasedBuilder):
         )
     ]
 
+
     def _info(self) -> DatasetInfo:
         return DatasetInfo(
             description=_DESCRIPTION,
@@ -96,14 +97,16 @@ class SquadProcessor(GeneratorBasedBuilder):
             task_templates=[]
         )
 
+
     def _split_generators(self, dl_manager: DownloadManager) -> list[SplitGenerator]:
-        urls = _SET_URLS["v1"] if self.config.name == "v1" else _SET_URLS["v2"] 
+        urls = _SET_URLS[self.config.name]
         files = dl_manager.download_and_extract(urls)
         
         return [
             SplitGenerator(name=Split.TRAIN, gen_kwargs={"filepath": files["train"]}),
             SplitGenerator(name=Split.VALIDATION, gen_kwargs={"filepath": files["validation"]})
         ]
+
 
     def _generate_examples(self, filepath: str):
         key = 0

@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from markdown import markdown
 from transformers import pipeline
+from exceptions.exceptions import NoSupportedFileTypeFoundError
 from models.qg import QG
 import json
 import re
@@ -36,7 +37,8 @@ class QGAR:
         self._qa = pipeline("question-answering", qa)
         self.student_name = None
 
-    def __call__(self, student_name: str):
+
+    def __call__(self, student: str) -> list:
         """
         Generates questions and answers and saves them in json format. 
 
@@ -46,14 +48,16 @@ class QGAR:
         3. Saves them as `<student>.json` to disk
         """
 
-        self.student_name = student_name
-        plaintext = self._parse_notes(student_name)
+        plaintext = self._parse_notes(student)
         qgas = self._generate_questions_answers(plaintext)
 
-        with open(f"{_NOTE_DIR}/{student_name}/{student_name}-questions-and-answers.json", "w") as file:
-            json.dump(qgas, file)
+        with open(f"{_NOTE_DIR}/{student}/{student}-questions-and-answers.json", "w") as file:
+            json.dump(qgas, file, indent=4)
 
-    def _parse_notes(self, student: str):
+        return qgas
+
+
+    def _parse_notes(self, student: str) -> str:
         notetype = self._get_note_type(student)
 
         with open(f"{_NOTE_DIR}/{student}/{student}{notetype}") as file:
@@ -65,16 +69,17 @@ class QGAR:
 
         return plaintext
 
-    def _get_note_type(self, student: str):
+
+    def _get_note_type(self, student: str) -> str:
         for file in os.listdir(f"{_NOTE_DIR}/{student}/"):
             suffix = pathlib.Path(file).suffix
             if suffix in _FILE_TYPES:
                 return suffix
+        
+        raise NoSupportedFileTypeFoundError(student)
 
-        raise FileNotFoundError(
-            f"No supported filetypes found in directory '{student}'")
 
-    def _markdown_to_html(self, markdown_notes: str):
+    def _markdown_to_html(self, markdown_notes: str) -> str:
         """ Converts a markdown string to HTML """
 
         escaped_markdown = html.escape(markdown_notes)
@@ -101,7 +106,8 @@ class QGAR:
             text = "" + text + "."
         return "" + text + ""
 
-    def _html_to_plaintext(self, html_notes: str):
+
+    def _html_to_plaintext(self, html_notes: str) -> str:
         """ Converts a markdown string to plaintext """
 
         soup = BeautifulSoup(html_notes, "html.parser")
@@ -138,6 +144,7 @@ class QGAR:
 
         return result
 
+
     def _generate_answers(self, questions_and_contexts: list[dict]) -> list:
         """ Generates answers from the notes """
 
@@ -172,7 +179,8 @@ class QGAR:
 
         return questions_and_answers
 
-    def _generate_questions_answers(self, plaintext_notes: str):
+
+    def _generate_questions_answers(self, plaintext_notes: str) -> list:
         """ Outputs the questions and answers to a file """
 
         questions_and_contexts = self._qg(plaintext_notes)

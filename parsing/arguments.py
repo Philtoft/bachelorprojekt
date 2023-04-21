@@ -2,6 +2,8 @@ from dataclasses import dataclass, field
 
 @dataclass
 class ModelArguments:
+    """A `dataclass` containing settings for the models to use."""
+
     qg_model_name: str = field(
         metadata={"help": "Path to pretrained qg model or model identifier from huggingface.co/models"}
     )
@@ -17,6 +19,8 @@ class ModelArguments:
 
 @dataclass
 class DataTrainingArguments:
+    """A `dataclass` containing meta settings to be used for setting up training of the `QG` model."""
+    
     training_file_path: str = field(
         metadata={"help": "Path for cached training dataset"}
     )
@@ -35,4 +39,12 @@ class DataTrainingArguments:
 
     dataset_output_dir: str = field(
         metadata={"help": "The path to the output directory to save locally created datasets"}
+    )
+
+    optimized_training: bool = field(
+        metadata={"help": "Whether to apply Smart Batching and Mixed Precision Training"}
+    )
+
+    upload_to_hub: bool = field(
+        metadata={"help": "Whether to upload the model and tokenizer to Huggingface post training"}
     )
