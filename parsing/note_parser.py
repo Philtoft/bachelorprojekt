@@ -63,3 +63,18 @@ class NoteParser:
             return suffix
 
         raise FileNotFoundError(f"'{suffix}' is not a supported note format.")
+    
+    def _check_if_text_needs_refactoring(self, text: str):
+        if len(text) > 0 and text[-1] != "." and text[-1] != ":" and text[-1] != "?":
+            return True
+        return False
+    
+    def _add_colon_if_last_char_not_dot_or_colon(self, text: str):
+        if self._check_if_text_needs_refactoring(text):
+            text = "" + text + ":"
+        return "" + text + " "
+
+    def add_dot_if_last_char_not_dot(self, text: str):
+        if self._check_if_text_needs_refactoring(text):
+            text = "" + text + "."
+        return "" + text + ""
