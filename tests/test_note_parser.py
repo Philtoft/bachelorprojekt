@@ -28,7 +28,7 @@ class TestNoteParser(unittest.TestCase):
 
     def test_remove_html_tags_given_no_tags_removes_nothing(self):
         actual = str(self.note_parser._remove_html_tags(self.notes, ""))
-        expected = str(bs(self.notes))
+        expected = str(bs(self.notes, "html.parser"))
         self.assertEqual(expected, actual)
 
 
