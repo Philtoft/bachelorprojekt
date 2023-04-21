@@ -710,7 +710,7 @@ poetry.toml
 .ruff_cache/
 
 ### react ###
-.DS_*
+**/*.DS_*
 **/*.backup.*
 **/*.back.*
 
