@@ -65,10 +65,8 @@ class NoteParser:
         return result
 
 
-    def _remove_html_tags(self, html_note: str, *tags: str) -> bs:
+    def _remove_html_tags(self, soup: bs, *tags: str) -> bs:
         """Removes all instances of the specified html `tag` from the html `soup`."""
-        soup = bs(html_note, "html.parser")
-        
         if len(tags) == 0:
             return soup
         
