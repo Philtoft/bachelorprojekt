@@ -4,8 +4,7 @@ import re
 import sys
 from bs4 import BeautifulSoup as bs
 import pathlib
-
-import markdown
+from markdown import markdown
 
 _NOTE_FORMATS = [".md", ".html"]
 _NOTE_DIR = "parsing/notes"
@@ -22,9 +21,12 @@ class NoteParser:
     - Add colon or dot 
     """
 
-    def __init__(self, student: str):
+    def __init__(self, student: str, notetype: str):
         """Initializes a new `NoteParser` instance for the specified `note`."""
         self.student = student
+        self.notetype = notetype
+        self.path_and_file = f"{_NOTE_DIR}/{self.student}/{self.student}"
+        self.path_to_dir = f"{_NOTE_DIR}/{self.student}"
 
     def __call__(self):
         plaintext = self._parse_note()
@@ -33,10 +35,10 @@ class NoteParser:
     def _parse_note(self) -> str:
         note_format = self._get_note_format()
 
-        with open(f"{_NOTE_DIR}/{self.student}/{self.student}.md", 'r', encoding='utf-8') as file:
+        with open(f"{self.path_and_file}.md", 'r', encoding='utf-8') as file:
             self.note = file.read()
         
-        if (note_format == '.md'):
+        if (".md" == self.notetype):
             self.note = self._markdown_to_html(self.note)
         
         return self._html_to_plaintext(self.note)
@@ -55,9 +57,20 @@ class NoteParser:
     def _markdown_to_html(self, markdown_notes: str) -> str:
         """Converts a markdown string to HTML."""
 
+
+        markdown_notes = self._remove_markdown_tables(markdown_notes)
+
         escaped_markdown = html.escape(markdown_notes)
 
-        return markdown(escaped_markdown)
+        with open(f"{_NOTE_DIR}/{self.student}/{self.student}-escaped.txt", "w", encoding='utf-8') as file:
+            file.write(escaped_markdown)
+
+        result = markdown(escaped_markdown)
+
+        with open(f"{_NOTE_DIR}/{self.student}/{self.student}-generated.html", "w", encoding='utf-8') as file:
+            file.write(result)
+
+        return result
 
     def _html_to_plaintext(self, html_notes: str):
         """Converts a """
@@ -68,15 +81,27 @@ class NoteParser:
         for h_tag in soup.find_all(["h1", "h2", "h3"]):
             h_tag.string = self._add_colon_if_last_char_not_dot_or_colon(h_tag.text)
 
-        tags_to_remove = ["table", "title"]
-        self._remove_html_tags(soup=soup, tags=tags_to_remove)
+        # tags_to_remove = ["table", "title"]
+        # self._remove_html_tags(soup=soup, tags=tags_to_remove)
 
         result = soup.get_text(separator=" ")
         result = result.replace("\n", " ")
         result = result.replace("\t", " ")
         result = re.sub("\s\s+", " ", result)
-        return result
 
+        with open(f"{self.path_and_file}-cleaned.txt", "w") as file:
+            file.write(result)
+
+        return result
+    
+    def _remove_markdown_tables(self, markdown_text:str):
+        # Define a regular expression pattern to match markdown tables
+        pattern = r"(\|.*\|\n)((\|:?-+:?\|)+\n)((\|.*\|[\n])+)"
+        
+        # Remove the markdown tables using re.sub()
+        cleaned_text = re.sub(pattern, '', markdown_text)
+        
+        return cleaned_text
 
     def _remove_html_tags(self, soup: bs, tags: list[str]) -> bs:
         """Removes all instances of the specified html `tag` from the html `soup`."""
@@ -113,13 +138,13 @@ def main(args: argparse.Namespace, no_arguments: bool):
         print("No arguments provided.")
         parser.print_help()
     else:
-        note_parser = NoteParser(args.student)
+        note_parser = NoteParser(args.student, args.filetype)
         plaintext = note_parser()
         note_parser.output_plaintext_notes(plaintext)
-        print(note_parser())
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Parse a note.")
     parser.add_argument("-s", "--student", type=str, metavar="text", help="The student notes to parse.")
+    parser.add_argument("-t", "--filetype", type=str, metavar="text", help="Filetype of the note.")
 
     main(parser.parse_args(), not (len(sys.argv) > 1))
