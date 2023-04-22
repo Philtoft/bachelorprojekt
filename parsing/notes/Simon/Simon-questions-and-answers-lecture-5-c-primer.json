@@ -1,0 +1,473 @@
+[
+	{
+		"context": "C Primer TEACHER Willard Rafnsson SLIDES Slides-5.pdf FORM EXECISES LECTURE DONE WEEK 39 C Primer R eadings Lecture 1. Pointers Notation Why pointers in C? Pointers Pointer Arithmetic Array and pointers NOTATIONS Pointers are NOT arrays 2. Declarations and definitions Scope of variables 3. Type specifiers and qualifiers Type specifiers Type specifier: Struct Type specifier: Union Type specifier: Enum Type qualifier: const Type qualifier: volatile void * 4. Type conversions Unsigned and signed Pointer conversions 5. Symbol overloading Keyword overloading Symbol overloading 6. Operator precedence 7. Unscrambling declarations The rules for understanding C declarations 8. Take-aways Chapter Machine-Level Representation of Programs.",
+		"questions_answers": [
+			{
+				"question": "What does Willard Rafnsson SLIDES Slides-5.pdf FORM EXECISES LECTURE DONE WEEK 39 C Primer R eadings Lecture 1. Pointers Notation Why pointers are NOT arrays 2. Declarations and definitions Scope of variables 3. Type specifiers and qualifiers Type specifiedr: Struct type specifier: Enum Type qualifier: const Type qualifiers: volatile",
+				"answer": {
+					"score": 0.49341490864753723,
+					"start": 9,
+					"end": 16,
+					"answer": "TEACHER"
+				}
+			}
+		]
+	},
+	{
+		"context": "CS:APP 3.7 Procedures CS:APP 3.8 Array Allocation and Access CS:APP 3.9 Heterogeneous Data Structures CS:APP 3.10 Combining Control and Data in Machine-Level Programs Agenda Pointers Declarations and definitions Type specifiers and qualifiers Type conversions Symbol overloading Operator precedence Unscrambling declarations Terms this week dec, def, types, ops, pointers \"A pointer is a variable that contains the address of a variable.\" Pointers let C programmers directly control CPU addressing. p is a char pointer. It is a variable that contains the address of a char variable. To share data without copies To manage indirections (more on this later with function pointers) To manage data placement / locality and memory allocation Exercise Write type declarations for the following variables: q: a pointer to an integer pointer int **q; t: a pointer to a byte char *t; u: a pointer to a byte array char *u[10]; Exercise Consider the following code: What is wrong? Pointers are valid, null or indeterminate.",
+		"questions_answers": [
+			{
+				"question": "What is a pointer that contains the address of a variable?",
+				"answer": {
+					"score": 0.54927659034729,
+					"start": 499,
+					"end": 500,
+					"answer": "p"
+				}
+			},
+			{
+				"question": "What is the name of the char pointer?",
+				"answer": {
+					"score": 0.9688977599143982,
+					"start": 499,
+					"end": 500,
+					"answer": "p"
+				}
+			},
+			{
+				"question": "What are the types of pointsers that let C programmers directly control CPU addressing?",
+				"answer": {
+					"score": 0.9900340437889099,
+					"start": 439,
+					"end": 447,
+					"answer": "Pointers"
+				}
+			},
+			{
+				"question": "What type of pointers are valid, null or indeterminate?",
+				"answer": {
+					"score": 0.9784971475601196,
+					"start": 970,
+					"end": 978,
+					"answer": "Pointers"
+				}
+			}
+		]
+	},
+	{
+		"context": "A pointer is null when assigned 0 Null pointers evaluate to false in logical expressions Dereferencing indeterminate pointers leads to undefined behaviour. Always initialize pointers! You can do arithmetic on the address. How far you skip, depends on the type of pointer. They can be used interchangeably: a[i] is equivalent to *(a+i) Regardless of whether a is declared as an array or a pointer. Arrays have a size, pointers do not. int* a; int b[10]; a = b; a now points to &b[0] , the size is lost. Arrays are assigned an address in memory at compile time , while pointers are assigned an address in memory at run time .",
+		"questions_answers": [
+			{
+				"question": "When is a pointer assigned 0 Null pointers evaluate to false in logical expressions What is the difference between pointers and pointers?",
+				"answer": {
+					"score": 0.6127694845199585,
+					"start": 135,
+					"end": 154,
+					"answer": "undefined behaviour"
+				}
+			},
+			{
+				"question": "How far can you skip pointers depend on the type of pointer?",
+				"answer": {
+					"score": 0.4027242064476013,
+					"start": 222,
+					"end": 229,
+					"answer": "How far"
+				}
+			},
+			{
+				"question": "What is if a Array has a size, pointers do not?",
+				"answer": {
+					"score": 0.9242346286773682,
+					"start": 496,
+					"end": 500,
+					"answer": "lost"
+				}
+			},
+			{
+				"question": "Where are pointers assigned an address at compile time?",
+				"answer": {
+					"score": 0.3177347779273987,
+					"start": 603,
+					"end": 609,
+					"answer": "memory"
+				}
+			}
+		]
+	},
+	{
+		"context": "int* a; int b[10]; a = b; Definition allocates memory to an entity. A declaration does not allocate memory to the entities. Once you define an entity, you cannot keep repeating the definition process again and again. Definition: specifies what a function does or where a variable is stored. Declaration : describes the type of a variable/function and its name. No space is allocated. Variables and functions are defined exactly once, but may be declared several times In C, as oppose to Java, you can have local static variables. These can only be initialized and updated once. A variable defined in a function is local to that function.",
+		"questions_answers": [
+			{
+				"question": "Int* a; int b[10]; a = b; Definition allocates memory to an entity?",
+				"answer": {
+					"score": 0.11971647292375565,
+					"start": 26,
+					"end": 66,
+					"answer": "Definition allocates memory to an entity"
+				}
+			},
+			{
+				"question": "What does a declaration do not allocate memory to the entities?",
+				"answer": {
+					"score": 0.06352467834949493,
+					"start": 315,
+					"end": 359,
+					"answer": "the type of a variable/function and its name"
+				}
+			},
+			{
+				"question": "What is the name of a variable?",
+				"answer": {
+					"score": 0.8319373726844788,
+					"start": 291,
+					"end": 302,
+					"answer": "Declaration"
+				}
+			}
+		]
+	},
+	{
+		"context": "It is an automatic variable. It does not retain its value across function calls. A variable defined outside any function is an external variable. It is a global variable. A global variable does not need to be declared in the file where it is defined. Before a global variable can be accessed in other files, it must be declared with the extern prefix. The scope of a global variable can be restricted to the file where it is defined with the static prefix. The keywords static and extern are mutually exclusive. An automatic variable can retain its value across calls to a function when it is defined with the static prefix.",
+		"questions_answers": [
+			{
+				"question": "What is an automatic variable?",
+				"answer": {
+					"score": 0.1063094288110733,
+					"start": 152,
+					"end": 169,
+					"answer": "a global variable"
+				}
+			},
+			{
+				"question": "What is a global variable defined outside of any function?",
+				"answer": {
+					"score": 0.6602283120155334,
+					"start": 124,
+					"end": 144,
+					"answer": "an external variable"
+				}
+			},
+			{
+				"question": "What is the scope of a universal variable?",
+				"answer": {
+					"score": 0.28130388259887695,
+					"start": 442,
+					"end": 455,
+					"answer": "static prefix"
+				}
+			},
+			{
+				"question": "What is static and extern mutually exclusive?",
+				"answer": {
+					"score": 0.5078076124191284,
+					"start": 457,
+					"end": 469,
+					"answer": "The keywords"
+				}
+			}
+		]
+	},
+	{
+		"context": "You cannot have: A function that returns a function never foo()() A function that returns an array never foo()[] An array of function never foo[]() But you can have A function returning a pointer to a function *fun() () A function returning a pointer to an array *fun()[] An array of function pointers *foo In C language both the global and static variables must be initialized with constant values . This is because the values of these variables must be known before the execution starts. A header file is a file with extension .h which contains C function declarations and macro definitions to be shared between several source files.",
+		"questions_answers": [
+			{
+				"question": "What is a file with extension.h which contains C function declarations and macro definitions to be shared between several source files?",
+				"answer": {
+					"score": 0.49720174074172974,
+					"start": 490,
+					"end": 503,
+					"answer": "A header file"
+				}
+			},
+			{
+				"question": "What is an array of function never foo()?",
+				"answer": {
+					"score": 0.013138797134160995,
+					"start": 17,
+					"end": 76,
+					"answer": "A function that returns a function never foo()() A function"
+				}
+			}
+		]
+	},
+	{
+		"context": "There are two types of header files: the files that the programmer writes and the files that comes with your compiler. char , int , short , long , float , double signed / unsigned Pointer: * Array: [] Struct Union Enum Call by value There are two methods to pass the data into the function in C language, i.e., call by value and call by reference . Struct: a bunch of data items grouped together (in memory). struct tag { type_1 identifier_1; type_2 identifier_2; ... type_N identifier_N; }; struct tag variable_name; The data items in a struct are accessed through the dot operator.",
+		"questions_answers": [
+			{
+				"question": "What are two types of header files?",
+				"answer": {
+					"score": 0.8294568061828613,
+					"start": 37,
+					"end": 117,
+					"answer": "the files that the programmer writes and the files that comes with your compiler"
+				}
+			},
+			{
+				"question": "What is the name of the file that the programmer writes and the files that comes with your compiler?",
+				"answer": {
+					"score": 0.06877481192350388,
+					"start": 201,
+					"end": 232,
+					"answer": "Struct Union Enum Call by value"
+				}
+			},
+			{
+				"question": "What are the two methods to pass the data into the function in C language?",
+				"answer": {
+					"score": 0.21634836494922638,
+					"start": 311,
+					"end": 346,
+					"answer": "call by value and call by reference"
+				}
+			}
+		]
+	},
+	{
+		"context": "When using a pointer to struct, the data items dereferenced through the pointer are accessed through the arrow operator. These two structs are equivalent struct { unsigned int age = 3; } Age; struct Age { unsigned int age = 3; }; /* struct that points to the next struct */ struct node_tag { int datum; struct node_tag *next; }; struct node_tag a,b; a.next = &b; a.next->next=NULL; Padding is a term used to describe the process of filling a field with pad characters. For example, if a name field required ten characters and your name was \"Bob\" (3 characters) the field would be \"Bob0000000\" where the 0's are the padding characters.",
+		"questions_answers": [
+			{
+				"question": "When using a pointer to struct, the data items dereferenced through the pointer are accessed through the arrow operator?",
+				"answer": {
+					"score": 0.14613178372383118,
+					"start": 105,
+					"end": 119,
+					"answer": "arrow operator"
+				}
+			},
+			{
+				"question": "What is the equivalent struct  unsigned int age = 3;  Age; /* struct that points to the next struct */ struct node_tag  int datum; a.next = &b; padding characters?",
+				"answer": {
+					"score": 0.8872639536857605,
+					"start": 192,
+					"end": 202,
+					"answer": "struct Age"
+				}
+			}
+		]
+	},
+	{
+		"context": "Unions have a similar appearance to structs, but the memory layout has one crucial difference. Instead of each member being stored after the end of the previous one, all the members have an offset of zero. The storage for the individual members is thus overlaid: only one member at a time can be stored there. union bits32_tag { int whole; /* a 4B value */ struct {char c0,c1,c2,c3;} byte; /* 4 * 1B values */ } Enums (enumerated types) are simply a way of associating a series of names with a series of integer values. enum sizes { small=7, medium, large=10, humungous }; const qualifies a read-only variable; one that cannot be a left value in an assignment following the variable declaration.",
+		"questions_answers": [
+			{
+				"question": "What is the difference between unions and structs?",
+				"answer": {
+					"score": 0.12577855587005615,
+					"start": 49,
+					"end": 93,
+					"answer": "the memory layout has one crucial difference"
+				}
+			},
+			{
+				"question": "What is a common name for enums?",
+				"answer": {
+					"score": 0.9890332221984863,
+					"start": 419,
+					"end": 435,
+					"answer": "enumerated types"
+				}
+			},
+			{
+				"question": "What does const qualifies a read-only variable?",
+				"answer": {
+					"score": 0.3180176615715027,
+					"start": 611,
+					"end": 694,
+					"answer": "one that cannot be a left value in an assignment following the variable declaration"
+				}
+			}
+		]
+	},
+	{
+		"context": "Volatile qualifies a variable that might be modified outside the program. For example, a register that can be modified by a device can be tested/read repeatedly by a program that never modifies it directly. Assigning a volatile object to a pointer results in undefined behaviour. struct devregs { unsigned short volatile csr; unsigned short const volatile data; }; void * defines a pointer to data of unspecified type. Explicit: A value of one type is explicitly cast to another type Implicit: A value of one type is assigned to a variable of a different type. An operator converts the type of its operands.",
+		"questions_answers": [
+			{
+				"question": "What is a variable that might be modified outside of the program?",
+				"answer": {
+					"score": 0.9893218874931335,
+					"start": 0,
+					"end": 8,
+					"answer": "Volatile"
+				}
+			},
+			{
+				"question": "What can be tested/read repeatedly by a program that never modifies it directly?",
+				"answer": {
+					"score": 0.6973984241485596,
+					"start": 87,
+					"end": 97,
+					"answer": "a register"
+				}
+			},
+			{
+				"question": "What does struct devregs define to a pointer?",
+				"answer": {
+					"score": 0.08715097606182098,
+					"start": 365,
+					"end": 417,
+					"answer": "void * defines a pointer to data of unspecified type"
+				}
+			}
+		]
+	},
+	{
+		"context": "A value is passed as argument to a function or when a value is returned from a function. Same bit level representation, different interpretations. If there is a mix of unsigned and signed in single expression, signed values are implicitly cast to unsigned. A pointer to one type of value can be converted to a pointer to a different type. However, the result may be undefined because of the alignment requirements and sizes of different types in storage. A pointer to an object can be converted to a pointer to an object whose type requires less or equally strict storage alignment, and back again without change.",
+		"questions_answers": [
+			{
+				"question": "What is a value passed as argument to a function?",
+				"answer": {
+					"score": 0.8252720236778259,
+					"start": 47,
+					"end": 87,
+					"answer": "when a value is returned from a function"
+				}
+			},
+			{
+				"question": "What is the same bit level representation, different interpretations?",
+				"answer": {
+					"score": 0.17331285774707794,
+					"start": 0,
+					"end": 43,
+					"answer": "A value is passed as argument to a function"
+				}
+			},
+			{
+				"question": "What can a pointer to one type of value be converted to?",
+				"answer": {
+					"score": 0.5767444372177124,
+					"start": 321,
+					"end": 337,
+					"answer": "a different type"
+				}
+			}
+		]
+	},
+	{
+		"context": "A pointer to void can be converted to or from a pointer to any type, without restriction or loss of information. If the result is converted back to the original type, the original pointer is recovered. If a pointer is converted to another pointer with the same type but having different or additional qualifiers, the new pointer is the same as the old except for restrictions imposed by the new qualifier. A pointer value can also be converted to an integral value. The conversion path depends on the size of the pointer and the size of the integral type: If the size of the pointer is greater than or equal to the size of the integral type, the pointer behaves like an unsigned value.",
+		"questions_answers": [
+			{
+				"question": "What type can be converted to or from a pointer to void without restriction or loss of information?",
+				"answer": {
+					"score": 0.329140841960907,
+					"start": 59,
+					"end": 67,
+					"answer": "any type"
+				}
+			},
+			{
+				"question": "How does the conversion path depend on the size of the pointer and what type of value?",
+				"answer": {
+					"score": 0.3223682940006256,
+					"start": 541,
+					"end": 554,
+					"answer": "integral type"
+				}
+			},
+			{
+				"question": "What type of pointer is recovered if the result is converted back to the original type?",
+				"answer": {
+					"score": 0.6448968052864075,
+					"start": 0,
+					"end": 17,
+					"answer": "A pointer to void"
+				}
+			},
+			{
+				"question": "What is the new pointer the same as the old except for restrictions imposed by the new qualifier?",
+				"answer": {
+					"score": 0.0658843144774437,
+					"start": 202,
+					"end": 265,
+					"answer": "If a pointer is converted to another pointer with the same type"
+				}
+			}
+		]
+	},
+	{
+		"context": "It cannot be converted to a floating value. If the pointer is smaller than the integral type, the pointer is first converted to a pointer with the same size as the integral type, then converted to the integral type. Conversely, an integral type can be converted to a pointer type according to the following rules: If the integral type is the same size as the pointer type, the conversion simply causes the integral value to be treated as a pointer (an unsigned integer). If the size of the integral type is different from the size of the pointer type, the integral type is first extended or truncated to fit the size of the pointer.",
+		"questions_answers": [
+			{
+				"question": "What can be converted to a floating value?",
+				"answer": {
+					"score": 0.03937280923128128,
+					"start": 0,
+					"end": 42,
+					"answer": "It cannot be converted to a floating value"
+				}
+			},
+			{
+				"question": "What is the size of the pointer type used to convert a pointer to?",
+				"answer": {
+					"score": 0.21338407695293427,
+					"start": 201,
+					"end": 214,
+					"answer": "integral type"
+				}
+			},
+			{
+				"question": "What type of value is the same size as the integral type?",
+				"answer": {
+					"score": 0.28043273091316223,
+					"start": 321,
+					"end": 371,
+					"answer": "integral type is the same size as the pointer type"
+				}
+			}
+		]
+	},
+	{
+		"context": "It is then treated as a pointer value Always put parentheses around an expression that mixes booleans, arithmetic, or bit manipulation with anything else. Run cdecl to figure out a funky declaration. Declarations are read by starting with the name (of the variable, function or type) The following precedence rules apply: Parentheses grouping together part of the declaration The postfix operators Parenthesis indicating a function Square brackets indicating an array The prefix operator denoting a pointer to If a const or volatile is next to a type specifier it qualifies it, otherwise const or volatile applies to the * on its immediate left.",
+		"questions_answers": [
+			{
+				"question": "What is a pointer value used to describe an expression that mixes booleans, arithmetic, or bit manipulation with anything else?",
+				"answer": {
+					"score": 0.8366207480430603,
+					"start": 49,
+					"end": 60,
+					"answer": "parentheses"
+				}
+			},
+			{
+				"question": "What is the name of a declaration?",
+				"answer": {
+					"score": 0.3356289863586426,
+					"start": 256,
+					"end": 282,
+					"answer": "variable, function or type"
+				}
+			},
+			{
+				"question": "The postfix operators Parenthesis indicating a function Square brackets indicating an array What does a prefix operator denoting a pointser to If a const or volatile is next to a type specifier?",
+				"answer": {
+					"score": 0.08651396632194519,
+					"start": 468,
+					"end": 509,
+					"answer": "The prefix operator denoting a pointer to"
+				}
+			}
+		]
+	},
+	{
+		"context": "You should remember: A pointer is a variable that contains the address of a variable The difference between declaration and definition The scope of variables (automatic / global) The difference between type qualifier and specifier The meaning of const and volatile The nature of structs When type conversions takes place What happens when signed and unsigned are mixed Beware operator precedence Use cdecl when in doubt about a declaration.",
+		"questions_answers": [
+			{
+				"question": "What is a variable that contains the address of the variable?",
+				"answer": {
+					"score": 0.607163667678833,
+					"start": 21,
+					"end": 30,
+					"answer": "A pointer"
+				}
+			},
+			{
+				"question": "What is the difference between declaration and definition The scope of variables (automatic / global) The difference between type qualifier and specifier The meaning of const and volatile The nature of structs When type conversions takes place What happens when signed and unsigned are mixed Beware operator precedence Use cdecl when in doubt about a declaration?",
+				"answer": {
+					"score": 0.14932245016098022,
+					"start": 21,
+					"end": 30,
+					"answer": "A pointer"
+				}
+			}
+		]
+	}
+]

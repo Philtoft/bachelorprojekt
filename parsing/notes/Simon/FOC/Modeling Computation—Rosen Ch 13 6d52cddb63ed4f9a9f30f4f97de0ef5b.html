@@ -1,0 +1,686 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Modeling Computation—Rosen Ch. 13</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6d52cddb-63ed-4f9a-9f30-f4f97de0ef5b" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📘</span></div><h1 class="page-title">Modeling Computation—Rosen Ch. 13</h1></header><div class="page-body"><h2 id="af331a16-9888-4cc6-9a97-ce22cd9f3bdb" class="block-color-gray_background">Chapter 13: Modeling Computation</h2><p id="332d3a53-c0a1-471c-a91f-aa38416f1382" class=""><strong>Three types of structures used in models of computation:</strong></p><ol type="1" id="5849790a-4bbe-4fe2-820f-939897fc0617" class="numbered-list" start="1"><li><strong>Grammars
+</strong>Used to generate the words of a language and to determine whether a word is in a language. Formal languages are generated by grammars, provide models both for natural languages, such as English, and for programming languages, such as Pascal Fortran, Prolog, C, and Java.</li></ol><ol type="1" id="d0dfb6a5-e05e-4e22-8e4d-10c8c6b6166b" class="numbered-list" start="2"><li><strong>Finite-state machines
+</strong>Various types of finite-state machines are used in modeling. All finite-state machines have a set of states, including a starting state, an input alphabet, and a transition function that assigns a next state to every pair of a state and an input. The states of a finite-state machine give it limited memory capabilities.</li></ol><ol type="1" id="839f33e0-d592-4413-b004-13b4853f813a" class="numbered-list" start="3"><li><strong>Turing machines.</strong><p id="adcd28ad-0f78-4709-9dc7-ef22abcc4187" class="">We will show how Turing machines can be used to recognize sets. We will also show how Turing machines can be used to compute number-theoretic functions. We will discuss the Church–Turing thesis, which states that every effective computation can be carried out using a Turing machine. We will explain how Turing machines can be used to study the difficulty of solving certain classes of problems.</p></li></ol><p id="b803f804-d96b-41d3-8533-7252fa93af12" class="">
+</p><blockquote id="2651cb9c-df84-4c46-bfcb-306d316c60d2" class=""><strong>3.1 Language and Grammars</strong></blockquote><ul id="c51dc58f-ab21-4be9-ac71-b11cc13684ab" class="toggle"><li><details open=""><summary>Rules that describe valid sentences</summary><figure id="3b65707e-881e-4399-a940-0198f76e5924" class="image"><a href="Untitled%20252.png"><img style="width:528px" src="Untitled%20252.png"/></a></figure></details></li></ul><ul id="5276dd3e-d171-4f44-b6d3-9671bbd73095" class="block-color-gray_background toggle"><li><details open=""><summary>Definition 1 (vocabulary <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span></span><span>﻿</span></span>)</summary><figure id="1007f5e7-4e6a-478b-9e60-a7a5ce890217" class="image"><a href="Untitled%20253.png"><img style="width:837px" src="Untitled%20253.png"/></a></figure></details></li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="09bfc23d-bdad-4f96-8e32-e372f8a4bbe1"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">🛑 <strong>IMPORTANT TERMINOLIGY </strong>🛑 
+        ▪️ <strong>Vocabulary= V</strong>, set of symbols
+        ▪️ <strong>Terminals= T</strong>, elements of the vocabulary, cannot be replaced
+        ▪️ <strong>Nonterminals= N</strong>, can be replaced by other symbols
+        ▪️ <strong>Start symbol= S</strong>, element we begin with
+        ▪️ <strong>Productions</strong>, can replaces a string from V* with productions
+        ▪️ <strong>z0 → z1, the production</strong>, z0 can be replaces by z1.</div></figure><ul id="df09192f-4e95-484f-a3ac-d06ce55b1742" class="toggle"><li><details open=""><summary>What does λ mean?</summary><p id="feaef8db-adb0-4d7e-bb79-e290ed2ab1de" class="">Note that λ, the empty string, is the string containing no symbols. It is different from ∅, the empty set. It follows that {λ} is the set containing exactly one string, namely, the empty string.</p></details></li></ul><ul id="735ec5be-447c-48d5-8947-69a7e7242b59" class="block-color-gray_background toggle"><li><details open=""><summary>Definition 2 (phrase-structure grammar)</summary><figure id="43fb02e3-0b7a-4d34-b2e5-4ca1546268f6" class="image"><a href="Untitled%20254.png"><img style="width:832px" src="Untitled%20254.png"/></a></figure></details></li></ul><ul id="69c72146-24e8-4bc0-bcc0-79e9e3b47f26" class="block-color-gray_background toggle"><li><details open=""><summary>Definition 3 (derivation)</summary><figure id="6492f0a3-0a0a-4760-bf31-07d62cd9f126" class="image"><a href="Untitled%20255.png"><img style="width:833px" src="Untitled%20255.png"/></a></figure></details></li></ul><ul id="640cda1c-5e6d-47ad-bae2-c2852e9ffc24" class="block-color-gray_background toggle"><li><details open=""><summary>Definition 4 (generated by the language of G, denoted <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>G</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L(G)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">L</span><span class="mopen">(</span><span class="mord mathnormal">G</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span>)</summary><figure id="fd2f9f93-d1bd-4588-9189-e4503b6930ec" class="image"><a href="Untitled%20256.png"><img style="width:828px" src="Untitled%20256.png"/></a></figure></details></li></ul><figure id="373e8c53-577d-419a-ada7-81a035b0d5c2" class="image"><a href="Untitled%20257.png"><img style="width:480px" src="Untitled%20257.png"/></a></figure><ul id="49ea681c-d5cb-41cc-af3d-5e4b4812e71e" class="toggle"><li><details open=""><summary>Type of grammars (in my own words)</summary><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="88a3d2b3-281a-4e1e-a731-d18656f52335"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Type 0 grammer:</strong> No restrictins on its productions.
+(Context-sensitive) <strong>Type 1:</strong> productions of the form w1 → w2, where w1 = lAr and w2 = lwr, where A is a nonterminal symbol, l and r are strings of zero or more terminal or nonterminal symbols, and w is a nonempty string of terminal or nonterminal symbols
+(Context-free)<strong>Type 2: </strong>have productions only of the form w1 → w2, where w1 is a single symbol that is not a terminal symbol.
+(Regular grammars)<strong>Type 3: </strong>have productions only of the form w1 → w2 with w1 = A and either w2 = aB or w2 = a, where A and B are nonterminal symbols and a is a terminal symbol, or with w1 = S and w2 = λ.</div></figure></details></li></ul><ul id="526df1df-40a4-4eb6-b9f0-dc6f7cbc6848" class="toggle"><li><details open=""><summary><strong>Context-free and regular grammars play an important role in programming languages.</strong>
+What are they used to define?</summary><p id="23284c7a-5c66-4534-8e96-673c892ae11f" class="">Context-free grammars are used to define the syntax of almost all programming languages. These grammars are strong enough to define a wide range of languages. Furthermore, efficient algorithms can be devised to determine whether and how a string can be generated.</p></details></li></ul><ul id="2ebd4d72-ab92-4e1d-838a-c0f2ffb5dacc" class="toggle"><li><details open=""><summary>What is a derivation tree? (figure included)</summary><p id="99223373-99f9-464e-957d-1d69bbe729fc" class="">A derivation in the language generated by a context-free grammar can be represented graphically using an ordered rooted tree, called a derivation, or parse tree. The root of this tree represents the starting symbol.</p><figure id="bd9adef0-b2a5-4b3e-addb-a0c2ced479d7" class="image"><a href="Untitled%20258.png"><img style="width:288px" src="Untitled%20258.png"/></a></figure></details></li></ul><ul id="4c51ad55-5dbc-4e26-95af-113e9f2c5b19" class="toggle"><li><details open=""><summary><strong>The productions A → Aa, A → a, and A → AB can be combined into A ::= ⟨A⟩a | a | ⟨A⟩⟨B⟩.</strong>
+Where is this Backus-Natur form used to specify the syntactic rules?</summary><p id="5aa431a3-9171-46fe-8d56-d73546ea9d70" class="">The Backus–Naur form is used to specify the syntactic rules of many computer languages, including Java. The productions in a type 2 grammar have a single nonterminal symbol as their left-hand side.</p><p id="97a3eba4-437d-40fa-b107-ff6a2655d3ee" class=""><strong>Instead of using the symbol→in a production, we use the symbol ::=</strong>.We enclose
+all nonterminal symbols in brackets, <strong>⟨⟩</strong> and we list all the right-hand sides of productions in the same statement, separating them by bars.</p></details></li></ul><ul id="c23a7773-65f8-4f32-9055-97bae2ac1a6d" class="toggle"><li><details open=""><summary>The Backus—Naur form of this grammer is</summary><figure id="f18f520e-0038-4ad7-8e79-b4dff8dc4284" class="image"><a href="Untitled%20259.png"><img style="width:384px" src="Untitled%20259.png"/></a></figure></details></li></ul><p id="26a01f7c-effb-47a9-8241-2889056ac92c" class="">
+</p><blockquote id="1c2bc424-24b5-4219-b3fa-436645c3736c" class=""><strong>13.2 Finite-State Machines </strong><mark class="highlight-teal_background"><strong>with Output</strong></mark></blockquote><ul id="cf16c866-dcad-41e0-a527-41fb1618fb00" class="toggle"><li><details open=""><summary>Introduction</summary><p id="3c43f6d9-d067-4563-adbd-2afb4b424428" class="">Many kinds of machines, including components in computers, can be modeled using a structure called a finite-state machine. Several types of finite-state machines are commonly used in models. All these versions of finite-state machines include a finite set of states, with a designated starting state, an input alphabet, and a transition function that assigns a next state to every state and input pair. Finite-state machines are used extensively in applications in computer science and data networking. For example, finite-state machines are the basis for programs for spell checking, grammar checking, indexing or searching large bodies of text, recognizing speech, transforming text using markup languages such as XML and HTML, and network protocols that specify how computers communicate.</p></details></li></ul><ul id="269c9910-b337-4717-9196-8c5d10e6da5c" class="block-color-gray_background toggle"><li><details open=""><summary>Definition 1 (finite-state)</summary><figure id="a46ba96a-c424-4127-9444-44a2cf8a52ee" class="image"><a href="Untitled%20260.png"><img style="width:744px" src="Untitled%20260.png"/></a></figure></details></li></ul><ul id="4f99ef54-2418-4363-b4bc-d27eab01e351" class="block-color-gray_background toggle"><li><details open=""><summary>Definition 2 (recognition)</summary><figure id="965e0b54-e069-4c7f-8efc-a616c77dca19" class="image"><a href="Untitled%20261.png"><img style="width:741px" src="Untitled%20261.png"/></a></figure></details></li></ul><p id="391007a0-b673-49d5-b231-05cc7e0cff81" class="">
+</p><blockquote id="b71d06ca-2599-40bd-a585-105c5bbfef1a" class=""><strong>13.3 Finite-State Machines </strong><mark class="highlight-red_background"><strong>with No Output</strong></mark></blockquote><ul id="7ecf1c18-061b-48ca-aae5-31a8007c9c2d" class="toggle"><li><details open=""><summary>Introduction</summary><p id="17eab4c7-944f-4a79-ac6d-46f856010bf8" class="">One of the most important applications of finite-state machines is in language recognition. This application plays a fundamental role in the design and construction of compilers for programming languages. In Section 13.2 we showed that a finite-state machine with output can be used to recognize a language, by giving an output of 1 when a string from the language has been read and a 0 otherwise. However, there are other types of finite-state machines that are specially designed for recognizing languages. Instead of producing output, these machines have final states. A string is recognized if and only if it takes the starting state to one of these final states.</p></details></li></ul><ul id="a4b97bdc-29c5-4914-ab82-b68c8fb381f9" class="block-color-gray_background toggle"><li><details open=""><summary>Definition 1 (concatenation)</summary><figure id="5d547eb1-1622-49e4-9b68-af6b5c964f44" class="image"><a href="Untitled%20262.png"><img style="width:825px" src="Untitled%20262.png"/></a></figure></details></li></ul><ul id="0493a329-7e3f-40d4-8ab6-ff1374f9a680" class="block-color-gray_background toggle"><li><details open=""><summary>Definition 2 (Kleene closure)</summary><figure id="feab6de0-093b-4e77-b26b-2ad1405568af" class="image"><a href="Untitled%20263.png"><img style="width:830px" src="Untitled%20263.png"/></a></figure></details></li></ul><ul id="d1bf7fa4-6f01-41c3-8900-7361c10db381" class="block-color-gray_background toggle"><li><details open=""><summary>Definition 3 (automaton)</summary><figure id="a02845db-a2d9-471f-b25a-aaa35b98a2e2" class="image"><a href="Untitled%20264.png"><img style="width:925px" src="Untitled%20264.png"/></a></figure></details></li></ul><ul id="cb3bf3ac-af93-4afe-ac31-75bafd34ace5" class="block-color-gray_background toggle"><li><details open=""><summary>Definition 4 (recognition)</summary><figure id="c8d37fbe-c544-43af-8330-c1b6ad0bc28d" class="image"><a href="Untitled%20265.png"><img style="width:924px" src="Untitled%20265.png"/></a></figure></details></li></ul><ul id="9235115c-0aec-4463-967d-fdd56c180559" class="block-color-gray_background toggle"><li><details open=""><summary>Definition 5 (nondeterministic)</summary><figure id="2fa0084c-32d1-499d-8677-97e19545274d" class="image"><a href="Untitled%20266.png"><img style="width:923px" src="Untitled%20266.png"/></a></figure></details></li></ul><ul id="16970941-99ba-45a8-a322-6258b9f23046" class="block-color-orange_background toggle"><li><details open=""><summary>Theorem 1 (deterministic finite-state automation)</summary><figure id="443fe929-75bf-4903-8446-696cd14ccab5" class="image"><a href="Untitled%20267.png"><img style="width:925px" src="Untitled%20267.png"/></a></figure></details></li></ul></div></article></body></html>

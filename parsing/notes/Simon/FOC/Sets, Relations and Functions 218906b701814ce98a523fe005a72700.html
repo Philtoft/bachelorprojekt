@@ -1,0 +1,684 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Sets, Relations and Functions </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="218906b7-0181-4ce9-8a52-3fe005a72700" class="page sans"><header><h1 class="page-title">Sets, Relations and Functions </h1><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>TEACHER</th><td><span class="selected-value select-value-color-red">Alessandro B.</span></td></tr><tr class="property-row property-row-file"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFile"><path d="M12.5938 8.44043L7.54883 13.4854C6.26367 14.7773 4.54102 14.6475 3.44043 13.54C2.32617 12.4326 2.20312 10.7168 3.49512 9.4248L10.3926 2.52734C11.1445 1.77539 12.2725 1.63867 13.0039 2.37695C13.7422 3.11523 13.6055 4.22949 12.8535 4.98828L6.08594 11.7627C5.77832 12.0703 5.41602 11.9814 5.2041 11.7764C4.99902 11.5576 4.91016 11.2021 5.21777 10.8877L9.93457 6.1709C10.1738 5.93164 10.1875 5.58301 9.96191 5.35059C9.72949 5.13184 9.38086 5.13867 9.1416 5.37793L4.39746 10.1152C3.67285 10.8535 3.7002 11.9746 4.34961 12.624C5.05371 13.3281 6.12012 13.3145 6.8584 12.5762L13.6602 5.77441C14.9795 4.45508 14.9316 2.71875 13.7764 1.55664C12.6416 0.428711 10.8779 0.34668 9.55176 1.66602L2.61328 8.61816C0.883789 10.3477 1 12.8291 2.57227 14.4014C4.14453 15.9668 6.63281 16.0898 8.3623 14.3672L13.4414 9.28809C13.6738 9.0625 13.667 8.64551 13.4346 8.41992C13.209 8.18066 12.833 8.21484 12.5938 8.44043Z"></path></svg></span>SLIDES</th><td><span style="margin-right:6px"><a href="https://learnit.itu.dk/pluginfile.php/267736/mod_resource/content/2/cheat-sheet.pdf">Sets, Relations and Functions .pdf</a></span><span style="margin-right:6px"><a href="https://learnit.itu.dk/pluginfile.php/267737/mod_resource/content/1/proving-statements.pdf">Note: Proving statements about mathematical structures.pdf</a></span><span style="margin-right:6px"><a href="https://learnit.itu.dk/pluginfile.php/267738/mod_resource/content/1/slides.pdf">Lecture 4.pdf</a></span><span style="margin-right:6px"><a href="https://learnit.itu.dk/mod/lti/view.php?id=121373">Video: Sets, relations and functions.php</a></span></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>DONE</th><td><div class="checkbox checkbox-on"></div></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>FORM</th><td><span class="selected-value select-value-color-blue">EXECISES</span><span class="selected-value select-value-color-green">LECTURE</span></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>WEEK</th><td>38</td></tr></tbody></table></header><div class="page-body"><p id="72eba4f2-1762-4afb-9fb8-2d85679c102c" class="">
+</p><figure id="87f1ea0d-2b50-4282-b156-5d9d2f0140f0" class="image"><a href="Untitled%201.png"><img style="width:1431px" src="Untitled%201.png"/></a></figure><figure id="a08bc16b-3993-41f9-9b67-693f3104af4f" class="image"><a href="Untitled%202.png"><img style="width:1466px" src="Untitled%202.png"/></a></figure><h3 id="79d8062b-8bac-4d7b-bac1-6d22fe114ced" class="">Chapter 6: Set Theory</h3><figure id="f371398a-4e73-4286-a812-f40564f01260" class="image"><a href="Untitled%203.png"><img style="width:336px" src="Untitled%203.png"/></a></figure><p id="2d501af2-4f6f-4d10-9030-e11acd4dc0ec" class="">
+</p><figure id="a107466a-163d-4553-8565-eb0aa3883039" class="link-to-page"><a href="$%20KaTeX$%20symbols%20and%20new%20terms%20a107466a163d45538565eb0aa3883039.html"><span class="icon">➕</span>$\KaTeX$ symbols and new terms</a></figure><h3 id="7b7ee2cc-8c72-4b64-ba3c-1b0ed14907e4" class="">Video—notes</h3><blockquote id="ea3965ff-76dd-46cd-9578-5a00e449ae90" class="">1: Sets</blockquote><ul id="4d4d90d5-d1fb-4bd5-9ba2-f0eeb0b6d8af" class="toggle"><li><details open=""><summary>What is a <em>set</em>?</summary><figure id="58ff4438-d1d1-4539-b91c-134330b02523" class="image"><a href="Untitled%204.png"><img style="width:891px" src="Untitled%204.png"/></a></figure></details></li></ul><ul id="6a6f5469-00c9-4ae4-a184-41e55937679b" class="toggle"><li><details open=""><summary>How does one d<em>escribe a set</em>?</summary><figure id="093e52fb-0428-4e11-858b-4037f347e0bd" class="image"><a href="Untitled%205.png"><img style="width:842px" src="Untitled%205.png"/></a></figure></details></li></ul><ul id="12729e50-6ee7-4c2d-8995-5b4af7e888fe" class="toggle"><li><details open=""><summary>Here are some important sets to remember</summary><figure id="fcf77017-80ce-4f23-8126-0fb85ed4c7ee" class="image"><a href="Untitled%206.png"><img style="width:432px" src="Untitled%206.png"/></a></figure></details></li></ul><ul id="f2be3403-f3b8-4579-96ca-a201add567c3" class="toggle"><li><details open=""><summary>When are to <em>sets equal</em>, and what are finite and infinite sets?</summary><p id="b78d2242-d4b7-4b6e-a183-f838407c180e" class="">Two sets are equal if and only if they contain the same elements, i.e.</p><p id="e37152ea-37df-48bd-b394-7b628b71ac1d" class=""><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A = B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span></span><span>﻿</span></span>  if and only if  <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∀</mi><mi>x</mi><mo stretchy="false">(</mo><mi>x</mi><mo>∈</mo><mi>A</mi><mo>↔</mo><mi>x</mi><mo>∈</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">∀x(x ∈ A ↔ x ∈ B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∀</span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">↔</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span>.</p><p id="85178260-ab72-4629-a984-fb7b1cdfe573" class="">
+</p><p id="bfd4cbec-9aa8-4d35-952b-309f823af8d8" class="">Finite is when one is able to actually count the numbers within the set.</p><p id="0a81baf5-208b-42a7-96c6-e7976f3d2c62" class="">Infinite is when one is not able to count the numbers.</p><figure id="864af152-b587-42d9-9f0f-387469348f2e" class="image"><a href="Untitled%207.png"><img style="width:878px" src="Untitled%207.png"/></a></figure><p id="e180a2d7-e454-4868-a0dd-836b4b14ca6c" class="">
+</p></details></li></ul><p id="d4f38977-a4a2-40a3-99a9-245ff89f1243" class="">
+</p><p id="f76ccc62-4572-4935-819d-73e2131753e2" class=""><strong>Subsets 1:</strong> A is a subset of B if and only if every element of A is also in B, i.e.</p><figure id="2e1749f9-6162-4885-957e-3d9c7decae6b" class="image"><a href="Untitled%208.png"><img style="width:336px" src="Untitled%208.png"/></a></figure><ul id="1c0d2ff5-fe98-4315-8ec3-2e0d75a9a8a5" class="toggle"><li><details open=""><summary>Subsets 2</summary><figure id="00d19612-67c3-43df-9ca9-cd65de6d709b" class="image"><a href="Untitled%209.png"><img style="width:736px" src="Untitled%209.png"/></a></figure></details></li></ul><ul id="40b8f348-4fce-4cc7-a89b-46fe953df738" class="toggle"><li><details open=""><summary>Sets of sets (also powersets)</summary><figure id="f8495751-0b05-4b73-bcb1-88420e0d6fe7" class="image"><a href="Untitled%2010.png"><img style="width:957px" src="Untitled%2010.png"/></a></figure></details></li></ul><p id="00dfa28d-95da-4dee-8c63-8695c485c93f" class="">
+</p><blockquote id="619e412e-e55d-4fc9-8c63-a9cc565566cd" class="">2: Set operations</blockquote><ul id="85434950-2b84-4c1e-a65d-a1243f0543c0" class="toggle"><li><details open=""><summary>What is a union?</summary><figure id="c429c1c6-248e-4fed-8a1f-3a906688536b" class="image"><a href="Untitled%2011.png"><img style="width:959px" src="Untitled%2011.png"/></a></figure></details></li></ul><ul id="91dcc4b7-70d0-4c90-bd24-b509d85fe957" class="toggle"><li><details open=""><summary>What is a intersection?</summary><figure id="6d296e25-c7c3-440a-bfdd-16ff60d642a5" class="image"><a href="Untitled%2012.png"><img style="width:957px" src="Untitled%2012.png"/></a></figure></details></li></ul><ul id="cc5e7c90-907d-4ba9-a0dd-3dfec75eee4f" class="toggle"><li><details open=""><summary>What is a difference?</summary><figure id="2b557203-e408-4539-a2b5-b0c98b450f5e" class="image"><a href="Untitled%2013.png"><img style="width:965px" src="Untitled%2013.png"/></a></figure></details></li></ul><ul id="b203700e-3347-4cd7-a8e4-5d5258f5dedd" class="toggle"><li><details open=""><summary>What is a complement?</summary><figure id="4b5e77b4-bbb7-4b2e-b5ed-d63b10babb6f" class="image"><a href="Untitled%2014.png"><img style="width:919px" src="Untitled%2014.png"/></a></figure></details></li></ul><ul id="ddea9592-8774-4f51-b0ef-7f939172e189" class="toggle"><li><details open=""><summary><strong>Table of set identities</strong></summary><figure id="bf21cf77-55ad-4be7-b32a-73b26f70c89b" class="image"><a href="Untitled%2015.png"><img style="width:240px" src="Untitled%2015.png"/></a></figure></details></li></ul><ul id="61315aee-3aad-4c47-b933-170921cc5f28" class="toggle"><li><details open=""><summary>Cartesian products</summary><figure id="ed7dd160-fb7e-4dce-acf8-8d60add46f25" class="image"><a href="Untitled%2016.png"><img style="width:432px" src="Untitled%2016.png"/></a></figure><figure id="acefb6af-8b31-44ae-8e02-36e1c6997ca4" class="image"><a href="Untitled%2017.png"><img style="width:432px" src="Untitled%2017.png"/></a></figure></details></li></ul><p id="28de3f04-9249-4eb3-b552-04b1478d9338" class="">
+</p><blockquote id="6ffd43b9-7042-41bd-b7e2-eb839d571f25" class="">3: Relations and Their Properties</blockquote><ul id="a4d30482-336d-463e-9f57-8ed8a03d472f" class="toggle"><li><details open=""><summary>Relation</summary><figure id="f649b742-258b-4470-a5a5-eae04c677b81" class="image"><a href="Untitled%2018.png"><img style="width:384px" src="Untitled%2018.png"/></a></figure><figure id="31f69024-3eda-4e38-bcd7-c1eaba9b37f0" class="image"><a href="Untitled%2019.png"><img style="width:384px" src="Untitled%2019.png"/></a></figure></details></li></ul><ul id="01841c03-3fa0-46ea-8ac5-0585fa830bed" class="toggle"><li><details open=""><summary>Relations on a set</summary><figure id="edc84298-73a3-4114-8b2d-18bb1bf02c46" class="image"><a href="Untitled%2020.png"><img style="width:432px" src="Untitled%2020.png"/></a></figure></details></li></ul><ul id="1436222c-4726-4a6b-b932-9635a0ec5afc" class="toggle"><li><details open=""><summary>Reflexive relations</summary><figure id="7fe5f5bc-6b28-4078-b029-a87518580c14" class="image"><a href="Untitled%2021.png"><img style="width:480px" src="Untitled%2021.png"/></a></figure></details></li></ul><ul id="d1bf351a-a963-4d78-921b-659e9efc2fb0" class="toggle"><li><details open=""><summary>Symmetric relations</summary><figure id="8638f5fa-0e6d-4b72-aa69-62c9a71a1950" class="image"><a href="Untitled%2022.png"><img style="width:480px" src="Untitled%2022.png"/></a></figure></details></li></ul><ul id="b139aba3-4776-4b3c-9a29-9c5ebec51eb0" class="toggle"><li><details open=""><summary>Transitive relation</summary><figure id="2d5f772a-f038-45f5-bddd-1a21df210196" class="image"><a href="Untitled%2023.png"><img style="width:480px" src="Untitled%2023.png"/></a></figure></details></li></ul><ul id="5bcfac22-1699-479c-a6b2-18dea5ab858d" class="toggle"><li><details open=""><summary>Composition of relations</summary><figure id="4ff60ee7-5a7b-459c-8757-f4eebb2da5cd" class="image"><a href="Untitled%2024.png"><img style="width:480px" src="Untitled%2024.png"/></a></figure></details></li></ul><p id="c097f82c-b3a5-4d9a-aaca-74608c0de1f6" class="">
+</p><blockquote id="dbc0c4b1-b56b-4c48-a744-42c5c182ea67" class="">4: Representing Relations</blockquote><figure id="8a83f637-6fb3-48ff-99e1-75f8432d0589" class="image"><a href="Untitled%2025.png"><img style="width:384px" src="Untitled%2025.png"/></a></figure><ul id="b7ffe94f-c35c-41b4-8418-f99c340eb310" class="toggle"><li><details open=""><summary>Representing relations using matrices</summary><figure id="1727ab87-e358-49c1-92d5-f982db5fed23" class="image"><a href="Untitled%2026.png"><img style="width:432px" src="Untitled%2026.png"/></a></figure><figure id="ce259720-f646-4664-b131-302ac50ddf01" class="image"><a href="Untitled%2027.png"><img style="width:480px" src="Untitled%2027.png"/></a></figure></details></li></ul><ul id="460112b0-8a25-4f10-a3e5-9abf4f949fc5" class="toggle"><li><details open=""><summary>Representing relations using digraphs</summary><figure id="94c21094-07da-402c-8688-b33f1300cdf8" class="image"><a href="Untitled%2028.png"><img style="width:480px" src="Untitled%2028.png"/></a></figure><figure id="d2c0f7a3-b36f-4bfb-aecc-49fbc59bb253" class="image"><a href="Untitled%2029.png"><img style="width:480px" src="Untitled%2029.png"/></a></figure><figure id="b92b5a99-9d33-48d9-8e87-f7272b30328e" class="image"><a href="Untitled%2030.png"><img style="width:480px" src="Untitled%2030.png"/></a></figure><figure id="b51f03f5-d7bc-4ae4-8c5b-66badad6164d" class="image"><a href="Untitled%2031.png"><img style="width:696px" src="Untitled%2031.png"/></a></figure></details></li></ul><p id="5e58200b-5ea5-4f20-938c-c986c4fe9c20" class="">
+</p><blockquote id="e1ebb275-5737-4e94-9dea-d05e6d491cdf" class="">5: Closures of Relations</blockquote><ul id="52b293ed-558b-4671-b6f2-8988879a01b9" class="toggle"><li><details open=""><summary>What are closures?</summary><figure id="3bc35a7c-696e-4bbe-8d18-d1d041a9d570" class="image"><a href="Untitled%2032.png"><img style="width:528px" src="Untitled%2032.png"/></a></figure></details></li></ul><p id="53a36025-e735-4e54-9ccd-595604a9af09" class="">
+</p><blockquote id="69a96c1c-f46f-49e4-acd1-4f27c9aae925" class="">6: Equivalence Relation and Classes</blockquote><ul id="0bf1836f-9530-46e3-b59a-43a9e1ccb3aa" class="toggle"><li><details open=""><summary>Equivalence relations</summary><figure id="c0840f3a-5915-44fc-b64f-ca0a8bd15d43" class="image"><a href="Untitled%2033.png"><img style="width:480px" src="Untitled%2033.png"/></a></figure></details></li></ul><ul id="aeb985d2-49eb-467e-a7ed-e03db84cce0b" class="toggle"><li><details open=""><summary>Equivalence classes</summary><figure id="190c3f5d-382e-4579-b9bd-5ff05a7ada5e" class="image"><a href="Untitled%2034.png"><img style="width:480px" src="Untitled%2034.png"/></a></figure></details></li></ul><ul id="9d7dce93-6bb5-46ca-833f-c7b0a5d0ef79" class="toggle"><li><details open=""><summary>Partitions</summary><figure id="49867d72-8734-48a6-a39f-527e55dab428" class="image"><a href="Untitled%2035.png"><img style="width:480px" src="Untitled%2035.png"/></a></figure><figure id="70528474-dcba-4bf6-af20-5358ec5e4270" class="image"><a href="Untitled%2036.png"><img style="width:480px" src="Untitled%2036.png"/></a></figure></details></li></ul><p id="1b78ccf3-b826-4e51-8db4-c45f7c9c1dd5" class="">
+</p><blockquote id="52f9ce3d-2551-4d68-aa66-abf8c7b63489" class="">7: Partial Orderings</blockquote><ol type="1" id="8d049b4d-0fbf-4824-995e-0bd1d7e5b29e" class="numbered-list" start="1"><li>Refleksive = loops on a element</li></ol><ol type="1" id="0d153140-2608-4c5d-b5ca-045a4b1162fa" class="numbered-list" start="2"><li>Transitive= a points to d d (d peger på c),  so a also points to c.</li></ol><ol type="1" id="57af96e5-1eea-49b9-b248-c2de2f46a802" class="numbered-list" start="3"><li>Antisymmetric: There is an arrow pointing to an element, but not the other way around.</li></ol><ul id="e85603c5-7076-45a5-aa73-02ec2dd34302" class="toggle"><li><details open=""><summary>Partial Orderings</summary><figure id="b79b5d1c-7fef-4ca0-8229-0130c14665fd" class="image"><a href="Untitled%2037.png"><img style="width:807px" src="Untitled%2037.png"/></a></figure></details></li></ul><ul id="b84bd7b2-63b6-4c4e-ab45-749bbd6c1173" class="toggle"><li><details open=""><summary>Comparable elements</summary><figure id="3f5e7d45-6fd9-4357-af52-503612e32b4b" class="image"><a href="Untitled%2038.png"><img style="width:825px" src="Untitled%2038.png"/></a></figure></details></li></ul><ul id="9331ca00-491e-468d-8551-242fc8117f05" class="toggle"><li><details open=""><summary>Totally ordered</summary><figure id="8281470a-a469-47d8-88ef-bd9dd8c9dd7b" class="image"><a href="Untitled%2039.png"><img style="width:480px" src="Untitled%2039.png"/></a></figure></details></li></ul><ul id="3760de4c-f108-49d9-8d55-ffa2f4cb8d8b" class="toggle"><li><details open=""><summary>Hasse Diagrams</summary><figure id="af2a05f2-5cc0-4750-9fe6-db19928e0c83" class="image"><a href="Untitled%2040.png"><img style="width:480px" src="Untitled%2040.png"/></a></figure><figure id="1d43da3c-a74f-4ec5-9b47-b4cfafc7a50c" class="image"><a href="Untitled%2041.png"><img style="width:432px" src="Untitled%2041.png"/></a></figure><p id="007cc46a-6ab4-4eb4-8739-58afa9bc72fb" class="">
+</p></details></li></ul><ul id="112a2239-ee80-4760-807a-bbaa4081e1ca" class="toggle"><li><details open=""><summary>How to make a Hasse Diagram</summary><figure id="05074c51-9467-4e25-9128-29c8b502aa1a" class="image"><a href="Untitled%2042.png"><img style="width:588px" src="Untitled%2042.png"/></a></figure></details></li></ul><ul id="73eb8407-ac86-482c-82f8-90ad538de859" class="toggle"><li><details open=""><summary>Maximal and minimal elements</summary><figure id="a44a5cf2-b9cf-4094-b412-f2f8db972182" class="image"><a href="Untitled%2043.png"><img style="width:741px" src="Untitled%2043.png"/></a></figure></details></li></ul><ul id="45e5c4b8-8f3c-4161-96a9-d9a510bab3d3" class="toggle"><li><details open=""><summary>Upper and lower bounds</summary><figure id="de6be9f7-a2ab-48ce-a579-c63b1fb44dfb" class="image"><a href="Untitled%2044.png"><img style="width:803px" src="Untitled%2044.png"/></a></figure><figure id="d52c0a2b-9153-4abc-8440-15f570135987" class="image"><a href="Untitled%2045.png"><img style="width:798px" src="Untitled%2045.png"/></a></figure></details></li></ul><p id="152ecac9-a2c9-46b9-8ae8-d8aa7342760b" class="">
+</p><blockquote id="43242eb9-1488-4ccb-a662-5a40e2aae025" class="">8: Functions</blockquote><ul id="37d12c35-77b2-42dc-b3a0-d428ccf01474" class="toggle"><li><details open=""><summary>Functions (1)</summary><figure id="a31c15f7-2dee-42c4-8171-083a3536f525" class="image"><a href="Untitled%2046.png"><img style="width:480px" src="Untitled%2046.png"/></a></figure></details></li></ul><ul id="f31aed46-1e63-4419-bdde-83cc95366ec9" class="toggle"><li><details open=""><summary>Functions (2)</summary><figure id="38a437d2-f2a1-4a21-860f-61f0f2d0aa70" class="image"><a href="Untitled%2047.png"><img style="width:432px" src="Untitled%2047.png"/></a></figure><figure id="cb639d39-7149-4b88-b573-314416649edb" class="image"><a href="Untitled%2048.png"><img style="width:432px" src="Untitled%2048.png"/></a></figure><figure id="69695eda-f4be-467a-be4c-db922314de94" class="image"><a href="Untitled%2049.png"><img style="width:432px" src="Untitled%2049.png"/></a></figure></details></li></ul><ul id="29d9f035-5ab6-454f-93d9-9af394a2d65c" class="toggle"><li><details open=""><summary>Image preimage and range (1)</summary><figure id="b96c04f2-a4f9-41a9-b57f-d19062201bc8" class="image"><a href="Untitled%2050.png"><img style="width:480px" src="Untitled%2050.png"/></a></figure></details></li></ul><ul id="e73af9f4-6e02-4f3c-9f23-3f51ff705fa7" class="toggle"><li><details open=""><summary>Image preimage and range (2)</summary><figure id="45fc0cdf-e2c4-4432-bb91-e01a458a9836" class="image"><a href="Untitled%2051.png"><img style="width:432px" src="Untitled%2051.png"/></a></figure></details></li></ul><ul id="f1b1b465-ea8d-47d9-b741-05ed8bf6cfc1" class="toggle"><li><details open=""><summary>One-to-one and onto functions</summary><ol type="1" id="323472aa-34a3-4dbe-ad97-394b49ab8bc9" class="numbered-list" start="1"><li>To see if a function is one-to-one (injective) you see if different elements map to different elements. Two elements cannot map to the same element.</li></ol><ol type="1" id="465505aa-01f0-44ab-8e5b-ba889047aa3e" class="numbered-list" start="2"><li>To see if a function is onto (surjective) you see if the co-domain is completely covered.</li></ol><figure id="b331ed30-aae8-4490-b3a8-6634ce459cfd" class="image"><a href="Untitled%2052.png"><img style="width:480px" src="Untitled%2052.png"/></a></figure><figure id="1aba7bce-877e-4e76-b6d3-8b77ae3737b7" class="image"><a href="Untitled%2053.png"><img style="width:240px" src="Untitled%2053.png"/></a></figure><figure id="c79c650f-520e-45e4-b6f2-82719d41afea" class="image"><a href="Untitled%2054.png"><img style="width:240px" src="Untitled%2054.png"/></a></figure><figure id="5becc7e7-ef95-4c71-84d0-50034c517034" class="image"><a href="Untitled%2055.png"><img style="width:240px" src="Untitled%2055.png"/></a></figure><figure id="eddcaa4a-4e79-47eb-8fc8-fee6e310f7b0" class="image"><a href="Untitled%2056.png"><img style="width:240px" src="Untitled%2056.png"/></a></figure><figure id="7452500f-5101-4eb8-b147-af5837435ccb" class="image"><a href="Untitled%2057.png"><img style="width:240px" src="Untitled%2057.png"/></a></figure></details></li></ul><ul id="93d306b1-75f1-4d40-9ef9-d07dd7cb2aa6" class="toggle"><li><details open=""><summary>Function composition</summary><figure id="1fda4b14-ef12-4b2d-92a1-bd65bb3b66a4" class="image"><a href="Untitled%2058.png"><img style="width:480px" src="Untitled%2058.png"/></a></figure></details></li></ul><ul id="eebff20d-a45a-418c-b2da-8001ac6d4ca2" class="toggle"><li><details open=""><summary>Two important functions in discrete maths</summary><figure id="aa7ae2b0-d2f8-4b86-b170-ec2ae16dc2e5" class="image"><a href="Untitled%2059.png"><img style="width:480px" src="Untitled%2059.png"/></a></figure></details></li></ul><p id="e9db6ea0-ace0-49a7-858f-4ab1930b75f4" class="">
+</p><blockquote id="666290e3-da38-4e25-b6e2-aeb5e4717945" class="">9: Cardinality of sets</blockquote><ul id="ee16282a-1b0e-4225-b457-4b8591c918bd" class="toggle"><li><details open=""><summary>Cardinality</summary><figure id="f56100e8-d195-4565-ae75-70f163610778" class="image"><a href="Untitled%2060.png"><img style="width:480px" src="Untitled%2060.png"/></a></figure><figure id="d23fa7c7-19eb-4fd8-a0d5-31bbd35a9d82" class="image"><a href="Untitled%2061.png"><img style="width:480px" src="Untitled%2061.png"/></a></figure></details></li></ul><ul id="aa20c5f4-369d-41b3-9f93-3308a5a13eb9" class="toggle"><li><details open=""><summary><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">R</mi></mrow><annotation encoding="application/x-tex">\R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68889em;vertical-align:0em;"></span><span class="mord mathbb">R</span></span></span></span></span><span>﻿</span></span> is uncountable</summary><figure id="f0b4d14b-53a1-4058-a92f-93cfc08a50a5" class="image"><a href="Untitled%2062.png"><img style="width:811px" src="Untitled%2062.png"/></a></figure></details></li></ul><p id="6fb2fa8e-be5b-4ad5-adac-853874f0ac4b" class="">
+</p></div></article></body></html>
