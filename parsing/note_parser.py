@@ -57,7 +57,6 @@ class NoteParser:
     def _markdown_to_html(self, markdown_notes: str) -> str:
         """Converts a markdown string to HTML."""
 
-
         markdown_notes = self._remove_markdown_tables(markdown_notes)
 
         escaped_markdown = html.escape(markdown_notes)
@@ -81,8 +80,12 @@ class NoteParser:
         for h_tag in soup.find_all(["h1", "h2", "h3"]):
             h_tag.string = self._add_colon_if_last_char_not_dot_or_colon(h_tag.text)
 
-        # tags_to_remove = ["table", "title"]
-        # self._remove_html_tags(soup=soup, tags=tags_to_remove)
+
+        for tag in soup.find_all():
+            tag.string = self.add_dot_if_last_char_not_dot(tag.text.strip())
+
+        tags_to_remove = ["table", "title"]
+        self._remove_html_tags(soup=soup, tags=tags_to_remove)
 
         result = soup.get_text(separator=" ")
         result = result.replace("\n", " ")
