@@ -133,6 +133,9 @@ class NoteParser:
             (r"\s\.\s", ". "),                  # Case " . " -> ". "
             (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
             (r"\s\s+", " "),                    # Case "  " -> " "
+            (r":\.", ":"),                      # Case ":." -> ":"
+            
+            
         ]
 
         # Apply regex patterns
