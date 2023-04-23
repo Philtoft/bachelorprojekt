@@ -117,46 +117,27 @@ class NoteParser:
         return "" + text + ""
     
     # Cleanup from different cases in notes
-    def final_cleanup(self, notes:str):
+    def final_cleanup(self, notes: str):
+        patterns = [
+            (r"\-{3,}", ""),                    # Case "---" -> ""
+            (r"\*{2,}", ""),                    # Case "**" -> ""
+            (r"\|\.\s{0,}\|", ". "),            # Case "|. |" -> ". "
+            (r"\|", ""),                        # Case "|" -> ""
+            (r"\s\.\s", ". "),                  # Case " . " -> ". "
+            (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
+            (r":\s{0,}\.", ": "),               # Case ":." -> ": " or ": ." -> ": " or ":  ." -> ": "
+            (r"\?\s{0,}\.", ": "),              # Case "?." -> "? " or "?. " -> "? "
+            (r"\!\s{0,}\.", ": "),              # Case "!." -> "! " or "! ." -> "! "
+            (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
+            (r"\s\s+", " "),                    # Case "  " -> " "
+            (r"\s\.\s", ". "),                  # Case " . " -> ". "
+            (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
+            (r"\s\s+", " "),                    # Case "  " -> " "
+        ]
 
-        # Case "---" -> ""
-        notes = re.sub(r"\-{3,}", "", notes)
-
-        # Case "**" -> ""
-        notes = re.sub(r"\*{2,}", "", notes)
-
-        # Case "|. |" -> ". "
-        notes = re.sub(r"\|\.\s{0,}\|", ". ", notes)
-
-        # Case "|" -> ""
-        notes = re.sub(r"\|", "", notes)
-
-        # Case " . " -> ". "
-        notes = re.sub(r"\s\.\s", ". ", notes)
-
-        # Case: ".." -> ". " or "..." -> ". "
-        notes = re.sub(r"\.{2,}", ". ", notes)
-
-        # Case ":." -> ": " or ": ." -> ":" or ":  ." -> ": " or "?." -> "? " or "?. " -> "? "        
-        notes = re.sub(r":\s{0,}\.", ": ", notes)
-        notes = re.sub(r"\?\s{0,}\.", ": ", notes)
-        notes = re.sub(r"\!\s{0,}\.", ": ", notes)
-
-        # Case: ".." -> ". " or "..." -> ". "
-        notes = re.sub(r"\.{2,}", ". ", notes)
-
-        # Case "  " -> " "
-        notes = re.sub(r"\s\s+", " ", notes)
-
-        # Case " . " -> ". "
-        notes = re.sub(r"\s\.\s", ". ", notes)
-
-        # Case: ".." -> ". " or "..." -> ". "
-        notes = re.sub(r"\.{2,}", ". ", notes)
-
-        # Case "  " -> " "
-        notes = re.sub(r"\s\s+", " ", notes)
-
+        # Apply regex patterns
+        for pattern, replacement in patterns:
+            notes = re.sub(pattern, replacement, notes)
 
         return notes
 
