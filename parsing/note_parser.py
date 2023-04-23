@@ -47,6 +47,8 @@ class NoteParser:
         with open(f"{_NOTE_DIR}/{self.student}/{self.student}.txt", 'w', encoding='utf-8') as file:
             file.write(notes)
 
+        return notes
+
     def _get_note_format(self) -> str:
         """Returns the format of the given `NoteParser.note`."""
         suffix = pathlib.Path(f"{_NOTE_DIR}/{self.student}/{self.student}").suffix
@@ -122,11 +124,17 @@ class NoteParser:
         # Case: ".." -> ". " or "..." -> ". "
         notes = re.sub(r"\.{2,}", ". ", notes)
 
-        # Case ":." -> ": "
-        notes = re.sub(r":\.", ": ", notes)
+        # Case ":." -> ": " or ": ." -> ":" or ":  ." -> ": " or "?." -> "? " or "?. " -> "? "        
+        notes = re.sub(r":\s{0,}\.", ": ", notes)
+        notes = re.sub(r"\?\s{0,}\.", ": ", notes)
+        notes = re.sub(r"\!\s{0,}\.", ": ", notes)
+
+        # notes = re.sub(r":\.", ": ", notes)
 
         # Case "  " -> " "
         notes = re.sub(r"\s\s+", " ", notes)
+
+
 
         return notes
 
@@ -138,7 +146,7 @@ def main(args: argparse.Namespace, no_arguments: bool):
     else:
         note_parser = NoteParser(args.student, args.filetype)
         plaintext = note_parser()
-        note_parser.output_plaintext_notes(plaintext)
+        res = note_parser.output_plaintext_notes(plaintext)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Parse a note.")

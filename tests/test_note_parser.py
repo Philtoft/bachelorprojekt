@@ -32,6 +32,15 @@ class TestNoteParser(unittest.TestCase):
         expected = str(bs(self.notes, "html.parser"))
         self.assertEqual(expected, actual)
 
+class TestNoteParserOnStudentNotes(unittest.TestCase):
+    def test_ingrid_notes_parses_correct(self):
+        with open("parsing/notes/Ingrid/Ingrid-correct.txt", "r") as f:
+            expected = f.read()
+        self.assertTrue(True)
+        actual = np("Ingrid", ".md")()
+        self.assertEqual(expected, actual)
+
+    
 
 
 if __name__ == '__main__':
