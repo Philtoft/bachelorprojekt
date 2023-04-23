@@ -118,6 +118,19 @@ class NoteParser:
     
     # Cleanup from different cases in notes
     def final_cleanup(self, notes:str):
+
+        # Case "---" -> ""
+        notes = re.sub(r"\-{3,}", "", notes)
+
+        # Case "**" -> ""
+        notes = re.sub(r"\*{2,}", "", notes)
+
+        # Case "|. |" -> ". "
+        notes = re.sub(r"\|\.\s{0,}\|", ". ", notes)
+
+        # Case "|" -> ""
+        notes = re.sub(r"\|", "", notes)
+
         # Case " . " -> ". "
         notes = re.sub(r"\s\.\s", ". ", notes)
 
@@ -129,11 +142,20 @@ class NoteParser:
         notes = re.sub(r"\?\s{0,}\.", ": ", notes)
         notes = re.sub(r"\!\s{0,}\.", ": ", notes)
 
-        # notes = re.sub(r":\.", ": ", notes)
+        # Case: ".." -> ". " or "..." -> ". "
+        notes = re.sub(r"\.{2,}", ". ", notes)
 
         # Case "  " -> " "
         notes = re.sub(r"\s\s+", " ", notes)
 
+        # Case " . " -> ". "
+        notes = re.sub(r"\s\.\s", ". ", notes)
+
+        # Case: ".." -> ". " or "..." -> ". "
+        notes = re.sub(r"\.{2,}", ". ", notes)
+
+        # Case "  " -> " "
+        notes = re.sub(r"\s\s+", " ", notes)
 
 
         return notes
