@@ -83,15 +83,15 @@ class NoteParser:
             tag.string = self.add_dot_if_last_char_not_dot(tag.text.strip())
                 
 
-            # tag.string = self.add_dot_if_last_char_not_dot(tag.text)
-
         tags_to_remove = ["table", "title"]
         self._remove_html_tags(soup=soup, tags=tags_to_remove)
 
         result = soup.get_text(separator=" ")
         result = result.replace("\n", ". ")
         result = result.replace("\t", " ")
-        result = re.sub("\s\s+", " ", result)
+        # result = re.sub("\s\s+", " ", result)
+
+        result = self.final_cleanup(result)
 
         return result
 
@@ -123,12 +123,21 @@ class NoteParser:
             text = "" + text + "."
         return "" + text + ""
     
+    # Cleanup from different cases in notes
     def final_cleanup(self, notes:str):
         # Case " . " -> ". "
+        notes = re.sub(r"\s\.\s", ". ", notes)
 
-        # Case: "..." -> ". "
+        # Case: ".." -> ". " or "..." -> ". "
+        notes = re.sub(r"\.{2,}", ". ", notes)
 
         # Case ":." -> ": "
+        notes = re.sub(r":\.", ": ", notes)
+
+        # Case "  " -> " "
+        notes = re.sub(r"\s\s+", " ", notes)
+
+        return notes
 
 def main(args: argparse.Namespace, no_arguments: bool):
     """Main function for the `note_parser` module."""
