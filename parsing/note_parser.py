@@ -57,12 +57,15 @@ class NoteParser:
     def _markdown_to_html(self, markdown_notes: str) -> str:
         """Converts a markdown string to HTML."""
 
-        markdown_notes = self._remove_markdown_tables(markdown_notes)
+        # markdown_notes = self._remove_markdown_tables(markdown_notes)
+        pattern = r"(\|.*\|\n)((\|:?-+:?\|)+\n)((\|.*\|[\n])+)"
+        removed_markdown_tables = re.sub(pattern, '', markdown_notes, 0, re.MULTILINE)
 
-        escaped_markdown = html.escape(markdown_notes)
+        with open(f"{_NOTE_DIR}/{self.student}/{self.student}-table-removed.txt", "w", encoding='utf-8') as file:
+            file.write(removed_markdown_tables)
 
-        with open(f"{_NOTE_DIR}/{self.student}/{self.student}-escaped.txt", "w", encoding='utf-8') as file:
-            file.write(escaped_markdown)
+        escaped_markdown = html.escape(removed_markdown_tables)
+
 
         result = markdown(escaped_markdown)
 
@@ -70,6 +73,15 @@ class NoteParser:
             file.write(result)
 
         return result
+    
+    def _remove_markdown_tables(self, markdown_text:str) -> str:
+        # Define a regular expression pattern to match markdown tables
+        pattern = r"(\|.*\|\n)((\|:?-+:?\|)+\n)((\|.*\|[\n])+)"
+        
+        # Remove the markdown tables using re.sub()
+        cleaned_text = re.sub(pattern, '', markdown_text)
+        
+        return cleaned_text
 
     def _html_to_plaintext(self, html_notes: str):
         """Converts a """
@@ -96,15 +108,6 @@ class NoteParser:
             file.write(result)
 
         return result
-    
-    def _remove_markdown_tables(self, markdown_text:str):
-        # Define a regular expression pattern to match markdown tables
-        pattern = r"(\|.*\|\n)((\|:?-+:?\|)+\n)((\|.*\|[\n])+)"
-        
-        # Remove the markdown tables using re.sub()
-        cleaned_text = re.sub(pattern, '', markdown_text)
-        
-        return cleaned_text
 
     def _remove_html_tags(self, soup: bs, tags: list[str]) -> bs:
         """Removes all instances of the specified html `tag` from the html `soup`."""
