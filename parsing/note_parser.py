@@ -57,20 +57,7 @@ class NoteParser:
     def _markdown_to_html(self, markdown_notes: str) -> str:
         """Converts a markdown string to HTML."""
 
-        # markdown_notes = self._remove_markdown_tables(markdown_notes)
-        pattern = r"(\|.*\|\n)((\|:?-+:?\|)+\n)((\|.*\|[\n])+)"
-        removed_markdown_tables = re.sub(pattern, '', markdown_notes, 0, re.MULTILINE)
-
-        with open(f"{_NOTE_DIR}/{self.student}/{self.student}-table-removed.txt", "w", encoding='utf-8') as file:
-            file.write(removed_markdown_tables)
-
-        escaped_markdown = html.escape(removed_markdown_tables)
-
-
-        result = markdown(escaped_markdown)
-
-        with open(f"{_NOTE_DIR}/{self.student}/{self.student}-generated.html", "w", encoding='utf-8') as file:
-            file.write(result)
+        result = markdown(markdown_notes, extensions=['markdown.extensions.tables'])
 
         return result
     
@@ -103,9 +90,6 @@ class NoteParser:
         result = result.replace("\n", " ")
         result = result.replace("\t", " ")
         result = re.sub("\s\s+", " ", result)
-
-        with open(f"{self.path_and_file}-cleaned.txt", "w") as file:
-            file.write(result)
 
         return result
 
