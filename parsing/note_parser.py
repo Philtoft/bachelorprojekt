@@ -35,9 +35,9 @@ class NoteParser:
     def _parse_note(self) -> str:
         note_format = self._get_note_format()
 
-        with open(f"{self.path_and_file}.md", 'r', encoding='utf-8') as file:
+        with open(f"{self.path_and_file}{self.notetype}", 'r', encoding='utf-8') as file:
             self.note = file.read()
-        
+
         if (".md" == self.notetype):
             self.note = self._markdown_to_html(self.note)
         
@@ -79,15 +79,17 @@ class NoteParser:
         for h_tag in soup.find_all(["h1", "h2", "h3"]):
             h_tag.string = self._add_colon_if_last_char_not_dot_or_colon(h_tag.text)
 
-
         for tag in soup.find_all():
             tag.string = self.add_dot_if_last_char_not_dot(tag.text.strip())
+                
+
+            # tag.string = self.add_dot_if_last_char_not_dot(tag.text)
 
         tags_to_remove = ["table", "title"]
         self._remove_html_tags(soup=soup, tags=tags_to_remove)
 
         result = soup.get_text(separator=" ")
-        result = result.replace("\n", " ")
+        result = result.replace("\n", ". ")
         result = result.replace("\t", " ")
         result = re.sub("\s\s+", " ", result)
 
@@ -121,6 +123,13 @@ class NoteParser:
             text = "" + text + "."
         return "" + text + ""
     
+    def final_cleanup(self, notes:str):
+        # Case " . " -> ". "
+
+        # Case: "..." -> ". "
+
+        # Case ":." -> ": "
+
 def main(args: argparse.Namespace, no_arguments: bool):
     """Main function for the `note_parser` module."""
     if no_arguments:
