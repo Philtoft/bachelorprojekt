@@ -99,7 +99,6 @@ class NoteParser:
             return soup
         
         for tag in tags:
-            print(f"Tag: {tag}")
             for html_tag in soup.find_all(tag):
                 html_tag.decompose()
 
