@@ -60,15 +60,6 @@ class NoteParser:
         result = markdown(markdown_notes, extensions=['markdown.extensions.tables'])
 
         return result
-    
-    def _remove_markdown_tables(self, markdown_text:str) -> str:
-        # Define a regular expression pattern to match markdown tables
-        pattern = r"(\|.*\|\n)((\|:?-+:?\|)+\n)((\|.*\|[\n])+)"
-        
-        # Remove the markdown tables using re.sub()
-        cleaned_text = re.sub(pattern, '', markdown_text)
-        
-        return cleaned_text
 
     def _html_to_plaintext(self, html_notes: str):
         """Converts a """
