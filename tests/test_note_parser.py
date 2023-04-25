@@ -8,7 +8,7 @@ class TestNoteParser(unittest.TestCase):
     def setUp(self) -> None:
         with open("./tests/notes/table.html", "r") as f:
             self.notes = f.read()
-            self.note_parser = np(f.read())
+            self.note_parser = np(f.read(), ".html")
             self.maxDiff = 10000
             self.soup = bs(self.notes, "html.parser")
 

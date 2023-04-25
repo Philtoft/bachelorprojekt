@@ -68,6 +68,10 @@ class NoteParser:
 
         soup = bs(html_notes, "html.parser")
 
+        soup = soup.prettify()
+
+        soup = bs(soup, "html.parser")
+
          # Clean up h-tags
         for h_tag in soup.find_all(["h1", "h2", "h3"]):
             h_tag.string = self._add_colon_if_last_char_not_dot_or_colon(h_tag.text)
@@ -75,14 +79,14 @@ class NoteParser:
         for tag in soup.find_all():
             tag.string = self.add_dot_if_last_char_not_dot(tag.text.strip())
                 
-
-        tags_to_remove = ["table", "title"]
+                
+                
+        tags_to_remove = ["head", "table", "title"]
         self._remove_html_tags(soup=soup, tags=tags_to_remove)
 
         result = soup.get_text(separator=" ")
         result = result.replace("\n", ". ")
         result = result.replace("\t", " ")
-        # result = re.sub("\s\s+", " ", result)
 
         result = self.final_cleanup(result)
 
@@ -108,7 +112,7 @@ class NoteParser:
     
     def _add_colon_if_last_char_not_dot_or_colon(self, text: str):
         if self._check_if_text_needs_refactoring(text):
-            text = "" + text + ":"
+            text = "" + text + ": "
         return "" + text + " "
 
     def add_dot_if_last_char_not_dot(self, text: str):
@@ -134,9 +138,10 @@ class NoteParser:
             (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
             (r"\s\s+", " "),                    # Case "  " -> " "
             (r":\.", ":"),                      # Case ":." -> ":"
-            
-            
         ]
+
+        # Case " ." -> ""
+        patterns.append((r"\s\.", ""))
 
         # Apply regex patterns
         for pattern, replacement in patterns:
