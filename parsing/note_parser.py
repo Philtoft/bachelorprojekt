@@ -59,6 +59,10 @@ class NoteParser:
     def _markdown_to_html(self, markdown_notes: str) -> str:
         """Converts a markdown string to HTML."""
 
+        # Markdown cleanup 
+        # Case "**" -> ""
+        markdown_notes = markdown_notes.replace("**", "")
+
         result = markdown(markdown_notes, extensions=['markdown.extensions.tables'])
 
         return result
@@ -76,8 +80,8 @@ class NoteParser:
         for h_tag in soup.find_all(["h1", "h2", "h3"]):
             h_tag.string = self._add_colon_if_last_char_not_dot_or_colon(h_tag.text)
 
-        for tag in soup.find_all():
-            tag.string = self.add_dot_if_last_char_not_dot(tag.text.strip())
+        # for tag in soup.find_all():
+        #     tag.string = self.add_dot_if_last_char_not_dot(tag.text.strip())
                 
                 
                 
@@ -85,8 +89,8 @@ class NoteParser:
         self._remove_html_tags(soup=soup, tags=tags_to_remove)
 
         result = soup.get_text(separator=" ")
-        result = result.replace("\n", ". ")
-        result = result.replace("\t", " ")
+        # result = result.replace("\n", ". ")
+        # result = result.replace("\t", " ")
 
         result = self.final_cleanup(result)
 
@@ -112,7 +116,7 @@ class NoteParser:
     
     def _add_colon_if_last_char_not_dot_or_colon(self, text: str):
         if self._check_if_text_needs_refactoring(text):
-            text = "" + text + ": "
+            text = "" + text.replace("\n", "") + ": "
         return "" + text + " "
 
     def add_dot_if_last_char_not_dot(self, text: str):
@@ -122,30 +126,30 @@ class NoteParser:
     
     # Cleanup from different cases in notes
     def final_cleanup(self, notes: str):
-        patterns = [
-            (r"\-{3,}", ""),                    # Case "---" -> ""
-            (r"\*{2,}", ""),                    # Case "**" -> ""
-            (r"\|\.\s{0,}\|", ". "),            # Case "|. |" -> ". "
-            (r"\|", ""),                        # Case "|" -> ""
-            (r"\s\.\s", ". "),                  # Case " . " -> ". "
-            (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
-            (r":\s{0,}\.", ": "),               # Case ":." -> ": " or ": ." -> ": " or ":  ." -> ": "
-            (r"\?\s{0,}\.", ": "),              # Case "?." -> "? " or "?. " -> "? "
-            (r"\!\s{0,}\.", ": "),              # Case "!." -> "! " or "! ." -> "! "
-            (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
-            (r"\s\s+", " "),                    # Case "  " -> " "
-            (r"\s\.\s", ". "),                  # Case " . " -> ". "
-            (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
-            (r"\s\s+", " "),                    # Case "  " -> " "
-            (r":\.", ":"),                      # Case ":." -> ":"
-        ]
+        # patterns = [
+        #     (r"\-{3,}", ""),                    # Case "---" -> ""
+        #     (r"\*{2,}", ""),                    # Case "**" -> ""
+        #     (r"\|\.\s{0,}\|", ". "),            # Case "|. |" -> ". "
+        #     (r"\|", ""),                        # Case "|" -> ""
+        #     (r"\s\.\s", ". "),                  # Case " . " -> ". "
+        #     (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
+        #     (r":\s{0,}\.", ": "),               # Case ":." -> ": " or ": ." -> ": " or ":  ." -> ": "
+        #     (r"\?\s{0,}\.", ": "),              # Case "?." -> "? " or "?. " -> "? "
+        #     (r"\!\s{0,}\.", ": "),              # Case "!." -> "! " or "! ." -> "! "
+        #     (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
+        #     (r"\s\s+", " "),                    # Case "  " -> " "
+        #     (r"\s\.\s", ". "),                  # Case " . " -> ". "
+        #     (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
+        #     (r"\s\s+", " "),                    # Case "  " -> " "
+        #     (r":\.", ":"),                      # Case ":." -> ":"
+        # ]
 
         # Case " ." -> ""
-        patterns.append((r"\s\.", ""))
+        # patterns.append((r"\s\.", ""))
 
         # Apply regex patterns
-        for pattern, replacement in patterns:
-            notes = re.sub(pattern, replacement, notes)
+        # for pattern, replacement in patterns:
+        #     notes = re.sub(pattern, replacement, notes)
 
         return notes
 
