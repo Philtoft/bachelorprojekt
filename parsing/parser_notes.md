@@ -2,10 +2,10 @@
 
 ### Gustav (1)
 
-### Joachim (4)
+### Joachim (1)
 
-- [ ] - Doesn't add spaces after end tag
-- [ ] - Doesn't remove title tags
+- [x] - Doesn't add spaces after end tag
+- [x] - Doesn't remove title tags
 
 ### Kofoed (2)
 

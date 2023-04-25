@@ -45,9 +45,6 @@ Fragments also have their own lifecycle which is dependent on the activity compo
 
 - Lifecycle of Android Fragment
     
-    ![Untitled](2)%20User%20Interface%20Layout%20(4)(1%205)%202ae3f31480ea426c96089027fe2159d8/Untitled.png)
-    
-
 ### **Comparison of features of UI components (advangates vs disadvantages)** 🔍
 
 Using fragments makes reusability easy inside activities. Activities are good places to put global elements around your app’s UI such as a navigation drawer. Fragments however are better suited for defining and managing the UI of a single screen or portion of a screen.
@@ -207,8 +204,6 @@ An app’s activity has a context
     - Linear Layout
     - Relative Layout
     - Web layout
-    
-    ![Untitled](2)%20User%20Interface%20Layout%20(4)(1%205)%202ae3f31480ea426c96089027fe2159d8/Untitled%201.png)
     
     With adapter:
     
