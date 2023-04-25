@@ -87,7 +87,7 @@ class NoteParser:
         self._remove_html_tags(soup=soup, tags=tags_to_remove)
 
         result = soup.get_text(separator=" ")
-        result = result.replace("\n", " ")
+        result = result.replace("\n", ". ")
         result = result.replace("\t", " ")
 
         result = self.final_cleanup(result)
@@ -145,6 +145,12 @@ class NoteParser:
 
         # Case " ." -> ""
         patterns.append((r"\s\.", ""))
+
+        # Remove spaces before kolon -> " :" -> ":"
+        patterns.append((r"\s:", ":"))
+
+        # Remove dots after kolon -> ":." -> ":"
+        patterns.append((r":\.", ":"))
 
         # Apply regex patterns
         for pattern, replacement in patterns:
