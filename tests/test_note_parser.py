@@ -47,6 +47,12 @@ class TestNoteParserOnStudentNotes(unittest.TestCase):
         actual = np("Gustav", ".md")()
         self.assertEqual(expected, actual)
 
+    def test_joachim_notes_parses_correct(self):
+        with open("parsing/notes/Joachim/Joachim-correct.txt", "r") as f:
+            expected = f.read()
+        self.assertTrue(True)
+        actual = np("Joachim", ".html")()
+        self.assertEqual(expected, actual)
     
 
 
