@@ -64,6 +64,6 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--dataset", action='store_true', help="Download and preprocess SQuAD dataset.")
     parser.add_argument("-i", "--input", type=str, metavar="text", help="Input text to the model.")
     parser.add_argument("-s", "--settings", type=str, metavar="settings", default=_DEFAULT_SETTINGS, help="Settings file to use.")
-    parser.add_argument("-n", "--note", type=str, metavar="note", help="Name of note directory in the 'data' directoy.")
+    parser.add_argument("-n", "--note", type=str, metavar="note", help="Path to note.")
 
     main(parser.parse_args(), not (len(sys.argv) > 1))

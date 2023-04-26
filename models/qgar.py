@@ -1,16 +1,11 @@
-from bs4 import BeautifulSoup
-from markdown import markdown
 from transformers import pipeline
-from exceptions.exceptions import NoSupportedFileTypeFoundError
 from models.qg import QG
 import json
-import re
-import os
+import logging
 import pathlib
-import html
+from parsing.note_parser import NoteParser
 
-_FILE_TYPES = [".md", ".html"]
-_NOTE_DIR = "data/notes"
+logging.basicConfig(level=logging.INFO, filename="qgar.log", filemode="a", format='%(asctime)s %(message)s')
 
 
 class QGAR:
@@ -31,9 +26,10 @@ class QGAR:
 
         self._qg = qg
         self._qa = pipeline("question-answering", qa)
+        self.student_name = None
 
 
-    def __call__(self, student: str) -> list:
+    def __call__(self, file_path: str) -> list:
         """
         Generates questions and answers and saves them in json format. 
 
@@ -42,56 +38,18 @@ class QGAR:
         2. Generates questions and answers
         3. Saves them as `<student>.json` to disk
         """
-
-        plaintext = self._parse_notes(student)
+        note_parser = NoteParser() 
+        plaintext = note_parser(file_path)
         qgas = self._generate_questions_answers(plaintext)
 
-        with open(f"{_NOTE_DIR}/{student}/{student}-questions-and-answers.json", "w") as file:
+        path = pathlib.Path(file_path)
+        out_dir = str(path.parent)
+        file_name = path.stem
+        
+        with open(f"{out_dir}/{file_name}-questions-and-answers.json", "w") as file:
             json.dump(qgas, file, indent=4)
 
         return qgas
-
-
-    def _parse_notes(self, student: str) -> str:
-        notetype = self._get_note_type(student)
-
-        with open(f"{_NOTE_DIR}/{student}/{student}{notetype}") as file:
-            notes = file.read()
-        if notetype == ".md":
-            notes = self._markdown_to_html(notes)
-
-        plaintext = self._html_to_plaintext(notes)
-
-        return plaintext
-
-
-    def _get_note_type(self, student: str) -> str:
-        for file in os.listdir(f"{_NOTE_DIR}/{student}/"):
-            suffix = pathlib.Path(file).suffix
-            if suffix in _FILE_TYPES:
-                return suffix
-        
-        raise NoSupportedFileTypeFoundError(student)
-
-
-    def _markdown_to_html(self, markdown_notes: str) -> str:
-        """ Converts a markdown string to HTML """
-
-        escaped_markdown = html.escape(markdown_notes)
-        return markdown(escaped_markdown)
-
-
-    def _html_to_plaintext(self, html_notes: str) -> str:
-        """ Converts a markdown string to plaintext """
-
-        soup = BeautifulSoup(html_notes, "html.parser")
-        for h_tag in soup.find_all(["h1", "h2", "h3"]):
-            h_tag.decompose()
-        result = ' '.join(soup.stripped_strings)
-        result = result.replace("\n", " ")
-        result = result.replace("\t", " ")
-        result = re.sub("\s\s+", " ", result)
-        return result
 
 
     def _generate_answers(self, questions_and_contexts: list[dict]) -> list:
@@ -114,6 +72,17 @@ class QGAR:
                 })
 
             questions_and_answers.append(result)
+
+        # Aggregate score value
+        scores = []
+        for qa in questions_and_answers:
+            for q_a in qa["questions_answers"]:
+                scores.append(q_a["answer"]["score"])
+
+        # Print score average
+        print(f"Score average: {sum(scores) / len(scores)}")
+        logging.info(
+            f"Score average: {sum(scores) / len(scores)} - notes from {self.student_name}")
 
         return questions_and_answers
 
