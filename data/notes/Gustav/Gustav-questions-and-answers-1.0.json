@@ -1,0 +1,523 @@
+[
+    {
+        "context": "Business Model Canvas: Value Proposition Canvas: The Value Proposition Canvas has two sides: Customer Profile: Clarifies your customer understanding. Value Map: Describes the intend to create value for that customer. Fit is achieved between the two when one meets the other. Customer Profile: The Customer (segment) Profile describes a specific Customer Segment in a business model in a structured and detailed way. It breaks the customer down into its jobs, pains and gains. Customer Jobs (job-to-be-done): Describe what the customer are trying to get done in their work and lives, as expressed in their own words. Pains: Describe bad outcomes, risks, and obstacles related to customer jobs.",
+        "questions_answers": [
+            {
+                "question": "What does the Value Proposition Canvas have?",
+                "answer": {
+                    "score": 0.24124814569950104,
+                    "start": 82,
+                    "end": 91,
+                    "answer": "two sides"
+                }
+            },
+            {
+                "question": "When does the Customer Profile break down into its jobs, pains and gains?",
+                "answer": {
+                    "score": 0.27235183119773865,
+                    "start": 275,
+                    "end": 323,
+                    "answer": "Customer Profile: The Customer (segment) Profile"
+                }
+            },
+            {
+                "question": "What is the purpose of the Value Map to create value for a customer?",
+                "answer": {
+                    "score": 0.46112099289894104,
+                    "start": 171,
+                    "end": 215,
+                    "answer": "the intend to create value for that customer"
+                }
+            },
+            {
+                "question": "What is a specific Customer Segment in a business model?",
+                "answer": {
+                    "score": 0.42417487502098083,
+                    "start": 275,
+                    "end": 323,
+                    "answer": "Customer Profile: The Customer (segment) Profile"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Gains: Describe the outcomes customers want to achieve or the concrete benefits they are seeking. Customer Jobs: We can distinguish between 3 main types of Customer Jobs and Supporting Jobs: Describes how customers want to be perceived by others. Look trendy, be perceived as competent. Personal/Emotional Jobs When your customer seek a specific emotional state Feeling good, secure, peace of mind. Value Map: The Value (Proposition) Map describes the features of a specific Value Proposition in a business model in a structured and detailed way. It breaks a Value Proposition down into products and services, pain relievers, and gain creators.",
+        "questions_answers": [
+            {
+                "question": "What are three main types of Customer Jobs and Supporting Jobs?",
+                "answer": {
+                    "score": 0.7934088706970215,
+                    "start": 191,
+                    "end": 245,
+                    "answer": "Describes how customers want to be perceived by others"
+                }
+            },
+            {
+                "question": "What is the name of a customer who seeks a specific emotional state Feeling good, secure, peace of mind?",
+                "answer": {
+                    "score": 0.8432129621505737,
+                    "start": 287,
+                    "end": 310,
+                    "answer": "Personal/Emotional Jobs"
+                }
+            },
+            {
+                "question": "What does the Value Map describe in a business model?",
+                "answer": {
+                    "score": 0.4704176187515259,
+                    "start": 448,
+                    "end": 492,
+                    "answer": "the features of a specific Value Proposition"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Products and Services: Is a list of all the products/services a Value Proposition is built around. Pain Relievers: Describe how the products and services alleviate customer pains. Gain Creators: Describe how the products and services create customer gains. Business Model Canvas (BMC): The Business Model Canvas is a tool used to get an overview over existing or new business models and consist of 9 building blocks: Customer Segments. Value Propositions. Channels. Customer Relationships. Revenue Streams. Key Resources. Key Activities. Key Partnerships. Cost Structure. Customer Segments: Defines the different groups of people/organizations an enterprise aims to reach and serve.",
+        "questions_answers": [
+            {
+                "question": "What is a list of all the products/services a Value Proposition is built around?",
+                "answer": {
+                    "score": 0.8401508927345276,
+                    "start": 0,
+                    "end": 21,
+                    "answer": "Products and Services"
+                }
+            },
+            {
+                "question": "What are the 9 building blocks of the Business Model Canvas?",
+                "answer": {
+                    "score": 0.7929278016090393,
+                    "start": 417,
+                    "end": 434,
+                    "answer": "Customer Segments"
+                }
+            },
+            {
+                "question": "What is the BMC used to get an overview of existing or new business models?",
+                "answer": {
+                    "score": 0.254151850938797,
+                    "start": 257,
+                    "end": 311,
+                    "answer": "Business Model Canvas (BMC): The Business Model Canvas"
+                }
+            }
+        ]
+    },
+    {
+        "context": "To better satisfy customers, a company may group them into distinct segments with common needs, behaviors, or other attributes. Customer Segment Types: There are different types of Customer Segments: The other building blocks focus on one large group of customers with broadly similar needs and problems. Is often found in the consumer electronics sector. Niche Market BMCs targeting niche markets cater to specific, specialized Customer Segments. The other building blocks are all tailored to the specific requirements of a niche market. Are often found in supplier-buyer relationships. E.g., car part manufacturers depend on purchases from major car manufactures-.",
+        "questions_answers": [
+            {
+                "question": "What are different types of Customer Segments?",
+                "answer": {
+                    "score": 0.14018291234970093,
+                    "start": 200,
+                    "end": 225,
+                    "answer": "The other building blocks"
+                }
+            },
+            {
+                "question": "Which niche market BMCs targeting niche markets cater to specific, specialized Customer Segment types?",
+                "answer": {
+                    "score": 0.2256682813167572,
+                    "start": 327,
+                    "end": 347,
+                    "answer": "consumer electronics"
+                }
+            },
+            {
+                "question": "What are the other building blocks that focus on a large group of customers with broadly similar needs and problems?",
+                "answer": {
+                    "score": 0.6068262457847595,
+                    "start": 128,
+                    "end": 150,
+                    "answer": "Customer Segment Types"
+                }
+            },
+            {
+                "question": "What is often found in the consumer electronics sector?",
+                "answer": {
+                    "score": 0.496130108833313,
+                    "start": 128,
+                    "end": 150,
+                    "answer": "Customer Segment Types"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Segmented Some BMCs distinguish between market segments with slightly different needs and problems. Diversified An organization with this BMC serves two unrelated Customer Segments with very different needs and problems. E.g. Amazon decided to diversify its retail business by selling cloud computing services. Multi-sided platforms (or multi-sided markets) Some organizations serve two or more interdependent Customer Segments. Value Proposition: Describes the bundle of products and services that create value for a specific Customer Segment. It is: The reason why customers turn to one company over another. Solves a customer problem or satisfies a customer need. Each Value Proposition consists of a selected bundle of products/services that caters to the requirements of a specific Customer Segment.",
+        "questions_answers": [
+            {
+                "question": "What BMC distinguishes between market segments with slightly different needs and problems?",
+                "answer": {
+                    "score": 0.607368528842926,
+                    "start": 0,
+                    "end": 9,
+                    "answer": "Segmented"
+                }
+            },
+            {
+                "question": "What was Amazon's decision to diversify its retail business by selling cloud computing services?",
+                "answer": {
+                    "score": 0.21868836879730225,
+                    "start": 138,
+                    "end": 219,
+                    "answer": "BMC serves two unrelated Customer Segments with very different needs and problems"
+                }
+            },
+            {
+                "question": "What is the reason why customers turn to one company over another?",
+                "answer": {
+                    "score": 0.39932456612586975,
+                    "start": 429,
+                    "end": 446,
+                    "answer": "Value Proposition"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Customer Value Creation: The following elements can contribute to Customer Value Creation: Is often technology related. Performance Improving product or service performance has been a common way to create value. Customization Tailoring products and services to the specific needs of individual customers or Customer Segments creates value. \u201cGetting the job done\u201d Value can be created simply by helping a customer get certain jobs done. Design Design is an important but difficult element to measure. A product may stand out because of superior design. Brand/Status Customers may find value in the act of using and displaying a specific brand.",
+        "questions_answers": [
+            {
+                "question": "What can contribute to Customer Value Creation: Is often technology related?",
+                "answer": {
+                    "score": 0.9154917001724243,
+                    "start": 25,
+                    "end": 47,
+                    "answer": "The following elements"
+                }
+            },
+            {
+                "question": "What can be created by helping a customer get certain jobs done?",
+                "answer": {
+                    "score": 0.8308994174003601,
+                    "start": 363,
+                    "end": 368,
+                    "answer": "Value"
+                }
+            },
+            {
+                "question": "What can a product stand out because of superior design?",
+                "answer": {
+                    "score": 0.7237985134124756,
+                    "start": 0,
+                    "end": 23,
+                    "answer": "Customer Value Creation"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Price Offering similar value at a lower price is a common way to satisfy the needs of price-sensitive Customer Segments. Low-price Value Propositions have important implications for the rest of a business model. Cost Reduction Helping customers reduce costs is an important way to create value. Risk Reduction Customers value reducing the risks they incur when purchasing products or services. Accessibility Making products and services available to customers who previously lacked access to them. Can result from business model innovation, new technologies or a combination of both. Convenience/Usability Making thongs more convenient or easier to use can create substantial value.",
+        "questions_answers": [
+            {
+                "question": "What is a common way to satisfy the needs of price-sensitive Customer Segments?",
+                "answer": {
+                    "score": 0.8180223703384399,
+                    "start": 0,
+                    "end": 45,
+                    "answer": "Price Offering similar value at a lower price"
+                }
+            },
+            {
+                "question": "What is an important part of a business model?",
+                "answer": {
+                    "score": 0.43582403659820557,
+                    "start": 121,
+                    "end": 149,
+                    "answer": "Low-price Value Propositions"
+                }
+            },
+            {
+                "question": "How can thongs be more convenient or easier to use?",
+                "answer": {
+                    "score": 0.9734830856323242,
+                    "start": 584,
+                    "end": 605,
+                    "answer": "Convenience/Usability"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Channels: Describes how a company communicates with and reaches its Customer Segments to deliver a Value Proposition. It is comprised by: Communication, distribution, and sales Channels. Channels are customer touch points that play an important role in the customer experience. Channels serve several functions: Raising awareness among customers about a company\u2019s products and services. Helping customers evaluate a company\u2019s Value Proposition. Allowing customers to purchase specific products and services. Providing post-purchase customer support. Channel Phases: Channels have 5 distinct phases. Each channel can cover some or all phases. We distinguish between: Direct/Indirect channels. Owned/Partner channels. Finding the right mix of Channels to satisfy how customers want to be reached is crucial in bringing a value proposition to market.",
+        "questions_answers": [
+            {
+                "question": "What is a channel that communicates with and reaches its Customer Segments to deliver a Value Proposition?",
+                "answer": {
+                    "score": 0.4713567793369293,
+                    "start": 0,
+                    "end": 8,
+                    "answer": "Channels"
+                }
+            },
+            {
+                "question": "What is the channel that is comprised of communication, distribution, and sales Channels?",
+                "answer": {
+                    "score": 0.9078776240348816,
+                    "start": 0,
+                    "end": 8,
+                    "answer": "Channels"
+                }
+            },
+            {
+                "question": "How do Channels help customers evaluate a company\u2019s value proposition?",
+                "answer": {
+                    "score": 0.18916839361190796,
+                    "start": 445,
+                    "end": 506,
+                    "answer": "Allowing customers to purchase specific products and services"
+                }
+            },
+            {
+                "question": "How many different phases can each channel cover?",
+                "answer": {
+                    "score": 0.7321084141731262,
+                    "start": 580,
+                    "end": 581,
+                    "answer": "5"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Customer Relationships: Describes the types of relationships a company wants to establish with each Customer Segment. Relationships can range from personal to automated. Customer Relationships may be driven by the following motivations: Customer Acquisition. Customer Retention. Boosting Sales (upselling). The Customer Relationships called for by a company\u2019s business model deeply influence the overall customer experience. Customer Relationship Categories: We can distinguish between several categories of Customer Relationships, which may co-exist in a company\u2019s relationship with a particular Customer Segment: Customer can communicate with a real customer representative to get help during the sales process or after the purchase.",
+        "questions_answers": [
+            {
+                "question": "What are the types of relationships a company wants to establish with each Customer Segment?",
+                "answer": {
+                    "score": 0.4577876031398773,
+                    "start": 0,
+                    "end": 22,
+                    "answer": "Customer Relationships"
+                }
+            },
+            {
+                "question": "What is Customer Acquisition, Customer Retention, and Boosting Sales?",
+                "answer": {
+                    "score": 0.9566295742988586,
+                    "start": 295,
+                    "end": 304,
+                    "answer": "upselling"
+                }
+            },
+            {
+                "question": "How many categories of Customer Relationships can be differentiated between?",
+                "answer": {
+                    "score": 0.700991690158844,
+                    "start": 486,
+                    "end": 493,
+                    "answer": "several"
+                }
+            }
+        ]
+    },
+    {
+        "context": "May happen onsite at the point of sale, through call centers, by email, or through other means. Dedicated Personal Assistance Involves dedicating a customer representative specifically to an individual client. Represents the deepest and most intimate type of relationship and normally develops over a long period of time. E.g., Personal bankers. Self-service A company maintains no direct relationship with customers. Provides all the necessary means for customers to help themselves. Automated Services Mixes a sophisticated form of customer self-service with automated processes. E.g., Personal online profiles give customers access to customized services. Communities Increasingly, companies are utilizing user communities to become more involved with customers/prospects and to facilitate connections between community members.",
+        "questions_answers": [
+            {
+                "question": "What type of relationship does Dedicated Personal Assistance Involves dedicating a customer representative specifically to an individual client?",
+                "answer": {
+                    "score": 0.48061633110046387,
+                    "start": 225,
+                    "end": 250,
+                    "answer": "deepest and most intimate"
+                }
+            },
+            {
+                "question": "What does Self-Service Provide for customers to help themselves?",
+                "answer": {
+                    "score": 0.847963273525238,
+                    "start": 427,
+                    "end": 450,
+                    "answer": "all the necessary means"
+                }
+            },
+            {
+                "question": "How does Automated Services Mix a sophisticated form of customer self-service with automated processes?",
+                "answer": {
+                    "score": 0.48624560236930847,
+                    "start": 588,
+                    "end": 657,
+                    "answer": "Personal online profiles give customers access to customized services"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Users exchange knowledge and solve each other\u2019s problems. Can help companies better understand their customers. Co-creation More companies are going beyond the traditional customer-vendor relationship to co-create value with customers. E.g., Amazon invites customers to write reviews and create value for other book lovers. Revenue Streams: Represents the cash a company generates from each Customer Segment (cost must be subtracted from revenues to create earnings). A company must ask itself, \u201c. For what value is each Customer Segment willing to pay: \u201d. Successfully answering the question allows the firm to generate one or more Revenue Streams from each Customer Segment.",
+        "questions_answers": [
+            {
+                "question": "How many Revenue Streams does a company generate from each Customer Segment?",
+                "answer": {
+                    "score": 0.4696759581565857,
+                    "start": 621,
+                    "end": 632,
+                    "answer": "one or more"
+                }
+            },
+            {
+                "question": "How much is a customer Segment willing to pay?",
+                "answer": {
+                    "score": 0.3489902913570404,
+                    "start": 502,
+                    "end": 512,
+                    "answer": "what value"
+                }
+            },
+            {
+                "question": "What is the revenue stream of a business that generates revenue from the Customer Segments?",
+                "answer": {
+                    "score": 0.26852184534072876,
+                    "start": 341,
+                    "end": 407,
+                    "answer": "Represents the cash a company generates from each Customer Segment"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Each stream may have different pricing mechanisms. A business model can involve two different types of Revenue Streams: Transaction Revenues: Resulting from one-time customer payments. Recurring Revenues: Resulting from ongoing payments to either deliver a Value Proposition to customers or provide post-purchase customer support. Ways to generate Revenue Streams: There are several ways to generate Revenue Streams: The more a service is used, the more the customer pays. Subscription Fees Is generated by selling continuous access to a service. Licensing Is generated by giving customers permission to use protected IP in exchange for licensing fees. Licensing allows right-holders to generate revenues from their property without having to manufacture a product or commercialize a service.",
+        "questions_answers": [
+            {
+                "question": "What is a business model that involves two different types of Revenue Streams?",
+                "answer": {
+                    "score": 0.972734808921814,
+                    "start": 120,
+                    "end": 140,
+                    "answer": "Transaction Revenues"
+                }
+            },
+            {
+                "question": "What is the result of ongoing payments to deliver a Value Proposition to customers or provide post-purchase customer support?",
+                "answer": {
+                    "score": 0.9743697047233582,
+                    "start": 185,
+                    "end": 203,
+                    "answer": "Recurring Revenues"
+                }
+            },
+            {
+                "question": "How does Subscription Fees get generated by selling continuous access to a service?",
+                "answer": {
+                    "score": 0.15108723938465118,
+                    "start": 573,
+                    "end": 651,
+                    "answer": "giving customers permission to use protected IP in exchange for licensing fees"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Brokerage Fees Derives from intermediation services performed on behalf of two or more parties. E.g., Credit card providers, earn revenues by taking a percentage of the value of each sales transaction executed between credit card merchants and customers. Advertising Results from fees for advertising a particular product, service, or brand. Pricing Mechanisms: Each Revenue Stream might have different pricing mechanisms. The type of pricing mechanism chosen can make a big difference in terms of revenues generated. There are two main types of pricing mechanisms: Fixed Pricing. Dynamic Pricing. Fixed Menu Pricing. (Predefined prices are based on static variables) Dynamic Pricing.",
+        "questions_answers": [
+            {
+                "question": "What percentage of the value of each sales transaction executed between credit card merchants and customers earns revenues from fees for advertising a particular product, service, or brand?",
+                "answer": {
+                    "score": 0.5341758728027344,
+                    "start": 151,
+                    "end": 161,
+                    "answer": "percentage"
+                }
+            },
+            {
+                "question": "What are two main types of pricing mechanisms: Fixed Pricing. Fixed Menu Pricing.",
+                "answer": {
+                    "score": 0.24543355405330658,
+                    "start": 581,
+                    "end": 596,
+                    "answer": "Dynamic Pricing"
+                }
+            }
+        ]
+    },
+    {
+        "context": "(Prices change based on market conditions). List Price. Fixed prices for individual products, services, or other Value Propositions Negotiation (Bargaining). Price negotiated between two or more partners depending on negotiation power and/or negotiation skills. Product Feature Dependent. Price depends on the number of quality of Value Proposition features Yield Management. Price depends on inventory and time of purchase (normally used for hotel rooms or airline seats). Customer Segment Dependent. Price depends on the type and characteristic of a Customer Segment Real-time-market. Price is stablished dynamically based on supply and demand. Volume Dependent. Price as a function of the quantity purchased Auctions.",
+        "questions_answers": [
+            {
+                "question": "What are fixed prices for individual products, services, or other Value Propositions Negotiation?",
+                "answer": {
+                    "score": 0.7739630937576294,
+                    "start": 145,
+                    "end": 155,
+                    "answer": "Bargaining"
+                }
+            },
+            {
+                "question": "What is the price negotiated between two or more partners depending on negotiation power and/or negotiation skills? What is a Product Feature Dependent.",
+                "answer": {
+                    "score": 0.32091256976127625,
+                    "start": 56,
+                    "end": 68,
+                    "answer": "Fixed prices"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Price determined by outcome of competitive bidding. Key Resources: Describes the most important assets required to make a business model work. Every business model requires Key Resources that allow an enterprise to create and offer a Value Proposition, reach markets, maintain relationships with Customer Segments, and earn revenues. Different Key Resources are needed depending on the type of business model. Key Resources can be: physical, financial, intellectual, or human. They can be owned or leased by the company or acquired from Key Partners. Key Resources Categories: The following are different Key Resources categories: Intellectual resources are difficult to develop but when successfully created may offer substantial value.",
+        "questions_answers": [
+            {
+                "question": "What is the most important asset required to make a business model work?",
+                "answer": {
+                    "score": 0.8881577849388123,
+                    "start": 52,
+                    "end": 65,
+                    "answer": "Key Resources"
+                }
+            },
+            {
+                "question": "What is a key resource that allows an enterprise to create and offer a Value Proposition?",
+                "answer": {
+                    "score": 0.8378798961639404,
+                    "start": 143,
+                    "end": 163,
+                    "answer": "Every business model"
+                }
+            },
+            {
+                "question": "What are different types of Key Resources needed depending on the type of business model?",
+                "answer": {
+                    "score": 0.7676547169685364,
+                    "start": 432,
+                    "end": 475,
+                    "answer": "physical, financial, intellectual, or human"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Human Every enterprise requires human resources, but people are particularly prominent in certain business models. Financial Some business models call for financial resources and/or financial guarantees such as cash, lines of credit, or a stock option pool for hiring key employees. Key Activities: Describes the most important things a company must do to make its business model work. every business model calls for a number of Key Activities. They are the most important actions a company must take to operate successfully. They are required to create and offer a Value Proposition, reach markets, maintain Customer Relationships, and earn revenues.",
+        "questions_answers": [
+            {
+                "question": "What are the most important things a company must do to make its business model work?",
+                "answer": {
+                    "score": 0.6872531175613403,
+                    "start": 283,
+                    "end": 297,
+                    "answer": "Key Activities"
+                }
+            },
+            {
+                "question": "What are key activities that a business must take to operate successfully?",
+                "answer": {
+                    "score": 0.00750493910163641,
+                    "start": 558,
+                    "end": 650,
+                    "answer": "offer a Value Proposition, reach markets, maintain Customer Relationships, and earn revenues"
+                }
+            },
+            {
+                "question": "What is a key activity required to create and offer?",
+                "answer": {
+                    "score": 0.48938632011413574,
+                    "start": 566,
+                    "end": 583,
+                    "answer": "Value Proposition"
+                }
+            }
+        ]
+    }
+]

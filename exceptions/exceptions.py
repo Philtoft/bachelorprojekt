@@ -13,5 +13,5 @@ class UnsupportedFileTypeError(Exception):
 class NoSupportedFileTypeFoundError(Exception):
     """An exception for when a specified file type could not be found by the system in the directory `dir`."""
 
-    def __init__(self, directory: str) -> None:
-        super().__init__(f"No supported filetypes found in directory '{directory}'")
+    def __init__(self, file: str) -> None:
+        super().__init__(f"'{file}' is not a supported filetype")

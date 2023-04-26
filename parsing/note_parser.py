@@ -1,15 +1,11 @@
-import argparse
-import html
 import re
-import sys
 from bs4 import BeautifulSoup as bs
 import pathlib
 from markdown import markdown
-
-from markdown_preprocessor import RemoveInlineCode
+from exceptions.exceptions import NoSupportedFileTypeFoundError 
+from parsing.markdown_preprocessor import RemoveInlineCode
 
 _NOTE_FORMATS = [".md", ".html"]
-_NOTE_DIR = "parsing/notes"
 
 
 class NoteParser:
@@ -23,40 +19,27 @@ class NoteParser:
     - Add colon or dot 
     """
 
-    def __init__(self, student: str, notetype: str):
-        """Initializes a new `NoteParser` instance for the specified `note`."""
-        self.student = student
-        self.notetype = notetype
-        self.path_and_file = f"{_NOTE_DIR}/{self.student}/{self.student}"
-        self.path_to_dir = f"{_NOTE_DIR}/{self.student}"
+    def __call__(self, file_path) -> str:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            file = file.read()
+        note_type = self._get_note_format(file_path)
 
-    def __call__(self):
-        plaintext = self._parse_note()
-        return plaintext
-
-    def _parse_note(self) -> str:
-        note_format = self._get_note_format()
-
-        with open(f"{self.path_and_file}{self.notetype}", 'r', encoding='utf-8') as file:
-            self.note = file.read()
-
-        if (".md" == self.notetype):
-            self.note = self._markdown_to_html(self.note)
-        
-        return self._html_to_plaintext(self.note)
+        return self._parse_note(file, note_type)
     
-    def output_plaintext_notes(self, notes: str):
-        with open(f"{_NOTE_DIR}/{self.student}/{self.student}.txt", 'w', encoding='utf-8') as file:
-            file.write(notes)
-
-        return notes
-
-    def _get_note_format(self) -> str:
+    def _get_note_format(self, file_path: str) -> str:
         """Returns the format of the given `NoteParser.note`."""
-        suffix = pathlib.Path(f"{_NOTE_DIR}/{self.student}/{self.student}").suffix
+        suffix = pathlib.Path(file_path).suffix
 
         if suffix in _NOTE_FORMATS:
             return suffix
+
+        raise NoSupportedFileTypeFoundError(suffix)
+
+    def _parse_note(self, file: str, format: str) -> str:
+        if (".md" == format):
+            note = self._markdown_to_html(file)
+        
+        return self._html_to_plaintext(note, format)
 
     def _markdown_to_html(self, markdown_notes: str) -> str:
         """Converts a markdown string to HTML."""
@@ -72,20 +55,15 @@ class NoteParser:
 
         return result
 
-    def _html_to_plaintext(self, html_notes: str):
+    def _html_to_plaintext(self, html_notes: str, format: str):
         """Converts a """
 
         soup = bs(html_notes, "html.parser")
-
         soup = soup.prettify()
-
         soup = bs(soup, "html.parser")
 
-        with open(f"{self.path_to_dir}/{self.student}_prettify.html", 'w', encoding='utf-8') as file:
-            file.write(soup.prettify())
-
         # Remove everything besides the body
-        if self.notetype == ".html":
+        if format == ".html":
             for tag in soup.find_all(text=True):
                 if tag.string and tag.string != '\n':
                     # Remove newline characters from the tag contents
@@ -115,14 +93,10 @@ class NoteParser:
             return soup
         
         for tag in tags:
-            print(tag)
             for html_tag in soup(tag):
-                print(f"{tag}: {html_tag.text}")
                 html_tag.decompose()
 
         return soup
-
-        raise FileNotFoundError(f"'{suffix}' is not a supported note format.")
     
     def _check_if_text_needs_refactoring(self, text: str):
         text = text.strip()
@@ -175,20 +149,3 @@ class NoteParser:
             notes = re.sub(pattern, replacement, notes)
 
         return notes
-
-def main(args: argparse.Namespace, no_arguments: bool):
-    """Main function for the `note_parser` module."""
-    if no_arguments:
-        print("No arguments provided.")
-        parser.print_help()
-    else:
-        note_parser = NoteParser(args.student, args.filetype)
-        plaintext = note_parser()
-        res = note_parser.output_plaintext_notes(plaintext)
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Parse a note.")
-    parser.add_argument("-s", "--student", type=str, metavar="text", help="The student notes to parse.")
-    parser.add_argument("-t", "--filetype", type=str, metavar="text", help="Filetype of the note.")
-
-    main(parser.parse_args(), not (len(sys.argv) > 1))

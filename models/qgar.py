@@ -1,20 +1,11 @@
-from bs4 import BeautifulSoup
-from markdown import markdown
 from transformers import pipeline
-from exceptions.exceptions import NoSupportedFileTypeFoundError
 from models.qg import QG
 import json
-import re
-import os
-import pathlib
-import html
 import logging
+import pathlib
+from parsing.note_parser import NoteParser
 
-logging.basicConfig(level=logging.INFO, filename="qgar.log",
-                    filemode="a", format='%(asctime)s %(message)s')
-
-_FILE_TYPES = [".md", ".html"]
-_NOTE_DIR = "data/notes"
+logging.basicConfig(level=logging.INFO, filename="qgar.log", filemode="a", format='%(asctime)s %(message)s')
 
 
 class QGAR:
@@ -38,7 +29,7 @@ class QGAR:
         self.student_name = None
 
 
-    def __call__(self, student: str) -> list:
+    def __call__(self, file_path: str) -> list:
         """
         Generates questions and answers and saves them in json format. 
 
@@ -47,102 +38,18 @@ class QGAR:
         2. Generates questions and answers
         3. Saves them as `<student>.json` to disk
         """
-
-        plaintext = self._parse_notes(student)
+        note_parser = NoteParser() 
+        plaintext = note_parser(file_path)
         qgas = self._generate_questions_answers(plaintext)
 
-        with open(f"{_NOTE_DIR}/{student}/{student}-questions-and-answers.json", "w") as file:
+        path = pathlib.Path(file_path)
+        out_dir = str(path.parent)
+        file_name = path.stem
+        
+        with open(f"{out_dir}/{file_name}-questions-and-answers.json", "w") as file:
             json.dump(qgas, file, indent=4)
 
         return qgas
-
-
-    def _parse_notes(self, student: str) -> str:
-        notetype = self._get_note_type(student)
-
-        with open(f"{_NOTE_DIR}/{student}/{student}{notetype}") as file:
-            notes = file.read()
-        if notetype == ".md":
-            notes = self._markdown_to_html(notes)
-
-        plaintext = self._html_to_plaintext(notes)
-
-        return plaintext
-
-
-    def _get_note_type(self, student: str) -> str:
-        for file in os.listdir(f"{_NOTE_DIR}/{student}/"):
-            suffix = pathlib.Path(file).suffix
-            if suffix in _FILE_TYPES:
-                return suffix
-        
-        raise NoSupportedFileTypeFoundError(student)
-
-
-    def _markdown_to_html(self, markdown_notes: str) -> str:
-        """ Converts a markdown string to HTML """
-
-        escaped_markdown = html.escape(markdown_notes)
-
-        result = markdown(escaped_markdown)
-        # write HTML values
-        # with open(f"data/notes/{self.student_name}/{self.student_name}-parsed.html", "w") as file:
-        #     file.write(result)
-
-        return result
-
-    def _validate_text(self, text: str):
-        if len(text) > 0 and text[-1] != "." and text[-1] != ":" and text[-1] != "?":
-            return True
-        return False
-
-    def add_colon_if_last_char_not_dot_or_colon(self, text: str):
-        if self._validate_text(text):
-            text = "" + text + ":"
-        return "" + text + " "
-
-    def add_dot_if_last_char_not_dot(self, text: str):
-        if self._validate_text(text):
-            text = "" + text + "."
-        return "" + text + ""
-
-
-    def _html_to_plaintext(self, html_notes: str) -> str:
-        """ Converts a markdown string to plaintext """
-
-        soup = BeautifulSoup(html_notes, "html.parser")
-
-        for h_tag in soup.find_all(["h1", "h2", "h3"]):
-            h_tag.string = self.add_colon_if_last_char_not_dot_or_colon(
-                h_tag.text)
-
-        for title_tag in soup.find_all(["title"]):
-            title_tag.decompose()
-
-        with open(f"data/notes/{self.student_name}/1-{self.student_name}-h-tags-parsed.html", "w") as file:
-            file.write(soup.prettify()) 
-
-        # On all tags add dor if last c
-        # for tag in soup.find_all():
-        #     print(tag.)
-        #     tag.string = self.add_dot_if_last_char_not_dot(tag.text)
-
-        result = soup.get_text(separator=" ")
-
-        # with open(f"data/notes/{self.student_name}/2-{self.student_name}-dots-parsed.html", "w") as file:
-        #     file.write(soup.prettify())
-
-        # result = ' '.join(soup.stripped_strings)
-        # result = result.replace("<span>", "")
-        # result = result.replace("</span>", "")
-        result = result.replace("\n", " ")
-        result = result.replace("\t", " ")
-        result = re.sub("\s\s+", " ", result)
-
-        with open(f"data/notes/{self.student_name}/3-{self.student_name}-parsed.txt", "w") as file:
-            file.write(result)
-
-        return result
 
 
     def _generate_answers(self, questions_and_contexts: list[dict]) -> list:
