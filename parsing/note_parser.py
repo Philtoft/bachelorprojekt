@@ -74,8 +74,20 @@ class NoteParser:
 
         soup = soup.prettify()
 
+        with open(f"{self.path_and_file}-pretty.html", 'w', encoding='utf-8') as file:
+            file.write(soup)
+
         soup = bs(soup, "html.parser")
 
+        # Remove everything besides the body
+        soup = soup.body    
+
+        # Iterate over all tags in the soup
+        for tag in soup.find_all(text=True):
+            if tag.string and tag.string != '\n':
+                # Remove newline characters from the tag contents
+                tag.string.replace_with(tag.string.replace('\n', ''))
+        
          # Clean up h-tags
         for h_tag in soup.find_all(["h1", "h2", "h3"]):
             h_tag.string = self._add_colon_if_last_char_not_dot_or_colon(h_tag.text)
@@ -83,8 +95,8 @@ class NoteParser:
         for tag in soup.find_all():
             tag.string = self.add_dot_if_last_char_not_dot(tag.text.strip())
                 
-        tags_to_remove = ["head", "table", "title"]
-        self._remove_html_tags(soup=soup, tags=tags_to_remove)
+        tags_to_remove = ["table", "title"]
+        soup = self._remove_html_tags(soup=soup, tags=tags_to_remove)
 
         result = soup.get_text(separator=" ")
         result = result.replace("\n", ". ")
@@ -100,7 +112,9 @@ class NoteParser:
             return soup
         
         for tag in tags:
-            for html_tag in soup.find_all(tag):
+            print(tag)
+            for html_tag in soup(tag):
+                print(f"{tag}: {html_tag}")
                 html_tag.decompose()
 
         return soup
@@ -126,6 +140,7 @@ class NoteParser:
     # Cleanup from different cases in notes
     def final_cleanup(self, notes: str):
         patterns = [
+            (r"…", ""),                         # Case "…" -> ""
             (r"\-{3,}", ""),                    # Case "---" -> ""
             (r"\*{2,}", ""),                    # Case "**" -> ""
             (r"\|\.\s{0,}\|", ". "),            # Case "|. |" -> ". "
@@ -142,7 +157,7 @@ class NoteParser:
             (r"\s\s+", " "),                    # Case "  " -> " "
             (r":\.", ":"),                      # Case ":." -> ":"
         ]
-
+        
         # Case " ." -> ""
         patterns.append((r"\s\.", ""))
 
