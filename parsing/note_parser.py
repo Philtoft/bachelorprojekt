@@ -74,9 +74,6 @@ class NoteParser:
 
         soup = soup.prettify()
 
-        with open(f"{self.path_and_file}-pretty.html", 'w', encoding='utf-8') as file:
-            file.write(soup)
-
         soup = bs(soup, "html.parser")
 
         # Remove everything besides the body
@@ -157,7 +154,7 @@ class NoteParser:
             (r"\s\s+", " "),                    # Case "  " -> " "
             (r":\.", ":"),                      # Case ":." -> ":"
         ]
-        
+
         # Case " ." -> ""
         patterns.append((r"\s\.", ""))
 
