@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup as bs
 import pathlib
 from markdown import markdown
 
+from markdown_preprocessor import RemoveInlineCode
+
 _NOTE_FORMATS = [".md", ".html"]
 _NOTE_DIR = "parsing/notes"
 
@@ -63,7 +65,10 @@ class NoteParser:
         # Case "**" -> ""
         markdown_notes = markdown_notes.replace("**", "")
 
-        result = markdown(markdown_notes, extensions=['markdown.extensions.tables'])
+        # Case "```\w*```" -> "" remove everything between ``` and ```
+        markdown_notes = re.sub(r"```.*?```", "", markdown_notes, flags=re.DOTALL)
+
+        result = markdown(markdown_notes, extensions=['markdown.extensions.tables', 'pymdownx.superfences', RemoveInlineCode()])
 
         return result
 
@@ -76,14 +81,15 @@ class NoteParser:
 
         soup = bs(soup, "html.parser")
 
-        # Remove everything besides the body
-        soup = soup.body    
+        with open(f"{self.path_to_dir}/{self.student}_prettify.html", 'w', encoding='utf-8') as file:
+            file.write(soup.prettify())
 
-        # Iterate over all tags in the soup
-        for tag in soup.find_all(text=True):
-            if tag.string and tag.string != '\n':
-                # Remove newline characters from the tag contents
-                tag.string.replace_with(tag.string.replace('\n', ''))
+        # Remove everything besides the body
+        if self.notetype == ".html":
+            for tag in soup.find_all(text=True):
+                if tag.string and tag.string != '\n':
+                    # Remove newline characters from the tag contents
+                    tag.string.replace_with(tag.string.replace('\n', ''))
         
          # Clean up h-tags
         for h_tag in soup.find_all(["h1", "h2", "h3"]):
@@ -92,7 +98,7 @@ class NoteParser:
         for tag in soup.find_all():
             tag.string = self.add_dot_if_last_char_not_dot(tag.text.strip())
                 
-        tags_to_remove = ["table"]
+        tags_to_remove = ["table", "code"]
         soup = self._remove_html_tags(soup=soup, tags=tags_to_remove)
 
         result = soup.get_text(separator=" ")
@@ -111,7 +117,7 @@ class NoteParser:
         for tag in tags:
             print(tag)
             for html_tag in soup(tag):
-                print(f"{tag}: {html_tag}")
+                print(f"{tag}: {html_tag.text}")
                 html_tag.decompose()
 
         return soup
