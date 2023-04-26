@@ -92,7 +92,7 @@ class NoteParser:
         for tag in soup.find_all():
             tag.string = self.add_dot_if_last_char_not_dot(tag.text.strip())
                 
-        tags_to_remove = ["table", "title"]
+        tags_to_remove = ["table"]
         soup = self._remove_html_tags(soup=soup, tags=tags_to_remove)
 
         result = soup.get_text(separator=" ")
