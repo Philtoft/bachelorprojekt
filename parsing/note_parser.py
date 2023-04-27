@@ -38,6 +38,8 @@ class NoteParser:
     def _parse_note(self, file: str, format: str) -> str:
         if (".md" == format):
             note = self._markdown_to_html(file)
+        else:
+            note = file
         
         return self._html_to_plaintext(note, format)
 
