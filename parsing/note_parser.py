@@ -66,6 +66,7 @@ class NoteParser:
 
         # Remove everything besides the body
         if format == ".html":
+            soup = soup.body
             for tag in soup.find_all(text=True):
                 if tag.string and tag.string != '\n':
                     # Remove newline characters from the tag contents
