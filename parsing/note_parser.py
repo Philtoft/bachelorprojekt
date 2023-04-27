@@ -38,6 +38,8 @@ class NoteParser:
     def _parse_note(self, file: str, format: str) -> str:
         if (".md" == format):
             note = self._markdown_to_html(file)
+        else:
+            note = file
         
         return self._html_to_plaintext(note, format)
 
@@ -64,6 +66,7 @@ class NoteParser:
 
         # Remove everything besides the body
         if format == ".html":
+            soup = soup.body
             for tag in soup.find_all(text=True):
                 if tag.string and tag.string != '\n':
                     # Remove newline characters from the tag contents
