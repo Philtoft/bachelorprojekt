@@ -5,7 +5,7 @@
             {
                 "question": "What does software engineering deal with?",
                 "answer": {
-                    "score": 0.603476345539093,
+                    "score": 0.60347980260849,
                     "start": 91,
                     "end": 101,
                     "answer": "complexity"
@@ -23,7 +23,7 @@
             {
                 "question": "How does knowledge acquisition activity work?",
                 "answer": {
-                    "score": 0.6468775868415833,
+                    "score": 0.6468769907951355,
                     "start": 365,
                     "end": 439,
                     "answer": "Collect data, organize it into information and formalize it into knowledge"
@@ -32,7 +32,7 @@
             {
                 "question": "Who uses elicitation techniques mentioned later on?",
                 "answer": {
-                    "score": 0.3889099657535553,
+                    "score": 0.38891109824180603,
                     "start": 767,
                     "end": 805,
                     "answer": "interview, prototyping and ethnography"
@@ -46,7 +46,7 @@
             {
                 "question": "What is the process that results in a documented definition of the system that can be understood by the client/customer/user?",
                 "answer": {
-                    "score": 0.45857638120651245,
+                    "score": 0.4585752487182617,
                     "start": 554,
                     "end": 577,
                     "answer": "Requirement elicitation"
@@ -55,7 +55,7 @@
             {
                 "question": "What does Re-Engineering make it difficult to get the requirements from the user?",
                 "answer": {
-                    "score": 0.3360563814640045,
+                    "score": 0.33605891466140747,
                     "start": 401,
                     "end": 435,
                     "answer": "they might not know what they want"
@@ -69,7 +69,7 @@
             {
                 "question": "What is the purpose of the system?",
                 "answer": {
-                    "score": 0.3259811997413635,
+                    "score": 0.32598257064819336,
                     "start": 9,
                     "end": 45,
                     "answer": "describing the purpose of the system"
@@ -78,7 +78,7 @@
             {
                 "question": "What does the user do while they use the previous system in their own environment?",
                 "answer": {
-                    "score": 0.7156366109848022,
+                    "score": 0.7156394124031067,
                     "start": 121,
                     "end": 126,
                     "answer": "watch"
@@ -87,7 +87,7 @@
             {
                 "question": "How do software developers know little about the application domain?",
                 "answer": {
-                    "score": 0.04932074621319771,
+                    "score": 0.04932105168700218,
                     "start": 335,
                     "end": 346,
                     "answer": "Prototyping"
@@ -96,7 +96,7 @@
             {
                 "question": "Prototyping can be technical or user interface prototypes?",
                 "answer": {
-                    "score": 0.1070328876376152,
+                    "score": 0.10703286528587341,
                     "start": 348,
                     "end": 371,
                     "answer": "show them to the client"
@@ -110,7 +110,7 @@
             {
                 "question": "What is the name of a user's story?",
                 "answer": {
-                    "score": 0.9626393914222717,
+                    "score": 0.9626392722129822,
                     "start": 133,
                     "end": 143,
                     "answer": "User Story"
@@ -119,7 +119,7 @@
             {
                 "question": "What is a result of an analysis model that developers can unambiguously interpret?",
                 "answer": {
-                    "score": 0.34091290831565857,
+                    "score": 0.3409138023853302,
                     "start": 584,
                     "end": 594,
                     "answer": "documented"
@@ -133,7 +133,7 @@
             {
                 "question": "What is the model of the system that shows that it is complete, correct, consistent and verifiable?",
                 "answer": {
-                    "score": 0.8023788928985596,
+                    "score": 0.8023786544799805,
                     "start": 0,
                     "end": 14,
                     "answer": "Analysis model"
@@ -142,7 +142,7 @@
             {
                 "question": "What does the model structure formalizing requirements and leads to revision of said requirements?",
                 "answer": {
-                    "score": 0.8276954293251038,
+                    "score": 0.8276957273483276,
                     "start": 0,
                     "end": 14,
                     "answer": "Analysis model"
@@ -151,7 +151,7 @@
             {
                 "question": "What is a Dynamic model. Design. Implementation Test. Design Patterns. Solid Principles. What does a class should have one and only one reason to change?",
                 "answer": {
-                    "score": 0.8398348093032837,
+                    "score": 0.839833676815033,
                     "start": 317,
                     "end": 338,
                     "answer": "Single Responsibility"
@@ -165,7 +165,7 @@
             {
                 "question": "What should be able to extend a classes behavior without modifying it?",
                 "answer": {
-                    "score": 0.9066559076309204,
+                    "score": 0.9066553115844727,
                     "start": 0,
                     "end": 10,
                     "answer": "Open/Close"
@@ -174,7 +174,7 @@
             {
                 "question": "What is the name of a class dependent on the container that needs an abstract class A?",
                 "answer": {
-                    "score": 0.43322861194610596,
+                    "score": 0.43322688341140747,
                     "start": 184,
                     "end": 186,
                     "answer": "Fx"
@@ -183,7 +183,7 @@
             {
                 "question": "Which subclass of A should be used to extend the functionality of the client class?",
                 "answer": {
-                    "score": 0.5346364974975586,
+                    "score": 0.5346366763114929,
                     "start": 463,
                     "end": 483,
                     "answer": "different subclasses"
@@ -197,7 +197,7 @@
             {
                 "question": "What should interfaces not have methods that aren't used by the client?",
                 "answer": {
-                    "score": 0.7686245441436768,
+                    "score": 0.7686246037483215,
                     "start": 94,
                     "end": 147,
                     "answer": "make fine grained interfaces that are client specific"
@@ -206,7 +206,7 @@
             {
                 "question": "Dependency Inversion. Higher level modules should not depend on what?",
                 "answer": {
-                    "score": 0.7222674489021301,
+                    "score": 0.7222672700881958,
                     "start": 214,
                     "end": 242,
                     "answer": "lower level concrete classes"
@@ -215,7 +215,7 @@
             {
                 "question": "What should higher level modules depend on when the lower level modules change details?",
                 "answer": {
-                    "score": 0.2518509328365326,
+                    "score": 0.2518499493598938,
                     "start": 259,
                     "end": 284,
                     "answer": "abstractions (interfaces)"
@@ -224,7 +224,7 @@
             {
                 "question": "Architectural Design. Design goals. Derived from nonfunctional requirements?",
                 "answer": {
-                    "score": 0.1318727284669876,
+                    "score": 0.13187268376350403,
                     "start": 587,
                     "end": 659,
                     "answer": "qualities of the system that developers should optimize (prioritization)"
@@ -238,7 +238,7 @@
             {
                 "question": "What is used for datadriven systems?",
                 "answer": {
-                    "score": 0.8555557131767273,
+                    "score": 0.8555529117584229,
                     "start": 125,
                     "end": 157,
                     "answer": "Architectural Styles. Repository"
@@ -247,7 +247,7 @@
             {
                 "question": "What do subsystems access and modify a single data structure called?",
                 "answer": {
-                    "score": 0.5321047902107239,
+                    "score": 0.5321050882339478,
                     "start": 248,
                     "end": 270,
                     "answer": "the central repository"
@@ -256,7 +256,7 @@
             {
                 "question": "How can the central repository become a bottleneck for performance and modifications?",
                 "answer": {
-                    "score": 0.9096850156784058,
+                    "score": 0.909684956073761,
                     "start": 347,
                     "end": 354,
                     "answer": "Problem"
@@ -270,7 +270,7 @@
             {
                 "question": "How does Controller manage the sequence of interactions with the user?",
                 "answer": {
-                    "score": 0.5812098383903503,
+                    "score": 0.5812087059020996,
                     "start": 64,
                     "end": 92,
                     "answer": "manages the information flow"
@@ -279,7 +279,7 @@
             {
                 "question": "What is used to remove direct dependency between Model and View objects?",
                 "answer": {
-                    "score": 0.8412255644798279,
+                    "score": 0.8412226438522339,
                     "start": 100,
                     "end": 123,
                     "answer": "observer design pattern"
@@ -288,7 +288,7 @@
             {
                 "question": "How does Server provide services to instances of other subsystems called clients?",
                 "answer": {
-                    "score": 0.7534036040306091,
+                    "score": 0.7534042596817017,
                     "start": 429,
                     "end": 467,
                     "answer": "responsible for interacting with users"
@@ -302,7 +302,7 @@
             {
                 "question": "What database accepts requests from the application and notifies to the application whenever certain data is changed?",
                 "answer": {
-                    "score": 0.8413146138191223,
+                    "score": 0.8413144946098328,
                     "start": 20,
                     "end": 33,
                     "answer": "deadlocks. Fx"
@@ -311,7 +311,7 @@
             {
                 "question": "What is the name of the subsystem that Organizes subsystems into three layers?",
                 "answer": {
-                    "score": 0.8912177681922913,
+                    "score": 0.8912159204483032,
                     "start": 210,
                     "end": 225,
                     "answer": "Interface layer"
@@ -320,7 +320,7 @@
             {
                 "question": "How does Storage layer realize the storage, retrieval and query of persistent objects?",
                 "answer": {
-                    "score": 0.6218797564506531,
+                    "score": 0.6218785643577576,
                     "start": 302,
                     "end": 325,
                     "answer": "Application logic layer"
@@ -334,7 +334,7 @@
             {
                 "question": "Which interface layer is split into: Presentation Client. Located on the user machines. Presentation Server. On one / more servers. Enables multiple presentation clients to use the same presentation server?",
                 "answer": {
-                    "score": 0.28329700231552124,
+                    "score": 0.28329896926879883,
                     "start": 47,
                     "end": 66,
                     "answer": "Presentation Client"
@@ -343,7 +343,7 @@
             {
                 "question": "Which subsystem process data received from a set of inputs and send results to other subsystems?",
                 "answer": {
-                    "score": 0.48666220903396606,
+                    "score": 0.4866634011268616,
                     "start": 242,
                     "end": 249,
                     "answer": "Filters"
@@ -352,7 +352,7 @@
             {
                 "question": "Filters are executed concurrently (synchronization is possible via the pipes)",
                 "answer": {
-                    "score": 0.07693037390708923,
+                    "score": 0.07692981511354446,
                     "start": 582,
                     "end": 587,
                     "answer": "pipes"
@@ -366,7 +366,7 @@
             {
                 "question": "What does UML notation help describe and design software systems?",
                 "answer": {
-                    "score": 0.8184135556221008,
+                    "score": 0.818412721157074,
                     "start": 203,
                     "end": 230,
                     "answer": "object oriented programming"
@@ -375,7 +375,7 @@
             {
                 "question": "Who created the UML Notation?",
                 "answer": {
-                    "score": 0.5001925826072693,
+                    "score": 0.5001938939094543,
                     "start": 264,
                     "end": 276,
                     "answer": "Three Amigos"
@@ -384,7 +384,7 @@
             {
                 "question": "What did The Three Amigos create in 1995?",
                 "answer": {
-                    "score": 0.7925900220870972,
+                    "score": 0.7925896048545837,
                     "start": 232,
                     "end": 244,
                     "answer": "UML notation"
@@ -393,7 +393,7 @@
             {
                 "question": "What is the name of the family of graphical notation that help describe software systems based on object oriented programming?",
                 "answer": {
-                    "score": 0.9128944873809814,
+                    "score": 0.9128947257995605,
                     "start": 85,
                     "end": 88,
                     "answer": "UML"
@@ -407,7 +407,7 @@
             {
                 "question": "What is a class name?",
                 "answer": {
-                    "score": 0.713778018951416,
+                    "score": 0.7137765884399414,
                     "start": 0,
                     "end": 16,
                     "answer": "Abstract classes"
@@ -416,7 +416,7 @@
             {
                 "question": "What is the class name of a system that is based on a client/server architecture?",
                 "answer": {
-                    "score": 0.4831564128398895,
+                    "score": 0.48315370082855225,
                     "start": 193,
                     "end": 213,
                     "answer": "a distributed system"
@@ -425,7 +425,7 @@
             {
                 "question": "How does a structure diagram be used to depict where various elements of the system are located?",
                 "answer": {
-                    "score": 0.14761926233768463,
+                    "score": 0.14762020111083984,
                     "start": 0,
                     "end": 16,
                     "answer": "Abstract classes"
@@ -434,7 +434,7 @@
             {
                 "question": "What is an example of an abstract scenario?",
                 "answer": {
-                    "score": 0.3076687455177307,
+                    "score": 0.30766651034355164,
                     "start": 253,
                     "end": 287,
                     "answer": "Use Case Diagram. Behavior diagram"
@@ -448,7 +448,7 @@
             {
                 "question": "What is the sequence of states an object goes through at runtime in reaction to external events?",
                 "answer": {
-                    "score": 0.27905958890914917,
+                    "score": 0.2790597081184387,
                     "start": 113,
                     "end": 136,
                     "answer": "initial and final state"
@@ -457,7 +457,7 @@
             {
                 "question": "How many processes are planned in advance?",
                 "answer": {
-                    "score": 0.13701215386390686,
+                    "score": 0.13701042532920837,
                     "start": 737,
                     "end": 766,
                     "answer": "all of the process activities"
@@ -475,7 +475,7 @@
             {
                 "question": "What does Object diagram. Structure diagram. What does Structure diagram show?",
                 "answer": {
-                    "score": 0.22550183534622192,
+                    "score": 0.22550365328788757,
                     "start": 448,
                     "end": 486,
                     "answer": "relationship between different objects"
@@ -489,7 +489,7 @@
             {
                 "question": "What is iterative or incremental process?",
                 "answer": {
-                    "score": 0.6919716000556946,
+                    "score": 0.6919707655906677,
                     "start": 1,
                     "end": 10,
                     "answer": "waterfall"
@@ -498,7 +498,7 @@
             {
                 "question": "What is the most known plan-driven process, with the following phases: Feasibility (is it reasonable to do the project?",
                 "answer": {
-                    "score": 0.6492828130722046,
+                    "score": 0.6492824554443359,
                     "start": 557,
                     "end": 566,
                     "answer": "Waterfall"
@@ -512,7 +512,7 @@
             {
                 "question": "What is a plan?",
                 "answer": {
-                    "score": 0.7137072682380676,
+                    "score": 0.7137081623077393,
                     "start": 0,
                     "end": 8,
                     "answer": "Analysis"
@@ -521,7 +521,7 @@
             {
                 "question": "What is an example of a program design?",
                 "answer": {
-                    "score": 0.2599056363105774,
+                    "score": 0.25990188121795654,
                     "start": 17,
                     "end": 30,
                     "answer": "System design"
@@ -530,7 +530,7 @@
             {
                 "question": "How does each phase produce a document, freeze it, and change management process is used afterwards?",
                 "answer": {
-                    "score": 0.5075491666793823,
+                    "score": 0.5075487494468689,
                     "start": 312,
                     "end": 335,
                     "answer": "document-driven process"
