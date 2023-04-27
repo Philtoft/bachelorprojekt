@@ -1,0 +1,532 @@
+[
+    {
+        "context": ". Reflection on IT: Science. The term \u201cscience\u201d differs in meaning. Danish - videnskab. English. Refers to only \u201cnatural sciences\u201d or \u201chard sciences\u201d. Does not refer to humanities (or social sciences). What is so special about science: Science as we go know it originated from ancient Greece. The Greeks started answering mythology questions with science. Different from mythology. Different from religion. They meant science when they said philosophy. What does science do: Explanation. We understand the mechanism behind something. We don\u2019t just get that doing something results in something, but we understand why. \u201cKnowledge\u201d may not necessarily mean that we understand why.",
+        "questions_answers": [
+            {
+                "question": "What does the term \"science\" differ in meaning?",
+                "answer": {
+                    "score": 0.1425715684890747,
+                    "start": 2,
+                    "end": 27,
+                    "answer": "Reflection on IT: Science"
+                }
+            },
+            {
+                "question": "Who meant science when they said philosophy?",
+                "answer": {
+                    "score": 0.4524967670440674,
+                    "start": 293,
+                    "end": 303,
+                    "answer": "The Greeks"
+                }
+            },
+            {
+                "question": "What does not refer to humanities or social sciences?",
+                "answer": {
+                    "score": 0.21095554530620575,
+                    "start": 39,
+                    "end": 46,
+                    "answer": "science"
+                }
+            },
+            {
+                "question": "What did the Greeks start answering mythology questions with?",
+                "answer": {
+                    "score": 0.9859551787376404,
+                    "start": 347,
+                    "end": 354,
+                    "answer": "science"
+                }
+            }
+        ]
+    },
+    {
+        "context": "\u201cUnderstanding\u201d does. Prediction. Science gives us a possibility to predict the future. Control. Science enabled us to change the world. Classic views on science. Plato. \u201csearch of necessary truth\u201d. Doxa vs episteme. Episteme is the Greek word for proper science. Doxa is like everyday science (eh, work on this). Aristotle. Empirical tradition. Aristotle was the father of the many contemporary scientific disciplines: Chemistry. Biology. Physics. Used observations but did not appreciate the empirical method enough. This led him to many blatantly false claims. David Hume. Empirical revolution. Suggested that there are two importantly different types of knowledge. Knowledge based on thinking.",
+        "questions_answers": [
+            {
+                "question": "What does \u201cUnderstanding\u201d do?",
+                "answer": {
+                    "score": 0.8706945180892944,
+                    "start": 22,
+                    "end": 32,
+                    "answer": "Prediction"
+                }
+            },
+            {
+                "question": "What does science give us a possibility to predict the future?",
+                "answer": {
+                    "score": 0.7126418352127075,
+                    "start": 88,
+                    "end": 95,
+                    "answer": "Control"
+                }
+            },
+            {
+                "question": "Who was the father of many contemporary scientific disciplines: Chemistry. Biology. Physics. What is the Greek word for proper science?",
+                "answer": {
+                    "score": 0.5348857641220093,
+                    "start": 346,
+                    "end": 355,
+                    "answer": "Aristotle"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Knowledge based on observations. He believed that they should be kept seperate. The most important question of classic PoS. How much can we learn about the world without observing it: Two extreme views: nothing (empiricist), everything (rationalists). A more practical version of this question: Can results of a given science be tested without empirical observations: YES: non-empirical science. NO: empirical science. How do both branches of science work: Examples of non-empirical sciences: mathematics, geometry, logic. Examples of empirical science: physics, biology, chemistry. Questions about the methods of mathematics and logic led to researchers to the discovery of \u201cproof theory\u201d.",
+        "questions_answers": [
+            {
+                "question": "What is the most important question of classic PoS?",
+                "answer": {
+                    "score": 0.27454620599746704,
+                    "start": 0,
+                    "end": 78,
+                    "answer": "Knowledge based on observations. He believed that they should be kept seperate"
+                }
+            },
+            {
+                "question": "What does the most practical version of PoS say about the world without observation?",
+                "answer": {
+                    "score": 0.37261447310447693,
+                    "start": 295,
+                    "end": 366,
+                    "answer": "Can results of a given science be tested without empirical observations"
+                }
+            },
+            {
+                "question": "How do both branches of science work?",
+                "answer": {
+                    "score": 0.11449702084064484,
+                    "start": 455,
+                    "end": 491,
+                    "answer": ": Examples of non-empirical sciences"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Carnap\u2019s empiricism. Every meaningful sentence has to have empirical consequences - this is called \u201cthe principle of verification\u201d. This led to a reductionist programme in science. Today most philosophers subscribe to a weaker view: naturalism. Positivism. Positivist view on science: Theories are cumulative in nature. Theories are understood as sets of true sentences. Ideally this set grows over time: new true sentences are added and sentences which are discovered to be false are eliminated. Science is a balance between theory and observation. Karl Popper - a more nuanced view on empiricism. Science consists of \u201cproblem solving\u201d. What it means in practice is that scientists start with problems and hypotheses and not observation of \u201cbare facts\u201d.",
+        "questions_answers": [
+            {
+                "question": "What is Carnap's empiricism?",
+                "answer": {
+                    "score": 0.23105046153068542,
+                    "start": 21,
+                    "end": 81,
+                    "answer": "Every meaningful sentence has to have empirical consequences"
+                }
+            },
+            {
+                "question": "What is a reductionist programme in science?",
+                "answer": {
+                    "score": 0.7334293127059937,
+                    "start": 0,
+                    "end": 19,
+                    "answer": "Carnap\u2019s empiricism"
+                }
+            },
+            {
+                "question": "What is Karl Popper a more nuanced view on?",
+                "answer": {
+                    "score": 0.9111030697822571,
+                    "start": 587,
+                    "end": 597,
+                    "answer": "empiricism"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Needless to say, the problem are sometimes the result of observations. Step 1 - scientists test the coherence of the theory. Step 2 - scientists formalize the theory to see which of their claims are analytic. Step 3 - scientists compare the theory with existing accounts. Step 4 -. The result: a theory can never be \u201cverified\u201d. But it can be falsified. Only theories which can be falsified are scientific. Counterintuitive nature of good theories: Analytics sentences are obviously true. Problem is, they do not contain any information. They are trivial. The more information a sentence carries, the less obvious (less probable) it is.",
+        "questions_answers": [
+            {
+                "question": "What do scientists test the coherence of the theory?",
+                "answer": {
+                    "score": 0.7905621528625488,
+                    "start": 71,
+                    "end": 90,
+                    "answer": "Step 1 - scientists"
+                }
+            },
+            {
+                "question": "Step 2 - scientists formalize the theory to see which of their claims are analytic?",
+                "answer": {
+                    "score": 0.4602382481098175,
+                    "start": 173,
+                    "end": 178,
+                    "answer": "which"
+                }
+            },
+            {
+                "question": "What is the result of a theory that can never be \u201cverified\u201d?",
+                "answer": {
+                    "score": 0.5142996907234192,
+                    "start": 332,
+                    "end": 351,
+                    "answer": "it can be falsified"
+                }
+            },
+            {
+                "question": "What is a counterintuitive nature of good theories?",
+                "answer": {
+                    "score": 0.22219769656658173,
+                    "start": 448,
+                    "end": 486,
+                    "answer": "Analytics sentences are obviously true"
+                }
+            }
+        ]
+    },
+    {
+        "context": "The result: the more improbable a theory is, the better. If it is false, it will be eventually falsified. But if it is true, then it gives us a lot of new information about the world. Two examples of unfalsifiable theories. Freud\u2019s psychoanalysis. Conspiracy theories. Connection to Carnap: adding metaphysical components to a theory is the easiest way of making it unfalsifiable. Similarly - creating a clever mockup of a theory comprising only from analytics sentenes also makes it unfalsifiable. Critique of historicism. Popper criticized \u201chistoricism\u201d and \u201cholism\u201d. Holism - a belief that individuals are formed by the social groupings they belong to.",
+        "questions_answers": [
+            {
+                "question": "What is a belief that individuals are formed by the social groupings they belong to?",
+                "answer": {
+                    "score": 0.9533750414848328,
+                    "start": 570,
+                    "end": 576,
+                    "answer": "Holism"
+                }
+            },
+            {
+                "question": "What is Freud\u2019s psychoanalysis?",
+                "answer": {
+                    "score": 0.9262581467628479,
+                    "start": 248,
+                    "end": 267,
+                    "answer": "Conspiracy theories"
+                }
+            },
+            {
+                "question": "What is the easiest way to make a theory unfalsifiable?",
+                "answer": {
+                    "score": 0.5267171859741211,
+                    "start": 269,
+                    "end": 289,
+                    "answer": "Connection to Carnap"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Historicism - a belief that individuals are shaped by the historical circumstances they live in. The argument against historicism and holism: Science is not predictable. We cannot foresee future scientific and technological discoveries. Physics predicts the future states of planets but not the future states of physics. Science and technology influence history and society. For this reason it is not possible to predict future states of history and society. Sociology and history cannot formulate laws (similar to physical laws). It is not possible to create a long-term social or historical politcal plan. If you do that you will end up forcing your vision of society on people.",
+        "questions_answers": [
+            {
+                "question": "What is a belief that individuals are shaped by the historical circumstances they live in?",
+                "answer": {
+                    "score": 0.974591076374054,
+                    "start": 0,
+                    "end": 11,
+                    "answer": "Historicism"
+                }
+            },
+            {
+                "question": "What is the argument against historicism and holism?",
+                "answer": {
+                    "score": 0.7969842553138733,
+                    "start": 142,
+                    "end": 168,
+                    "answer": "Science is not predictable"
+                }
+            },
+            {
+                "question": "Physics predicts the future states of planets but not the future state of physics?",
+                "answer": {
+                    "score": 0.1219210997223854,
+                    "start": 0,
+                    "end": 11,
+                    "answer": "Historicism"
+                }
+            },
+            {
+                "question": "Sociology and history cannot formulate laws (similar to what?",
+                "answer": {
+                    "score": 0.9326526522636414,
+                    "start": 515,
+                    "end": 528,
+                    "answer": "physical laws"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Analytic and synthetic sentences. Analytic sentences are sentences which can be evaluated without knowing the facts. Example: There is no mountain that is higher than the highest mountain. Definitions are analytic sentences, they fix the meaning of new words. Synthetic sentences are sentences which cannot be evaluated without knowing the facts. Example: There is no higher mountain than Mount Everest. Newton\u2019s 2nd law: definition. One might argue that there is no such thing as speed as it\u2019s just a definition for time over space ??: Thomas Kuhn and the scientific revolutions. In a stark contrast to Popper, Kuhn approached the study of science from the angle of its history (and not contents).",
+        "questions_answers": [
+            {
+                "question": "What type of sentences can be evaluated without knowing the facts?",
+                "answer": {
+                    "score": 0.17498119175434113,
+                    "start": 34,
+                    "end": 52,
+                    "answer": "Analytic sentences"
+                }
+            },
+            {
+                "question": "What is the definition of analytic sentences?",
+                "answer": {
+                    "score": 0.5645105242729187,
+                    "start": 225,
+                    "end": 258,
+                    "answer": "they fix the meaning of new words"
+                }
+            },
+            {
+                "question": "Who approached the study of science from the angle of its history?",
+                "answer": {
+                    "score": 0.5637284517288208,
+                    "start": 604,
+                    "end": 610,
+                    "answer": "Popper"
+                }
+            }
+        ]
+    },
+    {
+        "context": "He realized that different scientific disciplines typically go through phases: Prescientific phase. Some key discovery. Key discovery becomes a paradigm. Science normalizes and starts to rapidly solve new puzzles. Anomalies appear. Anomalies lead to crisis. Crisis leads to a revolution in a science. Theories before and after the revolution are incommensurable (incompatible). They differ in: Methodology. Observation. Language. Example of a sudden development: logic. Example of a series of paradigm shifts: psychology. Introspection. Behaviorism. Cognitive science. Natural. We could say that Kuhn created a paradigm shift. His work split philosophy of science into two branches: Content based: the analysis of content of scientific theories (with prescriptions as to how to make them better).",
+        "questions_answers": [
+            {
+                "question": "What is Kuhn's work that split philosophy of science into two branches?",
+                "answer": {
+                    "score": 0.6337976455688477,
+                    "start": 683,
+                    "end": 744,
+                    "answer": "Content based: the analysis of content of scientific theories"
+                }
+            },
+            {
+                "question": "What is the term for the analysis of content of scientific theories?",
+                "answer": {
+                    "score": 0.9958952069282532,
+                    "start": 683,
+                    "end": 696,
+                    "answer": "Content based"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Context based: the analysis of social, historical and economical background of science (with prescriptions as to how to make them better). Feminist philosophy of science. Enlightenment presented science as progressive. This view changed in XX century - science helps to maintain the status quo. The most visible example of this is the gender bias in science. Political feminism: women were very underrepresented in science. Philosophical feminism: the model of rationality was male oriented. We can map it to the context/content divide. Radical approaches: feminist epistemology and standpoint theory. The kye question is, does women\u2019s pojnt of view. The difference between \u201cnecessary\u201d and \u201csufficient\u201d conditions.",
+        "questions_answers": [
+            {
+                "question": "What was the most visible example of science change in XX century?",
+                "answer": {
+                    "score": 0.5976636409759521,
+                    "start": 335,
+                    "end": 357,
+                    "answer": "gender bias in science"
+                }
+            },
+            {
+                "question": "What did science help to maintain the status quo?",
+                "answer": {
+                    "score": 0.3349040746688843,
+                    "start": 229,
+                    "end": 260,
+                    "answer": "changed in XX century - science"
+                }
+            },
+            {
+                "question": "Which model of rationality was male oriented?",
+                "answer": {
+                    "score": 0.6903902292251587,
+                    "start": 424,
+                    "end": 446,
+                    "answer": "Philosophical feminism"
+                }
+            }
+        ]
+    },
+    {
+        "context": "A necessary condition is a condition that has to be met for something to be the case. A sufficient condition is a condition that, if met, suffices for something to be the case. If a human being gets blown into bits then they will die. green = sufficient condition, blue = necessary condition. The difference between syntax, semantics, and pragmatics. We stay within syntax when the only thing we talk about are formal properties of expressions: in practice their shape and order of signs. We talk only about the language. We move towards semantics when we are interested in what the expressions refer to - what they are about.",
+        "questions_answers": [
+            {
+                "question": "What is a condition that has to be met for something to be the case?",
+                "answer": {
+                    "score": 0.6315408945083618,
+                    "start": 0,
+                    "end": 21,
+                    "answer": "A necessary condition"
+                }
+            },
+            {
+                "question": "What is the difference between syntax, semantics, and pragmatics?",
+                "answer": {
+                    "score": 0.3462676405906677,
+                    "start": 235,
+                    "end": 291,
+                    "answer": "green = sufficient condition, blue = necessary condition"
+                }
+            },
+            {
+                "question": "When do we move towards semantics when we are interested in what?",
+                "answer": {
+                    "score": 0.7487363815307617,
+                    "start": 574,
+                    "end": 625,
+                    "answer": "what the expressions refer to - what they are about"
+                }
+            }
+        ]
+    },
+    {
+        "context": "We start talking about the world, not only the language. We move towards pragmatics whenever we are interested in what speaker means and what the listener understands. We start talking about the language users. Computer Science. Mathematics was supposed to be consistent. Consistency is simply the lack of contradiction in a theory. Mathematicians wanted to be the explanation of the fundamentals of mathematics on logic specifically on the notion of a \u201cset\u201d. Unfortunately, what they had at the time was only a simple notion of a set devised. Russell\u2019s Paradox. Can there be a \u201cmaster set\u201d of all the sets which do not contain themselves as members: A set = a barber.",
+        "questions_answers": [
+            {
+                "question": "What is the name of Russell\u2019s Paradox?",
+                "answer": {
+                    "score": 0.09946964681148529,
+                    "start": 563,
+                    "end": 590,
+                    "answer": "Can there be a \u201cmaster set\u201d"
+                }
+            },
+            {
+                "question": "What does a set do not contain themselves as members?",
+                "answer": {
+                    "score": 0.45015522837638855,
+                    "start": 651,
+                    "end": 667,
+                    "answer": "A set = a barber"
+                }
+            },
+            {
+                "question": "How did Mathematicians want to explain the fundamentals of mathematics on logic?",
+                "answer": {
+                    "score": 0.3800954818725586,
+                    "start": 421,
+                    "end": 458,
+                    "answer": "specifically on the notion of a \u201cset\u201d"
+                }
+            }
+        ]
+    },
+    {
+        "context": "To contain itself = to shave yourself. Imagine a town where people are divied into two groups: those who shave themselves and thoes who don\u2019t. There is a barber in this town. The barber shaves all and only those who do not shave themselves. Does the barber shave himself: If the does, then he belongs to those people who shave themselves. By definition he does not shave those people. If he does then he does not. If he does not, then he belongs to those people who do not shave themselves. By definition. Solution to this problem led to the theory of types and to a modern set theory.",
+        "questions_answers": [
+            {
+                "question": "What is the name of a town where people are divided into two groups?",
+                "answer": {
+                    "score": 0.31860268115997314,
+                    "start": 95,
+                    "end": 141,
+                    "answer": "those who shave themselves and thoes who don\u2019t"
+                }
+            },
+            {
+                "question": "What is a barber in this town?",
+                "answer": {
+                    "score": 0.22172701358795166,
+                    "start": 143,
+                    "end": 160,
+                    "answer": "There is a barber"
+                }
+            },
+            {
+                "question": "Who does the barber shave himself?",
+                "answer": {
+                    "score": 0.3118687570095062,
+                    "start": 206,
+                    "end": 239,
+                    "answer": "those who do not shave themselves"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Mathematics was saved. But there were two more things to do: completeness and decidability. Completeness of a theory means that for any sentence it can be proven whether the sentence or its negation is in the theory. Decidability means that there exists an effective procedure for making such a proof for any sentence. In 1936 Alan Turing published a paper which tried to provide a solution to these problems. Turing did not want to invent computing. He wanted to solve Hilbert\u2019s problem and provide foundations do mathematics. But with this fairly short paper he did both - provided the foundations to mathematics and kickstarted computing.",
+        "questions_answers": [
+            {
+                "question": "What did Alan Turing do to solve Hilbert\u2019s problem?",
+                "answer": {
+                    "score": 0.8851168155670166,
+                    "start": 492,
+                    "end": 526,
+                    "answer": "provide foundations do mathematics"
+                }
+            },
+            {
+                "question": "What did Turing try to solve?",
+                "answer": {
+                    "score": 0.934066891670227,
+                    "start": 470,
+                    "end": 487,
+                    "answer": "Hilbert\u2019s problem"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Turing started his paper with an observation about human \u201ccomputers\u201d. He realized that they do not have to be terribly clever, they just have to be able to do arithmetics operations. Using a pencil and a sheet of paper they could solve difficult problems. He imagines a machine that operates on a string of tape and that can perform only 4 simple operations (move, stop, delete sign, write sign). He has shown that using strings of these simple operations we can compute any mathematical formula that can be computed by human computers. Foundational problems of computer science. Turing invented a computer as a purely theoretical, conceptual device.",
+        "questions_answers": [
+            {
+                "question": "Who started his paper with an observation about human \u201ccomputers\u201d?",
+                "answer": {
+                    "score": 0.992663562297821,
+                    "start": 0,
+                    "end": 6,
+                    "answer": "Turing"
+                }
+            },
+            {
+                "question": "What did Turing realize that they do not have to be terribly clever?",
+                "answer": {
+                    "score": 0.2558163106441498,
+                    "start": 127,
+                    "end": 181,
+                    "answer": "they just have to be able to do arithmetics operations"
+                }
+            },
+            {
+                "question": "How many simple operations can Turing imagine?",
+                "answer": {
+                    "score": 0.6545583605766296,
+                    "start": 338,
+                    "end": 339,
+                    "answer": "4"
+                }
+            },
+            {
+                "question": "Who invented a computer as purely theoretical, conceptual device?",
+                "answer": {
+                    "score": 0.9735633134841919,
+                    "start": 580,
+                    "end": 586,
+                    "answer": "Turing"
+                }
+            }
+        ]
+    },
+    {
+        "context": "The point of a Turing machine was to show that a definition of a mathematical proof can be presented in purely formal way. A proof can be performed by a n utterly \u201cstupid\u201d object. It is a purely mechanical process. The upshot of his work was that mathematics was shown to be complete but not decidable. The consequence of this is: even if it is possible to evaluate if some statements are true, it is not possible to create a universal method that generates a proof for them. Consequences of Turing\u2019s solution. This conclusion has a very interesting consequence for computer science.",
+        "questions_answers": [
+            {
+                "question": "How can a Turing machine show a definition of a mathematical proof be presented in purely formal way?",
+                "answer": {
+                    "score": 0.32975688576698303,
+                    "start": 148,
+                    "end": 178,
+                    "answer": "by a n utterly \u201cstupid\u201d object"
+                }
+            },
+            {
+                "question": "What is a proof performed by a n utterly \u201cstupid\u201d object?",
+                "answer": {
+                    "score": 0.3921639621257782,
+                    "start": 180,
+                    "end": 213,
+                    "answer": "It is a purely mechanical process"
+                }
+            },
+            {
+                "question": "What was the upshot of Turing\u2019s work that mathematics was shown to be complete but not decidable?",
+                "answer": {
+                    "score": 0.017381105571985245,
+                    "start": 395,
+                    "end": 474,
+                    "answer": "it is not possible to create a universal method that generates a proof for them"
+                }
+            }
+        ]
+    }
+]

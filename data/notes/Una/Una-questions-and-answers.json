@@ -1,0 +1,532 @@
+[
+    {
+        "context": ". Android Development. Android Components. Activities. Represents a single screen with a user interface, in-short Activity performs actions on the screen and answer to the events on the UI components. Services. A service is a component that runs in the application background to perform long-running operations. User services: when the user starts a service, the app tells. App services. Broadcast Receivers. Broadcast Receivers simply respond to broadcast messages from other application or from the Android operating system. Content Providers. A content provider component supplies data from one application to others on request. Introduction to Kotlin. tirsdag 8. februar.",
+        "questions_answers": [
+            {
+                "question": "What is a component that runs in the application background to perform long-running operations?",
+                "answer": {
+                    "score": 0.7355539202690125,
+                    "start": 211,
+                    "end": 220,
+                    "answer": "A service"
+                }
+            },
+            {
+                "question": "What does a content provider component supply data from one application to others on request?",
+                "answer": {
+                    "score": 0.25385862588882446,
+                    "start": 447,
+                    "end": 465,
+                    "answer": "broadcast messages"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Variable: Var indicates that you want to declare a new variable. Read-only variable: Val indicates a new immutable variable, a constant. App Resources and Basic UI. tirsdag 15. februar. Android App Manifest. Package name: Determine the location of code entities when building your project. Permissions: Set permissions to access content from the app, e.g. access contacts in WhatsApp. Components: Information about activities, services, broadcast receivers and content providers. Requirements: Requirements of software and hardware. Color and style in res folder. Intent class. Explicit Intents. - Used in the context of your application, in which you can start internal components.",
+        "questions_answers": [
+            {
+                "question": "What indicates that you want to declare a new variable?",
+                "answer": {
+                    "score": 0.5174164175987244,
+                    "start": 0,
+                    "end": 13,
+                    "answer": "Variable: Var"
+                }
+            },
+            {
+                "question": "How do you set permissions to access content from the app?",
+                "answer": {
+                    "score": 0.7919805645942688,
+                    "start": 356,
+                    "end": 383,
+                    "answer": "access contacts in WhatsApp"
+                }
+            },
+            {
+                "question": "What is the Read-only variable?",
+                "answer": {
+                    "score": 0.9915518164634705,
+                    "start": 85,
+                    "end": 88,
+                    "answer": "Val"
+                }
+            },
+            {
+                "question": "What does Val indicate?",
+                "answer": {
+                    "score": 0.33808162808418274,
+                    "start": 99,
+                    "end": 123,
+                    "answer": "a new immutable variable"
+                }
+            }
+        ]
+    },
+    {
+        "context": "You define what will happen when you do something, mapping activity. You explicitly state what you want. Implicit Intents. E.g I want to take a photo. You can say \u201cI want to send a mail\u201d, then it can be suggested that you want to open the mail app, but you don\u2019t. explicitly. say what you want the phone to do,. you imply it. Aim to start a component in another application. More in lecture 9. Android Jetpack. Suite of Android libraries to reduce boilerplate code, like lifecycle management, background tasks. Reduce complexity with libraries that work consistently across Android versions and devices.",
+        "questions_answers": [
+            {
+                "question": "What do you explicitly state when you do something?",
+                "answer": {
+                    "score": 0.9173168540000916,
+                    "start": 90,
+                    "end": 103,
+                    "answer": "what you want"
+                }
+            },
+            {
+                "question": "What can be suggested that you want to open the mail app, but you don\u2019t explicitly?",
+                "answer": {
+                    "score": 0.2100769728422165,
+                    "start": 276,
+                    "end": 324,
+                    "answer": "say what you want the phone to do,. you imply it"
+                }
+            },
+            {
+                "question": "How can you say \u201cI want to send a mail\u201d, then you can say what you want the phone to do, and you imply it?",
+                "answer": {
+                    "score": 0.21918781101703644,
+                    "start": 193,
+                    "end": 247,
+                    "answer": "it can be suggested that you want to open the mail app"
+                }
+            },
+            {
+                "question": "What is the suite of Android libraries to reduce?",
+                "answer": {
+                    "score": 0.7519790530204773,
+                    "start": 448,
+                    "end": 464,
+                    "answer": "boilerplate code"
+                }
+            }
+        ]
+    },
+    {
+        "context": "By lazy, means I will only instantiate this if I use it, or else it doesn\u2019t exist. Share objects/data between activities with intent. Material design and fragments. tirsdag 22. februar. One critical difference between the fragment lifecycle and the activity lifecycle is that fragment lifecycle functions are called by the FragmentManager of the hosting activity, not the OS. The OS knows nothing about the fragments that an activity is using to manage things. Fragments are the activity\u2019s internal business. The onAttach(Context?), onCreate(Bundle?), onCreateView(. ), and onViewCreated(. ). functions are called when you add the fragment to the FragmentManager.",
+        "questions_answers": [
+            {
+                "question": "What is a critical difference between the fragment lifecycle and the activity lifecycle?",
+                "answer": {
+                    "score": 0.42419397830963135,
+                    "start": 276,
+                    "end": 362,
+                    "answer": "fragment lifecycle functions are called by the FragmentManager of the hosting activity"
+                }
+            },
+            {
+                "question": "What are the functions called when you add the fragment to the FragmentManager?",
+                "answer": {
+                    "score": 0.12573957443237305,
+                    "start": 574,
+                    "end": 587,
+                    "answer": "onViewCreated"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Difference between activity and fragment: Activity has three steps: Java/Kotlin class file, XML layout and add to manifest. Fragments do not need to be added in the manifest, only two files, namely: Java/Kotlin class file and XML layout. On rotate, update savedInstanceState to resume to where you were on the screen. ViewHolder is not mandatory with list view, but it is the best way to do it, also with performance. But with recycle view, it is necessary with a view holder. RecyclerView library must be added as a dependency library in your project. Slide #5 page 5. Views use ViewHolders and Adapters to select a small sample form a large data set.",
+        "questions_answers": [
+            {
+                "question": "What is the difference between activity and fragment?",
+                "answer": {
+                    "score": 0.5368555188179016,
+                    "start": 55,
+                    "end": 66,
+                    "answer": "three steps"
+                }
+            },
+            {
+                "question": "What does Activity have three steps?",
+                "answer": {
+                    "score": 0.8915755748748779,
+                    "start": 68,
+                    "end": 122,
+                    "answer": "Java/Kotlin class file, XML layout and add to manifest"
+                }
+            },
+            {
+                "question": "How many files do Fragments do not need to be added in the manifest?",
+                "answer": {
+                    "score": 0.524062991142273,
+                    "start": 180,
+                    "end": 183,
+                    "answer": "two"
+                }
+            },
+            {
+                "question": "Where did savedInstanceState resume to?",
+                "answer": {
+                    "score": 0.6701053977012634,
+                    "start": 288,
+                    "end": 316,
+                    "answer": "where you were on the screen"
+                }
+            },
+            {
+                "question": "ViewHolder is not mandatory with list view, but it is necessary with what?",
+                "answer": {
+                    "score": 0.4136761724948883,
+                    "start": 462,
+                    "end": 475,
+                    "answer": "a view holder"
+                }
+            }
+        ]
+    },
+    {
+        "context": "It only provides a limited number of the items that can be shown in the screen. Flexible Data View and Thread. RecyclerView vs ListView. When an item scrolls off the screen, RecyclerView doesn\u2019t destroy its view. RecyclerView adapter forces the developer to use the ViewHolder pattern. LayoutManager allows us to choose that we want to show the row views and how to scroll. Notifying Adapter Recycle - View\u2019s adapter provides a set of notifiers to react while the data are binding to the view. If your application requires an operation that does not return an immediate result, you must perform this operation in a separated thread know as worker thread.",
+        "questions_answers": [
+            {
+                "question": "How many items can be shown in the screen?",
+                "answer": {
+                    "score": 0.6986668705940247,
+                    "start": 17,
+                    "end": 33,
+                    "answer": "a limited number"
+                }
+            },
+            {
+                "question": "What does the RecyclerView adapter force the developer to use?",
+                "answer": {
+                    "score": 0.5832781195640564,
+                    "start": 266,
+                    "end": 284,
+                    "answer": "ViewHolder pattern"
+                }
+            },
+            {
+                "question": "How do View\u2019s adapter react while the data are binding to the view?",
+                "answer": {
+                    "score": 0.32583150267601013,
+                    "start": 435,
+                    "end": 444,
+                    "answer": "notifiers"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Android provides the following threads components: Android Thread: A block of code responsible to execute a set of tasks in your application. Kotlin Coroutines: Kotlin coroutines provide an api that enables you to write asynchronous code. Android handler: It allows you to send and process \"messages\" and \"runnable objects\u201d. Download data from the internet, slide 54. Set on the manifest. You only need to ask for permission once. When to use async? When you don\u2019t have control over how much time something takes. Android services: Activites. Services: A Service is an Android component that can perform long-running operations in the background.",
+        "questions_answers": [
+            {
+                "question": "What is a block of code responsible to execute a set of tasks in your application?",
+                "answer": {
+                    "score": 0.9659433960914612,
+                    "start": 51,
+                    "end": 65,
+                    "answer": "Android Thread"
+                }
+            },
+            {
+                "question": "What is an api that allows you to write asynchronous code?",
+                "answer": {
+                    "score": 0.40041306614875793,
+                    "start": 142,
+                    "end": 178,
+                    "answer": "Kotlin Coroutines: Kotlin coroutines"
+                }
+            },
+            {
+                "question": "How does a handler allow you to send and process \"messages\" and \"runnable objects\"?",
+                "answer": {
+                    "score": 0.14572416245937347,
+                    "start": 239,
+                    "end": 246,
+                    "answer": "Android"
+                }
+            },
+            {
+                "question": "When do you need permission once to use async?",
+                "answer": {
+                    "score": 0.37073543667793274,
+                    "start": 450,
+                    "end": 513,
+                    "answer": "When you don\u2019t have control over how much time something takes."
+                }
+            }
+        ]
+    },
+    {
+        "context": "Once started, a service might continue running for some time, even after the user switches to another application. Local tests: Execute on your development machine or a server, so they\u2019re also called. host-side tests. Instrumented tests: Execute on an Android device (phone, smartwatch, tablet), either physical or emulated. Internal vs external memory: External example: Micro SD card, removable storage medium. GPS. The satellite sends you a very precise timestamp.You need at least three satellites to provide a precise location. Android sensors: Motion sensors. Environmental sensors. Position sensors. Exam Practice. The Android application lifecycle;. One critical difference between the fragment lifecycle and the activity lifecycle is that fragment lifecycle functions are called by the FragmentManager of the hosting activity, not the OS.",
+        "questions_answers": [
+            {
+                "question": "What type of tests do Android sensors send you?",
+                "answer": {
+                    "score": 0.3513196110725403,
+                    "start": 550,
+                    "end": 564,
+                    "answer": "Motion sensors"
+                }
+            },
+            {
+                "question": "What is one critical difference between the fragment lifecycle and the activity lifecycle?",
+                "answer": {
+                    "score": 0.23771803081035614,
+                    "start": 748,
+                    "end": 834,
+                    "answer": "fragment lifecycle functions are called by the FragmentManager of the hosting activity"
+                }
+            },
+            {
+                "question": "What is the FragmentManager of the hosting activity?",
+                "answer": {
+                    "score": 0.42063724994659424,
+                    "start": 748,
+                    "end": 776,
+                    "answer": "fragment lifecycle functions"
+                }
+            }
+        ]
+    },
+    {
+        "context": "The OS knows nothing about the fragments that an activity is using to manage things. Fragments are the activity\u2019s internal business. The onAttach(Context?), onCreate(Bundle?), onCreateView(. ), and onViewCreated(. ). functions are called when you add the fragment to the FragmentManager. Activity State Diagram. Every instance of an activity has a lifecycle. During the lifecycle, the activity transitions between four states: resumed, paused, stopped and nonexistent. For each transaction, there is an Activity function that notifies the activity of changes of the state. The. nonexistent. state represents an activity that has not been launched yet, or an activity that was just destroyed (for example by the user pressing the back button).",
+        "questions_answers": [
+            {
+                "question": "What is the internal business of an activity?",
+                "answer": {
+                    "score": 0.9571982026100159,
+                    "start": 85,
+                    "end": 94,
+                    "answer": "Fragments"
+                }
+            },
+            {
+                "question": "What are the functions that are called when you add the fragment to the FragmentManager?",
+                "answer": {
+                    "score": 0.14561675488948822,
+                    "start": 133,
+                    "end": 145,
+                    "answer": "The onAttach"
+                }
+            },
+            {
+                "question": "How many states does the activity transition between during the lifecycle?",
+                "answer": {
+                    "score": 0.6887916326522827,
+                    "start": 414,
+                    "end": 418,
+                    "answer": "four"
+                }
+            }
+        ]
+    },
+    {
+        "context": "For that reason this state is sometimes referred to as the destroyed state. There is no instance in memory, and there is no associated view for the user to see or interact with. Stopped. represents an activity that has an instance in memory, but whose view is not visible on the screen. This state occurs in passing when the activity is first spinning up, and re-occurs any time the view is fully occluded (such as when the user launches another full-screen activity to the foreground, presses the home button, or uses the overview screen to switch tasks). Paused.",
+        "questions_answers": [
+            {
+                "question": "What state is sometimes referred to as?",
+                "answer": {
+                    "score": 0.37118467688560486,
+                    "start": 55,
+                    "end": 74,
+                    "answer": "the destroyed state"
+                }
+            },
+            {
+                "question": "What is a state that has an instance in memory, but whose view is not visible on the screen?",
+                "answer": {
+                    "score": 0.5880314111709595,
+                    "start": 178,
+                    "end": 185,
+                    "answer": "Stopped"
+                }
+            },
+            {
+                "question": "What happens when the activity is first spinning up, and re-occurs any time the view is fully occluded?",
+                "answer": {
+                    "score": 0.0395975261926651,
+                    "start": 557,
+                    "end": 563,
+                    "answer": "Paused"
+                }
+            }
+        ]
+    },
+    {
+        "context": "represents an activity that is not active in the foreground, but whose view is visible or partially visible. An activity would be partially visible, for example if the user launched a new dialog-themed or transparent activity on top of it. An activity could also be fully visible but not in the foreground if the user is viewing two activities in multi window mode (also called \u201csplit screen mode\u201d). Resumed. represents an activity that is in memory, fully visible and in the foreground. It is the activity the user is currently interacting with. Only one activity across the entire system can be in the resumed state at any given time.",
+        "questions_answers": [
+            {
+                "question": "What represents an activity that is not active in the foreground, but whose view is visible or partially visible?",
+                "answer": {
+                    "score": 0.8981348872184753,
+                    "start": 400,
+                    "end": 407,
+                    "answer": "Resumed"
+                }
+            },
+            {
+                "question": "What would an activity be partially visible if the user launched a new dialog-themed or transparent activity on top of it?",
+                "answer": {
+                    "score": 0.1638452559709549,
+                    "start": 284,
+                    "end": 305,
+                    "answer": "not in the foreground"
+                }
+            },
+            {
+                "question": "What is the name of the activity the user is currently interacting with?",
+                "answer": {
+                    "score": 0.9139668941497803,
+                    "start": 400,
+                    "end": 407,
+                    "answer": "Resumed"
+                }
+            }
+        ]
+    },
+    {
+        "context": "That means that if one activity is moving into the resumed state, another is likely moving out of the resumed state. Subclasses of Activity can take advantage of the functions named in the figure, to get work done at critical transitions in the activity\u2019s lifecycle. These functions are often called. lifecycle callbacks. You are already acquaninted with one of these lifecycle callback functions -onCreate(Bundle?). The OS calls this function after the activity instance is created but before it is put onscreen. An activity usually overrides the increase to prepare the UI (inflating the layout, setContentView, listeners etc.). When you finish an activity, onPause, onStop and then onDestroy is called.",
+        "questions_answers": [
+            {
+                "question": "What can subclasses of Activity use to get work done at critical transitions in the activity\u2019s lifecycle?",
+                "answer": {
+                    "score": 0.5415626168251038,
+                    "start": 166,
+                    "end": 195,
+                    "answer": "functions named in the figure"
+                }
+            },
+            {
+                "question": "What does the OS call after the activity instance is created but before it is put onscreen?",
+                "answer": {
+                    "score": 0.4942784011363983,
+                    "start": 398,
+                    "end": 406,
+                    "answer": "onCreate"
+                }
+            },
+            {
+                "question": "When you finish an activity, onPause, onStop and then onDestroy is called?",
+                "answer": {
+                    "score": 0.3043774664402008,
+                    "start": 301,
+                    "end": 320,
+                    "answer": "lifecycle callbacks"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Pressing the back button destroys the activity and starts a new one. Rotating your device changes the device configuration. The device configuration is a set of characteristics that describe the current state of an individual device. When. Runtime configuration change occurs, there may be resources that ar a better match for the new configuration. So Android destroys the activity and looks for resources that are the best fit for the new configurations and then rebuilds a new instance of the activity with those resources. Fragment Lifecycle and Fragment Manager. The FragmentManager is a part of the activity class.",
+        "questions_answers": [
+            {
+                "question": "What is a set of characteristics that describe the current state of an individual device?",
+                "answer": {
+                    "score": 0.6777528524398804,
+                    "start": 124,
+                    "end": 148,
+                    "answer": "The device configuration"
+                }
+            },
+            {
+                "question": "When does Android destroy the activity and look for resources that are the best fit for the new configurations?",
+                "answer": {
+                    "score": 0.19657960534095764,
+                    "start": 240,
+                    "end": 275,
+                    "answer": "Runtime configuration change occurs"
+                }
+            },
+            {
+                "question": "What is the FragmentManager part of?",
+                "answer": {
+                    "score": 0.583899736404419,
+                    "start": 605,
+                    "end": 619,
+                    "answer": "activity class"
+                }
+            }
+        ]
+    },
+    {
+        "context": "It handles two things: a list of fragments and a back stack of fragment transactions. It is responsible for adding the fragments\u2019 views to the activity\u2019s view hierarchy and driving the fragments lifecycles. Fragmentmanager is good when you have multiple fragments in one activity. To add a fragment to an activity in code, you make explicit calls to the activity\u2019s FragmentManager. You can access the activity\u2019s fragment manager using supportFragmentManager. The FragmentManager maintains a back stack of fragment transactions that you can navigate. Diagram of the Fragment Lifecycle. The Fragment lifecycle is similar to the activity lifecycle. It has stopped, paused and resumed states, and you can override them to get things done at critical points.",
+        "questions_answers": [
+            {
+                "question": "What is the FragmentManager responsible for adding the fragments\u2019 views to the activity\u2019s view hierarchy?",
+                "answer": {
+                    "score": 0.09818514436483383,
+                    "start": 173,
+                    "end": 205,
+                    "answer": "driving the fragments lifecycles"
+                }
+            },
+            {
+                "question": "What is a back stack of fragment transactions that you can navigate?",
+                "answer": {
+                    "score": 0.16148629784584045,
+                    "start": 463,
+                    "end": 478,
+                    "answer": "FragmentManager"
+                }
+            }
+        ]
+    },
+    {
+        "context": "A fragment works on behalf of an activity, so its state should reflect the activity\u2019s state. Thus it need corresponding lifecycle functions to handle the activity\u2019s work. A critical difference between the fragment lifecycle and the activity lifecycle is that fragment lifecycle functions are called by the FragmentManager of the hosting activity, not the OS. The OS knows nothing about the fragments that an activity is using to manage things. Fragments are the activity\u2019s internal business. OnActivityCreated is called after the hosting activity\u2019s onCreate has been executed. What happens if you add a fragment while the activity is already resumed? In that case, the FragmentManager immediately walks the fragment through whatever steps are necessary to get it caught up to the activity\u2019s state.",
+        "questions_answers": [
+            {
+                "question": "What does a fragment work on behalf of an activity?",
+                "answer": {
+                    "score": 0.2496539205312729,
+                    "start": 46,
+                    "end": 91,
+                    "answer": "its state should reflect the activity\u2019s state"
+                }
+            },
+            {
+                "question": "What does the FragmentManager call the fragment lifecycle functions to handle the activity\u2019s work?",
+                "answer": {
+                    "score": 0.36121615767478943,
+                    "start": 329,
+                    "end": 345,
+                    "answer": "hosting activity"
+                }
+            },
+            {
+                "question": "What is called after the hosting activity's onCreate has been executed?",
+                "answer": {
+                    "score": 0.9754985570907593,
+                    "start": 492,
+                    "end": 509,
+                    "answer": "OnActivityCreated"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Example it calls onAttach, onCreate, onCreateView etc. The four different types of Android components, namely: (1) activities, (2) services, (3) broadcast receivers, and (4) content providers;. Activities. Activity represents a single screen with a UI and it is the entry point for interacting with the user. Example for my app: my app had two activities: loginActivity and ScooterSharingActivity. The ScooterSharingActivity connected to all the other fragments. When to use activities and fragments: Fragments are Android's solution to creating reusable user interfaces. You can achieve some of the same things using activities and layouts (for example by using includes).",
+        "questions_answers": [
+            {
+                "question": "What are the four different types of Android components?",
+                "answer": {
+                    "score": 0.013267566449940205,
+                    "start": 174,
+                    "end": 204,
+                    "answer": "content providers;. Activities"
+                }
+            },
+            {
+                "question": "What is the entry point for interacting with the user?",
+                "answer": {
+                    "score": 0.23011238873004913,
+                    "start": 206,
+                    "end": 251,
+                    "answer": "Activity represents a single screen with a UI"
+                }
+            },
+            {
+                "question": "How many activities did the ScooterSharingActivity connect to?",
+                "answer": {
+                    "score": 0.5569970011711121,
+                    "start": 438,
+                    "end": 461,
+                    "answer": "all the other fragments"
+                }
+            }
+        ]
+    }
+]
