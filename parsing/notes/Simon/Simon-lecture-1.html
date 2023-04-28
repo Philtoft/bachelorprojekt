@@ -1,0 +1,692 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Computer Systems</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="18e1f280-1bfb-4d7c-a113-50000bc9034c" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/1.png"/></div><h1 class="page-title">Computer Systems</h1></header><div class="page-body"><h1 id="d6043e60-0e7d-43de-afe6-cec8d5ef6c44" class=""><a href="https://github.itu.dk/pages/OSC/22-Website/slides/osc22_01_computer_systems.pdf">Computer Systems</a></h1><hr id="01992f29-4d63-4f29-92d2-11140ddfab44"/><nav id="027e8e23-faf5-44d7-8c4c-bb35b4d00f53" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d6043e60-0e7d-43de-afe6-cec8d5ef6c44"><a href="https://github.itu.dk/pages/OSC/22-Website/slides/osc22_01_computer_systems.pdf">Computer Systems</a></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#84f2db68-853a-4770-90fb-0e8222c0feda">R<strong>eadings</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0632f4c7-ba2a-4c29-9088-068cf6a514ec">Lecture</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e7428b4d-a9e2-45e2-874f-9e8b2b19acab">1. <strong>Overview </strong>of the course</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#38ea9d72-1e1e-4d31-9e2f-fa26c9ca877c">Difference between SWU and DS</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a7d6a34-b054-493f-aae7-84bd41d3c4e6">Why this course? </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f12845c7-c3bb-4393-a2dc-1c168fc04107"><strong>What is in it for you?</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b0b00e54-b265-4194-958a-c6185bee8c74">2. What is this class about?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#fd9d9cc0-7ca8-4643-a4f9-e7fdcff16e81">3. Computer Systems </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#79335f8e-b78c-42cc-91be-c0d46115f4fa">Memory Abstraction</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f3a3d052-c5bf-4b94-b4b8-62da34043c7e"><strong>Interpreter Abstraction</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0e0e9555-5e2d-4ccb-b14d-203194c09de2"><strong>Communication Abstraction</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f0762cd4-93ed-4680-9145-5f0bc8a61bc2"><strong>Layered view of a Computer System</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#37a87f59-7627-4738-805b-f99b6cb44b6d"><strong>Computer Hardware</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a1543d90-fb38-4332-862d-7bd6afb6d8b5"><strong>How does a processor work?</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1d8615b1-8d82-4f9f-9fc1-5f57ae547d12"><strong>How does a CPU work?</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2a692de4-ca79-4567-99fd-f26471ac2a3c"><strong>How does main memory work?</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#78161e4f-b0fe-4135-a42d-f049155ead7b"><strong>Memory Hierarchy</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#301dccf7-ee67-4516-b3d0-cd57e90066ab"><strong>Latency Numbers Every Programmer Should Know</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ae7b7c0b-4520-429e-9698-06f5fc90e830">4. Operating Systems </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b8cdfc48-df1b-444a-a08d-1b7e2e4d0f05"><strong>Processes: Definition</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#97a9ad9f-ea4d-4c8d-bdb6-95a73b6074db"><strong>OS Kernel</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ac61e473-9b20-4be7-80d9-cd90849467a7">Virtual Memory</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#46ee3cea-cfd6-48fb-a9b5-17b57ad5855a"><strong>I/O Devices</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#80934dff-ad54-42ed-a7ab-bf6283ae0209">5. C Programming Language</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#48824103-464e-4f20-a55e-2b3a24ac69f0">System programming</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cc9baff5-0773-480a-9d0d-b1351049dbf7"><strong>C for system programming</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#92928117-903e-432c-b4f2-72f202859300">The standard C library</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cb2424ed-b873-4ed5-8104-096ae34f6843">Standards</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a7b05fd6-8298-4125-b17d-ac623288b2c4"><strong>Undefined Behavior</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#fef0a57f-be50-4bdf-b44b-1e63abddfda6">6. Take-away</a></div></nav><p id="7c5ed52d-63dd-458b-82af-acd1bc043cf8" class="">
+</p><h3 id="84f2db68-853a-4770-90fb-0e8222c0feda" class="">R<strong>eadings</strong></h3><hr id="fe001e3c-56e0-4fda-8749-b1ca78218327"/><blockquote id="6774f9dc-a3c5-40ac-aec5-368c2c56238b" class=""><strong>A Tour of Computer Systems. This chapter introduces the major ideas and themes in computer systems by tracing the life cycle of a simple “hello, world” program.</strong><figure id="94b67130-9542-494b-adc5-c54281a1d7cb" class="link-to-page"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/CS%20APP%201%2094b671309542494badc5c54281a1d7cb.html"><img class="icon" src="https://www.notion.so/icons/book-closed_blue.svg"/>CS:APP 1</a></figure></blockquote><h1 id="0632f4c7-ba2a-4c29-9088-068cf6a514ec" class="">Lecture</h1><hr id="993628cb-4b22-4f2f-8ded-e9754bd4cc35"/><div id="bbe5ee37-51d4-43c0-96be-7e061ff598b3" class="column-list"><div id="c2072ceb-2b49-4450-950c-bd440ad36bee" style="width:50%" class="column"><blockquote id="d9f3cb61-b26a-46ff-b28b-155cfbc93736" class=""><strong>Agenda</strong><p id="1608df52-c2f6-4ba1-adbf-ddeb44a9041f" class=""><span style="border-bottom:0.05em solid">Part I: Overview </span></p><ol type="1" id="7a61e419-d776-470a-824e-a8b84b8f8ef6" class="numbered-list" start="1"><li>Logistics</li></ol><ol type="1" id="bba9d83d-c21a-424b-970b-bedc11fe57d4" class="numbered-list" start="2"><li>Why this course?</li></ol><ol type="1" id="dec55f94-4150-45b8-9b25-e6f1d33fcb76" class="numbered-list" start="3"><li>What is in it for you?</li></ol><p id="98a7e737-e7e1-4506-9ee4-2dd003ce76e0" class="">
+</p></blockquote></div><div id="f2028538-1274-4347-9dc3-58c814d0060e" style="width:50%" class="column"><blockquote id="4587184c-9223-4624-a369-b922214d1e75" class="">
+<span style="border-bottom:0.05em solid">Part II: What is this class about?</span><ol type="1" id="8983b72a-0228-46e3-b067-25b6b20f7b08" class="numbered-list" start="1"><li>Computer Systems</li></ol><ol type="1" id="dfd899ee-c45a-4d2f-859a-d3f964f0da5d" class="numbered-list" start="2"><li>Operating Systems</li></ol><ol type="1" id="1edbc415-5839-4683-ac57-bd6ee5c5bfc0" class="numbered-list" start="3"><li>C Programming Language</li></ol><ol type="1" id="eaec06e1-cd2e-4853-91fd-fb6222d0e1f2" class="numbered-list" start="4"><li>Take-away</li></ol></blockquote></div></div><p id="63363d49-c848-4458-a2ee-f14469b10f58" class="">
+</p><h1 id="e7428b4d-a9e2-45e2-874f-9e8b2b19acab" class="block-color-gray_background">1. <strong>Overview </strong>of the course</h1><h2 id="38ea9d72-1e1e-4d31-9e2f-fa26c9ca877c" class="">Difference between SWU and DS</h2><div id="5c7720f2-15ba-4883-b6ce-90d8046e1b01" class="column-list"><div id="80cdb477-8dd9-41d9-9cef-5a9f64d6cec2" style="width:50%" class="column"><p id="2aaef645-0231-4919-b6b2-716c71206cfa" class=""><strong>SWU</strong></p><ul id="23ab64f3-5359-42fe-97af-de64d55a5360" class="bulleted-list"><li style="list-style-type:disc">3 assignments: datalab perflab | attacklab malloclab</li></ul><ul id="61253d3d-08b3-4659-8f5b-01235c4513bd" class="bulleted-list"><li style="list-style-type:disc">Exam: 4 questions - 25% each (datalab, perflab|attacklab, malloclab, topics from the class) Logistics</li></ul></div><div id="bddcfed6-35fe-4085-ba68-31bd383b5136" style="width:50%" class="column"><p id="97541298-edd2-46d4-b6e6-15cbdfd9ec7e" class=""><strong>DS</strong></p><ul id="a2e5a088-77af-49a5-8605-ffbfd53509f6" class="bulleted-list"><li style="list-style-type:disc">2 assignments: datalab perflab</li></ul><ul id="c1ea6eaa-01fa-4257-b9b1-ebebf39bd591" class="bulleted-list"><li style="list-style-type:disc">Exam: 3 questions - 33% each (datalab, perflab, topics from the class)</li></ul></div></div><h2 id="3a7d6a34-b054-493f-aae7-84bd41d3c4e6" class="">Why this course? </h2><p id="7e73d704-18f7-484b-965d-a39d5eab6096" class=""><em>&quot;An operating system (OS) is a program that manages computer hardware. And although today&#x27;s commercial-off-the- shelf desktop operating systems appear to be an integral part of PCs and workstation to many users, a fundamental understanding of the algorithms, principles, heuristics, and optimizations used is crucial for creating efficient application software. Furthermore, many of the principles in OS courses are relevant to large system applications like databases and web servers.&quot; </em></p><p id="45796b74-4423-4cd6-8892-c14878e6f5e2" class="">A. Polze (U.Potsdam)</p><h2 id="f12845c7-c3bb-4393-a2dc-1c168fc04107" class=""><strong>What is in it for you?</strong></h2><ul id="346894aa-9059-499b-be92-88622398b18e" class="bulleted-list"><li style="list-style-type:disc">Deep understanding of how computer systems impact software design</li></ul><ul id="b8981411-44b3-4397-bb20-342a10c621a2" class="bulleted-list"><li style="list-style-type:disc">Way to learn a new programming language</li></ul><ul id="ea49e532-8b1e-402f-8a4c-552177643807" class="bulleted-list"><li style="list-style-type:disc">Proficiency in shell, Linux, vim</li></ul><ul id="e8914abd-9b7f-4e7d-b444-b6692b03e544" class="bulleted-list"><li style="list-style-type:disc">(First) experience with system programming <ul id="230bba9a-6284-49ba-bc74-a9975695a6f7" class="bulleted-list"><li style="list-style-type:circle">Security | Performance</li></ul></li></ul><ul id="7fc94a65-db9a-4f02-a69d-9dc2f201a229" class="bulleted-list"><li style="list-style-type:disc">General knowledge: history, (geo-)politics, business</li></ul><p id="590d14af-6aec-4598-b929-ab965a978ec9" class="">
+</p><h1 id="b0b00e54-b265-4194-958a-c6185bee8c74" class="block-color-gray_background">2. What is this class about?</h1><ol type="1" id="1b09b1e3-42cc-4150-b6e5-a45a954ed67e" class="numbered-list" start="1"><li>Computer Systems </li></ol><ol type="1" id="2fccc722-44ca-469c-948b-39a68f9e97f4" class="numbered-list" start="2"><li>Operating Systems </li></ol><ol type="1" id="a1649806-7701-43ce-bb4d-ff3a12889ce9" class="numbered-list" start="3"><li>C Programming Language</li></ol><p id="9f415df1-cc39-4982-ac4e-a88c36eb553f" class="">
+</p><h1 id="fd9d9cc0-7ca8-4643-a4f9-e7fdcff16e81" class="block-color-gray_background">3. Computer Systems </h1><blockquote id="b06379c3-890c-4252-9937-af56766371b4" class="">A system is a set of interconnected components with a well-defined behavior at the interface with its environment. </blockquote><p id="708df122-62fb-4ede-b33d-3150aa276233" class="">Coping with system complexity:</p><ul id="ee092aff-8c71-40e1-a493-4813fc8a97e0" class="bulleted-list"><li style="list-style-type:disc">Modularity, Abstraction, Layering, Hierarchy</li></ul><h3 id="79335f8e-b78c-42cc-91be-c0d46115f4fa" class="">Memory Abstraction</h3><p id="ebb78deb-00e6-4fae-92c8-6ee89babb94c" class=""><strong>3 fundamental abstractions for computer systems:</strong></p><ul id="060ea71f-e2d9-4aea-9dcb-5a9c4c86f4ab" class="bulleted-list"><li style="list-style-type:disc">Interpreter</li></ul><ul id="48848405-3a58-4e51-a511-d6b2f51455b7" class="bulleted-list"><li style="list-style-type:disc">Memory</li></ul><ul id="bb1dffd2-1191-46ad-bcdd-8d59914e20f9" class="bulleted-list"><li style="list-style-type:disc">Communication</li></ul><figure id="a4892729-0e4d-4391-83e0-6e1876bfaa9a" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled.png"><img style="width:1081px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled.png"/></a><figcaption>Memory Abstraction</figcaption></figure><h3 id="f3a3d052-c5bf-4b94-b4b8-62da34043c7e" class=""><details open=""><summary><strong>Interpreter Abstraction</strong></summary></details></h3><div class="indented"><figure id="10c7a911-3798-412f-b2b9-b0f50926eb00" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%201.png"><img style="width:1289px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%201.png"/></a></figure></div><h3 id="0e0e9555-5e2d-4ccb-b14d-203194c09de2" class=""><details open=""><summary><strong>Communication Abstraction</strong></summary></details></h3><div class="indented"><figure id="b1972eb1-5940-4b97-a597-b6f8ead506ad" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%202.png"><img style="width:812px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%202.png"/></a></figure></div><h3 id="f0762cd4-93ed-4680-9145-5f0bc8a61bc2" class=""><details open=""><summary><strong>Layered view of a Computer System</strong></summary></details></h3><div class="indented"><figure id="180a9fc7-ef05-4532-b368-63d24933b35d" class="image" style="text-align:center"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%203.png"><img style="width:576px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%203.png"/></a></figure></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="243c6b63-0a75-4fbd-8afb-30a7405c279f"><div style="font-size:1.5em"><span class="icon">🗣️</span></div><div style="width:100%">The Operating System makes it easy to interact with hardware.</div></figure><h3 id="37a87f59-7627-4738-805b-f99b6cb44b6d" class=""><details open=""><summary><strong>Computer Hardware</strong></summary></details></h3><div class="indented"><figure id="adc579d7-b19c-4595-8e00-1bb908d93e1d" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%204.png"><img style="width:693px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%204.png"/></a></figure></div><h3 id="a1543d90-fb38-4332-862d-7bd6afb6d8b5" class=""><details open=""><summary><strong>How does a processor work?</strong></summary></details></h3><div class="indented"><figure id="ecc04d30-b543-4b27-a11d-ac6eec7f9a51" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%205.png"><img style="width:864px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%205.png"/></a></figure></div><h3 id="1d8615b1-8d82-4f9f-9fc1-5f57ae547d12" class=""><details open=""><summary><strong>How does a CPU work?</strong></summary></details></h3><div class="indented"><figure id="17e9ffc5-7f13-4b42-a084-51f9586587fe" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%206.png"><img style="width:889px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%206.png"/></a></figure></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b22d40bf-871e-48de-85c3-53b344bdd413"><div style="font-size:1.5em"><span class="icon">🗣️</span></div><div style="width:100%">A CPU is supposed to implement the interpreter abstraction.</div></figure><h3 id="2a692de4-ca79-4567-99fd-f26471ac2a3c" class=""><details open=""><summary><strong>How does main memory work?</strong></summary></details></h3><div class="indented"><figure id="3721fbb9-c3d1-4cee-9119-7ca375f2a13a" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%207.png"><img style="width:807px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%207.png"/></a></figure></div><h3 id="78161e4f-b0fe-4135-a42d-f049155ead7b" class=""><details open=""><summary><strong>Memory Hierarchy</strong></summary></details></h3><div class="indented"><figure id="999cde63-e452-4bd4-bd89-e21acc78a94b" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%208.png"><img style="width:734px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%208.png"/></a></figure></div><h3 id="301dccf7-ee67-4516-b3d0-cd57e90066ab" class=""><details open=""><summary><strong>Latency Numbers Every Programmer Should Know</strong></summary></details></h3><div class="indented"><figure id="9b5406e1-27eb-4aa8-948d-04164b8926a6" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%209.png"><img style="width:914px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%209.png"/></a></figure></div><p id="9b35ffc4-4b0d-43dc-a9c9-f0ec98946404" class="">
+</p><h1 id="ae7b7c0b-4520-429e-9698-06f5fc90e830" class="block-color-gray_background">4. Operating Systems </h1><blockquote id="f76f17a6-4513-46ce-a7ee-e8ca071289e3" class="">An operating system (OS) is a program that manages computer hardware.</blockquote><figure id="6afc9520-1513-4598-bc7a-b36ec11961c8" class="image" style="text-align:center"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%2010.png"><img style="width:532px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%2010.png"/></a><figcaption>OS Abstractions</figcaption></figure><h3 id="b8cdfc48-df1b-444a-a08d-1b7e2e4d0f05" class=""><strong>Processes: Definition</strong></h3><ul id="d57e9f5c-8298-4a4b-b8ae-b88c4a1c7993" class="bulleted-list"><li style="list-style-type:disc"><strong>A process:</strong><ul id="425882c3-f238-432a-9771-cdeeb139ff82" class="bulleted-list"><li style="list-style-type:circle">OS Abstraction of a running program</li></ul><ul id="7bc20949-9f35-4a05-b8d4-5a748cdc2374" class="bulleted-list"><li style="list-style-type:circle">An interpreter</li></ul></li></ul><ul id="cccc9b61-4e8b-4fab-a5c0-ab07b65888d6" class="bulleted-list"><li style="list-style-type:disc"><strong>On multi-core CPUs:</strong><ul id="32740241-afd9-46ad-8bc4-f38c645b4c6d" class="bulleted-list"><li style="list-style-type:circle">Multiple processes run simultaneously</li></ul></li></ul><ul id="9f3dd6a0-f5a4-4e8d-8c35-4567ac38922c" class="bulleted-list"><li style="list-style-type:disc"><strong>On each core:</strong><ul id="a74fde51-4ee6-4949-96a9-d2128ae52277" class="bulleted-list"><li style="list-style-type:circle">Multiple processes can execute concurrently. They share the same physical core</li></ul><ul id="97b92a10-4ba9-4083-86a5-f87b09147ef9" class="bulleted-list"><li style="list-style-type:circle">Need to switch from one interpreter to another</li></ul></li></ul><h3 id="97a9ad9f-ea4d-4c8d-bdb6-95a73b6074db" class=""><strong>OS Kernel</strong></h3><ul id="e4648191-70e6-46da-b3ec-ed4d7d6ee623" class="bulleted-list"><li style="list-style-type:disc">The OS kernel is started when the computer boots</li></ul><ul id="11690219-31c1-4ad5-b9a1-e6d56da7c908" class="bulleted-list"><li style="list-style-type:disc">The OS kernel then manages all the computer&#x27;s resources (processor, memory, I/O devices)</li></ul><ul id="8ef93ac3-fb71-4e14-aa66-6cb1861c465a" class="bulleted-list"><li style="list-style-type:disc">The OS kernel partitions the memory into kernel space (reserved to the kernel) and user space (all applications)</li></ul><ul id="da56eed9-25a1-46b2-8127-bf38cbdcf20e" class="bulleted-list"><li style="list-style-type:disc">The OS kernel exposes an interface to user space applications, the system calls</li></ul><h3 id="ac61e473-9b20-4be7-80d9-cd90849467a7" class="">Virtual Memory</h3><figure id="5516d37c-c581-4f1d-9bfe-fe3f8225ff67" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%2011.png"><img style="width:408px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%2011.png"/></a></figure><p id="ceaf59e2-d2ac-4a91-9a55-c9651378d098" class="">
+</p><h3 id="46ee3cea-cfd6-48fb-a9b5-17b57ad5855a" class=""><details open=""><summary><strong>I/O Devices</strong></summary></details></h3><div class="indented"><ul id="cf22c735-c90a-43ad-8b06-da426720c7a0" class="bulleted-list"><li style="list-style-type:disc">In Linux, files are a universal abstraction for all I/O devices. </li></ul><ul id="d8ba4f15-ff7b-4557-8248-b8ae7f9427a8" class="bulleted-list"><li style="list-style-type:disc">A file is an array of bytes. </li></ul><ul id="82aa1acd-856e-4e5f-8587-204b78bf8cf0" class="bulleted-list"><li style="list-style-type:disc">A file has a unique name (file descriptor). </li></ul><ul id="0c4f991a-eef4-4ebd-8216-a333dcba7a1c" class="bulleted-list"><li style="list-style-type:disc">Basic operations on files are create/delete, open/close, read/write.</li></ul></div><h1 id="80934dff-ad54-42ed-a7ab-bf6283ae0209" class="block-color-gray_background">5. C Programming Language</h1><h3 id="48824103-464e-4f20-a55e-2b3a24ac69f0" class="">System programming</h3><p id="6f858820-6fec-4127-8612-729f9a237c0f" class=""><strong>How to write programs that manage computer hardware?</strong></p><ul id="3ccf5f23-5a7c-415b-b446-61b84dc5d111" class="bulleted-list"><li style="list-style-type:disc">OS kernel</li></ul><ul id="d674f411-2929-451d-85e2-1970ba282db5" class="bulleted-list"><li style="list-style-type:disc">Embedded systems</li></ul><ul id="7fe814e6-40d4-48ea-9395-1b8bb61fbf0c" class="bulleted-list"><li style="list-style-type:disc">Infrastructure software that must tightly control its use of hardware resources:<ul id="b6ce7458-9eb1-4b5e-be61-c4b257efd36d" class="bulleted-list"><li style="list-style-type:circle">Compilers, Database systems, Version control</li></ul></li></ul><h3 id="cc9baff5-0773-480a-9d0d-b1351049dbf7" class=""><strong>C for system programming</strong></h3><ul id="09878408-88a5-487d-a2a6-e98698728fc4" class="bulleted-list"><li style="list-style-type:disc">More portable than assembly. </li></ul><ul id="532a41a4-e809-4573-a438-18bd2decd60f" class="bulleted-list"><li style="list-style-type:disc">Efficient enough to give programmers full control/responsibility over processes, virtual memory and file abstractions </li></ul><ul id="34a1845a-50d8-40c8-b71d-428ba5eb4b7e" class="bulleted-list"><li style="list-style-type:disc">Alternatives: Rust (Mozzilla), C++ Extensions: OpenCL, OneAPI</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="693f2a8c-afc2-4bbb-80fc-f32128c5884f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">C is an <strong>imperative </strong>programming language. 
+C is a permissive <strong>statically typed </strong>language.</div></figure><figure id="d061212f-849a-42fe-aaf4-53ff321b2b0a" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%2012.png"><img style="width:720px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%2012.png"/></a><figcaption>Compilation phases</figcaption></figure><pre id="ea7228e5-7c63-40a4-abda-1b4d7aba521d" class="code"><code>$ gcc -save-temps hello.c</code></pre><h3 id="92928117-903e-432c-b4f2-72f202859300" class=""><details open=""><summary>The standard C library</summary></details></h3><div class="indented"><p id="302cd8b9-8a40-40a1-92ff-040392f20e33" class="">“<em>The standard library provides a variety of functions, a few of which stand out as especially useful.&quot;</em> K&amp;R </p><p id="ea46dc08-9fc9-4467-9f48-641cb164a4bd" class=""><em>&quot;By the way, printf is not part of the C language; there is no input or output defined in C itself. There is nothing magic about printf ; it is just a useful function which is part of the standard library of routines that are normally accessible to C programs.&quot;</em> K&amp;R</p><figure id="9b906d4c-4107-4f55-ae41-4f3309f5f71a" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%2013.png"><img style="width:1109px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%2013.png"/></a></figure></div><pre id="83708ab7-0cce-4d4d-b77e-0e2b920b067a" class="code"><code>### Coding Style
+
+1. Indentation
+2. Breaking long lines
+3. Placing Braces and Spaces
+4. Naming
+5. Typedefs
+6. Functions
+7. Centralized exiting of functions [goto considered helpful]
+8. Commenting
+9. Function return values and names</code></pre><h3 id="cb2424ed-b873-4ed5-8104-096ae34f6843" class=""><details open=""><summary>Standards</summary></details></h3><div class="indented"><p id="a778ed82-637c-4b72-a82e-48be094f1c48" class="">Current standard: C11 </p><ul id="ce6dc86d-ed24-41ea-88e0-c3559e6aecd1" class="bulleted-list"><li style="list-style-type:disc">Unicode support, threads.h, stdatomic.h, type generic expressions </li></ul><p id="fdced766-7785-424e-8fb8-036ac010ce02" class="">Past standards: C99, C95, C90, C89 </p><ul id="3aeeee43-fbf8-4aa8-b997-f0fa949bce49" class="bulleted-list"><li style="list-style-type:disc">Removed features from K&amp;R C (such as implicit int or partial function prototypes). Introduced long, variable length arrays, and many library headers.</li></ul><p id="59bfdae6-57d4-40d1-99ae-05d8097b891e" class="">Future standard: C2X (charter), planned for 2021</p></div><h3 id="a7b05fd6-8298-4125-b17d-ac623288b2c4" class=""><details open=""><summary><strong>Undefined Behavior</strong></summary></details></h3><div class="indented"><p id="9c4e8d73-3918-4a28-8867-8d7fdf1f5d7e" class=""><em>&quot;In a safe programming language, errors are trapped as they happen. Java, for example, is largely safe via its exception system. In an unsafe programming language, errors are not trapped. (...) [In C], anything at all can happen; the Standard imposes no requirements. The program may fail to compile, or it may execute incorrectly (either crashing or silently generating incorrect results), or it may fortuitously do exactly what the programmer intended.&quot; </em></p><p id="6d91e9f3-1b5a-460b-ab3f-d8fe55a969af" class="">John Regehr</p><figure id="4959999a-5003-412d-a899-d63c37d875e9" class="image"><a href="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%2014.png"><img style="width:885px" src="Computer%20Systems%2018e1f2801bfb4d7ca11350000bc9034c/Untitled%2014.png"/></a></figure></div><p id="e513939b-7de8-40a0-8eac-a7bda845425d" class="">
+</p><h1 id="fef0a57f-be50-4bdf-b44b-1e63abddfda6" class="block-color-gray_background">6. Take-away</h1><p id="a8d9ee8d-72e6-436e-b634-452664341cec" class="">You will learn how the hardware infrastructure impacts software with a focus on either performance or security. We will cover in details programming issues related to the three fundamental abstractions provided by operating systems:</p><ul id="3cdac680-31eb-4632-bdda-426b0d6a840c" class="bulleted-list"><li style="list-style-type:disc">Processes are interpreters</li></ul><ul id="262de774-6c39-4560-b2ad-7daa6cd40711" class="bulleted-list"><li style="list-style-type:disc">Memory is an array of bytes</li></ul><ul id="a68500ad-0f9c-4995-9205-0a10218aaf0b" class="bulleted-list"><li style="list-style-type:disc">I/O devices are seen as files</li></ul><p id="472a07ea-a93f-4019-a6c1-fdfe40b9181e" class="">
+</p><p id="665e6cb4-0080-401b-98b9-4a3cba2d31a3" class="">4 compilation phases: preprocessing, compiler, assembler, linker </p><p id="10a676a3-f4ce-49ff-8b83-778ca4391e83" class="">The C standard library contains collections of useful functions.</p><p id="fe704de6-227a-4a61-b704-e670e73a960d" class="">The C standard creates undefined behaviours. Beware!</p><p id="682763b8-f025-42cd-adcd-cba484d9da63" class="">
+</p><p id="d5ffb0c7-f6ec-4d97-b89a-e1b3f6a44d22" class="">
+</p></div></article></body></html>

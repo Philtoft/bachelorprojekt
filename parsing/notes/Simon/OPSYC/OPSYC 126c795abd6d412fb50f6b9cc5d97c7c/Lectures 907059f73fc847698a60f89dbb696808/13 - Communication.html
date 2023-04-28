@@ -1,0 +1,675 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Communication</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="266ccc39-5d74-4c53-b982-828454d3d21a" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Communication%20266ccc395d744c53b982828454d3d21a/13.png"/></div><h1 class="page-title">Communication</h1><table class="properties"><tbody><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>TEACHER</th><td><span class="selected-value select-value-color-blue">Willard Rafnsson</span></td></tr><tr class="property-row property-row-file"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFile"><path d="M12.5938 8.44043L7.54883 13.4854C6.26367 14.7773 4.54102 14.6475 3.44043 13.54C2.32617 12.4326 2.20312 10.7168 3.49512 9.4248L10.3926 2.52734C11.1445 1.77539 12.2725 1.63867 13.0039 2.37695C13.7422 3.11523 13.6055 4.22949 12.8535 4.98828L6.08594 11.7627C5.77832 12.0703 5.41602 11.9814 5.2041 11.7764C4.99902 11.5576 4.91016 11.2021 5.21777 10.8877L9.93457 6.1709C10.1738 5.93164 10.1875 5.58301 9.96191 5.35059C9.72949 5.13184 9.38086 5.13867 9.1416 5.37793L4.39746 10.1152C3.67285 10.8535 3.7002 11.9746 4.34961 12.624C5.05371 13.3281 6.12012 13.3145 6.8584 12.5762L13.6602 5.77441C14.9795 4.45508 14.9316 2.71875 13.7764 1.55664C12.6416 0.428711 10.8779 0.34668 9.55176 1.66602L2.61328 8.61816C0.883789 10.3477 1 12.8291 2.57227 14.4014C4.14453 15.9668 6.63281 16.0898 8.3623 14.3672L13.4414 9.28809C13.6738 9.0625 13.667 8.64551 13.4346 8.41992C13.209 8.18066 12.833 8.21484 12.5938 8.44043Z"></path></svg></span>SLIDES</th><td><span style="margin-right:6px"><a href="https://github.itu.dk/pages/OSC/22-Website/slides/osc22_13_communication.pdf">Slides-13.pdf</a></span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>FORM</th><td><span class="selected-value select-value-color-green">LECTURE</span></td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>DONE</th><td><div class="checkbox checkbox-on"></div></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>WEEK</th><td>47</td></tr></tbody></table></header><div class="page-body"><h1 id="acffd6d6-ea4b-4b2b-bf72-2a37feeae7bf" class="">Network Programming</h1><hr id="571dfd14-9243-4222-84d7-38db6bad05c2"/><nav id="c740b1f0-826a-418d-8ac5-30318d64b707" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#acffd6d6-ea4b-4b2b-bf72-2a37feeae7bf">Network Programming</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d9081c32-15b2-4596-968b-7305c9b8d45e">R<strong>eadings</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#bfcc2890-1e96-44dc-b562-2dfa470f3e1a">Lecture</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e5b40dd9-962a-4abd-837a-b0fe7feffea7">1. Computer Networks</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#53da87b8-95a2-4170-b5da-2505cebbe425">Computer Networks</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#092a2ae2-4334-4241-96ab-aca8ba972435">2. Network Mapping (DNS, ports, link)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#98316969-3a68-46e2-870d-06ff9a852713">IP Addresses</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c811cb69-0686-444e-9a11-899b4bd5e9a0">Domain Name System (DNS)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e740e4e7-caa4-4a4f-b822-5358f9d1ae19">Internet Connections <time>@November 29, 2022</time> </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ea8fee2c-60a8-462c-804e-8f16465e3ae5">3. Sockets as communication abstractions</a></div></nav><p id="6bdd1fe1-ffd8-4ef5-847e-30f5f4edf80c" class="">
+</p><h2 id="d9081c32-15b2-4596-968b-7305c9b8d45e" class="">R<strong>eadings</strong></h2><hr id="536d23de-eb33-473c-88c3-3ae6a15460e4"/><blockquote id="6fb597dd-9b4f-4a70-bd51-e0f57443300b" class=""><strong>CS:APP Chapter 12: </strong><mark class="highlight-blue"><strong>Concurrent Programming</strong></mark><ul id="db06e135-8271-4be0-9675-412062a6d7be" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>11.1 </strong>The Client-Server Programming Model</span><div class="indented"></div></li></ul><ul id="ed2f58ef-e474-46c9-b528-5afb08e2b0a7" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>11.2 </strong>Networks</span><div class="indented"></div></li></ul><ul id="c2a1d167-3df5-4650-8dee-8d730966b41a" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked"><strong>11.3 </strong>The Global IP Internet</span><div class="indented"></div></li></ul><ul id="a9d53478-3d9a-4cda-897f-d09a61a75fed" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>11.4 </strong>The Sockets Interface</span><div class="indented"></div></li></ul></blockquote><p id="9c00cba8-7ef0-41a7-86fd-5b9feefd5c37" class="">
+</p><h1 id="bfcc2890-1e96-44dc-b562-2dfa470f3e1a" class="">Lecture</h1><hr id="8e54185b-b608-4d99-be2e-973b2077b60b"/><blockquote id="9fb26a0a-dfe8-43d6-94ad-7b9cfc827bec" class=""><strong>Agenda</strong><ul id="ca1d7226-44a7-4ab4-8e58-895500f6ac44" class="bulleted-list"><li style="list-style-type:disc">Network as a strictly layered system: physical (ethernet), kernel (IP/TCP), applications</li></ul><ul id="0243088e-0997-44e2-9f51-86b1c28f45ac" class="bulleted-list"><li style="list-style-type:disc">Protocol is a set of rules that governs how hosts and routers should cooperate when they transfer data from network to network via naming scheme and delivery mechanism.</li></ul><ul id="22e5333b-1c0f-459c-ab5c-96499d9b742e" class="bulleted-list"><li style="list-style-type:disc">Socket as communication abstraction. To the kernel, a socket is an endpoint of communication. To an application, a socket is a file descriptor that lets the application read/write from/to the network. Client connects to a server via a socket. Servers bind sockets to address:port, listen and accept incoming connections from clients. Thereafter, clients and servers can read and write.</li></ul></blockquote><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e649aee4-3f7a-4dfb-bde2-f8d09b2685a5"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%"><strong>networks:</strong> internet, host, port, socket, <strong>aF</strong></div></figure><p id="a4bd8276-ab7f-4f85-9d67-446c10cbc7fb" class="">
+</p><h1 id="e5b40dd9-962a-4abd-837a-b0fe7feffea7" class="block-color-gray_background">1. Computer Networks</h1><figure id="f37b1311-19c1-43a1-a694-7989b2957195" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled.png"><img style="width:1167px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled.png"/></a></figure><figure id="0e5705dd-81a3-439c-9f82-b6f5d027e858" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%201.png"><img style="width:1039px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%201.png"/></a></figure><figure id="131c12a3-c714-4812-b2e1-f2ae39d5ceee" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%202.png"><img style="width:1072px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%202.png"/></a></figure><h3 id="53da87b8-95a2-4170-b5da-2505cebbe425" class="">Computer Networks</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="46fa6b15-29a3-49d3-a0c7-aeedc77fda88"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">There are three different kinds of networks:<ul id="521f2e8b-1f5d-4cff-8a84-74c3dffb6bec" class="bulleted-list"><li style="list-style-type:disc">SAN</li></ul><ul id="70470fab-a060-476b-81e1-1da99a9660ff" class="bulleted-list"><li style="list-style-type:disc">LAN</li></ul><ul id="dfa7d0b7-c483-4012-83c0-8c260c18104a" class="bulleted-list"><li style="list-style-type:disc">WAN</li></ul></div></figure><figure id="6494fe9e-b72f-4745-9bf9-68abbbaba18f" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%203.png"><img style="width:1159px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%203.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c0776bfc-1f06-4aa3-9cad-5b746ec33f29"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">Today, we use fiber-optic cables.</div></figure><figure id="8507f710-b07e-440c-b4d9-c9ec43b538d1" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%204.png"><img style="width:1150px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%204.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3eadd930-54f2-4b22-b3c3-9e9696923d5b"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">Now, bridges have taken over for the previous hubs.</div></figure><figure id="eae291e7-b447-434d-8321-90c994a2d0a2" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%205.png"><img style="width:1160px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%205.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="cf9ed663-a13c-448f-81d8-239118d77888"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">This slide now have replaced the hub with bridges.</div></figure><figure id="c8082796-f083-46f3-b8de-3be9a0befd33" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%206.png"><img style="width:1142px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%206.png"/></a></figure><figure id="52e709a1-2eb4-4d63-83b9-8af4d513f94a" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%207.png"><img style="width:1145px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%207.png"/></a></figure><figure id="73681a68-859b-4f1f-96c2-e8460c6a6345" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%208.png"><img style="width:1161px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%208.png"/></a></figure><p id="bbd99953-84fe-4993-93d7-6c4fba6f6b41" class="">
+</p><p id="02b17355-0e09-4990-96dd-91828f2595e9" class="">
+</p><h1 id="092a2ae2-4334-4241-96ab-aca8ba972435" class="block-color-gray_background">2. Network Mapping (DNS, ports, link)</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0dee15b7-766a-4fcc-8bd9-c4eb28204bce"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%"><strong>Protocols </strong>allow bits to being sent across imcompatible LANs and WANs.</div></figure><figure id="fa888004-ccd9-4c17-9296-dab54e1d60df" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%209.png"><img style="width:1144px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%209.png"/></a></figure><figure id="987bd172-0eb2-479d-9f90-941c6cba2c86" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2010.png"><img style="width:1111px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2010.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e7b18144-d3a0-47c7-959c-52efc58326a8"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">The <strong>internet protocol</strong> provides a naming scheme and delivery mechanism.</div></figure><figure id="1cf59711-fa8a-404a-952c-e02cf1c79cc8" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2011.png"><img style="width:1151px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2011.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="455e0ebf-88de-4dc5-8ba8-4b7c8977c623"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%"><strong>IP </strong>and <strong>UDP</strong> are unreliable while <strong>TCP </strong>is reliable.</div></figure><figure id="dcf99335-5a20-4faa-a999-9f6ab600f7b7" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2012.png"><img style="width:1150px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2012.png"/></a></figure><figure id="cddf1545-f82f-473d-a9a7-7ce177272d86" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2013.png"><img style="width:1121px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2013.png"/></a></figure><h3 id="98316969-3a68-46e2-870d-06ff9a852713" class="">IP Addresses</h3><figure id="27b7ecde-e02d-43e0-b54f-05127ca87c53" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2014.png"><img style="width:1150px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2014.png"/></a></figure><figure id="9e9b68b2-a23f-4ee4-a543-0c833c875253" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2015.png"><img style="width:1157px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2015.png"/></a></figure><figure id="466874ff-2daf-4c5c-ab67-803b9163fc29" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2016.png"><img style="width:1150px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2016.png"/></a></figure><h3 id="c811cb69-0686-444e-9a11-899b4bd5e9a0" class="">Domain Name System (DNS)</h3><figure id="3ecff381-677c-4002-8db0-f6cfccecd0ca" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2017.png"><img style="width:1151px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2017.png"/></a></figure><figure id="3b7f8d4d-fdb2-45ff-9a09-e325507e909b" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2018.png"><img style="width:1144px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2018.png"/></a></figure><figure id="fbdc98a8-dbb9-4835-9f83-c8ad04a9f11e" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2019.png"><img style="width:1163px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2019.png"/></a></figure><h3 id="e740e4e7-caa4-4a4f-b822-5358f9d1ae19" class="">Internet Connections <time>@November 29, 2022</time> </h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e1f2df06-f4f6-4ef8-a487-7d215b893465"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%"><strong>Two distinct categories. </strong><ul id="60e59a0b-8cc3-46ec-950f-78cebb0392b8" class="bulleted-list"><li style="list-style-type:disc"><strong>Ephemeral port:</strong> Short-lived port, only lived for the duration of the connection</li></ul><ul id="34a4b064-ba26-4fc0-ae1d-9a1c3de1db6c" class="bulleted-list"><li style="list-style-type:disc"><strong>Well-known port:</strong> Long-lived port, only connects if a server is running.</li></ul></div></figure><figure id="da0f3e46-0f9d-4b80-9d5d-39fda760156e" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2020.png"><img style="width:1151px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2020.png"/></a></figure><figure id="6d67a530-0089-4256-9418-2de4547b798f" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2021.png"><img style="width:1156px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2021.png"/></a></figure><figure id="19b2633a-a86e-442d-b3d4-c39b69e54c76" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2022.png"><img style="width:1149px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2022.png"/></a></figure><figure id="becc3651-c88e-4c80-9b94-8966d6b1ee49" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2023.png"><img style="width:1056px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2023.png"/></a></figure><p id="2374e53b-ca5d-403d-926c-71a53849fd21" class="">
+</p><h1 id="ea8fee2c-60a8-462c-804e-8f16465e3ae5" class="block-color-gray_background">3. Sockets as communication abstractions</h1><figure id="cce2285d-5676-4bb6-9319-97f940760b0b" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2024.png"><img style="width:1151px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2024.png"/></a></figure><figure id="7fda07bd-097f-43a0-9b88-b3b5b27e3bd1" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2025.png"><img style="width:1168px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2025.png"/></a></figure><div id="05040a70-64c0-46b7-a391-ce43c6f5b047" class="column-list"><div id="23c17dc4-975b-45d3-bba5-24e4e76e5d2b" style="width:50%" class="column"><figure id="4a27c408-3cee-4923-9d5b-1e8b4d6a3fa2" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2026.png"><img style="width:1164px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2026.png"/></a></figure></div><div id="5c8a8fd4-eedc-453b-a5f3-b506630ae228" style="width:50%" class="column"><figure id="4bde31ba-9a6f-4473-93e1-a6a8123c55e7" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2027.png"><img style="width:1168px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2027.png"/></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="eb3e0ff9-bd3c-4224-9c89-cdd1334881fe"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">The client hosts an ephemeral port, and the server hosts a well-known port. Clients can connect to the server’s well-known port. The server should always be alive.</div></figure><figure id="969f9b20-42a0-4000-886e-23ce77295eba" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2028.png"><img style="width:1177px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2028.png"/></a></figure><figure id="575abe61-cd5d-49a0-8a37-c48acb97f721" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2029.png"><img style="width:1172px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2029.png"/></a></figure><figure id="7f726827-d960-4dad-9c18-f8267a0657c8" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2030.png"><img style="width:1171px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2030.png"/></a></figure><figure id="a9184b43-63f2-42f2-a942-0809efee0931" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2031.png"><img style="width:1163px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2031.png"/></a></figure><figure id="0211d2e5-1dfb-4c77-91f2-a5393c8122ef" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2032.png"><img style="width:1165px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2032.png"/></a></figure><figure id="1e2218c2-e7ce-4f68-9cb2-d7bf4ce3efa7" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2033.png"><img style="width:1164px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2033.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b0f3a49d-5cdf-4da9-b90e-0bcc03751054"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/comment_gray.svg"/></div><div style="width:100%">A socket pair is created between the browser (client) and the server. This allows for sending requests and responses via this socket pair.</div></figure><figure id="357c7f32-38d4-484c-898b-6e60ee8cdf63" class="image"><a href="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2034.png"><img style="width:1169px" src="Communication%20266ccc395d744c53b982828454d3d21a/Untitled%2034.png"/></a></figure></div></article></body></html>

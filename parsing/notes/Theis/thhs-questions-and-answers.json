@@ -1,0 +1,155 @@
+[
+	{
+		"question": "Who is the property of being authentic and being able to be verified and trusted?",
+		"answer": {
+			"score": 0.9797407984733582,
+			"start": 950,
+			"end": 962,
+			"answer": "Authenticity"
+		}
+	},
+	{
+		"question": "What is an attempt to alter system resources or affect their operation?",
+		"answer": {
+			"score": 0.9530361890792847,
+			"start": 0,
+			"end": 13,
+			"answer": "Active attack"
+		}
+	},
+	{
+		"question": "What is a particular focus in this category?",
+		"answer": {
+			"score": 0.9463707804679871,
+			"start": 1335,
+			"end": 1354,
+			"answer": "Web server software"
+		}
+	},
+	{
+		"question": "What is the name of the term that covers two related concepts?",
+		"answer": {
+			"score": 0.8743918538093567,
+			"start": 1342,
+			"end": 1356,
+			"answer": "Accountability"
+		}
+	},
+	{
+		"question": "What is the origin of the attack?",
+		"answer": {
+			"score": 0.821284830570221,
+			"start": 261,
+			"end": 274,
+			"answer": "Inside attack"
+		}
+	},
+	{
+		"question": "Who knows everything about the infrastructure of the organisation and will know when to the possible human attack surface",
+		"answer": {
+			"score": 0.7425997257232666,
+			"start": 666,
+			"end": 679,
+			"answer": "the adversary"
+		}
+	},
+	{
+		"question": "What does a system perform in an unimpaired manner?",
+		"answer": {
+			"score": 0.6393283009529114,
+			"start": 826,
+			"end": 847,
+			"answer": "its intended function"
+		}
+	},
+	{
+		"question": "Who is the insider authorized to access system resources?",
+		"answer": {
+			"score": 0.5360894203186035,
+			"start": 289,
+			"end": 328,
+			"answer": "an entity inside the security perimeter"
+		}
+	},
+	{
+		"question": "What is the name of a card-reader website server?",
+		"answer": {
+			"score": 0.40306150913238525,
+			"start": 111,
+			"end": 135,
+			"answer": "1.4: Low confidentiality"
+		}
+	},
+	{
+		"question": "What is a good tradeoff for Defamation, private information, High confidentiality?",
+		"answer": {
+			"score": 0.2882665693759918,
+			"start": 456,
+			"end": 493,
+			"answer": "extremely sensitive data Low-moderate"
+		}
+	},
+	{
+		"question": "What does logical access control provide for protecting cryptographic software from tampering and the keys from replacement or disclosure?",
+		"answer": {
+			"score": 0.2519945800304413,
+			"start": 59,
+			"end": 127,
+			"answer": "isolating cryptographic software from other parts of the host system"
+		}
+	},
+	{
+		"question": "What is the name of the person who is responsible for generating questions?",
+		"answer": {
+			"score": 0.1657295525074005,
+			"start": 0,
+			"end": 1,
+			"answer": "."
+		}
+	},
+	{
+		"question": "How many outside attackers are in the Internet?",
+		"answer": {
+			"score": 0.13106130063533783,
+			"start": 653,
+			"end": 745,
+			"answer": "amateur pranksters to organized criminals, international terrorists, and hostile governments"
+		}
+	},
+	{
+		"question": "What is an access card to ensure confidentiality and a password that goes with it?",
+		"answer": {
+			"score": 0.09916803985834122,
+			"start": 1518,
+			"end": 1545,
+			"answer": "Group theory Exercises: 1.1"
+		}
+	},
+	{
+		"question": "What does the term \"data confidentiality\" mean?",
+		"answer": {
+			"score": 0.03678695112466812,
+			"start": 1358,
+			"end": 1375,
+			"answer": "The security goal"
+		}
+	},
+	{
+		"question": "?",
+		"answer": {
+			"score": 1.2563124073494691e-5,
+			"start": 1672,
+			"end": 1737,
+			"answer": "we must be able to trace a security breach to a responsible party"
+		}
+	},
+	{
+		"question": "?",
+		"answer": {
+			"score": 7.842867489671335e-6,
+			"start": 13,
+			"end": 91,
+			"answer": "logical access control may provide a means of isolating cryptographic software"
+		}
+	}
+]

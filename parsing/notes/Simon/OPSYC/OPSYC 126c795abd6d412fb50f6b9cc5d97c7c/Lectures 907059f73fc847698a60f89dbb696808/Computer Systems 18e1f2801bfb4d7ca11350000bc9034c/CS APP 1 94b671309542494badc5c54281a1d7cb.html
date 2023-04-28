@@ -1,0 +1,688 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CS:APP 1</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="94b67130-9542-494b-adc5-c54281a1d7cb" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/book-closed_blue.svg"/></div><h1 class="page-title">CS:APP 1</h1></header><div class="page-body"><nav id="32564d93-4a57-4cdd-880a-83978b871148" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#789ebd85-49e6-4c5e-a4e4-6b2b293148e2">The compilation system</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6420f162-328a-4263-b783-4046a4ffe3c7">It pays to understand how the compilation system work</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5c300b09-4e5e-44ca-a8f9-23876cb14535">Hardware organization of a system</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#cf868340-f675-4e17-a463-f9f2f5be9336">Caches matter</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4081a7a0-a42e-4ebd-8e2a-12e9e2d5305f">The Operating System manages the hardware</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#99a7def6-1b7d-46c2-98d4-310429535fc7">Systems communicate with other systems using networks</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#31495d7c-3052-4345-802b-24fd73acb301">Amdahl’s Law</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d2ca68ab-e526-41f9-b831-ad0caf6adc72">Concurrency and Parallelism</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#37fb9143-1097-4115-9e7c-2140ed34863c">The importance of abstractions in computer systems</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#901186e9-960e-462b-a82c-0464caad8cb3">Summary</a></div></nav><pre id="aad07c76-f710-43ca-b619-7ab0a8fe508a" class="code"><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+		printf(&quot;hello, world\n&quot;);
+		return 0;
+}</code></pre><ul id="9f0c757c-da68-4fc3-87f5-b9b9deffdd02" class="toggle"><li><details open=""><summary>Which driver is responsible for translating <em>C</em> code into machine-language instructions?</summary><p id="87451152-87fb-4206-8f40-fb060e5ef5cf" class="">That is the <span style="border-bottom:0.05em solid">compiler driver</span>.</p><p id="05f6a61f-9e17-415f-a573-b7d5998e779e" class="">The instructions is packaged into executables object files which the computer can directly run because it is stored as a binary disk file.</p></details></li></ul><p id="2e5a03df-e37b-45c7-baf3-534a54c34513" class="">
+</p><h3 id="789ebd85-49e6-4c5e-a4e4-6b2b293148e2" class="">The compilation system</h3><figure id="4064c7d3-47ee-4a3b-a8bf-b49c4600eef8" class="image"><a href="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled.png"><img style="width:1045px" src="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled.png"/></a></figure><p id="636b7a7a-da23-4995-bd63-4ffbe31f4679" class="">The <strong>translation </strong>of the program happens in <strong>four phases</strong>:</p><ol type="1" id="4b98171a-a08d-450f-9478-bbde8ce4cbdd" class="numbered-list" start="1"><li><strong>Preprocessing phase</strong>: Results in a <code>hello.i</code> program.</li></ol><ol type="1" id="e63740b6-6d85-432f-89c0-7e9a7c39c304" class="numbered-list" start="2"><li><strong>Compilation phase</strong>: Results in a <code>hello.s</code> program.</li></ol><ol type="1" id="b8eeeb99-3c45-46d5-9bf7-85cc8fd03ad7" class="numbered-list" start="3"><li><strong>Assembly phase</strong>: Result in a <code>hello.o</code> program.</li></ol><ol type="1" id="3370a7e9-2f61-47f9-bdf1-9ad429da8834" class="numbered-list" start="4"><li><strong>Linking phase</strong>: Results in a <code>hello</code> file or simply an executable that is ready to be loaded into memory and executed by the system.</li></ol><ul id="7db22ced-66c4-4df6-ab66-2c6b975d1a99" class="toggle"><li><details open=""><summary>The <code>GNU</code> project</summary><figure id="daa88ee3-21ad-4249-bc4e-14d39a9ce0a9" class="image"><a href="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%201.png"><img style="width:1083px" src="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%201.png"/></a></figure></details></li></ul><h3 id="6420f162-328a-4263-b783-4046a4ffe3c7" class="">It pays to understand how the compilation system work</h3><p id="469a85d6-068e-47ec-8c26-4555016382c7" class="">Why is that so?</p><ul id="56993685-33c7-402a-a252-8240efdaad70" class="bulleted-list"><li style="list-style-type:disc"><strong>Optimizing program performance</strong>: choosing between a <code>while</code> loop of a <code>for</code> loop or a <code>switch</code> statement versus a sequence of <code>if-else</code> statements.</li></ul><ul id="8c31a6df-94be-46a8-957f-f4898950e757" class="bulleted-list"><li style="list-style-type:disc"><strong>Understanding link-time errors</strong>.</li></ul><ul id="99fc9d1a-5c8d-4cea-8357-c9bb9c45049c" class="bulleted-list"><li style="list-style-type:disc"><strong>Avoiding security holes</strong>: This includes understanding vulnerabilities of storing data in certain ways. </li></ul><pre id="b20a2a96-d948-49d7-b14b-16930a2879a6" class="code"><code>linux&gt; ./hello
+hello, world
+linux&gt;</code></pre><p id="29117b85-425e-43b6-9883-151ed574978a" class="">
+</p><h3 id="5c300b09-4e5e-44ca-a8f9-23876cb14535" class="">Hardware organization of a system</h3><figure id="aed9050b-8553-4820-a61f-9cc1b56435b5" class="image" style="text-align:center"><a href="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%202.png"><img style="width:576px" src="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%202.png"/></a></figure><ul id="7e06dd06-3659-4828-a358-1f16a68c4743" class="bulleted-list"><li style="list-style-type:disc"><strong>Buses:</strong> These carry bytes of information between the components. The information is transferred in fixed-size chunks of bytes known a <strong><span style="border-bottom:0.05em solid">words</span></strong>. The word size is a fundamental parameter in machines today — the word size of a machine is typically 4 bytes (32 bits) or 8 bytes (64 bits). </li></ul><ul id="af0cdc60-3401-45c7-8533-3bc649894844" class="bulleted-list"><li style="list-style-type:disc"><strong>I/O devices: </strong>This is the system’s connection to the external world. E.g. a keyboard or mouse. A I/O device is either connected the the I/O bus by a controller or a adapter. Controllers are a chip, integrated into the motherboard, and a adapter is a card that is inserted into a slot on the motherboard.</li></ul><ul id="95db6f1a-c6a1-4855-a5dc-9c8674e24c4e" class="bulleted-list"><li style="list-style-type:disc"><strong>Main memory:</strong> This is the temporary storage device that holds both the program and the data it manipulates while the processor is executing the program. The main memory consists of a collection of dynamic random access memory (DRAM).</li></ul><ul id="25d342ca-4066-45e5-b41f-a46169305888" class="bulleted-list"><li style="list-style-type:disc"><strong>Processor: </strong>The central processing unit (CPU), or simply processor, are responsible for executing the instructions stored in main memory. <ul id="4509762c-806e-425f-81ef-a2b232b18e9c" class="bulleted-list"><li style="list-style-type:circle">It consists of the register file and the arithmetic/logic unit (ALU).</li></ul><ul id="a8e8edca-2cbf-49fa-9748-c5951f269807" class="bulleted-list"><li style="list-style-type:circle">Examples of simple operations that CPU carry out:<ul id="489cd16b-fd38-4a1f-b925-713640204f5b" class="bulleted-list"><li style="list-style-type:square">Load</li></ul><ul id="81d5d688-89e4-45f5-8d7e-74aecc30bdc8" class="bulleted-list"><li style="list-style-type:square">Store</li></ul><ul id="083725ac-7242-450d-954d-599c8f0aeddd" class="bulleted-list"><li style="list-style-type:square">Operate</li></ul><ul id="d5bd6484-edff-43a9-ad29-6d4c9de78d5e" class="bulleted-list"><li style="list-style-type:square">Jump</li></ul></li></ul></li></ul><figure id="11b03c97-c87a-4abd-aa33-409d4127740b" class="image" style="text-align:center"><a href="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%203.png"><img style="width:576px" src="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%203.png"/></a></figure><p id="b5affdb4-1e9a-4974-9d01-1e772a571cad" class="">
+</p><h3 id="cf868340-f675-4e17-a463-f9f2f5be9336" class="">Caches matter</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f6b2b9ef-0654-42a0-a889-3426f4fa306f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>An important lesson</strong> from this simple example is that a system spends a lot of time moving information from one place to another. The machine instructions in the hello program are originally stored on disk. When the program is loaded, they are copied to main memory. As the processor runs the program, instructions are copied from main memory into the processor. Similarly, the data string <code>hello,world\n</code>, originally on disk, is copied to main memory and then copied from main memory to the display device. From a programmer&#x27;s perspective, much of this copying is overhead that slows down the &quot;real work&quot; of the program. Thus, a major goal for system designers is to make these copy operations run as fast as possible.</div></figure><p id="be3ae974-8610-4d36-99c7-9407963bf2a6" class="">It is easier and cheaper to make processors run faster than it is to make main memory run faster.</p><ul id="c1694f8d-96af-4524-bfe1-408470be587e" class="toggle"><li><details open=""><summary>Why are <strong>cache memories</strong> needed?</summary><p id="6167bf97-0af5-4d55-9b16-7ebfd96c4e8b" class="">To deal with the processor-memory gap, system designers include smaller, faster storage devices called cache memories (or simply caches) that serve as temporary staging areas for information that the processor is likely to need in the near future.</p></details></li></ul><figure id="7d47cd7c-41ac-4536-9f02-f316685604f6" class="image" style="text-align:center"><a href="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%204.png"><img style="width:576px" src="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%204.png"/></a><figcaption>As we move from the top of the hierarchy to the bottom, the devices become slower, larger, and less costly per byte.</figcaption></figure><p id="672f82bf-3ff3-4d11-9eb2-c221e96d7064" class="">
+</p><h3 id="4081a7a0-a42e-4ebd-8e2a-12e9e2d5305f" class="">The Operating System manages the hardware</h3><figure id="3ada81d5-cfaf-491f-a3be-1a343323f7eb" class="image" style="text-align:center"><a href="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%205.png"><img style="width:624px" src="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%205.png"/></a><figcaption>We can think of the operating system as a layer of software interposed between the application program and the hardware. All attempts by an application program to manipulate the hardware must go through the operating system.</figcaption></figure><p id="c958130d-b8be-44d3-be66-13a51a91f564" class="">The <strong>OS has two primary purpose</strong>s:</p><ol type="1" id="3bbefcdb-bbfe-48b9-b071-5f555cbbbcc2" class="numbered-list" start="1"><li>To protect the hardware from misuse by runaway application.</li></ol><ol type="1" id="fb0ab424-16b5-4a13-821a-70a8bfaa96ba" class="numbered-list" start="2"><li>To provide applications with simple and uniform mechanisms for manipulating complicated and often wildly different low-level hardware devices.</li></ol><figure id="1b46cc6c-5b1c-4c56-bc05-361c72a97a41" class="image" style="text-align:center"><a href="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%206.png"><img style="width:624px" src="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%206.png"/></a></figure><p id="70b8440d-fece-42ac-bf0f-e7368fb7eeba" class="">The operating system achieves both goals via the <strong>fundamental abstractions</strong> shown in Figure 1.11: <strong>processes, virtual memory</strong>, and <strong>files</strong>.</p><ul id="46c0c7c2-b326-4afd-b26b-4186e94e6fbe" class="bulleted-list"><li style="list-style-type:disc"><strong>Processes</strong><ul id="13762215-ddf1-4a46-bf6b-9951ac8b1b4f" class="bulleted-list"><li style="list-style-type:circle">A process is the operating system&#x27;s abstraction for a running program. Multiple processes can run concurrently on the same system, and each process appears to have exclusive use of the hardware.</li></ul><ul id="58bd658a-616d-4cce-9101-02ebf215539d" class="bulleted-list"><li style="list-style-type:circle">When a program such as hello runs on a modern system, the operating system provides the illusion that the program is the only one running on the system. The program appears to have exclusive use of both the processor, main memory, and I/O devices.</li></ul><ul id="0da55412-2e33-49af-a032-e55a9b421518" class="toggle"><li><details open=""><summary>What is <em>context switching</em>?</summary><p id="1eb5b0f9-4db5-4868-9d2e-6d3e827f160a" class="">The operating system keeps track of all the state information that the process needs in order to run. This state, which is known as the context, includes information such as the current values of the PC, the register file, and the contents of main memory. At any point in time, a uniprocessor system can only execute the code for a single process. When the operating system decides to transfer control from the current process to some new process, it performs a <strong>context switch</strong> by saving the context of the current process, restoring the context of the new process, and then passing control to the new process.</p><figure id="7fbeb69b-9e3e-47f9-87c0-d917217de183" class="image"><a href="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%207.png"><img style="width:1062px" src="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%207.png"/></a></figure></details></li></ul><ul id="35e2ebbc-e449-439e-bde9-b1a68de87dfa" class="toggle"><li><details open=""><summary>What is responsible for transitioning from one process to another (context switching)?</summary><p id="dbeda52d-5459-48db-b324-cd9800ebd63e" class="">The operating system <span style="border-bottom:0.05em solid"><em>kernel</em></span>.</p></details></li></ul></li></ul><ul id="9e23c04c-0f2d-43c5-8042-6137ad2db14b" class="bulleted-list"><li style="list-style-type:disc"><strong>Threads</strong><ul id="779247b0-b217-494a-85bd-4295390b1b1c" class="bulleted-list"><li style="list-style-type:circle">A process consists of multiple execution units, called threads. Threads are important for concurrency in network servers; this is because it is easier to shake data between multiple threads than between multiple processes (it is more efficient).</li></ul></li></ul><ul id="91f7e9be-35d5-4ec0-8a7b-68991dccd9a6" class="bulleted-list"><li style="list-style-type:disc"><strong>Virtual memory</strong><ul id="a75a212a-c74d-4d20-9a64-32a3da6bc980" class="bulleted-list"><li style="list-style-type:circle">This is an abstraction that provides each process with the illusion that it has exclusive of the main memory.<figure id="8f7d2c0c-d105-4ae2-83e7-a5cab553d84b" class="image" style="text-align:center"><a href="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%208.png"><img style="width:480px" src="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%208.png"/></a></figure></li></ul><ul id="ff7c89ed-c7ac-477b-a8e3-1ea2defeb8aa" class="bulleted-list"><li style="list-style-type:circle"></li></ul></li></ul><ul id="c9c25de1-d25c-4559-8db3-e76acde72f36" class="bulleted-list"><li style="list-style-type:disc"><strong>Files</strong><ul id="9a85ee05-b18b-425e-8d85-d44d8e5589eb" class="bulleted-list"><li style="list-style-type:circle">A file is a sequence of bytes. All input and output in the system is performed by reading and writing files.</li></ul></li></ul><p id="0bcec611-4610-4865-8b91-c45f139eb347" class="">
+</p><h3 id="99a7def6-1b7d-46c2-98d4-310429535fc7" class="">Systems communicate with other systems using networks</h3><p id="68b53025-5177-4cf6-8fd1-5ecfa46d88e4" class="">From the view of an individual system, the network can be viewed a just another I/O device.</p><figure id="e1eb317c-a100-4cd5-8a8b-5b40c7a268a0" class="image"><a href="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%209.png"><img style="width:480px" src="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%209.png"/></a></figure><ul id="fea374ba-86d8-436f-9da4-1cfc6ebec112" class="toggle"><li><details open=""><summary>How can knowledge about running application programs influence my future written code?</summary><p id="99f5f112-9e82-47c9-a9b8-8238e4f926ac" class="">This helps create <strong>faster</strong>, <strong>more reliable</strong>, and <strong>more secure</strong> programs.</p><p id="f1890f56-7836-4729-a2f0-0fbc7d0a4a5f" class="">
+</p></details></li></ul><p id="1f568998-ecd3-4381-9815-6e4ca2980b01" class="">
+</p><h3 id="31495d7c-3052-4345-802b-24fd73acb301" class="">Amdahl’s Law</h3><p id="8d248cf1-b862-4ae0-bda3-8a5645264cd7" class="">It is a formula used to find the maximum improvement possible by just improving a particular part of a system.</p><p id="135c194a-a816-4885-a319-69db554e5729" class="">
+</p><h3 id="d2ca68ab-e526-41f9-b831-ad0caf6adc72" class="">Concurrency and Parallelism</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="05db712c-4840-49f6-bbf7-96144ea4eb78"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Throughout the history of digital computers, <strong>two demands have been constant forces in driving improvements</strong>: we want them to <strong>do more</strong>, and we want them to <strong>run faster</strong>.</div></figure><p id="72d680d2-57cd-4a89-8a8b-199269fe7b56" class="">Both of these factors improve when the processor does more things at once. We use the term </p><ul id="35d6c5d9-aee4-4a9c-8855-89cb8947d8b7" class="bulleted-list"><li style="list-style-type:disc"><strong>concurrency </strong>to refer to the general concept of a system with <span style="border-bottom:0.05em solid">multiple, simultaneous activities</span>, and the term </li></ul><ul id="b7ff321f-37ee-4795-a6f0-642ae95ad69c" class="bulleted-list"><li style="list-style-type:disc"><strong>parallelism </strong>to refer to the use of <span style="border-bottom:0.05em solid">concurrency to make a system run faster</span>.</li></ul><table id="1ac1cc2f-ab08-4af9-b74b-0b5e3e854413" class="simple-table"><tbody><tr id="976a8371-45d0-44b9-9206-88664559d904"><td id="&gt;KqR" class="" style="width:349px"><strong>Concurrency</strong></td><td id=";IbV" class="" style="width:349px"><strong>Parallelism</strong></td></tr><tr id="0ff974db-3f18-4115-9e58-9a3eb0d01cea"><td id="&gt;KqR" class="" style="width:349px">Concurrency is the task of running and managing the multiple computations at the same time.</td><td id=";IbV" class="" style="width:349px">While parallelism is the task of running multiple computations simultaneously.</td></tr><tr id="8a2f5a91-906d-4e04-a276-73d765c0b40f"><td id="&gt;KqR" class="" style="width:349px">Concurrency is achieved through the interleaving operation of processes on the central processing unit (CPU) or in other words by the context switching.</td><td id=";IbV" class="" style="width:349px">While it is achieved by through multiple central processing units (CPUs).</td></tr><tr id="72eec61e-cef8-4948-bcd2-1bb81dbd246f"><td id="&gt;KqR" class="" style="width:349px">Concurrency can be done by using a single processing unit.</td><td id=";IbV" class="" style="width:349px">While this can’t be done by using a single processing unit. it needs multiple processing units.</td></tr><tr id="f58d2a40-0421-4401-901c-3da874bf5fe6"><td id="&gt;KqR" class="" style="width:349px">Concurrency increases the amount of work finished at a time.</td><td id=";IbV" class="" style="width:349px">While it improves the throughput and computational speed of the system.</td></tr></tbody></table><p id="2f38d2e7-a517-4d6a-8e11-9b40fd1c0032" class="">
+</p><p id="8ca592ac-b2dd-4e53-80db-1ef6e5d55767" class=""><strong>Three levels of concurrency</strong></p><ol type="1" id="03012363-37dd-4cea-b9b5-33a9b2180a66" class="numbered-list" start="1"><li><strong>Thread-level concurrency:</strong> With threads, we can even have multiple control flows executing within a single process. It also allows a single user to engage in multiple tasks concurrently, such as having a Web browser in one window, a word processor in another, and streaming music playing at the same time.<figure id="e6981f29-024f-49b1-89a1-ca8144439bf3" class="image" style="text-align:center"><a href="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%2010.png"><img style="width:528px" src="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%2010.png"/></a></figure></li></ol><ol type="1" id="fedc1fa6-fba2-4b5e-b575-69b985a3cd83" class="numbered-list" start="2"><li><strong>Instructions-level parallelism:</strong> At a much lower level of abstraction, modern processors can execute multiple instructions at one time, a property known as instruction-level parallelism. More recent processors can sustain execution rates of 2-4 instructions per clock cycle. Any given instruction requires much longer from start to finish, perhaps 20 cycles or more, but the processor uses a number of clever tricks to process as many as 100 instructions at a time.</li></ol><ol type="1" id="a022b684-276d-4c92-acdb-8d41517b5723" class="numbered-list" start="3"><li><strong>Single-Instruction, Multiple-Data (SIMD) parallelism:</strong> At the lowest level, many modern processors have special hardware that allows a single instruction to cause multiple operations to be performed in parallel, a mode known as single-instruction, multiple-data (SIMD) parallelism. For example, recent generations of Intel and AMD processors have instructions that can add 8 pairs of single-precision floating-point numbers (C data type float) in parallel.</li></ol><p id="58875910-5695-4a01-8a9f-34c88c430ad9" class="">
+</p><h3 id="37fb9143-1097-4115-9e7c-2140ed34863c" class="">The importance of abstractions in computer systems</h3><p id="82ca3474-3009-4b6b-b3f4-fbbc6a4dfa38" class="">A good programming practice is to formulate a simple application program interface (API for a set of functions that allow programmers to use the code without having to delve into its inner workings.</p><figure id="6ffa541e-bd38-4506-ae58-73cca5b3a8f2" class="image"><a href="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%2011.png"><img style="width:997px" src="CS%20APP%201%2094b671309542494badc5c54281a1d7cb/Untitled%2011.png"/></a></figure><p id="765b506e-21ce-4440-8f51-a44ce3ab476c" class="">
+</p><h3 id="901186e9-960e-462b-a82c-0464caad8cb3" class="">Summary</h3><p id="39b7be33-8dce-4115-9150-d4200b55bef9" class="">The operating system kernel serves as an intermediary between the application and the hardware. It provides three fundamental abstractions: (1) Files are abstractions for I/O devices. (2) Virtual memory is an abstraction for both main memory and disks. (3) Processes are abstractions for the processor, main memory, and I/O devices.</p></div></article></body></html>

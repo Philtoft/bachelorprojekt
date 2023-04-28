@@ -1,0 +1,276 @@
+[
+	{
+		"context": "Computer Systems Computer Systems R eadings Lecture 1. Overview of the course Difference between SWU and DS Why this course? What is in it for you? 2. What is this class about? 3. Computer Systems Memory Abstraction Interpreter Abstraction Communication Abstraction Layered view of a Computer System Computer Hardware How does a processor work? How does a CPU work? How does main memory work? Memory Hierarchy Latency Numbers Every Programmer Should Know 4. Operating Systems Processes: Definition OS Kernel Virtual Memory I/O Devices 5. C Programming Language System programming C for system programming The standard C library Standards Undefined Behavior 6.",
+		"questions_answers": [
+			{
+				"question": "What is the course of Computer Systems Computer Systems R eadings Lecture 1. Overview of the course Difference between SWU and DS What is this class about?",
+				"answer": {
+					"score": 0.1305919587612152,
+					"start": 55,
+					"end": 123,
+					"answer": "Overview of the course Difference between SWU and DS Why this course"
+				}
+			},
+			{
+				"question": "What does a computer systems memory abtraction interpreter Abstraction Communication abtraction Layered view of a Computer System Computer Hardware What does the computer system computer hardware work?",
+				"answer": {
+					"score": 0.6290208697319031,
+					"start": 318,
+					"end": 343,
+					"answer": "How does a processor work"
+				}
+			},
+			{
+				"question": "What is a standard C library for system programming?",
+				"answer": {
+					"score": 0.9067890048027039,
+					"start": 638,
+					"end": 658,
+					"answer": "Undefined Behavior 6"
+				}
+			}
+		]
+	},
+	{
+		"context": "Take-away A Tour of Computer Systems. This chapter introduces the major ideas and themes in computer systems by tracing the life cycle of a simple \u201chello, world\u201d program. CS:APP 1 Agenda Part I: Overview Logistics Why this course? What is in it for you? Part II: What is this class about? Computer Systems Operating Systems C Programming Language Take-away SWU 3 assignments: datalab perflab | attacklab malloclab Exam: 4 questions - 25% each (datalab, perflab|attacklab, malloclab, topics from the class) Logistics DS 2 assignments: datalab perflab Exam: 3 questions - 33% each (datalab, perflab, topics from the class) \"An operating system (OS) is a program that manages computer hardware.",
+		"questions_answers": [
+			{
+				"question": "What chapter introduces the major ideas and themes in computer systems by tracing the life cycle of a simple \u201chello, world\u201d program?",
+				"answer": {
+					"score": 0.8662041425704956,
+					"start": 0,
+					"end": 36,
+					"answer": "Take-away A Tour of Computer Systems"
+				}
+			},
+			{
+				"question": "What is the name of the course?",
+				"answer": {
+					"score": 0.026371896266937256,
+					"start": 195,
+					"end": 213,
+					"answer": "Overview Logistics"
+				}
+			},
+			{
+				"question": "How many questions - 25% each (datalab, perflab|attacklab, malloclab, topics from the class) What is a program that manages computer hardware?",
+				"answer": {
+					"score": 0.12700673937797546,
+					"start": 556,
+					"end": 557,
+					"answer": "3"
+				}
+			}
+		]
+	},
+	{
+		"context": "And although today's commercial-off-the- shelf desktop operating systems appear to be an integral part of PCs and workstation to many users, a fundamental understanding of the algorithms, principles, heuristics, and optimizations used is crucial for creating efficient application software. Furthermore, many of the principles in OS courses are relevant to large system applications like databases and web servers.\" A. Polze (U.Potsdam) Deep understanding of how computer systems impact software design Way to learn a new programming language Proficiency in shell, Linux, vim (First) experience with system programming Security | Performance General knowledge: history, (geo-)politics, business Computer Systems Operating Systems C Programming Language A system is a set of interconnected components with a well-defined behavior at the interface with its environment.",
+		"questions_answers": [
+			{
+				"question": "What are commercial-off-the- shelf desktop operating systems considered to be integral to PCs and workstations?",
+				"answer": {
+					"score": 0.25958362221717834,
+					"start": 129,
+					"end": 139,
+					"answer": "many users"
+				}
+			},
+			{
+				"question": "What is a fundamental understanding of the algorithms, principles, heuristics, and optimizations used to create efficient application software?",
+				"answer": {
+					"score": 0.04414942115545273,
+					"start": 141,
+					"end": 168,
+					"answer": "a fundamental understanding"
+				}
+			},
+			{
+				"question": "What is A. Polze's deep understanding of how computer systems impact software design Way to learn a new programming language?",
+				"answer": {
+					"score": 0.07833420485258102,
+					"start": 416,
+					"end": 435,
+					"answer": "A. Polze (U.Potsdam"
+				}
+			}
+		]
+	},
+	{
+		"context": "Coping with system complexity: Modularity, Abstraction, Layering, Hierarchy 3 fundamental abstractions for computer systems: Interpreter Memory Communication Memory Abstraction \ud83d\udde3\ufe0f The Operating System makes it easy to interact with hardware. \ud83d\udde3\ufe0f A CPU is supposed to implement the interpreter abstraction. An operating system (OS) is a program that manages computer hardware. OS Abstractions A process: OS Abstraction of a running program An interpreter On multi-core CPUs: Multiple processes run simultaneously On each core: Multiple processes can execute concurrently. They share the same physical core Need to switch from one interpreter to another The OS kernel is started when the computer boots The OS kernel then manages all the computer's resources (processor, memory, I/O devices) The OS kernel partitions the memory into kernel space (reserved to the kernel) and user space (all applications) The OS kernel exposes an interface to user space applications, the system calls In Linux, files are a universal abstraction for all I/O devices.",
+		"questions_answers": [
+			{
+				"question": "What is an operating system that manages computer hardware?",
+				"answer": {
+					"score": 0.30850785970687866,
+					"start": 326,
+					"end": 329,
+					"answer": "OS)"
+				}
+			},
+			{
+				"question": "What is a process that can run simultaneously On multi-core CPUs?",
+				"answer": {
+					"score": 0.23543108999729156,
+					"start": 402,
+					"end": 416,
+					"answer": "OS Abstraction"
+				}
+			},
+			{
+				"question": "How many processes can execute simultaneously On each core?",
+				"answer": {
+					"score": 0.8469647765159607,
+					"start": 525,
+					"end": 533,
+					"answer": "Multiple"
+				}
+			},
+			{
+				"question": "What is the name of the OS kernel that is used to manage the computer's resources?",
+				"answer": {
+					"score": 0.25430572032928467,
+					"start": 700,
+					"end": 713,
+					"answer": "The OS kernel"
+				}
+			}
+		]
+	},
+	{
+		"context": "A file is an array of bytes. A file has a unique name (file descriptor). Basic operations on files are create/delete, open/close, read/write. How to write programs that manage computer hardware? OS kernel Embedded systems Infrastructure software that must tightly control its use of hardware resources: Compilers, Database systems, Version control More portable than assembly. Efficient enough to give programmers full control/responsibility over processes, virtual memory and file abstractions Alternatives: Rust (Mozzilla), C++ Extensions: OpenCL, OneAPI \ud83d\udca1 C is an imperative programming language. C is a permissive statically typed language. Compilation phases $ gcc -save-temps hello.c \u201c The standard library provides a variety of functions, a few of which stand out as especially useful.",
+		"questions_answers": [
+			{
+				"question": "What is an array of bytes?",
+				"answer": {
+					"score": 0.8409299850463867,
+					"start": 0,
+					"end": 6,
+					"answer": "A file"
+				}
+			},
+			{
+				"question": "What is the name of a file that has a unique name?",
+				"answer": {
+					"score": 0.9735254645347595,
+					"start": 55,
+					"end": 70,
+					"answer": "file descriptor"
+				}
+			},
+			{
+				"question": "How do programmers control their use of hardware resources?",
+				"answer": {
+					"score": 0.44040125608444214,
+					"start": 195,
+					"end": 245,
+					"answer": "OS kernel Embedded systems Infrastructure software"
+				}
+			},
+			{
+				"question": "What is a permissive statically typed language?",
+				"answer": {
+					"score": 0.985530436038971,
+					"start": 600,
+					"end": 601,
+					"answer": "C"
+				}
+			}
+		]
+	},
+	{
+		"context": "\" K&R \"By the way, printf is not part of the C language; there is no input or output defined in C itself. There is nothing magic about printf ; it is just a useful function which is part of the standard library of routines that are normally accessible to C programs.\" K&R ### Coding Style 1. Indentation 2. Breaking long lines 3. Placing Braces and Spaces 4. Naming 5. Typedefs 6. Functions 7. Centralized exiting of functions [goto considered helpful] 8. Commenting 9. Function return values and names Current standard: C11 Unicode support, threads.h, stdatomic.h, type generic expressions Past standards: C99, C95, C90, C89 Removed features from K&R C (such as implicit int or partial function prototypes).",
+		"questions_answers": [
+			{
+				"question": "What is a useful function that is part of the standard library of routines that are normally accessible to C programs?",
+				"answer": {
+					"score": 0.21923954784870148,
+					"start": 135,
+					"end": 141,
+					"answer": "printf"
+				}
+			},
+			{
+				"question": "What is the name of the type generic expressions used in K&R C?",
+				"answer": {
+					"score": 0.01524076797068119,
+					"start": 607,
+					"end": 625,
+					"answer": "C99, C95, C90, C89"
+				}
+			},
+			{
+				"question": "What type of expressions did C11 Unicode support include?",
+				"answer": {
+					"score": 0.23040980100631714,
+					"start": 542,
+					"end": 590,
+					"answer": "threads.h, stdatomic.h, type generic expressions"
+				}
+			}
+		]
+	},
+	{
+		"context": "Introduced long, variable length arrays, and many library headers. Future standard: C2X (charter), planned for 2021 \"In a safe programming language, errors are trapped as they happen. Java, for example, is largely safe via its exception system. In an unsafe programming language, errors are not trapped. (...) [In C], anything at all can happen; the Standard imposes no requirements. The program may fail to compile, or it may execute incorrectly (either crashing or silently generating incorrect results), or it may fortuitously do exactly what the programmer intended.\" John Regehr You will learn how the hardware infrastructure impacts software with a focus on either performance or security.",
+		"questions_answers": [
+			{
+				"question": "What is the future standard of C2X planned for 2021?",
+				"answer": {
+					"score": 0.6575861573219299,
+					"start": 89,
+					"end": 96,
+					"answer": "charter"
+				}
+			},
+			{
+				"question": "How can the program fail to compile or execute incorrectly?",
+				"answer": {
+					"score": 0.3577623665332794,
+					"start": 455,
+					"end": 504,
+					"answer": "crashing or silently generating incorrect results"
+				}
+			},
+			{
+				"question": "What is a safe programming language where errors are not trapped as they happen?",
+				"answer": {
+					"score": 0.88919597864151,
+					"start": 184,
+					"end": 188,
+					"answer": "Java"
+				}
+			},
+			{
+				"question": "What does the Standard impose?",
+				"answer": {
+					"score": 0.7794196009635925,
+					"start": 367,
+					"end": 382,
+					"answer": "no requirements"
+				}
+			}
+		]
+	},
+	{
+		"context": "We will cover in details programming issues related to the three fundamental abstractions provided by operating systems: Processes are interpreters Memory is an array of bytes I/O devices are seen as files 4 compilation phases: preprocessing, compiler, assembler, linker The C standard library contains collections of useful functions. The C standard creates undefined behaviours. Beware!.",
+		"questions_answers": [
+			{
+				"question": "What is an array of bytes I/O devices are seen as files 4 compilation phases: preprocessing, compiler, assembler, linker The C standard library contains collections of useful functions?",
+				"answer": {
+					"score": 0.9741114974021912,
+					"start": 121,
+					"end": 154,
+					"answer": "Processes are interpreters Memory"
+				}
+			},
+			{
+				"question": "What does the C standard create?",
+				"answer": {
+					"score": 0.8043942451477051,
+					"start": 359,
+					"end": 388,
+					"answer": "undefined behaviours. Beware!"
+				}
+			}
+		]
+	}
+]

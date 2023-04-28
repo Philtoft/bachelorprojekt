@@ -1,0 +1,541 @@
+[
+    {
+        "context": "Theory. Software engineering. Software engineering Includes: Modeling activity. Deals with complexity through modeling. (models are built of the system as well as the application domain). Problem-solving activity. Search is driven by experimentation, and rely on empirical methods to evaluate the benefits of different alternatives. Knowledge acquisition activity. Collect data, organize it into information and formalize it into knowledge. Rational driven activity. Captures the context in which decisions were made, and the rationale behind said decisions. Requirement engineering. Used in a plan-driven process like waterfall. Requirement Elicitation. Identifies and discovers the requirements from the client (using elicitation techniques mentioned later on like interview, prototyping and ethnography).",
+        "questions_answers": [
+            {
+                "question": "What does software engineering deal with?",
+                "answer": {
+                    "score": 0.603476345539093,
+                    "start": 91,
+                    "end": 101,
+                    "answer": "complexity"
+                }
+            },
+            {
+                "question": "What is a problem-solving activity that is driven by experimentation?",
+                "answer": {
+                    "score": 0.9981444478034973,
+                    "start": 214,
+                    "end": 220,
+                    "answer": "Search"
+                }
+            },
+            {
+                "question": "How does knowledge acquisition activity work?",
+                "answer": {
+                    "score": 0.6468775868415833,
+                    "start": 365,
+                    "end": 439,
+                    "answer": "Collect data, organize it into information and formalize it into knowledge"
+                }
+            },
+            {
+                "question": "Who uses elicitation techniques mentioned later on?",
+                "answer": {
+                    "score": 0.3889099657535553,
+                    "start": 767,
+                    "end": 805,
+                    "answer": "interview, prototyping and ethnography"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Requirement Analysis. Transforms the data taken from the elicitation phase to useful information and requirements to the system. Requirement Specification Document the requirements Requirement Validation. Go back to the customer and check if its what they wanted. Check for contradicting requirements. Greenfield engineering. From scratch. Makes it hard to get the requirements from the user, because they might not know what they want. Re-Engineering. Improving and adding functionality with more detailed requirements from the clients. Project phases. Requirement elicitation. This process results in a documented definition of the system that can be understood by the client/ customer/ user.",
+        "questions_answers": [
+            {
+                "question": "What is the process that results in a documented definition of the system that can be understood by the client/customer/user?",
+                "answer": {
+                    "score": 0.45857638120651245,
+                    "start": 554,
+                    "end": 577,
+                    "answer": "Requirement elicitation"
+                }
+            },
+            {
+                "question": "What does Re-Engineering make it difficult to get the requirements from the user?",
+                "answer": {
+                    "score": 0.3360563814640045,
+                    "start": 401,
+                    "end": 435,
+                    "answer": "they might not know what they want"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Focus on describing the purpose of the system. Focuses on the application domain. Techniques. Interviewing. Ethnography, watch the user while they use the previous system in their own environment. Software developers know little about the application domain, and the user is too engulfed in their domain, and can forget vital details. Prototyping (show them to the client). These can be technical or user interface prototypes. Functional Requirements. Describe the functionality that the system needs, as given by the client and observed from the user. Non functional Requirements. Describe the other requirements that the user probably won\u2019t understand. Will effect the whole software system.",
+        "questions_answers": [
+            {
+                "question": "What is the purpose of the system?",
+                "answer": {
+                    "score": 0.3259811997413635,
+                    "start": 9,
+                    "end": 45,
+                    "answer": "describing the purpose of the system"
+                }
+            },
+            {
+                "question": "What does the user do while they use the previous system in their own environment?",
+                "answer": {
+                    "score": 0.7156366109848022,
+                    "start": 121,
+                    "end": 126,
+                    "answer": "watch"
+                }
+            },
+            {
+                "question": "How do software developers know little about the application domain?",
+                "answer": {
+                    "score": 0.04932074621319771,
+                    "start": 335,
+                    "end": 346,
+                    "answer": "Prototyping"
+                }
+            },
+            {
+                "question": "Prototyping can be technical or user interface prototypes?",
+                "answer": {
+                    "score": 0.1070328876376152,
+                    "start": 348,
+                    "end": 371,
+                    "answer": "show them to the client"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Categories: Usability. -. Reliability. Performance. Supportability. Use Case. Contains an actor, flow of events and post conditions. User Story. Contains user, role, goal and acceptance criteria Similarities to use cases: Describe one way to use the system, that is centered around a goal. Written from the perspective of the user. Uses natural language. Differences: Use stories deliberately leaves out important details, meant to elicit conversations by asking questions. Use cases are more detailed and have up-front requirement specifications. Analysis. This process results in a documented analysis model, that the developers can unambiguously interpret. Also includes technical specifications. Focuses on the solution domain.",
+        "questions_answers": [
+            {
+                "question": "What is the name of a user's story?",
+                "answer": {
+                    "score": 0.9626393914222717,
+                    "start": 133,
+                    "end": 143,
+                    "answer": "User Story"
+                }
+            },
+            {
+                "question": "What is a result of an analysis model that developers can unambiguously interpret?",
+                "answer": {
+                    "score": 0.34091290831565857,
+                    "start": 584,
+                    "end": 594,
+                    "answer": "documented"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Analysis model. Model of the system that shows that it is complete, correct, consistent and verifiable. It structures formalizing requirements and leads to revision of said requirements. Contains. Functional model. Analysis object model. Dynamic model. Design. Implementation Test. Design Patterns. Solid Principles. Single Responsibility. A class should have one and only one reason to change. Meaning a class should have one responsibility and therefore only one reason to change. What is a reason for change? A responsibility. fx. This can be done by using a command design pattern to fx. Seperate a buttons functionality to the user interface.",
+        "questions_answers": [
+            {
+                "question": "What is the model of the system that shows that it is complete, correct, consistent and verifiable?",
+                "answer": {
+                    "score": 0.8023788928985596,
+                    "start": 0,
+                    "end": 14,
+                    "answer": "Analysis model"
+                }
+            },
+            {
+                "question": "What does the model structure formalizing requirements and leads to revision of said requirements?",
+                "answer": {
+                    "score": 0.8276954293251038,
+                    "start": 0,
+                    "end": 14,
+                    "answer": "Analysis model"
+                }
+            },
+            {
+                "question": "What is a Dynamic model. Design. Implementation Test. Design Patterns. Solid Principles. What does a class should have one and only one reason to change?",
+                "answer": {
+                    "score": 0.8398348093032837,
+                    "start": 317,
+                    "end": 338,
+                    "answer": "Single Responsibility"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Open/Close. You should be able to extend a classes behavior without modifying it (be able to add new inherited classes without modifying the class that is dependent on it / calls it). Fx. IoCContainer in our project. Here any class dependent on the container will know that they need an abstract class A, but they don\u2019t need to know which concrete subclass of A they are using. Thereby making it possible to extend the functionality of the client class, by using different subclasses of A, and not modifying the client class. Liskovs substitution. Derived classes must be substitutable for their base classes (functionality of a class should not change between the inherited class and its subclasses).",
+        "questions_answers": [
+            {
+                "question": "What should be able to extend a classes behavior without modifying it?",
+                "answer": {
+                    "score": 0.9066559076309204,
+                    "start": 0,
+                    "end": 10,
+                    "answer": "Open/Close"
+                }
+            },
+            {
+                "question": "What is the name of a class dependent on the container that needs an abstract class A?",
+                "answer": {
+                    "score": 0.43322861194610596,
+                    "start": 184,
+                    "end": 186,
+                    "answer": "Fx"
+                }
+            },
+            {
+                "question": "Which subclass of A should be used to extend the functionality of the client class?",
+                "answer": {
+                    "score": 0.5346364974975586,
+                    "start": 463,
+                    "end": 483,
+                    "answer": "different subclasses"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Fx. Interface Segregation. Interfaces should not have methods that aren't used by the client (make fine grained interfaces that are client specific). Dependency Inversion. Higher level modules should not depend on lower level concrete classes, but instead on abstractions (interfaces). So when the lower level modules change details, the higher level modules don't have to follow. This principle can be seen every time the systems implements an interface and uses said interface to connect to component with another aspect of the system. Architectural Design. Design goals. Describe the qualities of the system that developers should optimize (prioritization). Derived from nonfunctional requirements.",
+        "questions_answers": [
+            {
+                "question": "What should interfaces not have methods that aren't used by the client?",
+                "answer": {
+                    "score": 0.7686245441436768,
+                    "start": 94,
+                    "end": 147,
+                    "answer": "make fine grained interfaces that are client specific"
+                }
+            },
+            {
+                "question": "Dependency Inversion. Higher level modules should not depend on what?",
+                "answer": {
+                    "score": 0.7222674489021301,
+                    "start": 214,
+                    "end": 242,
+                    "answer": "lower level concrete classes"
+                }
+            },
+            {
+                "question": "What should higher level modules depend on when the lower level modules change details?",
+                "answer": {
+                    "score": 0.2518509328365326,
+                    "start": 259,
+                    "end": 284,
+                    "answer": "abstractions (interfaces)"
+                }
+            },
+            {
+                "question": "Architectural Design. Design goals. Derived from nonfunctional requirements?",
+                "answer": {
+                    "score": 0.1318727284669876,
+                    "start": 587,
+                    "end": 659,
+                    "answer": "qualities of the system that developers should optimize (prioritization)"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Performance, dependability, cost, maintenance, end user criteria. Fx. Reliability, fault tolerance, security, modifiability. Architectural Styles. Repository. Used for datadriven systems. Subsystems access and modify a single data structure called the central repository. This maintains all the data. The subsystems don't need to know each other. Problem: the central repository can become a bottleneck, for performance and modifications. And coupling between subsystems and repository is high. Model/View/Controller. Model, maintain domain knowledge (doesn't depend on V or C) changes made via a subscribe/notify protocol. View, displays it to the user. Able to have multiple views using the same information (same model).",
+        "questions_answers": [
+            {
+                "question": "What is used for datadriven systems?",
+                "answer": {
+                    "score": 0.8555557131767273,
+                    "start": 125,
+                    "end": 157,
+                    "answer": "Architectural Styles. Repository"
+                }
+            },
+            {
+                "question": "What do subsystems access and modify a single data structure called?",
+                "answer": {
+                    "score": 0.5321047902107239,
+                    "start": 248,
+                    "end": 270,
+                    "answer": "the central repository"
+                }
+            },
+            {
+                "question": "How can the central repository become a bottleneck for performance and modifications?",
+                "answer": {
+                    "score": 0.9096850156784058,
+                    "start": 347,
+                    "end": 354,
+                    "answer": "Problem"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Controller, manage the sequence of interactions with the user. (manages the information flow). (Use observer design pattern to remove direct dependency between Model and View objects). Works well for interactive systems, Especially when multiple views of the same model are needed. Used for maintaining consistency across distributed data. Client/Server. Server provides services to instances of other subsystems called clients (responsible for interacting with users). Request for a service usually done via a remote procedure call mechanism / common object broker (HTTP, CORBA). Peer-to-peer. Generalization of client/server, where subsystems can be both client and server (request and provide services).",
+        "questions_answers": [
+            {
+                "question": "How does Controller manage the sequence of interactions with the user?",
+                "answer": {
+                    "score": 0.5812098383903503,
+                    "start": 64,
+                    "end": 92,
+                    "answer": "manages the information flow"
+                }
+            },
+            {
+                "question": "What is used to remove direct dependency between Model and View objects?",
+                "answer": {
+                    "score": 0.8412255644798279,
+                    "start": 100,
+                    "end": 123,
+                    "answer": "observer design pattern"
+                }
+            },
+            {
+                "question": "How does Server provide services to instances of other subsystems called clients?",
+                "answer": {
+                    "score": 0.7534036040306091,
+                    "start": 429,
+                    "end": 467,
+                    "answer": "responsible for interacting with users"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Have possibility of deadlocks. Fx. Database that both accepts requests from the application and notifies to the application whenever certain data is changed. Three-tier. Organizes subsystems into three layers: Interface layer, all boundary objects dealing with the user (windows, forms, webpages etc). Application logic layer, all control and entity objects (creating processes, rule checking, notifications etc). Storage layer, realizes the storage, retrieval and query of persistent objects. Can be shared by several different applications operating on the same data. Decoupling between interface and application logic layer enables modification and change in the interface layer without dealing with the application logic layer.",
+        "questions_answers": [
+            {
+                "question": "What database accepts requests from the application and notifies to the application whenever certain data is changed?",
+                "answer": {
+                    "score": 0.8413146138191223,
+                    "start": 20,
+                    "end": 33,
+                    "answer": "deadlocks. Fx"
+                }
+            },
+            {
+                "question": "What is the name of the subsystem that Organizes subsystems into three layers?",
+                "answer": {
+                    "score": 0.8912177681922913,
+                    "start": 210,
+                    "end": 225,
+                    "answer": "Interface layer"
+                }
+            },
+            {
+                "question": "How does Storage layer realize the storage, retrieval and query of persistent objects?",
+                "answer": {
+                    "score": 0.6218797564506531,
+                    "start": 302,
+                    "end": 325,
+                    "answer": "Application logic layer"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Four-tier. Here interface layer is split into: Presentation Client. Located on the user machines. Presentation Server. Located on one / more servers. Enables multiple presentation clients to use the same presentation server. Pipe and filter. Filters are subsystem that process data received from a set of inputs and send results to other subsystems via a set of outputs. Pipes are the associations between subsystems. Each filter knows only of the data received from the pipe, no the filter that produced them. Filters are executed concurrently (synchronization is possible via the pipes). Suited for systems that apply transformations to streams of data without intervention by users.",
+        "questions_answers": [
+            {
+                "question": "Which interface layer is split into: Presentation Client. Located on the user machines. Presentation Server. On one / more servers. Enables multiple presentation clients to use the same presentation server?",
+                "answer": {
+                    "score": 0.28329700231552124,
+                    "start": 47,
+                    "end": 66,
+                    "answer": "Presentation Client"
+                }
+            },
+            {
+                "question": "Which subsystem process data received from a set of inputs and send results to other subsystems?",
+                "answer": {
+                    "score": 0.48666220903396606,
+                    "start": 242,
+                    "end": 249,
+                    "answer": "Filters"
+                }
+            },
+            {
+                "question": "Filters are executed concurrently (synchronization is possible via the pipes)",
+                "answer": {
+                    "score": 0.07693037390708923,
+                    "start": 582,
+                    "end": 587,
+                    "answer": "pipes"
+                }
+            }
+        ]
+    },
+    {
+        "context": "(not good for system with complex interactions). UML diagrams (e.g., Class diagram). UML is a family of graphical notation that help describe and design software systems particularly systems built using object oriented programming. UML notation was created by The Three Amigos in 1995. They made UML to have a universal way of depicting code in diagrams, because programming languages are not on a high enough level of abstraction to facilitate discussions about design. UML can be used as sketch, blueprint or as a programming language. Class diagram. Abstraction specifying attributes and behavior of a set of objects. Attribute visibility: + public, - private, # protected.",
+        "questions_answers": [
+            {
+                "question": "What does UML notation help describe and design software systems?",
+                "answer": {
+                    "score": 0.8184135556221008,
+                    "start": 203,
+                    "end": 230,
+                    "answer": "object oriented programming"
+                }
+            },
+            {
+                "question": "Who created the UML Notation?",
+                "answer": {
+                    "score": 0.5001925826072693,
+                    "start": 264,
+                    "end": 276,
+                    "answer": "Three Amigos"
+                }
+            },
+            {
+                "question": "What did The Three Amigos create in 1995?",
+                "answer": {
+                    "score": 0.7925900220870972,
+                    "start": 232,
+                    "end": 244,
+                    "answer": "UML notation"
+                }
+            },
+            {
+                "question": "What is the name of the family of graphical notation that help describe software systems based on object oriented programming?",
+                "answer": {
+                    "score": 0.9128944873809814,
+                    "start": 85,
+                    "end": 88,
+                    "answer": "UML"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Abstract classes: Class name or <. > Class name. Interface: <. > Class name. Deployment diagram. Structure diagram. Used to depict where various elements of a system are located. For instance, a distributed system based on a client/server architecture. Use Case Diagram. Behavior diagram. Captures requirements, abstract scenarios. Comprised of two parts: use case diagram and use case text. Text syntax: Name of use case, participating actors, flow of events, entry condition, exit condition, exceptions, quality requirements. Activity Diagram. Behavior diagram. Models the dynamic behavior of a subsystem. Also known as flowcharts. State Machine Diagram. Behavior diagram. Specifies the dynamic behavior of a single object.",
+        "questions_answers": [
+            {
+                "question": "What is a class name?",
+                "answer": {
+                    "score": 0.713778018951416,
+                    "start": 0,
+                    "end": 16,
+                    "answer": "Abstract classes"
+                }
+            },
+            {
+                "question": "What is the class name of a system that is based on a client/server architecture?",
+                "answer": {
+                    "score": 0.4831564128398895,
+                    "start": 193,
+                    "end": 213,
+                    "answer": "a distributed system"
+                }
+            },
+            {
+                "question": "How does a structure diagram be used to depict where various elements of the system are located?",
+                "answer": {
+                    "score": 0.14761926233768463,
+                    "start": 0,
+                    "end": 16,
+                    "answer": "Abstract classes"
+                }
+            },
+            {
+                "question": "What is an example of an abstract scenario?",
+                "answer": {
+                    "score": 0.3076687455177307,
+                    "start": 253,
+                    "end": 287,
+                    "answer": "Use Case Diagram. Behavior diagram"
+                }
+            }
+        ]
+    },
+    {
+        "context": "They model the sequence of states an object goes through at runtime in reaction to external events. They have an initial and final state. Or. Sequence Diagram. Behavior interaction diagram. Has actors, lifelines, activations and objects. Communication diagram. Behavior interaction diagram. Focus more on relationships of objects than sequence diagrams. They are more \u201cinformal\u201d and used for sketching. Object diagram. Structure diagram. Describes relationship between different objects. Instances instead of classes. Links instead of associations. Component diagram. Structure diagram. Shows components and their required interfaces/ports. Package diagram. Structural diagram. Software processes. Plan-driven processes. processes where all of the process activities are planned in advance and progress is measured this plan.",
+        "questions_answers": [
+            {
+                "question": "What is the sequence of states an object goes through at runtime in reaction to external events?",
+                "answer": {
+                    "score": 0.27905958890914917,
+                    "start": 113,
+                    "end": 136,
+                    "answer": "initial and final state"
+                }
+            },
+            {
+                "question": "How many processes are planned in advance?",
+                "answer": {
+                    "score": 0.13701215386390686,
+                    "start": 737,
+                    "end": 766,
+                    "answer": "all of the process activities"
+                }
+            },
+            {
+                "question": "What does Sequence Diagram have actors, lifelines, activations and objects?",
+                "answer": {
+                    "score": 0.9710932970046997,
+                    "start": 160,
+                    "end": 188,
+                    "answer": "Behavior interaction diagram"
+                }
+            },
+            {
+                "question": "What does Object diagram. Structure diagram. What does Structure diagram show?",
+                "answer": {
+                    "score": 0.22550183534622192,
+                    "start": 448,
+                    "end": 486,
+                    "answer": "relationship between different objects"
+                }
+            }
+        ]
+    },
+    {
+        "context": "(waterfall). Iterative or incremental process. planning is incremental and it is easier to change the process to reflect changing customer requirements. Here small projects are continuously integrated into the whole. All the phases of the software process is covered iteratively or different prototypes and versions of the system. (vs. the monolithic approach.). Agile processes. the development of \"shappable\" software takes precedence over planning and documentation. Here you specifically follow the rules listed in the agile manifesto. (SCRUM, XP etc). Waterfall. Most known plan-driven process, with the following phases: Feasibility (is it reasonable to do the project.). User requirements.",
+        "questions_answers": [
+            {
+                "question": "What is iterative or incremental process?",
+                "answer": {
+                    "score": 0.6919716000556946,
+                    "start": 1,
+                    "end": 10,
+                    "answer": "waterfall"
+                }
+            },
+            {
+                "question": "What is the most known plan-driven process, with the following phases: Feasibility (is it reasonable to do the project?",
+                "answer": {
+                    "score": 0.6492828130722046,
+                    "start": 557,
+                    "end": 566,
+                    "answer": "Waterfall"
+                }
+            }
+        ]
+    },
+    {
+        "context": "Analysis (plan). System design. Program design. Coding. Testing. Operation. In every phase it is possible to go backwards, get more requirements from the user if you have holes in your model during analysis. Each phase produces a documents, freezes it and change management process is used afterwards (very much document-driven process). Strength: Easily manageable process (manager's can have a good oversight). If you know all the requirements form the beginning. Easy to split the work. Weaknesses: Inflexible partitioning of the project into distinct stages. Feedback on the system can be very expensive if changes need to be made.",
+        "questions_answers": [
+            {
+                "question": "What is a plan?",
+                "answer": {
+                    "score": 0.7137072682380676,
+                    "start": 0,
+                    "end": 8,
+                    "answer": "Analysis"
+                }
+            },
+            {
+                "question": "What is an example of a program design?",
+                "answer": {
+                    "score": 0.2599056363105774,
+                    "start": 17,
+                    "end": 30,
+                    "answer": "System design"
+                }
+            },
+            {
+                "question": "How does each phase produce a document, freeze it, and change management process is used afterwards?",
+                "answer": {
+                    "score": 0.5075491666793823,
+                    "start": 312,
+                    "end": 335,
+                    "answer": "document-driven process"
+                }
+            }
+        ]
+    }
+]
