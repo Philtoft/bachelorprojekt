@@ -116,19 +116,12 @@ class QG:
         return chunks
 
 
-<<<<<<< HEAD
-    def train(self, training_args: TrainingArguments, data_args: DataTrainingArguments):
-        """Start training the `QG` model. Once completed it will be pushed to the HuggingFace Hub."""
-
-        # wandb.login(key=wandb_key)
-=======
     def train(self, training_args: TrainingArguments, data_args: DataTrainingArguments, wandb_key: str):
         """Start training the `QG` model. Once completed it will be pushed to the HuggingFace Hub along with the `tokenizer`."""
 
         # Set WANDB project name and login
         os.environ['WANDB_PROJECT'] = data_args.wandb_project_name
         wandb.login(key=wandb_key)
->>>>>>> main
 
         # Load preprocessed datasets
         train = torch.load(data_args.training_file_path)
@@ -148,14 +141,6 @@ class QG:
             args=training_args,
             train_dataset=train,
             eval_dataset=validation,
-<<<<<<< HEAD
-            data_collator=DataCollatorWithPadding(padding='longest', tokenizer=self._tokenizer)
-        )
-
-        trainer.train()
-        # wandb.finish()
-        # trainer.push_to_hub()
-=======
             data_collator=T2TDataCollator(self._model, self._tokenizer, padding_strategy)
         )
 
@@ -165,4 +150,3 @@ class QG:
         if data_args.upload_to_hub:
             trainer.push_to_hub(blocking=True)
             self._tokenizer.push_to_hub(training_args.hub_model_id)
->>>>>>> main
