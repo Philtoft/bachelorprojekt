@@ -25,6 +25,8 @@ elif [ "$1" = "-r" ]; then
     println "Creating 'requirements.txt'..." "$green"
     python -m pipreqs.pipreqs --encoding utf-8 --force .
     println "Done." "$green"
+elif [ "$1" = "-t" ]; then
+    python -m unittest discover tests
 elif [ "$1" = "-h" ]; then
     print_help
 else
