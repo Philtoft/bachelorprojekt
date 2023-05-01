@@ -53,7 +53,7 @@ class NoteParser:
         # Case "```\w*```" -> "" remove everything between ``` and ```
         markdown_notes = re.sub(r"```.*?```", "", markdown_notes, flags=re.DOTALL)
 
-        result = markdown(markdown_notes, extensions=['markdown.extensions.tables', 'pymdownx.superfences', RemoveInlineCode()])
+        result = markdown(markdown_notes, extensions=['markdown.extensions.tables', RemoveInlineCode()])
 
         return result
 
