@@ -45,9 +45,9 @@ def main(args: argparse.Namespace, no_arguments: bool):
             logger.info("--- QGAR ---")
             qgar(args.note)
 
-        elif args.input:
+        elif args.qg:
             logger.info("--- Question Generation ---")
-            qg_result = qg(args.input)
+            qg_result = qg(args.qg)
             print(json.dumps(qg_result, indent=4))
 
 
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog='main', description="Run or train the QGAR model.")
     parser.add_argument("-t", "--train", action='store_true', help="Specify that the QG model should be trained.")
     parser.add_argument("-d", "--dataset", action='store_true', help="Download and preprocess SQuAD dataset.")
-    parser.add_argument("-i", "--input", type=str, metavar="text", help="Input text to the model.")
+    parser.add_argument("-qg", "--qg", type=str, metavar="context", help="Create questions based on the input text.")
     parser.add_argument("-s", "--settings", type=str, metavar="settings", default=_DEFAULT_SETTINGS, help="Settings file to use.")
     parser.add_argument("-n", "--note", type=str, metavar="note", help="Path to note.")
 
