@@ -23,7 +23,8 @@ if [ "$1" = "-n" ]; then
 elif [ "$1" = "-r" ]; then
     pip install pipreqs -q
     println "Creating 'requirements.txt'..." "$green"
-    python -m pipreqs.pipreqs --encoding utf-8 .
+    python -m pipreqs.pipreqs --encoding utf-8 --force .
+    println "Done." "$green"
 elif [ "$1" = "-h" ]; then
     print_help
 else
