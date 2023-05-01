@@ -11,6 +11,7 @@ _NOTE_FORMATS = [".md", ".html"]
 class NoteParser:
     """"
     This class is used to parse a note
+    
     Steps:
     - Get note
     - Remove specific html tags:
