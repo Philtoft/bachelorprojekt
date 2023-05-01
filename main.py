@@ -45,6 +45,10 @@ def main(args: argparse.Namespace, no_arguments: bool):
             logger.info("--- QGAR ---")
             qgar(args.note)
 
+        if args.evaluate:
+            logger.info("--- EVALUATE ---")
+            qg.evaluate()
+
         elif args.qg:
             logger.info("--- Question Generation ---")
             qg_result = qg(args.qg)
@@ -65,5 +69,6 @@ if __name__ == "__main__":
     parser.add_argument("-qg", "--qg", type=str, metavar="context", help="Create questions based on the input text.")
     parser.add_argument("-s", "--settings", type=str, metavar="settings", default=_DEFAULT_SETTINGS, help="Settings file to use.")
     parser.add_argument("-n", "--note", type=str, metavar="note", help="Path to note.")
+    parser.add_argument("-e", "--evaluate", action='store_true', help="Whether to evaluate the model or not.")
 
     main(parser.parse_args(), not (len(sys.argv) > 1))
