@@ -4,8 +4,22 @@ import json
 import logging
 import pathlib
 from parsing.note_parser import NoteParser
+import sys
 
-logging.basicConfig(level=logging.INFO, filename="qgar.log", filemode="a", format='%(asctime)s %(message)s')
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s %(message)s')
+
+stdout_handler = logging.StreamHandler(sys.stdout)
+stdout_handler.setLevel(logging.INFO)
+stdout_handler.setFormatter(formatter)
+
+file_handler = logging.FileHandler('qgar.log', mode='a')
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(formatter)
+
+logger.addHandler(file_handler)
+logger.addHandler(stdout_handler)
 
 
 class QGAR:
@@ -26,7 +40,6 @@ class QGAR:
 
         self._qg = qg
         self._qa = pipeline("question-answering", qa)
-        self.student_name = None
 
 
     def __call__(self, file_path: str) -> list:
@@ -80,9 +93,7 @@ class QGAR:
                 scores.append(q_a["answer"]["score"])
 
         # Print score average
-        print(f"Score average: {sum(scores) / len(scores)}")
-        logging.info(
-            f"Score average: {sum(scores) / len(scores)} - notes from {self.student_name}")
+        logging.info(f"Score average: {sum(scores) / len(scores)}")
 
         return questions_and_answers
 

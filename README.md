@@ -1,8 +1,8 @@
-# QGAR - Question Generation Answering RRR
+# QGAR - Question Generation Answering Responder
 
-Welcome to the `QGAR Project` - a flashcard generation application.
+Welcome to the `QGAR Project` - a note-processing and flashcard generation application.
 
-If you want to run the application please read the [Prerequisites section](#1-prerequisites).
+If you want to run the application, please read the [Prerequisites section](#1-prerequisites).
 
 </br>
 
@@ -64,9 +64,9 @@ python main.py <args>
 The application can take arguments to specify what to do:
 
 * `main.py -t` - starts a training session for the `QG` model.
-* `main.py -i <text>` - runs the `QG` model on the input text and generates questions from the given context.
+* `main.py -qg <context>` - runs the `QG` model on the input text and generates questions from the given context.
 * `main.py -d` - downloads and preprocesses our modified `SQuAD` dataset
-* `main.py -n <name>` - creates questions and answers and saves it under `<name>.json`
+* `main.py -n <path>` - creates questions and answers given the path to a file and saves it under `<path>.json`
 * `main.py -s <filename>.json` - use the specified settings file. Defaults to `settings.json`
 * `main.py -h` -  shows instructions on how to run the program
 

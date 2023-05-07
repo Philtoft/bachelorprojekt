@@ -11,6 +11,7 @@ _NOTE_FORMATS = [".md", ".html"]
 class NoteParser:
     """"
     This class is used to parse a note
+    
     Steps:
     - Get note
     - Remove specific html tags:
@@ -53,7 +54,7 @@ class NoteParser:
         # Case "```\w*```" -> "" remove everything between ``` and ```
         markdown_notes = re.sub(r"```.*?```", "", markdown_notes, flags=re.DOTALL)
 
-        result = markdown(markdown_notes, extensions=['markdown.extensions.tables', 'pymdownx.superfences', RemoveInlineCode()])
+        result = markdown(markdown_notes, extensions=['markdown.extensions.tables', RemoveInlineCode()])
 
         return result
 
@@ -136,16 +137,10 @@ class NoteParser:
             (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
             (r"\s\s+", " "),                    # Case "  " -> " "
             (r":\.", ":"),                      # Case ":." -> ":"
+            (r"\s\.", ""),                      # Case " ." -> ""
+            (r"\s:", ":"),                      # Remove spaces before kolon -> " :" -> ":"
+            (r":\.", ":")                       # Remove dots after kolon -> ":." -> ":"
         ]
-
-        # Case " ." -> ""
-        patterns.append((r"\s\.", ""))
-
-        # Remove spaces before kolon -> " :" -> ":"
-        patterns.append((r"\s:", ":"))
-
-        # Remove dots after kolon -> ":." -> ":"
-        patterns.append((r":\.", ":"))
 
         # Apply regex patterns
         for pattern, replacement in patterns:
