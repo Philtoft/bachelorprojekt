@@ -137,16 +137,10 @@ class NoteParser:
             (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
             (r"\s\s+", " "),                    # Case "  " -> " "
             (r":\.", ":"),                      # Case ":." -> ":"
+            (r"\s\.", "")                       # Case " ." -> ""
+            (r"\s:", ":")                       # Remove spaces before kolon -> " :" -> ":"
+            (r":\.", ":")                       # Remove dots after kolon -> ":." -> ":"
         ]
-
-        # Case " ." -> ""
-        patterns.append((r"\s\.", ""))
-
-        # Remove spaces before kolon -> " :" -> ":"
-        patterns.append((r"\s:", ":"))
-
-        # Remove dots after kolon -> ":." -> ":"
-        patterns.append((r":\.", ":"))
 
         # Apply regex patterns
         for pattern, replacement in patterns:
