@@ -137,8 +137,8 @@ class NoteParser:
             (r"\.{2,}", ". "),                  # Case ".." -> ". " or "..." -> ". "
             (r"\s\s+", " "),                    # Case "  " -> " "
             (r":\.", ":"),                      # Case ":." -> ":"
-            (r"\s\.", "")                       # Case " ." -> ""
-            (r"\s:", ":")                       # Remove spaces before kolon -> " :" -> ":"
+            (r"\s\.", ""),                      # Case " ." -> ""
+            (r"\s:", ":"),                      # Remove spaces before kolon -> " :" -> ":"
             (r":\.", ":")                       # Remove dots after kolon -> ":." -> ":"
         ]
 
