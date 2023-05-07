@@ -3,6 +3,6 @@ clean:
 	rm -rf .ipynb_checkpoints/
 	rm -rf wandb
 	rm -rf model
-	rm *.log
+	rm -f *.log
 install:
 	pip install -r requirements.txt
