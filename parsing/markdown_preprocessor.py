@@ -2,9 +2,8 @@ import re
 from markdown import Markdown, Extension
 from markdown.preprocessors import Preprocessor
 
-class RemoveInlineCode(Extension):
+class RemoveInlineCodeExtension(Extension):
     def extendMarkdown(self, md: Markdown) -> None:
-        # md.registeredExtensions(self)
         md.preprocessors.register(RemoveCodeTagsPreprocessor(md), 'remove_code_tags', 175)
 
 class RemoveCodeTagsPreprocessor(Preprocessor):

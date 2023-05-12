@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup as bs
 import pathlib
 from markdown import markdown
 from exceptions.exceptions import NoSupportedFileTypeFoundError 
-from parsing.markdown_preprocessor import RemoveInlineCode
+from parsing.markdown_preprocessor import RemoveInlineCodeExtension
 
 _NOTE_FORMATS = [".md", ".html"]
 
@@ -54,7 +54,7 @@ class NoteParser:
         # Case "```\w*```" -> "" remove everything between ``` and ```
         markdown_notes = re.sub(r"```.*?```", "", markdown_notes, flags=re.DOTALL)
 
-        result = markdown(markdown_notes, extensions=['markdown.extensions.tables', RemoveInlineCode()])
+        result = markdown(markdown_notes, extensions=['markdown.extensions.tables', RemoveInlineCodeExtension()])
 
         return result
 

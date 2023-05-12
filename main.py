@@ -22,7 +22,7 @@ def main(args: argparse.Namespace, no_arguments: bool):
         parser.print_help()
     else:
         # Log into Huggingface Hub
-        hf_token = get_local_file(_HF_TOKEN)
+        hf_token = _get_local_file(_HF_TOKEN)
         login(hf_token, add_to_git_credential=True)
 
         # Parse settings file
@@ -38,7 +38,7 @@ def main(args: argparse.Namespace, no_arguments: bool):
 
         if args.train:
             logger.info("--- QG Training ---")
-            wandb_token = get_local_file(_WANDB_TOKEN)
+            wandb_token = _get_local_file(_WANDB_TOKEN)
             qg.train(training_args, data_args, wandb_token)
 
         if args.note:
@@ -55,7 +55,7 @@ def main(args: argparse.Namespace, no_arguments: bool):
             print(json.dumps(qg_result, indent=4))
 
 
-def get_local_file(filename: str):
+def _get_local_file(filename: str) -> str:
     """Load and return the content of a `.local` file."""
 
     with open(f'.local/{filename}', 'r', encoding='utf-8') as file:

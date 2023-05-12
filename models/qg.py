@@ -29,6 +29,9 @@ file_handler = logging.FileHandler('qg.log', mode='a')
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(formatter)
 
+logger.addHandler(file_handler)
+logger.addHandler(stdout_handler)
+
 _MODEL_MAX_LENGTH = 512
 _GENERATOR_ARGS = {
     "max_length": _MODEL_MAX_LENGTH,
