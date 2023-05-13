@@ -43,10 +43,10 @@ def main(args: argparse.Namespace, no_arguments: bool):
 
         if args.note:
             logger.info("--- QGAR ---")
-            qgar(args.note)
+            qgar(args.note, args.out)
 
         if args.evaluate:
-            logger.info("--- EVALUATE ---")
+            logger.info("--- EVALUATE QG ---")
             qg.evaluate()
 
         elif args.qg:
@@ -68,7 +68,8 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--dataset", action='store_true', help="Download and preprocess SQuAD dataset.")
     parser.add_argument("-qg", "--qg", type=str, metavar="context", help="Create questions based on the input text.")
     parser.add_argument("-s", "--settings", type=str, metavar="settings", default=_DEFAULT_SETTINGS, help="Settings file to use.")
-    parser.add_argument("-n", "--note", type=str, metavar="note", help="Path to note.")
+    parser.add_argument("-n", "--note", type=str, metavar="note_path", help="Path to note.")
     parser.add_argument("-e", "--evaluate", action='store_true', help="Whether to evaluate the model or not.")
+    parser.add_argument("-o", "--out", type=str, metavar='out_format', default='csv', help="Whether to output to CSV or JSON.")
 
     main(parser.parse_args(), not (len(sys.argv) > 1))
