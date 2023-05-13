@@ -15,19 +15,17 @@ import torch
 import wandb
 import os
 import logging
-import sys
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s %(message)s')
 
-stdout_handler = logging.StreamHandler(sys.stdout)
-stdout_handler.setLevel(logging.INFO)
-stdout_handler.setFormatter(formatter)
-
 file_handler = logging.FileHandler('qg.log', mode='a')
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(formatter)
+
+logger.addHandler(file_handler)
+
 
 _MODEL_MAX_LENGTH = 512
 _GENERATOR_ARGS = {
@@ -53,18 +51,23 @@ class QG:
         self._model.resize_token_embeddings(len(self._tokenizer))
 
 
-    def __call__(self, context: str) -> list[dict]:
+    def __call__(self, context: str, limit: int = 15) -> list[dict]:
         """Generates questions based on the given context and formats it as a dictionary."""
+        
+        logger.info(f"Received context of length: {len(context)}")
 
         # Split the context into chunks of the maximum length
         context_chunks = self.split_text(context)
+        logger.info(f"Split context in {len(context_chunks)} chunks")
 
         context_and_questions = []
 
         # Generate questions for each chunk
         for i, context_chunk in enumerate(context_chunks):
-            if i > 15:
+            if i > limit:
                 break
+
+            logger.info(f"Generating questions for chunk {i}/{limit}")
 
             input_string = "generate questions: " + context_chunk + " </s>"
 

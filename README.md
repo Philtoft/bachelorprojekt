@@ -66,9 +66,10 @@ The application can take arguments to specify what to do:
 * `main.py -t` - starts a training session for the `QG` model.
 * `main.py -qg <context>` - runs the `QG` model on the input text and generates questions from the given context.
 * `main.py -d` - downloads and preprocesses our modified `SQuAD` dataset
-* `main.py -n <path>` - creates questions and answers given the path to a file and saves it under `<path>.json`
+* `main.py -n <path>` - the path to a note file
 * `main.py -s <filename>.json` - use the specified settings file. Defaults to `settings.json`
 * `main.py -h` -  shows instructions on how to run the program
+* `main.py -o` - used in combination with `-n`; specifies whether to output questions and answers as json (debug) or csv. Defaults to csv.
 
 </br>
 
