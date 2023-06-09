@@ -1,3 +1,4 @@
+import sys
 from transformers import pipeline
 from models.qg import QG
 import json
@@ -10,13 +11,19 @@ from exceptions.exceptions import NoSupportedFileTypeFoundError
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s %(message)s')
+formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s', datefmt="%Y-%m-%d - %H:%M:%S")
+logger.propagate = False
 
 file_handler = logging.FileHandler('qgar.log', mode='a')
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(formatter)
 
+ch = logging.StreamHandler(sys.stdout)
+ch.setLevel(logging.INFO)
+ch.setFormatter(formatter)
+
 logger.addHandler(file_handler)
+logger.addHandler(ch)
 
 
 _SUPPORTED_FORMATS = ['csv', 'json']
