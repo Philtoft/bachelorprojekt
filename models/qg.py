@@ -1,3 +1,4 @@
+import sys
 from transformers import (
     AutoModelForSeq2SeqLM,
     AutoTokenizer,
@@ -18,13 +19,18 @@ import logging
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s %(message)s')
+formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s', datefmt="%Y-%m-%d - %H:%M:%S")
 
 file_handler = logging.FileHandler('qg.log', mode='a')
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(formatter)
 
+ch = logging.StreamHandler(sys.stdout)
+ch.setLevel(logging.INFO)
+ch.setFormatter(formatter)
+
 logger.addHandler(file_handler)
+logger.addHandler(ch)
 
 
 _MODEL_MAX_LENGTH = 512
@@ -55,6 +61,7 @@ class QG:
         """Generates questions based on the given context and formats it as a dictionary."""
         
         logger.info(f"Received context of length: {len(context)}")
+        logger.info(f"Generation limit set to: {limit}")
 
         # Split the context into chunks of the maximum length
         context_chunks = self.split_text(context)
